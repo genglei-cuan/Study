@@ -11,10 +11,7 @@ import android.widget.Toast;
 
 
 public class MainActivity_Dailoge extends Activity{
-
     private Effectstype effect;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

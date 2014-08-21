@@ -1,5 +1,6 @@
 package cn.steve.customdialog.dialog;
 
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -19,8 +20,6 @@ import android.widget.TextView;
 import cn.steve.customdialog.dialog.effects.BaseEffects;
 import cn.steve.study.R;
 
-
-
 /**
  * Created by lee on 2014/7/30.
  */
@@ -33,8 +32,6 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
     private final String defMsgColor="#FFFFFFFF";
 
     private final String defDialogColor="#FFE74C3C";
-
-
 
     private Effectstype type=null;
 
@@ -79,25 +76,31 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         super(context, theme);
         init(context);
     }
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        //设置当前为全屏有这些设置之后，将会导致对话框不能取消
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.height = ViewGroup.LayoutParams.MATCH_PARENT;
         params.width  = ViewGroup.LayoutParams.MATCH_PARENT;
         getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
-
     }
 
+    /**
+     * 
+     * 单例模式
+     * @param   context
+     * @return  返回一个对话框实例
+     * 
+     */
     public static NiftyDialogBuilder getInstance(Context context) {
-
         int ort=context.getResources().getConfiguration().orientation;
         if (mOrientation!=ort){
             mOrientation=ort;
             instance=null;
         }
-
         if (instance == null||((Activity) context).isFinishing()) {
             synchronized (NiftyDialogBuilder.class) {
                 if (instance == null) {
@@ -106,50 +109,51 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
             }
         }
         return instance;
-
     }
 
+    //初始化控件
     private void init(Context context) {
-
-
+    	//整个对话框的整体布局
         mDialogView = View.inflate(context, R.layout.dialog_layout, null);
-
+        //获取对话框中的组件 
         mLinearLayoutView=(LinearLayout)mDialogView.findViewById(R.id.parentPanel);
         mRelativeLayoutView=(RelativeLayout)mDialogView.findViewById(R.id.main);
         mLinearLayoutTopView=(LinearLayout)mDialogView.findViewById(R.id.topPanel);
         mLinearLayoutMsgView=(LinearLayout)mDialogView.findViewById(R.id.contentPanel);
         mFrameLayoutCustomView=(FrameLayout)mDialogView.findViewById(R.id.customPanel);
-
         mTitle = (TextView) mDialogView.findViewById(R.id.alertTitle);
         mMessage = (TextView) mDialogView.findViewById(R.id.message);
         mIcon = (ImageView) mDialogView.findViewById(R.id.icon);
         mDivider = mDialogView.findViewById(R.id.titleDivider);
         mButton1=(Button)mDialogView.findViewById(R.id.button1);
         mButton2=(Button)mDialogView.findViewById(R.id.button2);
-
+        
+        //设置当前的对话框的布局
         setContentView(mDialogView);
-
+        //设置对话框在显示的时候的监听器
         this.setOnShowListener(new OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-
                 mLinearLayoutView.setVisibility(View.VISIBLE);
                 if(type==null){
                     type=Effectstype.Slidetop;
                 }
                 start(type);
-
-
             }
         });
+        
+        //有这些设置之后，将导致所有的点击都会导致对话框消失
         mRelativeLayoutView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isCancelable)dismiss();
+                if (isCancelable)
+                	dismiss();
             }
         });
     }
 
+    
+    //对话框的默认设置,暂未发现有何用处
     public void toDefault(){
         mTitle.setTextColor(Color.parseColor(defTextColor));
         mDivider.setBackgroundColor(Color.parseColor(defDividerColor));
@@ -157,6 +161,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         mLinearLayoutView.setBackgroundColor(Color.parseColor(defDialogColor));
     }
 
+    ////以下为动态设置对话框中的数据的方法
     public NiftyDialogBuilder withDividerColor(String colorString) {
         mDivider.setBackgroundColor(Color.parseColor(colorString));
         return this;
@@ -185,6 +190,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         mMessage.setText(msg);
         return this;
     }
+    
     public NiftyDialogBuilder withMessageColor(String colorString) {
         mMessage.setTextColor(Color.parseColor(colorString));
         return this;
@@ -218,7 +224,6 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
     public NiftyDialogBuilder withButton1Text(CharSequence text) {
         mButton1.setVisibility(View.VISIBLE);
         mButton1.setText(text);
-
         return this;
     }
     public NiftyDialogBuilder withButton2Text(CharSequence text) {
@@ -236,7 +241,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         return this;
     }
 
-
+    //设置对话框内的自定义布局
     public NiftyDialogBuilder setCustomView(int resId, Context context) {
         View customView = View.inflate(context, resId, null);
         if (mFrameLayoutCustomView.getChildCount()>0){
@@ -245,15 +250,16 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         mFrameLayoutCustomView.addView(customView);
         return this;
     }
-
+    
+    //设置对话框内的自定义布局
     public NiftyDialogBuilder setCustomView(View view, Context context) {
         if (mFrameLayoutCustomView.getChildCount()>0){
             mFrameLayoutCustomView.removeAllViews();
         }
         mFrameLayoutCustomView.addView(view);
-
         return this;
     }
+    
     public NiftyDialogBuilder isCancelableOnTouchOutside(boolean cancelable) {
         this.isCancelable=cancelable;
         this.setCanceledOnTouchOutside(cancelable);
@@ -266,6 +272,11 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         return this;
     }
 
+    /**
+     * 转换器
+     * @param view 需要显示或者隐藏的view界面
+     * @param obj  参考的标准
+     */
     private void toggleView(View view,Object obj){
         if (obj==null){
             view.setVisibility(View.GONE);
@@ -273,12 +284,13 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
             view.setVisibility(View.VISIBLE);
         }
     }
+    
     @Override
     public void show() {
-
         super.show();
     }
 
+    //启动动画消失对话框
     private void start(Effectstype type){
        BaseEffects animator = type.getAnimator();
         if(mDuration != -1){
@@ -287,6 +299,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         animator.start(mRelativeLayoutView);
     }
 
+    //取消显示
     @Override
     public void dismiss() {
         super.dismiss();
