@@ -12,18 +12,18 @@ import cn.steve.customdialog.dialog.Effectstype;
 import cn.steve.customdialog.dialog.NiftyDialogBuilder;
 import cn.steve.study.R;
 public class SimpleDialog extends Activity {
-	private Button button = null;
+	private Button mButton = null;
 	//自定义的效果对象
-	private Effectstype effect;
+	private Effectstype mEffect;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.dialog_simpletest);
 		//创建效果对象
-		effect=Effectstype.Fadein;
-		button = (Button) findViewById(R.id.dialog_simple_btn);
+		mEffect=Effectstype.Fadein;
+		mButton = (Button) findViewById(R.id.dialog_simple_btn);
 		//设置监听器
-		button.setOnClickListener(new OnClickListener() {
+		mButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				//对话框管理器
@@ -38,7 +38,7 @@ public class SimpleDialog extends Activity {
 	                .withIcon(getResources().getDrawable(R.drawable.customer_icon))
 	                .isCancelableOnTouchOutside(true)                           
 	                .withDuration(700)                                          
-	                .withEffect(effect)                                        
+	                .withEffect(mEffect)                                        
 	                .withButton1Text("第一个按钮显示的文字")                                      
 	                .withButton2Text("第二个按钮显示的文字")                                  
 	                .setCustomView(R.layout.dialog_view,SimpleDialog.this) 
