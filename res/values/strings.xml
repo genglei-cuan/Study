@@ -6,5 +6,10 @@
     <string name="hello_world">Hello world!</string>
     <!-- customer dialogue -->
     <string name="costomview">im custom view</string>
+    
+    <!-- customer view -->
+    <string name="text_welcome">text_welcome</string>
+    <string name="btn_clear">btn_clear</string>
+    <string name="btn_save">btn_save</string>
 
 </resources>

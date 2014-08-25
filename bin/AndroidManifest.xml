@@ -7,11 +7,11 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    
+
     <!-- 添加读取sd卡的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/customer_icon"
@@ -34,22 +34,23 @@
 
         <!-- test the new click event -->
         <activity android:name="cn.steve.click_xml.MXMLclick" >
-           
         </activity>
 
         <!-- customer dialogue -->
 
         <activity android:name="cn.steve.customdialog.MainActivity_Dailoge" >
-            
         </activity>
         <!-- 简单的dialog的包测试 -->
-        <activity android:name="cn.steve.customdialog.SimpleDialog">
+        <activity android:name="cn.steve.customdialog.SimpleDialog" >
         </activity>
-        
+
         <!-- signature  simple  demo -->
-        <activity 
-            android:name="cn.steve.signature.Activity_Signature"
-            >
+        <activity android:name="cn.steve.signature.Activity_Signature" >
+        </activity>
+
+        <!-- customer paint view -->
+
+        <activity android:name="cn.steve.customview.CustomerPaintActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,9 +60,5 @@
         
         
         
-        
-        
-        
     </application>
-
 </manifest>
