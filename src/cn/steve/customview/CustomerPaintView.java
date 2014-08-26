@@ -11,6 +11,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import cn.steve.study.R;
 
+/**
+ * 这里只到二次贝塞尔曲线，再往上不会了
+ * @author steve.yan
+ *
+ */
 public class CustomerPaintView extends View {
 	private Resources myResources;
 
@@ -130,19 +135,37 @@ public class CustomerPaintView extends View {
 		float dx = Math.abs(x - mX);
 		float dy = Math.abs(y - mY);
 		if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
+			
 			/**
-			 * 第一个参数：操作点的x坐标
+			 * 第一个参数：控制点的x坐标
 			 * 
-			 * 第二个参数：操作点的y坐标
+			 * 第二个参数：控制点的y坐标
 			 * 
 			 * 第三个参数：结束点的x坐标
 			 * 
 			 * 第四个参数：结束点的y坐标
 			 * 
+			 * 二次贝塞尔曲线
+			 * 
 			 */
+			
 			myPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
+			
+			/**
+			 * 
+			 * @param x1 第一个控制点的X坐标
+			 * @param y1 第一个控制点的Y坐标
+			 * @param x2 第二个控制点的X坐标
+			 * @param y2 第二个控制点的Y坐标
+			 * @param x3 结束点的X坐标
+			 * @param y3 结束点的Y坐标
+			 * 
+			 */
+//			myPath.cubicTo(mX, mY, (x + dx) ,  (y + dy), (x+mX)/2, (y+mY)/2);
+			
 			mX = x;
 			mY = y;
+			
 		}
 	}
 

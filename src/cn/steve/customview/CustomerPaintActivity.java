@@ -8,6 +8,11 @@ import android.widget.Button;
 import cn.steve.signature.Utils;
 import cn.steve.study.R;
 
+/**
+ * 展示一下自定义的画布和画笔如何绘制图像的
+ * @author steve.yan
+ *
+ */
 public class CustomerPaintActivity extends Activity {
 	private Button mClearButton;
 	private Button mSaveButton;
