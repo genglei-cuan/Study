@@ -57,8 +57,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        
-        
+
+        <!-- 测试view的context的规则 -->
+        <activity android:name="cn.steve.contextmean.ContextActivity" >
+        </activity>
+        <activity android:name="cn.steve.contextmean.ContextActivity_2" >
+        </activity>
+
+        <!-- 浮动的输入框，输入密码用户名会动态的变化,exported属性用作命令行启动 
+        	这个API的使用最低需要时11
+        -->
+        <activity
+            android:name="cn.steve.floatLabelLayout.FloatLabelActivity"
+            android:exported="true" >
+        </activity>
     </application>
+
 </manifest>

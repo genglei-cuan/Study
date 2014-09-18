@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="#e74c3c"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".FloatLabelActivity">
 
     <TextView
         android:id="@+id/title"
