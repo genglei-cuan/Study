@@ -101,6 +101,12 @@
             
         </activity>
         <activity android:name="cn.steve.asynctask.AsyncTaskMainActivity">
+            
+        </activity>
+        
+        
+        <!-- the touch events demo -->
+        <activity android:name="cn.steve.touchevent.TouchMainActivity">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -108,6 +114,8 @@
             </intent-filter>
         </activity>
         
+       
+
     </application>
 
 </manifest>
