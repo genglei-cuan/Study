@@ -17,5 +17,8 @@ Study
 10. 手写签名 <br>
 11. spinner，列表分组。<br>
 12. handler设置成static<br>
-13. 初设弱引用概念
+13. 初设弱引用概念<br>
+14. handler post runnable的使用<br>
+15. webview加载URI，以及注入JS调用和混淆代码<br>
+16. 
 
