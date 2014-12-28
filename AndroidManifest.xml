@@ -11,6 +11,7 @@
     <!-- 添加读取sd卡的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -80,43 +81,43 @@
         -->
         <activity android:name="cn.steve.bottomMenu.BottomMenuActivity" >
         </activity>
-        
-        <!-- 
-        	修改的UC菜单，使得菜单替换成了文本，文本内容滚动
-        
-        -->
+
+        <!-- 修改的UC菜单，使得菜单替换成了文本，文本内容滚动 -->
         <activity android:name="cn.steve.bottomtext.BottomTextActivity" >
         </activity>
-        
-        <!-- 
-        	下拉列表
-         -->
-        <activity android:name="cn.steve.spinnerdroplayout.SpinnerDropActivity">
-            
+
+        <!-- 下拉列表 -->
+        <activity android:name="cn.steve.spinnerdroplayout.SpinnerDropActivity" >
         </activity>
-        
-        
+
         <!-- viewFlipper -->
-        <activity android:name="cn.steve.viewflipper.AcitvityViewFlipper">
-            
+        <activity android:name="cn.steve.viewflipper.AcitvityViewFlipper" >
         </activity>
-        <activity android:name="cn.steve.asynctask.AsyncTaskMainActivity">
-            
+        <activity android:name="cn.steve.asynctask.AsyncTaskMainActivity" >
         </activity>
-        
-        
+
         <!-- the touch events demo -->
-        <activity android:name="cn.steve.touchevent.TouchMainActivity">
-             <intent-filter>
+        <activity android:name="cn.steve.touchevent.TouchMainActivity" >
+        </activity>
+        <!-- IO的操作 -->
+        <activity android:name="cn.steve.fileIO.MainActivity" >
+        </activity>
+        <!-- weak 弱引用 -->
+        <activity android:name="cn.steve.weakreferencehandler.MainActivity" >
+        </activity>
+        <!-- handler执行线程 -->
+        <activity android:name="cn.steve.handler.HandlerActivity" >
+        </activity>
+        <activity android:name="cn.steve.handler.HandlerActivity02" >
+        </activity>
+        <!-- webview -->
+        <activity android:name="cn.steve.webview.WebViewActivity" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-       <activity android:name="cn.steve.fileIO.MainActivity"></activity>
-       <activity android:name="cn.steve.weakreferencehandler.MainActivity"></activity>
-
     </application>
 
 </manifest>
