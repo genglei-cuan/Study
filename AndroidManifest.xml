@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="21" />
 
     <!-- 添加读取sd卡的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -112,12 +112,24 @@
         </activity>
         <!-- webview -->
         <activity android:name="cn.steve.webview.WebViewActivity" >
+        </activity>
+        <!-- broadcast -->
+        <activity android:name="cn.steve.broadcast.NormalBroadCastActivity" >
+        </activity>
+        <activity android:name="cn.steve.broadcast.BroadCastMainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name="cn.steve.broadcast.NormalBCReceiverA" >
+        </receiver>
+        <receiver android:name="cn.steve.broadcast.NormalBCReceiverB" >
+        </receiver>
+        <activity android:name="cn.steve.broadcast.OrderBroadCastActivity"></activity>
+        <receiver android:name="cn.steve.broadcast.OrderBCReceiverA"></receiver>
+        <receiver android:name="cn.steve.broadcast.OrderBCReceiverB"></receiver>
     </application>
 
 </manifest>
