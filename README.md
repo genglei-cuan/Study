@@ -20,5 +20,6 @@ Study
 13. 初设弱引用概念<br>
 14. handler post runnable的使用<br>
 15. webview加载URI，以及注入JS调用和混淆代码<br>
-16. 
+16. service，和activity通信的概念<br>
+17. listview缓存，以及一个通用的viewholder
 

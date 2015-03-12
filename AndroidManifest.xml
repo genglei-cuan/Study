@@ -117,11 +117,7 @@
         <activity android:name="cn.steve.broadcast.NormalBroadCastActivity" >
         </activity>
         <activity android:name="cn.steve.broadcast.BroadCastMainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         <receiver android:name="cn.steve.broadcast.NormalBCReceiverA" >
         </receiver>
@@ -130,6 +126,25 @@
         <activity android:name="cn.steve.broadcast.OrderBroadCastActivity"></activity>
         <receiver android:name="cn.steve.broadcast.OrderBCReceiverA"></receiver>
         <receiver android:name="cn.steve.broadcast.OrderBCReceiverB"></receiver>
+        
+        <activity android:name="cn.steve.service.ServiceMainActivity">
+            
+        </activity>
+        <service android:name="cn.steve.service.MsgService">
+            
+        </service>
+        <activity android:name="cn.steve.uicommunicate.UIActivity">
+           
+        </activity>
+        <activity android:name="cn.steve.listview.cache.ListViewMainActivity">
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="cn.steve.listview.pagination.PaginationListActivity"></activity>
+        
     </application>
 
 </manifest>
