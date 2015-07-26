@@ -12,8 +12,8 @@ public class OrderBCReceiverB extends BroadcastReceiver {
   @Override
   public void onReceive(Context context, Intent intent) {
     String s = intent.getStringExtra("flag");
-    SteveLog.log("B接收到的消息:"+getResultData());
+    SteveLog.log("B接收到的消息:" + getResultData());
     setResultData("B发送的消息");
   }
-  
+
 }

@@ -25,7 +25,7 @@ public class ServiceMainActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_service);
     // 绑定Service
-    Intent intent = new Intent(this,MsgService.class);
+    Intent intent = new Intent(this, MsgService.class);
     bindService(intent, conn, Context.BIND_AUTO_CREATE);
     mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
     Button mButton = (Button) findViewById(R.id.button);
@@ -43,9 +43,10 @@ public class ServiceMainActivity extends Activity {
     public void onServiceDisconnected(ComponentName name) {
       System.out.println("onServiceDisconnected");
     }
+
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
-      System.out.println("onServiceConnected"+name);
+      System.out.println("onServiceConnected" + name);
       // 返回一个MsgService对象
       msgService = ((MsgService.MsgBinder) service).getService();
       // 注册回调接口来接收下载进度的变化

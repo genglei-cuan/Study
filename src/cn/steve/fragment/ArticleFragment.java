@@ -12,39 +12,38 @@ import cn.steve.study.R;
 
 public class ArticleFragment extends Fragment {
 
-	private Button btn;
+  private Button btn;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-		System.out.println("ArticleFragmentCreate");
-	}
+    System.out.println("ArticleFragmentCreate");
+  }
 
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
+  @Override
+  public void onActivityCreated(Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
 
-		btn = (Button) getActivity().findViewById(R.id.btn);
-		btn.setOnClickListener(new OnClickListener() {
+    btn = (Button) getActivity().findViewById(R.id.btn);
+    btn.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
+      @Override
+      public void onClick(View arg0) {
+        // TODO Auto-generated method stub
 
-				Toast.makeText(getActivity(), "f1", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "f1", Toast.LENGTH_SHORT).show();
 
-			}
-		});
+      }
+    });
 
-		System.out.println("onActivityCreated");
-	}
+    System.out.println("onActivityCreated");
+  }
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		System.out.println("onCreateView");
-		return inflater.inflate(R.layout.article_fra1, container, false);
-	}
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    System.out.println("onCreateView");
+    return inflater.inflate(R.layout.article_fra1, container, false);
+  }
 
 }

@@ -18,6 +18,7 @@ import android.os.Message;
 
 /**
  * ·¢ËÍcookieÊµÏÖÃâµÇÂ½×´Ì¬
+ * 
  * @author Steve
  *
  */
@@ -34,7 +35,7 @@ public class HttpCookie extends Thread {
 
   @Override
   public void run() {
-    
+
     list.add(new BasicNameValuePair("name", "steve"));
     list.add(new BasicNameValuePair("age", "12"));
     try {

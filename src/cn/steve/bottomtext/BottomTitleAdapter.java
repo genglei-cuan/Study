@@ -13,67 +13,66 @@ import android.widget.TextView;
 
 public class BottomTitleAdapter extends BaseAdapter {
 
-	private List<String> titles;
-	private Context context;
-	public TextView[] tv_titles;
-	int position = 0;
+  private List<String> titles;
+  private Context context;
+  public TextView[] tv_titles;
+  int position = 0;
 
-	public BottomTitleAdapter(List<String> titles, Context context, int position) {
-		this.titles = titles;
-		this.context = context;
-		tv_titles = new TextView[titles.size()];
-		this.position = position;
-	}
+  public BottomTitleAdapter(List<String> titles, Context context, int position) {
+    this.titles = titles;
+    this.context = context;
+    tv_titles = new TextView[titles.size()];
+    this.position = position;
+  }
 
-	@Override
-	public int getCount() {
-		return titles.size();
-	}
+  @Override
+  public int getCount() {
+    return titles.size();
+  }
 
-	@Override
-	public Object getItem(int position) {
-		return position;
-	}
+  @Override
+  public Object getItem(int position) {
+    return position;
+  }
 
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
+  @Override
+  public long getItemId(int position) {
+    return position;
+  }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		/**
-		 * 动态添加标题textView控件，并设置布局属性
-		 */
-		tv_titles[position] = new TextView(context);
+  @Override
+  public View getView(int position, View convertView, ViewGroup parent) {
+    /**
+     * 动态添加标题textView控件，并设置布局属性
+     */
+    tv_titles[position] = new TextView(context);
 
-		/**
-		 * 设置textView中的字居中
-		 */
-		tv_titles[position].setGravity(Gravity.CENTER);
+    /**
+     * 设置textView中的字居中
+     */
+    tv_titles[position].setGravity(Gravity.CENTER);
 
-		tv_titles[position].setText(titles.get(position));
+    tv_titles[position].setText(titles.get(position));
 
-		tv_titles[position].setTextSize(10);
+    tv_titles[position].setTextSize(10);
 
-		/**
-		 * 设置TextView的大小
-		 */
-		tv_titles[position].setLayoutParams(new GridView.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+    /**
+     * 设置TextView的大小
+     */
+    tv_titles[position].setLayoutParams(new GridView.LayoutParams(LayoutParams.MATCH_PARENT,
+        LayoutParams.WRAP_CONTENT));
 
-		tv_titles[position].setPadding(0, 10, 0, 10);
+    tv_titles[position].setPadding(0, 10, 0, 10);
 
-		/**
-		 * 在选中某一标题后，重新声明adapter对象，通过构造函数给的position 确定把哪个标题的字体颜色直接初始化
-		 * 选中的设置成蓝色
-		 * 反之设置成灰色
-		 */
-		if (position == this.position) {
-			tv_titles[position].setTextColor(Color.BLUE);
-		} else {
-			tv_titles[position].setTextColor(Color.GRAY);
-		}
-		return tv_titles[position];
-	}
+    /**
+     * 在选中某一标题后，重新声明adapter对象，通过构造函数给的position 确定把哪个标题的字体颜色直接初始化 选中的设置成蓝色 反之设置成灰色
+     */
+    if (position == this.position) {
+      tv_titles[position].setTextColor(Color.BLUE);
+    } else {
+      tv_titles[position].setTextColor(Color.GRAY);
+    }
+    return tv_titles[position];
+  }
 
 }

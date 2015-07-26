@@ -16,7 +16,7 @@ public class UIActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_uicommunicate);
     tv = (TextView) findViewById(R.id.textView1);
-    button=(Button) findViewById(R.id.uibutton);
+    button = (Button) findViewById(R.id.uibutton);
     button.requestLayout();
     tv.post(new Runnable() {
       @Override

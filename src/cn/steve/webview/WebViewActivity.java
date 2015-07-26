@@ -58,8 +58,8 @@ public class WebViewActivity extends Activity {
     refresh.setOnClickListener(listener);
     mWebView.loadUrl(url);
     mWebView.getSettings().setJavaScriptEnabled(true);
-    //允许服务器端的JS代码调用WebHost对象中的方法
-    mWebView.addJavascriptInterface(new WebHost(this),"js");
+    // 允许服务器端的JS代码调用WebHost对象中的方法
+    mWebView.addJavascriptInterface(new WebHost(this), "js");
 
     mWebView.setWebChromeClient(new WebChromeClient() {
       @Override

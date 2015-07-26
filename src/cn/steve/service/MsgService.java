@@ -82,11 +82,11 @@ public class MsgService extends Service {
       return MsgService.this;
     }
   }
-  
+
   @Override
   public void onCreate() {
     System.out.println("MSGservice--->onCreate");
     super.onCreate();
   }
-  
+
 }

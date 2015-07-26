@@ -11,6 +11,7 @@ import android.widget.Button;
 
 /**
  * 发送有序的广播
+ * 
  * @author Steve
  *
  */
@@ -20,13 +21,13 @@ public class OrderBroadCastActivity extends Activity {
   private Button mButton_send;
   private Button mButton_register;
   private Button mButton_unregister;
-  
-  private OrderBCReceiverA mOrderBCReceiverA=new OrderBCReceiverA();
-  private OrderBCReceiverB mOrderBCReceiverB=new OrderBCReceiverB();
-  
+
+  private OrderBCReceiverA mOrderBCReceiverA = new OrderBCReceiverA();
+  private OrderBCReceiverB mOrderBCReceiverB = new OrderBCReceiverB();
+
   boolean isRegistered = false;
 
-  
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class OrderBroadCastActivity extends Activity {
       public void onClick(View v) {
         Intent intent = new Intent(ACTION_ORDER_BC);
         intent.putExtra("flag", "SimpleBroadCastActivity");
-        sendOrderedBroadcast(intent,null);
+        sendOrderedBroadcast(intent, null);
       }
     });
 
@@ -51,7 +52,7 @@ public class OrderBroadCastActivity extends Activity {
       public void onClick(View v) {
         // 动态注册方式
         setBCReceiver();
-        
+
       }
     });
 
@@ -59,7 +60,7 @@ public class OrderBroadCastActivity extends Activity {
       @Override
       public void onClick(View v) {
         if (isRegistered) {
-        //取消注册
+          // 取消注册
           unregisterReceiver(mOrderBCReceiverA);
           unregisterReceiver(mOrderBCReceiverB);
           isRegistered = false;

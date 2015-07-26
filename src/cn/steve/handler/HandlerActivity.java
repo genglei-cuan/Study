@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 /**
  * handler postÒ»¸örunnable
+ * 
  * @author Steve
  *
  */
@@ -23,17 +24,17 @@ public class HandlerActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_handler);
     textView = (TextView) findViewById(R.id.textView1);
-    
-    
+
+
     new Thread() {
       public void run() {
         try {
-          System.out.println("first"+Thread.currentThread());
+          System.out.println("first" + Thread.currentThread());
           Thread.sleep(1000);
           mHandler.post(new Runnable() {
             @Override
             public void run() {
-              System.out.println("second"+Thread.currentThread());
+              System.out.println("second" + Thread.currentThread());
               textView.setText("upate");
             }
           });

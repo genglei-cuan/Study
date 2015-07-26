@@ -7,23 +7,23 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 public class AcitvityViewFlipper extends FragmentActivity {
-	
-	private FragmentManager FM = null;
-	private FragmentTransaction FTS = null;
 
-	@Override
-	protected void onCreate(Bundle arg0) {
-		// TODO Auto-generated method stub
-		super.onCreate(arg0);
-		super.setContentView(R.layout.activity_fragment);
+  private FragmentManager FM = null;
+  private FragmentTransaction FTS = null;
 
-		FM = getSupportFragmentManager();
+  @Override
+  protected void onCreate(Bundle arg0) {
+    // TODO Auto-generated method stub
+    super.onCreate(arg0);
+    super.setContentView(R.layout.activity_fragment);
 
-		FTS = FM.beginTransaction();
+    FM = getSupportFragmentManager();
 
-		FTS.add(R.id.fragmentContainer, new FragmentViewFlipper());
+    FTS = FM.beginTransaction();
 
-		FTS.commit();
+    FTS.add(R.id.fragmentContainer, new FragmentViewFlipper());
 
-	}
+    FTS.commit();
+
+  }
 }

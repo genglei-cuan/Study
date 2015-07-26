@@ -13,9 +13,8 @@ import android.widget.Button;
 import cn.steve.study.R;
 
 /**
- * 为了防止内存泄露
- * 将handler设置成static
- * 然后对activity的引用采用弱引用
+ * 为了防止内存泄露 将handler设置成static 然后对activity的引用采用弱引用
+ * 
  * @author Steve
  *
  */
@@ -29,10 +28,12 @@ public class MainActivity extends Activity {
 
   static class MyHandler extends Handler {
     private WeakReference<MainActivity> mOuter;
+
     public MyHandler(MainActivity activity) {
       // 弱引用
       mOuter = new WeakReference<MainActivity>(activity);
     }
+
     public void handleMessage(Message msg) {
       MainActivity mq = mOuter.get();
       switch (msg.what) {

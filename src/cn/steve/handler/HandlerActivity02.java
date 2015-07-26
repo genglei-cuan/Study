@@ -16,7 +16,7 @@ public class HandlerActivity02 extends Activity {
       System.out.println("截断消息");
       return true;
     }
-  }){
+  }) {
     @Override
     public void handleMessage(Message msg) {
       System.out.println("再处理消息");
