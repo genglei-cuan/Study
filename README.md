@@ -1,34 +1,36 @@
 # Study
     
-    å­¦ä¹ çš„demoï¼Œç®€å•çš„ä¸€äº›æ¦‚å¿µæ€§çš„ä¸œè¥¿ï¼Œä¾›è‡ªå·±ç†Ÿæ‚‰APIå’Œæ¦‚å¿µä½¿ç”¨ã€‚
+    Ñ§Ï°µÄdemo£¬¼òµ¥µÄÒ»Ğ©¸ÅÄîĞÔµÄ¶«Î÷£¬¹©×Ô¼ºÊìÏ¤APIºÍ¸ÅÄîÊ¹ÓÃ¡£
     
 
 ---
+| °üÃû        | ¹¦ÄÜ   |  ±¸×¢  |
+| --------    | -----: | :----: |
+| alertdialog  | µ¯³ö¾¯¸æ¿ò   |  ¼òµ¥µÄ²âÊÔ  |
 
-2.  alertdialog <br>
 3.  asyntask <br>
-4.  buttonmenu ä»¿é€ æ—©æœŸçš„UCæµè§ˆå™¨çš„èœå• <br>
-4.  buttontext ä»¿é€ æ—©æœŸçš„UCæµè§ˆå™¨çš„èœå•ï¼Œå°†èœå•æ¢æˆå¯æ»šåŠ¨çš„æ–‡æœ¬ <br>
-5.  click_xml  åœ¨XMLæ–‡ä»¶ä¸­è®¾ç½®ç›¸åº”çš„æ–¹æ³•<br>
-6.  contextmean æµ‹è¯•contextçš„çœŸå®å«ä¹‰ <br>
-7.  customdialog è‡ªå®šä¹‰dialogï¼›è‡ªå®šä¹‰å„ç§å½¢å¼çš„dialogue(ç†Ÿæ‚‰stormzhangçš„) <br>
-7.  customview è‡ªå®šä¹‰view ï¼Œå±•ç¤ºç”»å¸ƒçš„å«ä¹‰ <br>
-7.  fileIO æ–‡ä»¶çš„IOæ“ä½œ <br>
-8.  fragment çš„åŸºæœ¬æ“ä½œ<br>
-8.  handler  handlerçš„åŸºæœ¬æ“ä½œï¼›handler post runnableçš„ä½¿ç”¨5<br>
-8.  listview  listviewçš„åŸºæœ¬æ“ä½œï¼›listviewç¼“å­˜ï¼Œä»¥åŠä¸€ä¸ªé€šç”¨çš„viewholder<br>
-8.  main  è®¾ç½®fragmentåŸºç±»<br>
-9.  preferenceactivity å…³äºåå¥½è®¾ç½®çš„activity<br>
-9.  service ç®€å•æµ‹è¯•serviceçš„ç”Ÿå‘½å‘¨æœŸï¼Œä»¥åŠå’Œactivityä¹‹é—´çš„é€šä¿¡<br>
-10. signature æ‰‹å†™ç­¾å <br>
-10. simpkeWelcome ä¸€ä¸ªç®€å•çš„æ¬¢è¿ç•Œé¢ï¼Œä»¿é€ çš„QQ <br>
-10. spinnerdroplayout spinnerä¸‹æ‹‰é€‰é¡¹<br>
-18. touchevent ï¼Œä»¥åŠè‡ªå®šä¹‰view<br>
-17. uicommunicate åœ¨ä¸»çº¿ç¨‹ä¸Šå¼€è¾Ÿçº¿ç¨‹ï¼›<br><br>
-17. viewflipper  ä¾§æ»‘<br>
-11. spinnerï¼Œåˆ—è¡¨åˆ†ç»„ã€‚<br>
-12. handlerè®¾ç½®æˆstatic<br>
-13. weakreferencehandler åˆè®¾å¼±å¼•ç”¨æ¦‚å¿µ<br>
-15. webviewåŠ è½½URIï¼Œä»¥åŠæ³¨å…¥JSè°ƒç”¨å’Œæ··æ·†ä»£ç <br>
-16. serviceï¼Œå’Œactivityé€šä¿¡çš„æ¦‚å¿µ<br>
+4.  buttonmenu ·ÂÔìÔçÆÚµÄUCä¯ÀÀÆ÷µÄ²Ëµ¥ <br>
+4.  buttontext ·ÂÔìÔçÆÚµÄUCä¯ÀÀÆ÷µÄ²Ëµ¥£¬½«²Ëµ¥»»³É¿É¹ö¶¯µÄÎÄ±¾ <br>
+5.  click_xml  ÔÚXMLÎÄ¼şÖĞÉèÖÃÏàÓ¦µÄ·½·¨<br>
+6.  contextmean ²âÊÔcontextµÄÕæÊµº¬Òå <br>
+7.  customdialog ×Ô¶¨Òådialog£»×Ô¶¨Òå¸÷ÖÖĞÎÊ½µÄdialogue(ÊìÏ¤stormzhangµÄ) <br>
+7.  customview ×Ô¶¨Òåview £¬Õ¹Ê¾»­²¼µÄº¬Òå <br>
+7.  fileIO ÎÄ¼şµÄIO²Ù×÷ <br>
+8.  fragment µÄ»ù±¾²Ù×÷<br>
+8.  handler  handlerµÄ»ù±¾²Ù×÷£»handler post runnableµÄÊ¹ÓÃ5<br>
+8.  listview  listviewµÄ»ù±¾²Ù×÷£»listview»º´æ£¬ÒÔ¼°Ò»¸öÍ¨ÓÃµÄviewholder<br>
+8.  main  ÉèÖÃfragment»ùÀà<br>
+9.  preferenceactivity ¹ØÓÚÆ«ºÃÉèÖÃµÄactivity<br>
+9.  service ¼òµ¥²âÊÔserviceµÄÉúÃüÖÜÆÚ£¬ÒÔ¼°ºÍactivityÖ®¼äµÄÍ¨ĞÅ<br>
+10. signature ÊÖĞ´Ç©Ãû <br>
+10. simpkeWelcome Ò»¸ö¼òµ¥µÄ»¶Ó­½çÃæ£¬·ÂÔìµÄQQ <br>
+10. spinnerdroplayout spinnerÏÂÀ­Ñ¡Ïî<br>
+18. touchevent £¬ÒÔ¼°×Ô¶¨Òåview<br>
+17. uicommunicate ÔÚÖ÷Ïß³ÌÉÏ¿ª±ÙÏß³Ì£»<br><br>
+17. viewflipper  ²à»¬<br>
+11. spinner£¬ÁĞ±í·Ö×é¡£<br>
+12. handlerÉèÖÃ³Éstatic<br>
+13. weakreferencehandler ³õÉèÈõÒıÓÃ¸ÅÄî<br>
+15. webview¼ÓÔØURI£¬ÒÔ¼°×¢ÈëJSµ÷ÓÃºÍ»ìÏı´úÂë<br>
+16. service£¬ºÍactivityÍ¨ĞÅµÄ¸ÅÄî<br>
 
