@@ -1,3 +1,4 @@
+
 package cn.steve.spinnerdroplayout;
 
 import android.app.Activity;
@@ -6,21 +7,21 @@ import android.widget.Spinner;
 import cn.steve.study.R;
 
 public class SpinnerDropActivity extends Activity {
-  /** Called when the activity is first created. */
+    /** Called when the activity is first created. */
 
-  Spinner spinner = null;
+    Spinner spinner = null;
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    setContentView(R.layout.activity_spinner);
+        setContentView(R.layout.activity_spinner);
 
-    spinner = (Spinner) findViewById(R.id.spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
 
-    SpinnerDropAdapter adapter = new SpinnerDropAdapter(this);
+        SpinnerDropAdapter adapter = new SpinnerDropAdapter(this);
 
-    spinner.setAdapter(adapter);
+        spinner.setAdapter(adapter);
 
-  }
+    }
 }
