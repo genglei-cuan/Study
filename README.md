@@ -6,12 +6,11 @@
 ---
 | 包名        | 功能   |  备注  |
 | --------    | -----: | :----: |
-| alertdialog  | 弹出警告框   |  简单的测试  |
+| asyntask  |   |    |
+| buttonmenu  | 仿造早期的UC浏览器的菜单    |  仿造早期的UC浏览器的菜单   |
+| buttontext  | 仿造早期的UC浏览器的菜单，将菜单换成可滚动的文本    |  仿造早期的UC浏览器的菜单，将菜单换成可滚动的文本  |
+| click_xml   |  在XML文件中设置相应的方法 |   在XML文件中设置相应的方法  |
 
-3.  asyntask <br>
-4.  buttonmenu 仿造早期的UC浏览器的菜单 <br>
-4.  buttontext 仿造早期的UC浏览器的菜单，将菜单换成可滚动的文本 <br>
-5.  click_xml  在XML文件中设置相应的方法<br>
 6.  contextmean 测试context的真实含义 <br>
 7.  customdialog 自定义dialog；自定义各种形式的dialogue(熟悉stormzhang的) <br>
 7.  customview 自定义view ，展示画布的含义 <br>
