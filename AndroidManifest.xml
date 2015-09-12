@@ -85,11 +85,7 @@
 
         <!-- 修改的UC菜单，使得菜单替换成了文本，文本内容滚动 -->
         <activity android:name="cn.steve.bottomtext.BottomTextActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+           
         </activity>
 
         <!-- 下拉列表 -->
@@ -146,6 +142,15 @@
             
         </activity>
         <activity android:name="cn.steve.listview.pagination.PaginationListActivity"></activity>
+        
+        <activity android:name="cn.steve.gallery.HorizontalScrollViewMainActivity">
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
         
     </application>
 
