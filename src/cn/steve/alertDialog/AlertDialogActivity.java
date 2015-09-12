@@ -1,6 +1,5 @@
 package cn.steve.alertDialog;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,12 +10,10 @@ import android.widget.Button;
 import android.widget.Toast;
 import cn.steve.study.R;
 
-
 /**
  * ¶Ô»°¿ò
  * 
  * @author steve.yan
- *
  */
 public class AlertDialogActivity extends Activity {
   String[] allDivisionNames = {"one", "two", "three"};
