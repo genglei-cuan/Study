@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-
-
 public class MainActivity_Dailoge extends Activity {
   private Effectstype effect;
 

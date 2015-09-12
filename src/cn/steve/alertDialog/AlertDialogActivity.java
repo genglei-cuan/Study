@@ -36,7 +36,6 @@ public class AlertDialogActivity extends Activity {
                 try {
                   Toast.makeText(getApplicationContext(), allDivisionNames[which],
                       Toast.LENGTH_SHORT).show();
-
                 } finally {
                   dialog.dismiss();
                 }

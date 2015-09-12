@@ -27,14 +27,14 @@ public class UIActivity extends Activity {
       }
     });
 
-    // this.runOnUiThread(new Runnable() {
-    // @Override
-    // public void run() {
-    // for (int i = 0; i < 1001; i++) {
-    // UIActivity.this.tv.setText(String.valueOf(i));
-    // }
-    // }
-    // });
+    this.runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        for (int i = 0; i < 1001; i++) {
+          UIActivity.this.tv.setText(String.valueOf(i));
+        }
+      }
+    });
   }
 
 }
