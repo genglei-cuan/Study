@@ -1,8 +1,8 @@
 package cn.steve.gallery;
 
-import cn.steve.study.R;
 import android.app.Activity;
 import android.graphics.Color;
+import android.hardware.camera2.TotalCaptureResult;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -12,11 +12,12 @@ import android.view.ViewTreeObserver;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+import cn.steve.Utils.CalendarUntil;
+import cn.steve.study.R;
 
 public class HorizontalScrollViewMainActivity extends Activity {
 
-  //水平滚动的控件
+  // 水平滚动的控件
   private HorizontalScrollView horizontalScrollView;
   private LinearLayout linearLayout;
   // 滚动条的宽度
@@ -29,6 +30,11 @@ public class HorizontalScrollViewMainActivity extends Activity {
   private int child_show_count;
   // 一开始居中选中的view
   private int child_start;
+
+  private int currentYear = 2015;
+  private int currenMonth = 1;
+  private int currenDate = 1;
+  private int currenDaysOfMonth = 30;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +51,13 @@ public class HorizontalScrollViewMainActivity extends Activity {
     linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
     child_count = 31;
     child_show_count = 7;
-    child_start = 4;
+    currentYear = CalendarUntil.getCurrentYear();
+    currenMonth = CalendarUntil.getCurrentMonth();
+    currenDate = CalendarUntil.getCurrentDate();
+    currenDaysOfMonth = CalendarUntil.getCurrenMonthDays();
+
+    child_start = currenDate;
+
   }
 
   /**
@@ -56,16 +68,24 @@ public class HorizontalScrollViewMainActivity extends Activity {
       TextView textView = new TextView(this);
       textView.setLayoutParams(new ViewGroup.LayoutParams(child_width,
           ViewGroup.LayoutParams.MATCH_PARENT));
+
+      // TODO 日期的逻辑
+
       textView.setText("" + (i + 1));
       textView.setGravity(Gravity.CENTER);
       linearLayout.addView(textView);
     }
+
+
     for (int i = 0; i < child_count; i++) {
+
       TextView textView = new TextView(this);
+
       textView.setLayoutParams(new ViewGroup.LayoutParams(child_width,
           ViewGroup.LayoutParams.MATCH_PARENT));
       textView.setText("" + (i + 1));
       textView.setGravity(Gravity.CENTER);
+
       linearLayout.addView(textView);
     }
   }
@@ -87,26 +107,23 @@ public class HorizontalScrollViewMainActivity extends Activity {
         switch (event.getAction()) {
           case MotionEvent.ACTION_MOVE:
             flag = false;
+
             if (x <= child_width) {
               horizontalScrollView.scrollBy(child_width * child_count, 0);
               current_item += child_count;
-              
-              
+
             } else if (x >= (child_width * child_count * 2 - hsv_width - child_width)) {
               horizontalScrollView.scrollBy(-child_width * child_count, 0);
               current_item -= child_count;
-              
-              
-              
             }
             break;
           case MotionEvent.ACTION_UP:
             flag = true;
             horizontalScrollView.smoothScrollTo(child_width * current_item - child_width / 2
                 - hsv_width / 2, horizontalScrollView.getScrollY());
-            
-            //确定已选中
-            
+
+            // 确定已选中
+
             break;
         }
         if (pre_item == 0) {
@@ -120,6 +137,47 @@ public class HorizontalScrollViewMainActivity extends Activity {
       }
     });
   }
+
+
+
+  private void modifyData(int currentIndex) {
+
+
+    boolean isSwitch = false;
+    // 向右滑动即将进入下个月
+    if ((currentIndex % child_count) + 3 == currenDaysOfMonth) {
+      // 表示已经是循环部分了
+      isSwitch = currentIndex / child_count == 1;
+      int i = 0;
+      if (isSwitch) {
+        i = 0;
+        for (; i < child_count; i++) {
+          
+        }
+      } else {
+        i = child_count;
+        for (; i < 2 * child_count; i++) {
+        }
+      }
+
+
+    }
+
+
+
+    TextView textView;
+
+    // 左边的部分
+    for (int i = 0; i < currentIndex; i++) {
+
+      textView = (TextView) linearLayout.getChildAt(currentIndex - 1);
+
+    }
+
+
+
+  }
+
 
   /**
    * 设置指定位置的状态
