@@ -120,11 +120,11 @@ public class HorizontalScrollViewMainActivity extends Activity {
                                 int d = currenDaysOfMonth - preMonthDays;
 
                                 for (int i = 0; i < d; i++) {
-                                    linearLayout.removeViewAt(child_count - i - 1);
+                                    linearLayout.removeViewAt(child_count - 1 - i);
                                 }
 
                                 for (int i = 0; i < d; i++) {
-                                    linearLayout.removeViewAt(2 * child_count - i - 1);
+                                    linearLayout.removeViewAt(2 * child_count - 2 - i);
                                 }
 
                                 child_count -= d;
@@ -132,15 +132,14 @@ public class HorizontalScrollViewMainActivity extends Activity {
 
                             if (preMonthDays > currenDaysOfMonth) {
                                 int d = preMonthDays - currenDaysOfMonth;
-
                                 for (int i = 0; i < d; i++) {
                                     TextView textView = new TextView(
                                             HorizontalScrollViewMainActivity.this);
+                                    // TODO 添加设置文本的逻辑
                                     textView.setText("Hello");
                                     textView.setLayoutParams(new ViewGroup.LayoutParams(
                                             child_width, ViewGroup.LayoutParams.MATCH_PARENT));
                                     textView.setGravity(Gravity.CENTER);
-
                                     linearLayout.addView(textView, child_count + i);
                                 }
 
@@ -164,6 +163,8 @@ public class HorizontalScrollViewMainActivity extends Activity {
 
                             int delta = current_item % child_count - child_start;
                             currenDate -= delta;
+                            currenMonth -= 1;
+                            currenDaysOfMonth = preMonthDays;
 
                         }
 
