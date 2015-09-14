@@ -118,26 +118,45 @@ public class HorizontalScrollViewMainActivity extends Activity {
                             if (preMonthDays < currenDaysOfMonth) {
                                 // 在后面删掉两倍的d个textview
                                 int d = currenDaysOfMonth - preMonthDays;
-                                for (int i = 0; i < 2 * d; i++) {
+
+                                for (int i = 0; i < d; i++) {
                                     linearLayout.removeViewAt(child_count - i - 1);
                                 }
-                                child_count -= 2 * d;
+
+                                for (int i = 0; i < d; i++) {
+                                    linearLayout.removeViewAt(2 * child_count - i - 1);
+                                }
+
+                                child_count -= d;
                             }
 
                             if (preMonthDays > currenDaysOfMonth) {
                                 int d = preMonthDays - currenDaysOfMonth;
-                                for (int i = 0; i < 2 * d; i++) {
-                                    TextView textView = new TextView(HorizontalScrollViewMainActivity.this);
+
+                                for (int i = 0; i < d; i++) {
+                                    TextView textView = new TextView(
+                                            HorizontalScrollViewMainActivity.this);
                                     textView.setText("Hello");
+                                    textView.setLayoutParams(new ViewGroup.LayoutParams(
+                                            child_width, ViewGroup.LayoutParams.MATCH_PARENT));
                                     textView.setGravity(Gravity.CENTER);
-                                    linearLayout.addView(textView, new ViewGroup.LayoutParams(
-                                            child_width,
-                                            ViewGroup.LayoutParams.MATCH_PARENT));
+
+                                    linearLayout.addView(textView, child_count + i);
                                 }
-                                child_count += 2 * d;
+
+                                for (int i = 0; i < d; i++) {
+                                    TextView textView = new TextView(
+                                            HorizontalScrollViewMainActivity.this);
+                                    textView.setText("Hello");
+                                    textView.setLayoutParams(new ViewGroup.LayoutParams(
+                                            child_width, ViewGroup.LayoutParams.MATCH_PARENT));
+                                    textView.setGravity(Gravity.CENTER);
+
+                                    linearLayout.addView(textView, 2 * child_count + i);
+                                }
+
+                                child_count += d;
                             }
-                            linearLayout.invalidate();
-                            horizontalScrollView.invalidate();
 
                             horizontalScrollView.scrollBy(child_width * child_count, 0);
                             current_item += child_count;
