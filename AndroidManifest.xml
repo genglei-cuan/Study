@@ -62,7 +62,7 @@
 
         <!--
              浮动的输入框，输入密码用户名会动态的变化,exported属性用作命令行启动 
-        	这个API的使用最低需要时11
+        	这个API的使用最低需要时11
         -->
         <activity
             android:name="cn.steve.floatLabelLayout.FloatLabelActivity"
@@ -77,15 +77,13 @@
 
         <!--
         	类似于UC浏览器的底部菜单       
-            a bottom menu similar to the UC Browser 
+            a bottom menu similar to the UC Browser 
         -->
         <activity android:name="cn.steve.bottomMenu.BottomMenuActivity" >
-             
         </activity>
 
         <!-- 修改的UC菜单，使得菜单替换成了文本，文本内容滚动 -->
         <activity android:name="cn.steve.bottomtext.BottomTextActivity" >
-           
         </activity>
 
         <!-- 下拉列表 -->
@@ -119,39 +117,41 @@
         <activity android:name="cn.steve.broadcast.NormalBroadCastActivity" >
         </activity>
         <activity android:name="cn.steve.broadcast.BroadCastMainActivity" >
-            
         </activity>
+
         <receiver android:name="cn.steve.broadcast.NormalBCReceiverA" >
         </receiver>
         <receiver android:name="cn.steve.broadcast.NormalBCReceiverB" >
         </receiver>
-        <activity android:name="cn.steve.broadcast.OrderBroadCastActivity"></activity>
-        <receiver android:name="cn.steve.broadcast.OrderBCReceiverA"></receiver>
-        <receiver android:name="cn.steve.broadcast.OrderBCReceiverB"></receiver>
-        
-        <activity android:name="cn.steve.service.ServiceMainActivity">
-            
+
+        <activity android:name="cn.steve.broadcast.OrderBroadCastActivity" >
         </activity>
-        <service android:name="cn.steve.service.MsgService">
-            
+
+        <receiver android:name="cn.steve.broadcast.OrderBCReceiverA" >
+        </receiver>
+        <receiver android:name="cn.steve.broadcast.OrderBCReceiverB" >
+        </receiver>
+
+        <activity android:name="cn.steve.service.ServiceMainActivity" >
+        </activity>
+
+        <service android:name="cn.steve.service.MsgService" >
         </service>
-        <activity android:name="cn.steve.uicommunicate.UIActivity">
-           
+
+        <activity android:name="cn.steve.uicommunicate.UIActivity" >
         </activity>
-        <activity android:name="cn.steve.listview.cache.ListViewMainActivity">
-            
+        <activity android:name="cn.steve.listview.cache.ListViewMainActivity" >
         </activity>
-        <activity android:name="cn.steve.listview.pagination.PaginationListActivity"></activity>
-        
-        <activity android:name="cn.steve.gallery.HorizontalScrollViewMainActivity">
-             <intent-filter>
+        <activity android:name="cn.steve.listview.pagination.PaginationListActivity" >
+        </activity>
+        <!-- 水平循环滚动 -->
+        <activity android:name="cn.steve.gallery.HorizontalScrollViewMainActivity" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        
     </application>
 
 </manifest>
