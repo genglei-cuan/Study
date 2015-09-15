@@ -35,6 +35,12 @@ public class HorizontalScrollViewMainActivity extends Activity {
     private int currenMonth = 1;
     private int currenDate = 1;
     private int currenDaysOfMonth = 30;
+    // 用来记录接下来跳转到的日期相关信息
+    private int desYear = 2016;
+    private int desMonth = 2;
+    private int desDate = 1;
+    private int desIndexToChange = 100;
+    private int desDaysOfMonth = 30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +76,6 @@ public class HorizontalScrollViewMainActivity extends Activity {
                     ViewGroup.LayoutParams.MATCH_PARENT));
 
             // TODO 日期的逻辑
-
             textView.setText(currenMonth + "月" + (i + 1));
             textView.setGravity(Gravity.CENTER);
             linearLayout.addView(textView);
@@ -107,14 +112,20 @@ public class HorizontalScrollViewMainActivity extends Activity {
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_MOVE:
+
+                        if (current_item == desIndexToChange) {
+                            currenDate = desDate;
+                            currenMonth = desMonth;
+                            currentYear = desYear;
+                            currenDaysOfMonth = desDaysOfMonth;
+                        }
+
                         flag = false;
 
                         // 向左滑动到达中间位置的时候，跳转到循环页面的相应位置 5-》A5
                         if (x <= child_width) {
                             // 进入上个月
-                            CalendarUntil.setMonth(currenMonth - 1);
-                            int preMonthDays = CalendarUntil.getCurrenMonthDays();
-
+                            int preMonthDays = CalendarUntil.getMonthDaysByOffset(-1);
                             if (preMonthDays < currenDaysOfMonth) {
                                 // 在后面删掉两倍的d个textview
                                 int d = currenDaysOfMonth - preMonthDays;
@@ -159,36 +170,83 @@ public class HorizontalScrollViewMainActivity extends Activity {
 
                             horizontalScrollView.scrollBy(child_width * child_count, 0);
                             current_item += child_count;
+
                             // TODO 从当前位置往前推算上个这个位置-3,同时要注意-3位置的后三个
-
                             int delta = current_item % child_count - child_start;
-                            currenDate -= delta;
-                            currenMonth -= 1;
-                            currenDaysOfMonth = preMonthDays;
-
+                            desIndexToChange = current_item - 3;
+                            desDate = CalendarUntil.getLastDayOfMonth();
+                            desMonth = CalendarUntil.getCurrentMonth();
+                            desYear = CalendarUntil.getCurrentYear();
+                            desDaysOfMonth=preMonthDays;
+                            modifyLeftData(current_item);
                         }
 
                         // 向右滑动的时候到达循环边的中间的时候，跳转到前面的相应位置 A27->27
                         else if (x >= (child_width * child_count * 2 - hsv_width - child_width)) {
+                            // 即将进入下个月
+                            int nextMonthDays = CalendarUntil.getMonthDaysByOffset(1);
+                            if (nextMonthDays < currenDaysOfMonth) {
+                                // 在后面删掉两倍的d个textview
+                                int d = currenDaysOfMonth - nextMonthDays;
+
+                                for (int i = 0; i < d; i++) {
+                                    linearLayout.removeViewAt(child_count - 1 - i);
+                                }
+
+                                for (int i = 0; i < d; i++) {
+                                    linearLayout.removeViewAt(2 * child_count - 2 - i);
+                                }
+
+                                child_count -= d;
+                            }
+
+                            if (nextMonthDays > currenDaysOfMonth) {
+                                int d = nextMonthDays - currenDaysOfMonth;
+                                for (int i = 0; i < d; i++) {
+                                    TextView textView = new TextView(
+                                            HorizontalScrollViewMainActivity.this);
+                                    // TODO 添加设置文本的逻辑
+                                    textView.setText("Hello");
+                                    textView.setLayoutParams(new ViewGroup.LayoutParams(
+                                            child_width, ViewGroup.LayoutParams.MATCH_PARENT));
+                                    textView.setGravity(Gravity.CENTER);
+                                    linearLayout.addView(textView, child_count + i);
+                                }
+
+                                for (int i = 0; i < d; i++) {
+                                    TextView textView = new TextView(
+                                            HorizontalScrollViewMainActivity.this);
+                                    textView.setText("Hello");
+                                    textView.setLayoutParams(new ViewGroup.LayoutParams(
+                                            child_width, ViewGroup.LayoutParams.MATCH_PARENT));
+                                    textView.setGravity(Gravity.CENTER);
+
+                                    linearLayout.addView(textView, 2 * child_count + i);
+                                }
+
+                                child_count += d;
+                            }
+
                             horizontalScrollView.scrollBy(-child_width * child_count, 0);
                             current_item -= child_count;
                             // TODO 当前位置到下次这个位置+3，同时注意他的前三个
-
                             int delta = current_item % child_count - child_start;
-                            currenDate += delta;
 
-                            // 进入下个月
+                            desIndexToChange = current_item % child_count + 3;
+                            desDate = 1;
+                            desMonth = CalendarUntil.getCurrentMonth();
+                            desYear = CalendarUntil.getCurrentYear();
+                            desDaysOfMonth=nextMonthDays;
+                            modifyRightData(current_item);
 
                         }
 
                         break;
                     case MotionEvent.ACTION_UP:
                         flag = true;
-
                         horizontalScrollView.smoothScrollTo(child_width * current_item
                                 - child_width / 2
                                 - hsv_width / 2, horizontalScrollView.getScrollY());
-
                         // 确定已选中
 
                         break;
@@ -206,18 +264,25 @@ public class HorizontalScrollViewMainActivity extends Activity {
         });
     }
 
-    private void modifyData(int currentIndex) {
-        boolean isSwitch = false;
-
+    // 修改左边的日期内容
+    private void modifyLeftData(int currentIndex) {
         TextView textView;
-
-        // 左边的部分
-        for (int i = 0; i < currentIndex; i++) {
-
-            textView = (TextView) linearLayout.getChildAt(currentIndex - 1);
-
+        // 预备跳转到上个月,应有位置被加了整个count，从当前位置的前三个往前至前排对应当前位置处设置为上个月的内容
+        for (int i = currentIndex - 5, j = 0; i > currentIndex % child_count; i--, j++) {
+            textView = (TextView) linearLayout.getChildAt(i - 1);
+            textView.setText(desMonth + "月" + (desDaysOfMonth - j));
+            System.out.println("desMonth:" + desMonth);
         }
+    }
 
+    // 修改右边的日期内容
+    private void modifyRightData(int currentIndex) {
+        TextView textView;
+        // 准备下个月的数据
+        for (int i = currentIndex + 5, j = 0; i < currentIndex + child_count; i++, j++) {
+            textView = (TextView) linearLayout.getChildAt(i - 1);
+            textView.setText(desMonth + "月" + (desDaysOfMonth - j));
+        }
     }
 
     /**
