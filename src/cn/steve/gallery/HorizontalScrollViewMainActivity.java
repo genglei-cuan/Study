@@ -15,6 +15,11 @@ import android.widget.TextView;
 import cn.steve.Utils.CalendarUntil;
 import cn.steve.study.R;
 
+/**
+ * 后往前是从第六个开始跳转的
+ * 
+ * @author Steve
+ */
 public class HorizontalScrollViewMainActivity extends Activity {
 
     // 水平滚动的控件
@@ -39,8 +44,10 @@ public class HorizontalScrollViewMainActivity extends Activity {
     private int desYear = 2016;
     private int desMonth = 2;
     private int desDate = 1;
-    private int desIndexToChange = 100;
     private int desDaysOfMonth = 30;
+    // 标识需要切换当前月份，年，日期的位置
+    private int desIndexToChangeDateYearMonth = 100;
+    private int desIndexToChangeIndexPreNext = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +120,7 @@ public class HorizontalScrollViewMainActivity extends Activity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_MOVE:
 
-                        if (current_item == desIndexToChange) {
+                        if (current_item == desIndexToChangeDateYearMonth) {
                             currenDate = desDate;
                             currenMonth = desMonth;
                             currentYear = desYear;
@@ -173,11 +180,11 @@ public class HorizontalScrollViewMainActivity extends Activity {
 
                             // TODO 从当前位置往前推算上个这个位置-3,同时要注意-3位置的后三个
                             int delta = current_item % child_count - child_start;
-                            desIndexToChange = current_item - 3;
+                            desIndexToChangeDateYearMonth = current_item - 3;
                             desDate = CalendarUntil.getLastDayOfMonth();
                             desMonth = CalendarUntil.getCurrentMonth();
                             desYear = CalendarUntil.getCurrentYear();
-                            desDaysOfMonth=preMonthDays;
+                            desDaysOfMonth = preMonthDays;
                             modifyLeftData(current_item);
                         }
 
@@ -232,12 +239,12 @@ public class HorizontalScrollViewMainActivity extends Activity {
                             // TODO 当前位置到下次这个位置+3，同时注意他的前三个
                             int delta = current_item % child_count - child_start;
 
-                            desIndexToChange = current_item % child_count + 3;
+                            desIndexToChangeDateYearMonth = current_item % child_count + 3;
                             desDate = 1;
                             desMonth = CalendarUntil.getCurrentMonth();
                             desYear = CalendarUntil.getCurrentYear();
-                            desDaysOfMonth=nextMonthDays;
-                            modifyRightData(current_item);
+                            desDaysOfMonth = nextMonthDays;
+                            // modifyRightData(current_item);
 
                         }
 
@@ -266,13 +273,24 @@ public class HorizontalScrollViewMainActivity extends Activity {
 
     // 修改左边的日期内容
     private void modifyLeftData(int currentIndex) {
+        System.out.println("currentIndex:" + currentIndex);
+        System.out.println("currenMonth:" + currenMonth);
         TextView textView;
+
         // 预备跳转到上个月,应有位置被加了整个count，从当前位置的前三个往前至前排对应当前位置处设置为上个月的内容
         for (int i = currentIndex - 5, j = 0; i > currentIndex % child_count; i--, j++) {
             textView = (TextView) linearLayout.getChildAt(i - 1);
             textView.setText(desMonth + "月" + (desDaysOfMonth - j));
-            System.out.println("desMonth:" + desMonth);
         }
+        // TODO 当前位置的后面部分也要修改
+
+        // 同时还有本来到达位置的前三个，不然会出现错误数据(TODO 描述清楚)
+        int correntIndex = currentIndex % child_count;
+        for (int i = correntIndex; i > 0; i--) {
+            textView = (TextView) linearLayout.getChildAt(i - 1);
+            textView.setText(desMonth + "月" + (i));
+        }
+
     }
 
     // 修改右边的日期内容
