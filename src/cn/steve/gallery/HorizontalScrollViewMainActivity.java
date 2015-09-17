@@ -52,6 +52,9 @@ public class HorizontalScrollViewMainActivity extends Activity {
     private int childCountDelta = 0;
     private boolean isDeleteRight = false;
 
+    private int desIndexToChangeAdd = 100;
+    private boolean isDeleteLeft = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +125,7 @@ public class HorizontalScrollViewMainActivity extends Activity {
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_MOVE:
+
                         // 切换当前的年月日
                         if (current_item == desIndexToChangeDateYearMonth) {
                             currenDate = desDate;
@@ -129,6 +133,7 @@ public class HorizontalScrollViewMainActivity extends Activity {
                             currentYear = desYear;
                             currenDaysOfMonth = desDaysOfMonth;
                         }
+
                         // 过了用户可以返回的盲区
                         if (current_item == desIndexToChangeIndexPreNext) {
                             if (isDeleteRight) {
@@ -140,6 +145,20 @@ public class HorizontalScrollViewMainActivity extends Activity {
                             TextView textView;
                             for (int i = 0; i < child_count; i++) {
                                 textView = (TextView) linearLayout.getChildAt(child_count + i);
+                                textView.setText(desMonth + "月" + (i + 1));
+                            }
+                        }
+
+                        if (current_item == desIndexToChangeAdd) {
+                            if (isDeleteLeft) {
+                                toNextMonthDeleteLeft();
+                            } else {
+                                toNextMonthAddLeft();
+                            }
+                            // 刷一遍前面的内容
+                            TextView textView;
+                            for (int i = 0; i < child_count; i++) {
+                                textView = (TextView) linearLayout.getChildAt(i);
                                 textView.setText(desMonth + "月" + (i + 1));
                             }
                         }
@@ -210,20 +229,14 @@ public class HorizontalScrollViewMainActivity extends Activity {
                             // 即将进入下个月
                             int nextMonthDays = CalendarUntil.getMonthDaysByOffset(1);
                             if (nextMonthDays < currenDaysOfMonth) {
-
-                                // 在后面删掉两倍的d个textview
                                 int d = currenDaysOfMonth - nextMonthDays;
-
-                                for (int i = 0; i < d; i++) {
-                                    linearLayout.removeViewAt(child_count - 1 - i);
-                                }
-
+                                // 在后面d个textview
                                 for (int i = 0; i < d; i++) {
                                     linearLayout.removeViewAt(2 * child_count - 2 - i);
                                 }
-
-                                childCountDelta = d;
-                                child_count -= d;
+                                childCountDelta = -d;
+                                child_count += childCountDelta;
+                                isDeleteLeft = true;
                             }
 
                             if (nextMonthDays > currenDaysOfMonth) {
@@ -231,40 +244,28 @@ public class HorizontalScrollViewMainActivity extends Activity {
                                 for (int i = 0; i < d; i++) {
                                     TextView textView = new TextView(
                                             HorizontalScrollViewMainActivity.this);
-                                    // TODO 添加设置文本的逻辑
                                     textView.setText("Hello");
                                     textView.setLayoutParams(new ViewGroup.LayoutParams(
                                             child_width, ViewGroup.LayoutParams.MATCH_PARENT));
                                     textView.setGravity(Gravity.CENTER);
-                                    linearLayout.addView(textView, child_count + i);
-                                }
-
-                                for (int i = 0; i < d; i++) {
-                                    TextView textView = new TextView(
-                                            HorizontalScrollViewMainActivity.this);
-                                    textView.setText("Hello");
-                                    textView.setLayoutParams(new ViewGroup.LayoutParams(
-                                            child_width, ViewGroup.LayoutParams.MATCH_PARENT));
-                                    textView.setGravity(Gravity.CENTER);
-
                                     linearLayout.addView(textView, 2 * child_count + i);
                                 }
-
-                                child_count += d;
+                                childCountDelta=d;
+                                child_count += childCountDelta;
+                                isDeleteLeft = false;
                             }
 
                             horizontalScrollView.scrollBy(-child_width * child_count, 0);
                             current_item -= child_count;
                             // TODO 当前位置到下次这个位置+3，同时注意他的前三个
                             int delta = current_item % child_count - child_start;
-
                             desIndexToChangeDateYearMonth = current_item % child_count + 3;
+                            desIndexToChangeAdd = child_count +5;
                             desDate = 1;
                             desMonth = CalendarUntil.getCurrentMonth();
                             desYear = CalendarUntil.getCurrentYear();
                             desDaysOfMonth = nextMonthDays;
                             modifyRightData(current_item);
-
                         }
 
                         break;
@@ -311,6 +312,29 @@ public class HorizontalScrollViewMainActivity extends Activity {
                     bigIndex = child_count + (child_count - childCountDelta) - i - 1;
                     System.out.println("SteveDateBigIndex:" + bigIndex);
                     linearLayout.removeViewAt(bigIndex);
+                }
+            }
+
+            // 进入下个月而进行的删除操作，删除上个月残留的日期个数
+            private void toNextMonthDeleteLeft() {
+                int smallIndex;
+                for (int i = 0; i < Math.abs(childCountDelta); i++) {
+                    smallIndex = child_count - childCountDelta + i - 1;
+                    linearLayout.removeViewAt(smallIndex);
+                }
+            }
+
+            // 进入下个也而仅需的添加操作
+            private void toNextMonthAddLeft() {
+                int smallIndex;
+                for (int i = 0; i < Math.abs(childCountDelta); i++) {
+                    smallIndex = child_count - childCountDelta + i - 1;
+                    TextView textView2 = new TextView(HorizontalScrollViewMainActivity.this);
+                    textView2.setText("H");
+                    textView2.setLayoutParams(new ViewGroup.LayoutParams(child_width,
+                            ViewGroup.LayoutParams.MATCH_PARENT));
+                    textView2.setGravity(Gravity.CENTER);
+                    linearLayout.addView(textView2, smallIndex);
                 }
             }
 
