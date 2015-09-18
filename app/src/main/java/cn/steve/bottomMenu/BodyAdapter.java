@@ -1,7 +1,4 @@
-
 package cn.steve.bottomMenu;
-
-import java.util.List;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -14,6 +11,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class BodyAdapter extends BaseAdapter {
 
@@ -57,7 +56,7 @@ public class BodyAdapter extends BaseAdapter {
          */
         TextView tv_item = new TextView(context);
         tv_item.setLayoutParams(new GridView.LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.WRAP_CONTENT));
+                                                          LayoutParams.WRAP_CONTENT));
         tv_item.setGravity(Gravity.CENTER);
         tv_item.setTextColor(Color.WHITE);
         tv_item.setPadding(10, 10, 10, 10);

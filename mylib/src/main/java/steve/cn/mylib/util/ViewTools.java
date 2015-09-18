@@ -30,7 +30,7 @@ public class ViewTools {
 
         // point is inside view bounds
         if ((x > viewX && x < (viewX + view.getWidth())) &&
-                (y > viewY && y < (viewY + view.getHeight()))) {
+            (y > viewY && y < (viewY + view.getHeight()))) {
             return true;
         } else {
             return false;

@@ -10,8 +10,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 /**
- * 检测是否有SIM的工具类 着重解决关于双卡双待的手机检测问题
- * Created by Steve on 2015/7/29.
+ * 检测是否有SIM的工具类 着重解决关于双卡双待的手机检测问题 Created by Steve on 2015/7/29.
  */
 public class SIMCardUtil {
 
@@ -27,7 +26,9 @@ public class SIMCardUtil {
 
     //简单判断单卡是否有sim卡
     public static boolean hasSIM(Context context) {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager
+            tm =
+            (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (tm.getSimState() != TelephonyManager.SIM_STATE_ABSENT) {
             return true;
         } else {
@@ -41,8 +42,8 @@ public class SIMCardUtil {
     public static boolean hasDual(Context context) {
         SubscriptionManager subscriptionManager = SubscriptionManager.from(context);
         List<SubscriptionInfo>
-                activeSubscriptionInfoList =
-                subscriptionManager.getActiveSubscriptionInfoList();
+            activeSubscriptionInfoList =
+            subscriptionManager.getActiveSubscriptionInfoList();
         System.out.println(subscriptionManager.getActiveSubscriptionInfoCount());
         for (SubscriptionInfo info : activeSubscriptionInfoList) {
             System.out.println(info.getSimSlotIndex());
@@ -58,8 +59,8 @@ public class SIMCardUtil {
         if (simCardUtil == null) {
             simCardUtil = new SIMCardUtil();
             TelephonyManager
-                    telephonyManager =
-                    ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE));
+                telephonyManager =
+                ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE));
             simCardUtil.imsiSIM1 = telephonyManager.getDeviceId();
             simCardUtil.imsiSIM2 = null;
 
@@ -78,7 +79,7 @@ public class SIMCardUtil {
             }
 
             simCardUtil.isSIM1Ready =
-                    telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY;
+                telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY;
             simCardUtil.isSIM2Ready = false;
 
             try {
@@ -110,11 +111,11 @@ public class SIMCardUtil {
      * @return 返回的是IMEI号
      */
     private static String getDeviceIdBySlot(Context context, String predictedMethodName, int slotID)
-            throws GeminiMethodNotFoundException {
+        throws GeminiMethodNotFoundException {
         String imsi = null;
         TelephonyManager
-                telephony =
-                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            telephony =
+            (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         try {
             Class<?> telephonyClass = Class.forName(telephony.getClass().getName());
             Class<?>[] parameter = new Class[1];
@@ -140,12 +141,13 @@ public class SIMCardUtil {
      * @param slotID              第几张卡
      * @return 是否在使用
      */
-    private static boolean getSIMStateBySlot(Context context, String predictedMethodName, int slotID)
-            throws GeminiMethodNotFoundException {
+    private static boolean getSIMStateBySlot(Context context, String predictedMethodName,
+                                             int slotID)
+        throws GeminiMethodNotFoundException {
         boolean isReady = false;
         TelephonyManager
-                telephony =
-                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            telephony =
+            (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         try {
             Class<?> telephonyClass = Class.forName(telephony.getClass().getName());
             Class<?>[] parameter = new Class[1];
@@ -174,15 +176,16 @@ public class SIMCardUtil {
      */
     public static void printTelephonyManagerMethodNamesForThisDevice(Context context) {
         TelephonyManager
-                telephony =
-                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            telephony =
+            (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         Class<?> telephonyClass;
         try {
             telephonyClass = Class.forName(telephony.getClass().getName());
             Method[] methods = telephonyClass.getMethods();
             for (int idx = 0; idx < methods.length; idx++) {
                 System.out
-                        .println("\n" + methods[idx] + " declared by " + methods[idx].getDeclaringClass());
+                    .println(
+                        "\n" + methods[idx] + " declared by " + methods[idx].getDeclaringClass());
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

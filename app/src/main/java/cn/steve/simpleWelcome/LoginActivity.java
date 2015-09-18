@@ -1,4 +1,3 @@
-
 package cn.steve.simpleWelcome;
 
 import android.app.Activity;
@@ -11,12 +10,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+
 import cn.steve.alertDialog.AlertDialogActivity;
 import cn.steve.study.R;
 
 /**
  * 类似于QQ一样的登陆界面
- * 
+ *
  * @author steve.yan
  */
 public class LoginActivity extends Activity {
@@ -25,6 +25,16 @@ public class LoginActivity extends Activity {
     private RelativeLayout rl_user;
     private Button mLogin;
     private TextURLView mTextViewURL_ForgetPSW;
+    // 登陆的监听器
+    private OnClickListener loginOnClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(mContext, AlertDialogActivity.class);
+            startActivity(intent);
+            finish();
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +64,5 @@ public class LoginActivity extends Activity {
     private void initTvUrl() {
         mTextViewURL_ForgetPSW.setText(R.string.forget_password);
     }
-
-    // 登陆的监听器
-    private OnClickListener loginOnClickListener = new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(mContext, AlertDialogActivity.class);
-            startActivity(intent);
-            finish();
-
-        }
-    };
 
 }

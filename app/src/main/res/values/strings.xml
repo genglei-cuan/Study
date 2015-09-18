@@ -13,9 +13,9 @@
     <string name="btn_save">btn_save</string>
 
     <!-- customer simple welcome -->
-    <string name="forget_password">忘记密码 </string>
+    <string name="forget_password">忘记密码</string>
     <string name="register">新用户</string>
-    
+
     <!-- spinnerDrop -->
     <string name="group_shortcuts">Shortcuts</string>
     <string name="group_widgets">Widgets</string>

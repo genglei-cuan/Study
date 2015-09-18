@@ -1,7 +1,5 @@
-
 package cn.steve.bottomtext;
 
-import java.util.List;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
@@ -12,12 +10,14 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class BottomTitleAdapter extends BaseAdapter {
 
-    private List<String> titles;
-    private Context context;
     public TextView[] tv_titles;
     int position = 0;
+    private List<String> titles;
+    private Context context;
 
     public BottomTitleAdapter(List<String> titles, Context context, int position) {
         this.titles = titles;
@@ -61,7 +61,7 @@ public class BottomTitleAdapter extends BaseAdapter {
          * 设置TextView的大小
          */
         tv_titles[position].setLayoutParams(new GridView.LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.WRAP_CONTENT));
+                                                                      LayoutParams.WRAP_CONTENT));
 
         tv_titles[position].setPadding(0, 10, 0, 10);
 

@@ -1,7 +1,5 @@
-
 package cn.steve.fragment;
 
-import cn.steve.study.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import cn.steve.study.R;
+
 public class ContentFragment extends Fragment {
+
     private Button btn;
 
     // 当向activity增加一个fragment的时候由系统自动产生
@@ -47,7 +48,8 @@ public class ContentFragment extends Fragment {
 
     // savedInstanceState参数是一个Bundle，跟activity的onCreate()中Bundle差不多，用于状态恢复。
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         System.out.println("onCreateView");
         return inflater.inflate(R.layout.article_fra2, container, false);
 

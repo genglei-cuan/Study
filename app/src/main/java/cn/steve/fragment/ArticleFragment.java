@@ -1,4 +1,3 @@
-
 package cn.steve.fragment;
 
 import android.os.Bundle;
@@ -9,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
 import cn.steve.study.R;
 
 public class ArticleFragment extends Fragment {
@@ -42,7 +42,8 @@ public class ArticleFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         System.out.println("onCreateView");
         return inflater.inflate(R.layout.article_fra1, container, false);
     }

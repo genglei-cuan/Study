@@ -1,4 +1,3 @@
-
 package cn.steve.viewflipper;
 
 import android.os.Bundle;
@@ -10,18 +9,19 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ViewFlipper;
+
 import cn.steve.study.R;
 
 public class FragmentViewFlipper extends Fragment {
 
     View view = null;
-    private ViewFlipper viewFlipper;
-
     Animation leftInAnimation;
     Animation leftOutAnimation;
+    private ViewFlipper viewFlipper;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
         this.view = inflater.inflate(R.layout.fragment_viewflipper, container, false);
 

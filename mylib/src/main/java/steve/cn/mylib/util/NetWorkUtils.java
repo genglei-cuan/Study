@@ -23,10 +23,10 @@ public class NetWorkUtils {
      */
     public static int getNetworkType(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+            .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo
-                networkInfo =
-                connectivityManager == null ? null : connectivityManager.getActiveNetworkInfo();
+            networkInfo =
+            connectivityManager == null ? null : connectivityManager.getActiveNetworkInfo();
         return networkInfo == null ? -1 : networkInfo.getType();
     }
 
@@ -35,8 +35,8 @@ public class NetWorkUtils {
      */
     public static String getNetworkTypeName(Context context) {
         ConnectivityManager
-                manager =
-                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            manager =
+            (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo;
         String type = NETWORK_TYPE_DISCONNECT;
         if (manager == null || (networkInfo = manager.getActiveNetworkInfo()) == null) {
@@ -49,9 +49,9 @@ public class NetWorkUtils {
             } else if ("MOBILE".equalsIgnoreCase(typeName)) {
                 String proxyHost = android.net.Proxy.getDefaultHost();
                 type =
-                        TextUtils.isEmpty(proxyHost) ? (isFastMobileNetwork(context) ? NETWORK_TYPE_3G
-                                : NETWORK_TYPE_2G)
-                                : NETWORK_TYPE_WAP;
+                    TextUtils.isEmpty(proxyHost) ? (isFastMobileNetwork(context) ? NETWORK_TYPE_3G
+                                                                                 : NETWORK_TYPE_2G)
+                                                 : NETWORK_TYPE_WAP;
             } else {
                 type = NETWORK_TYPE_UNKNOWN;
             }
@@ -64,8 +64,8 @@ public class NetWorkUtils {
      */
     private static boolean isFastMobileNetwork(Context context) {
         TelephonyManager
-                telephonyManager =
-                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            telephonyManager =
+            (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (telephonyManager == null) {
             return false;
         }

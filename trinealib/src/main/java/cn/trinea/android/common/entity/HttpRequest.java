@@ -7,29 +7,20 @@ import java.util.Map;
 import cn.trinea.android.common.util.HttpUtils;
 
 /**
- * <strong>HttpRequest</strong><br/>
- * <ul>
- * <strong>Constructor</strong>
- * <li>{@link HttpRequest#HttpRequest(String)}</li>
- * <li>{@link HttpRequest#HttpRequest(String, Map)}</li>
- * </ul>
- * <ul>
- * <strong>Setting</strong>
- * <li>{@link #setConnectTimeout(int)}</li>
- * <li>{@link #setReadTimeout(int)}</li>
- * <li>{@link #setParasMap(Map)}</li>
- * <li>{@link #setUserAgent(String)}</li>
- * <li>{@link #setRequestProperty(String, String)}</li>
- * <li>{@link #setRequestProperties(Map)}</li>
- * </ul>
- * 
+ * <strong>HttpRequest</strong><br/> <ul> <strong>Constructor</strong> <li>{@link
+ * HttpRequest#HttpRequest(String)}</li> <li>{@link HttpRequest#HttpRequest(String, Map)}</li> </ul>
+ * <ul> <strong>Setting</strong> <li>{@link #setConnectTimeout(int)}</li> <li>{@link
+ * #setReadTimeout(int)}</li> <li>{@link #setParasMap(Map)}</li> <li>{@link
+ * #setUserAgent(String)}</li> <li>{@link #setRequestProperty(String, String)}</li> <li>{@link
+ * #setRequestProperties(Map)}</li> </ul>
+ *
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2013-5-12
  */
 public class HttpRequest {
 
-    private String              url;
-    private int                 connectTimeout;
-    private int                 readTimeout;
+    private String url;
+    private int connectTimeout;
+    private int readTimeout;
     private Map<String, String> parasMap;
     private Map<String, String> requestProperties;
 
@@ -53,7 +44,6 @@ public class HttpRequest {
     }
 
     /**
-     * @return
      * @see URLConnection#getConnectTimeout()
      */
     public int getConnectTimeout() {
@@ -61,7 +51,6 @@ public class HttpRequest {
     }
 
     /**
-     * @param timeoutMillis
      * @see URLConnection#setConnectTimeout(int)
      */
     public void setConnectTimeout(int timeoutMillis) {
@@ -72,7 +61,6 @@ public class HttpRequest {
     }
 
     /**
-     * @return
      * @see URLConnection#getReadTimeout()
      */
     public int getReadTimeout() {
@@ -80,7 +68,6 @@ public class HttpRequest {
     }
 
     /**
-     * @param timeoutMillis
      * @see URLConnection#setReadTimeout(int)
      */
     public void setReadTimeout(int timeoutMillis) {
@@ -92,8 +79,6 @@ public class HttpRequest {
 
     /**
      * get paras map
-     * 
-     * @return
      */
     public Map<String, String> getParasMap() {
         return parasMap;
@@ -101,8 +86,6 @@ public class HttpRequest {
 
     /**
      * set paras map
-     * 
-     * @param parasMap
      */
     public void setParasMap(Map<String, String> parasMap) {
         this.parasMap = parasMap;
@@ -116,8 +99,6 @@ public class HttpRequest {
     }
 
     /**
-     * @param field
-     * @param newValue
      * @see URLConnection#setRequestProperty(String, String)
      */
     public void setRequestProperty(String field, String newValue) {
@@ -125,7 +106,6 @@ public class HttpRequest {
     }
 
     /**
-     * @param field
      * @see URLConnection#getRequestProperty(String)
      */
     public String getRequestProperty(String field) {
@@ -134,8 +114,7 @@ public class HttpRequest {
 
     /**
      * same to {@link #setRequestProperty(String, String)} filed is User-Agent
-     * 
-     * @param value
+     *
      * @see URLConnection#setRequestProperty(String, String)
      */
     public void setUserAgent(String value) {

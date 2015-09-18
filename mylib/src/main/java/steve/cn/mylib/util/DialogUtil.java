@@ -77,9 +77,9 @@ public class DialogUtil {
                                   boolean setCancelable) {
         tipTextView.setTextSize(textSize);
         ObjectAnimator
-                animator =
-                ObjectAnimator
-                        .ofFloat(spaceshipImage, "rotation", 0.0f, 360.0f);// 给spaceshipImage添加旋转动画
+            animator =
+            ObjectAnimator
+                .ofFloat(spaceshipImage, "rotation", 0.0f, 360.0f);// 给spaceshipImage添加旋转动画
         animator.setDuration(PER_REVOLUTION_TIME);
         animator.setRepeatCount(Integer.MAX_VALUE);
         animator.setRepeatMode(ValueAnimator.RESTART);
@@ -91,8 +91,8 @@ public class DialogUtil {
         loadingDialog = new SafeProgressDialog(mContext, R.style.loading_dialog);// 创建自定义样式dialog
         loadingDialog.setCancelable(setCancelable);// 是否可以用“返回键”取消
         loadingDialog.setContentView(ll_layout, new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));// 设置布局
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT));// 设置布局
         loadingDialog.show();
     }
 
@@ -107,9 +107,9 @@ public class DialogUtil {
                                                        boolean setCancelable) {
         tipTextView.setTextSize(textSize);
         ObjectAnimator
-                animator =
-                ObjectAnimator
-                        .ofFloat(spaceshipImage, "rotation", 0.0f, 360.0f);// 给spaceshipImage添加旋转动画
+            animator =
+            ObjectAnimator
+                .ofFloat(spaceshipImage, "rotation", 0.0f, 360.0f);// 给spaceshipImage添加旋转动画
         animator.setDuration(PER_REVOLUTION_TIME);
         animator.setRepeatCount(Integer.MAX_VALUE);
         animator.setRepeatMode(ValueAnimator.RESTART);
@@ -121,8 +121,8 @@ public class DialogUtil {
         loadingDialog = new SafeProgressDialog(mContext, R.style.loading_dialog);// 创建自定义样式dialog
         loadingDialog.setCanceledOnTouchOutside(setCancelable);  //表示是否点击屏幕会消失
         loadingDialog.setContentView(ll_layout, new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));// 设置布局
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT));// 设置布局
         loadingDialog.show();
     }
 

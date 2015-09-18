@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
+
 import cn.trinea.android.common.entity.CacheObject;
 import cn.trinea.android.common.entity.FailedReason;
 import cn.trinea.android.common.service.impl.FileNameRuleImageUrl;
@@ -18,13 +19,13 @@ import cn.trinea.android.common.service.impl.RemoveTypeLastUsedTimeFirst;
 
 /**
  * ImageCacheManager
- * 
+ *
  * @author maxiaohui hackooo@sina.cn 2014-2-14
  */
 public class ImageCacheManager {
 
-    public static final String      TAG              = "ImageCacheManager";
-    private static ImageCache       imageCache       = null;
+    public static final String TAG = "ImageCacheManager";
+    private static ImageCache imageCache = null;
     private static ImageSDCardCache imageSDCardCache = null;
 
     private ImageCacheManager() {
@@ -33,8 +34,6 @@ public class ImageCacheManager {
 
     /**
      * get the singleton instance of {@link ImageCache}
-     * 
-     * @return
      */
     public static ImageCache getImageCache() {
         if (imageCache == null) {
@@ -50,8 +49,6 @@ public class ImageCacheManager {
 
     /**
      * get the singleton instance of {@link ImageSDCardCache}
-     * 
-     * @return
      */
     public static ImageSDCardCache getImageSDCardCache() {
         if (imageSDCardCache == null) {
@@ -76,10 +73,11 @@ public class ImageCacheManager {
         OnImageCallbackListener imageCallBack = new OnImageCallbackListener() {
 
             @Override
-            public void onGetSuccess(String imageUrl, Bitmap loadedImage, View view, boolean isInCache) {
+            public void onGetSuccess(String imageUrl, Bitmap loadedImage, View view,
+                                     boolean isInCache) {
                 if (view != null && loadedImage != null) {
                     if (view instanceof ImageView) {
-                        ImageView imageView = (ImageView)view;
+                        ImageView imageView = (ImageView) view;
                         imageView.setImageBitmap(loadedImage);
                         // first time show with animation
                         if (!isInCache) {
@@ -87,19 +85,23 @@ public class ImageCacheManager {
                         }
                     } else {
                         Log.e(TAG,
-                                "View is not instance of ImageView, you need to setOnImageCallbackListener() by your self");
+                              "View is not instance of ImageView, you need to setOnImageCallbackListener() by your self");
                     }
                 }
             }
 
             @Override
-            public void onPreGet(String imageUrl, View view) {}
+            public void onPreGet(String imageUrl, View view) {
+            }
 
             @Override
-            public void onGetFailed(String imageUrl, Bitmap loadedImage, View view, FailedReason failedReason) {}
+            public void onGetFailed(String imageUrl, Bitmap loadedImage, View view,
+                                    FailedReason failedReason) {
+            }
 
             @Override
-            public void onGetNotInCache(String imageUrl, View view) {}
+            public void onGetNotInCache(String imageUrl, View view) {
+            }
         };
         imageCache.setOnImageCallbackListener(imageCallBack);
         imageCache.setCacheFullRemoveType(new RemoveTypeLastUsedTimeFirst<Bitmap>());
@@ -121,9 +123,10 @@ public class ImageCacheManager {
             private static final long serialVersionUID = 1L;
 
             @Override
-            public void onGetSuccess(String imageUrl, String imagePath, View view, boolean isInCache) {
+            public void onGetSuccess(String imageUrl, String imagePath, View view,
+                                     boolean isInCache) {
                 if (view != null && view instanceof ImageView) {
-                    ImageView imageView = (ImageView)view;
+                    ImageView imageView = (ImageView) view;
 
                     // if oom please use BitmapFactory.decodeFile(imagePath, option)
                     Bitmap bm = BitmapFactory.decodeFile(imagePath);
@@ -137,18 +140,22 @@ public class ImageCacheManager {
                     }
                 } else {
                     Log.e(TAG,
-                            "View is not instance of ImageView, you need to setOnImageSDCallbackListener() by your self");
+                          "View is not instance of ImageView, you need to setOnImageSDCallbackListener() by your self");
                 }
             }
 
             @Override
-            public void onPreGet(String imageUrl, View view) {}
+            public void onPreGet(String imageUrl, View view) {
+            }
 
             @Override
-            public void onGetNotInCache(String imageUrl, View view) {}
+            public void onGetNotInCache(String imageUrl, View view) {
+            }
 
             @Override
-            public void onGetFailed(String imageUrl, String imagePath, View view, FailedReason failedReason) {}
+            public void onGetFailed(String imageUrl, String imagePath, View view,
+                                    FailedReason failedReason) {
+            }
         };
         imageSDCardCache.setOnImageSDCallbackListener(imageCallBack);
         imageSDCardCache.setCacheFullRemoveType(new RemoveTypeLastUsedTimeFirst<String>());
@@ -166,8 +173,6 @@ public class ImageCacheManager {
 
     /**
      * get image from sdcard listener
-     * 
-     * @return
      */
     public static OnGetDataListener<String, Bitmap> getImageFromSdcardListener() {
         return new OnGetDataListener<String, Bitmap>() {
@@ -182,8 +187,9 @@ public class ImageCacheManager {
                     // option.inSampleSize = 2;
                     // b = BitmapFactory.decodeFile(key, option);
                     return new CacheObject<Bitmap>(BitmapFactory.decodeFile(key));
-                } else
+                } else {
                     return null;
+                }
 
             }
         };

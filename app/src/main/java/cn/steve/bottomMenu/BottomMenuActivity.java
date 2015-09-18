@@ -1,13 +1,13 @@
-
 package cn.steve.bottomMenu;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.steve.study.R;
 
 /**
@@ -61,7 +61,7 @@ public class BottomMenuActivity extends Activity {
          * 菜单栏分类标题
          */
         titles = new ArrayList<String>();
-        titles = array2list(new String[] {
+        titles = array2list(new String[]{
             "常用", "设置", "工具"
         });
 
@@ -72,7 +72,7 @@ public class BottomMenuActivity extends Activity {
 
         // 第一组
         Integer[] item_drawble =
-            new Integer[] {
+            new Integer[]{
                 R.drawable.ic_action_call, R.drawable.ic_action_camera,
                 R.drawable.ic_action_copy, R.drawable.ic_action_crop,
                 R.drawable.ic_action_cut,
@@ -83,7 +83,7 @@ public class BottomMenuActivity extends Activity {
 
         // 第二组
         item_drawble =
-            new Integer[] {
+            new Integer[]{
                 R.drawable.ic_action_email, R.drawable.ic_action_full_screen,
                 R.drawable.ic_action_help, R.drawable.ic_action_important,
                 R.drawable.ic_action_map,
@@ -94,7 +94,7 @@ public class BottomMenuActivity extends Activity {
 
         // 第三组
         item_drawble =
-            new Integer[] {
+            new Integer[]{
                 R.drawable.ic_action_refresh, R.drawable.ic_action_save,
                 R.drawable.ic_action_search, R.drawable.ic_action_share,
                 R.drawable.ic_action_switch_camera, R.drawable.ic_action_video,
@@ -108,17 +108,17 @@ public class BottomMenuActivity extends Activity {
         item_names = new ArrayList<List<String>>();
 
         // 第一组
-        String[] item_name = new String[] {
+        String[] item_name = new String[]{
             "电话", "相机", "复制", "裁剪", "剪切", "删除", "下载", "编辑"
         };
         item_names.add(array2list(item_name));
 
-        item_name = new String[] {
+        item_name = new String[]{
             "邮件", "全屏", "帮助", "收藏", "地图", "语音", "图片", "定位"
         };
         item_names.add(array2list(item_name));
 
-        item_name = new String[] {
+        item_name = new String[]{
             "刷新", "保存", "搜索", "分享", "切换", "录像", "浏览器", "旋转屏幕"
         };
         item_names.add(array2list(item_name));
@@ -134,9 +134,6 @@ public class BottomMenuActivity extends Activity {
 
     /**
      * 转换为List<String> 用于菜单栏中的菜单项图标赋值
-     *
-     * @param values
-     * @return
      */
     private List<String> array2list(String[] values) {
 
@@ -150,9 +147,6 @@ public class BottomMenuActivity extends Activity {
 
     /**
      * 转换为List<Integer> 用于菜单栏中的标题赋值
-     *
-     * @param values
-     * @return
      */
     private List<Integer> addItems(Integer[] values) {
 

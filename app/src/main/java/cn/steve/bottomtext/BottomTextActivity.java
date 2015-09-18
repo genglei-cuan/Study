@@ -1,26 +1,25 @@
-
 package cn.steve.bottomtext;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import cn.steve.study.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.steve.study.R;
+
 /**
  * 修改的UC菜单式的界面 将菜单换成了一个个textview textview可以进行内容上下滚动
- * 
+ *
  * @author steve.yan
  */
 public class BottomTextActivity extends Activity {
 
-    private List<String> titles;
-
-    private BottomPopupMenu myPopupMenu;
     MypopMenuTitleListner listner = null;
+    private List<String> titles;
+    private BottomPopupMenu myPopupMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +62,8 @@ public class BottomTextActivity extends Activity {
          * 菜单栏分类标题
          */
         titles = new ArrayList<String>();
-        titles = array2list(new String[] {
-                "驾车", "公交", "步行"
+        titles = array2list(new String[]{
+            "驾车", "公交", "步行"
         });
 
         myPopupMenu = new BottomPopupMenu(this, titles);
@@ -79,9 +78,6 @@ public class BottomTextActivity extends Activity {
 
     /**
      * 转换为List<String> 用于菜单栏中的菜单项图标赋值
-     * 
-     * @param values
-     * @return
      */
     private List<String> array2list(String[] values) {
 
@@ -94,6 +90,7 @@ public class BottomTextActivity extends Activity {
     }
 
     class MypopMenuTitleListner implements BottomPopupMenu.TitleChangeListener {
+
         @Override
         public String getContent(int i) {
             switch (i) {

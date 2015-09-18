@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 
 /**
  * Serialize Utils
- * 
+ *
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2012-5-14
  */
 public class SerializeUtils {
@@ -20,9 +20,7 @@ public class SerializeUtils {
 
     /**
      * deserialization from file
-     * 
-     * @param filePath
-     * @return
+     *
      * @throws RuntimeException if an error occurs
      */
     public static Object deserialization(String filePath) {
@@ -51,10 +49,7 @@ public class SerializeUtils {
 
     /**
      * serialize to file
-     * 
-     * @param filePath
-     * @param obj
-     * @return
+     *
      * @throws RuntimeException if an error occurs
      */
     public static void serialization(String filePath, Object obj) {

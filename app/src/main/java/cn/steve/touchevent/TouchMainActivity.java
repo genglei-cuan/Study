@@ -1,4 +1,3 @@
-
 package cn.steve.touchevent;
 
 import android.annotation.SuppressLint;
@@ -8,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+
 import cn.steve.study.R;
 
 public class TouchMainActivity extends Activity {

@@ -1,13 +1,16 @@
-
 package cn.steve.spinnerdroplayout;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Spinner;
+
 import cn.steve.study.R;
 
 public class SpinnerDropActivity extends Activity {
-    /** Called when the activity is first created. */
+
+    /**
+     * Called when the activity is first created.
+     */
 
     Spinner spinner = null;
 

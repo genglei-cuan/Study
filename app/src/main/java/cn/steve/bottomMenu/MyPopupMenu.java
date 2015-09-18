@@ -1,7 +1,5 @@
-
 package cn.steve.bottomMenu;
 
-import java.util.List;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
@@ -20,6 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.util.List;
 
 @SuppressLint("ViewConstructor")
 public class MyPopupMenu extends PopupWindow {
@@ -73,7 +73,7 @@ public class MyPopupMenu extends PopupWindow {
 
     @SuppressWarnings("deprecation")
     public MyPopupMenu(Context context, List<String> titles, final List<List<String>> item_names,
-            List<List<Integer>> item_images) {
+                       List<List<Integer>> item_images) {
         super(context);
         this.context = context;
 
@@ -83,7 +83,7 @@ public class MyPopupMenu extends PopupWindow {
         linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.WRAP_CONTENT));
+                                                      LayoutParams.WRAP_CONTENT));
 
         /**
          * 获取屏幕宽度
@@ -241,14 +241,14 @@ public class MyPopupMenu extends PopupWindow {
          * 重新设置textView布局属性 动态改变控件位置 第一步
          */
         RelativeLayout.LayoutParams lp =
-                new RelativeLayout.LayoutParams(screenWidth / 3, LayoutParams.MATCH_PARENT);
+            new RelativeLayout.LayoutParams(screenWidth / 3, LayoutParams.MATCH_PARENT);
 
         /**
          * 设置动画效果
          */
         Animation translateTextView;
         translateTextView =
-                new TranslateAnimation((preIndex - currentIndex) * screenWidth / 3, 0, 0, 0);
+            new TranslateAnimation((preIndex - currentIndex) * screenWidth / 3, 0, 0, 0);
 
         /**
          * 根据选中的标题确定布局 动态改变控件位置 第二步

@@ -1,4 +1,3 @@
-
 package cn.steve.signature;
 
 import android.annotation.SuppressLint;
@@ -16,26 +15,27 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
 import cn.steve.study.R;
 
 /***
  * 类名：HandWritingView 功能：手写画板 创建时间：2013-12-12 创建人：LXH
  */
 public class HandWritingView extends View {
+
     // definite the pen style
     public static final int PLAIN_PEN = 1;
     public static final int ERASER = 2;
     public static final int BLUR = 3;
     public static final int EMBOSS = 4;
     public static final int TS_PEN = 5;
-
-    private Paint paint = null;
-    private Canvas canvas = null;
-    private static Bitmap originalBitmap = null;
     public static Bitmap new1Bitmap = null;
+    public static Bitmap saveImage = null;
+    private static Bitmap originalBitmap = null;
     private static Bitmap new2Bitmap = null;
     private static Bitmap tempBitmap;
-    public static Bitmap saveImage = null;
+    private Paint paint = null;
+    private Canvas canvas = null;
     private float clickX = 0, clickY = 0;
     private float startX = 0, startY = 0;
     private boolean isClear = false;
@@ -93,9 +93,6 @@ public class HandWritingView extends View {
 
     /**
      * 功能：完成画笔的操作，并返回bitmap对象
-     * 
-     * @param originalBitmap
-     * @return
      */
     @SuppressLint("HandlerLeak")
     public Bitmap HandWriting(Bitmap originalBitmap) {
@@ -147,8 +144,6 @@ public class HandWritingView extends View {
 
     /**
      * 功能：手指点下屏幕时调用
-     * 
-     * @param event
      */
     private void touchDown(MotionEvent event) {
         clickX = startX;
@@ -160,8 +155,6 @@ public class HandWritingView extends View {
 
     /**
      * 功能：手指在屏幕上滑动时调用
-     * 
-     * @param event
      */
     private void touchMove(MotionEvent event) {
         // 二次贝塞尔，实现平滑曲线；clickX, clickY为操作点，(clickX+startX)/2,
@@ -175,8 +168,6 @@ public class HandWritingView extends View {
 
     /**
      * 功能：手指离开屏幕时调用
-     * 
-     * @param event
      */
     private void touchUp(MotionEvent event) {
         // 鼠标弹起保存最后状态
@@ -193,9 +184,6 @@ public class HandWritingView extends View {
 
     /**
      * 功能：设置画笔风格
-     * 
-     * @param mPaintType
-     * @return
      */
     private MaskFilter getMaskFilter(int mPaintType) {
         MaskFilter maskFilter = null;
@@ -204,8 +192,8 @@ public class HandWritingView extends View {
                 maskFilter = new BlurMaskFilter(8, BlurMaskFilter.Blur.NORMAL);
                 break;
             case EMBOSS:// 毛笔浮雕风格
-                maskFilter = new EmbossMaskFilter(new float[] {
-                        1, 1, 1
+                maskFilter = new EmbossMaskFilter(new float[]{
+                    1, 1, 1
                 }, 0.4f, 6, 3.5f);
                 break;
             case TS_PEN:// 透明水彩风格

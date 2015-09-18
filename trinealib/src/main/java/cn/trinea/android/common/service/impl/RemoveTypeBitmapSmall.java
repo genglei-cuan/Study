@@ -1,18 +1,17 @@
 package cn.trinea.android.common.service.impl;
 
 import android.graphics.Bitmap;
+
 import cn.trinea.android.common.entity.CacheObject;
 import cn.trinea.android.common.service.CacheFullRemoveType;
 import cn.trinea.android.common.util.ImageUtils;
 
 /**
- * Remove type when cache is full, data type of cache is bitmap.<br/>
- * <ul>
- * <li>if bitmap is smaller, remove it first</li>
- * <li>if bitmap is equal to each other, remove the one which is used less</li>
- * <li>if bitmap is equal to each other and used count is equal, remove the one which is first in</li>
- * </ul>
- * 
+ * Remove type when cache is full, data type of cache is bitmap.<br/> <ul> <li>if bitmap is smaller,
+ * remove it first</li> <li>if bitmap is equal to each other, remove the one which is used less</li>
+ * <li>if bitmap is equal to each other and used count is equal, remove the one which is first
+ * in</li> </ul>
+ *
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2011-12-26
  */
 public class RemoveTypeBitmapSmall implements CacheFullRemoveType<Bitmap> {
@@ -26,7 +25,8 @@ public class RemoveTypeBitmapSmall implements CacheFullRemoveType<Bitmap> {
         if (sizeOfFile1 == sizeOfFile2) {
             if (obj1.getUsedCount() == obj2.getUsedCount()) {
                 return (obj1.getEnterTime() > obj2.getEnterTime()) ? 1
-                        : ((obj1.getEnterTime() == obj2.getEnterTime()) ? 0 : -1);
+                                                                   : (
+                           (obj1.getEnterTime() == obj2.getEnterTime()) ? 0 : -1);
             }
             return (obj1.getUsedCount() > obj2.getUsedCount() ? 1 : -1);
         }
@@ -35,9 +35,6 @@ public class RemoveTypeBitmapSmall implements CacheFullRemoveType<Bitmap> {
 
     /**
      * get size of bitmap
-     * 
-     * @param o
-     * @return
      */
     private long getSize(CacheObject<Bitmap> o) {
         if (o == null) {

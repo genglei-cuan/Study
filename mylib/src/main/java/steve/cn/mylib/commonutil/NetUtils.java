@@ -21,7 +21,7 @@ public class NetUtils {
     public static boolean isConnected(Context context) {
 
         ConnectivityManager connectivity = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+            .getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (null != connectivity) {
 
@@ -40,7 +40,7 @@ public class NetUtils {
      */
     public static boolean isWifi(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+            .getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (cm == null) {
             return false;
@@ -55,7 +55,7 @@ public class NetUtils {
     public static void openSetting(Activity activity) {
         Intent intent = new Intent("/");
         ComponentName cm = new ComponentName("com.android.settings",
-                "com.android.settings.WirelessSettings");
+                                             "com.android.settings.WirelessSettings");
         intent.setComponent(cm);
         intent.setAction("android.intent.action.VIEW");
         activity.startActivityForResult(intent, 0);

@@ -1,8 +1,7 @@
-
 package cn.steve.webview;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.os.Handler;
+import android.os.Message;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -14,15 +13,16 @@ import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import android.os.Handler;
-import android.os.Message;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 发送cookie实现免登陆状态
- * 
+ *
  * @author Steve
  */
 public class HttpCookie extends Thread {
+
     HttpPost post = new HttpPost();
     List<NameValuePair> list = new ArrayList<NameValuePair>();
     HttpClient client = new DefaultHttpClient();

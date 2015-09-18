@@ -1,4 +1,3 @@
-
 package cn.steve.simpleWelcome;
 
 import android.app.Activity;
@@ -6,14 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+
 import cn.steve.study.R;
 
 /**
  * 欢迎界面，2秒之后自动消失，跳转到主登陆界面
- * 
+ *
  * @author steve.yan
  */
 public class WelcomeActivity extends Activity {
+
     protected static final String TAG = "WelcomeActivity";
 
     private Context mContext;

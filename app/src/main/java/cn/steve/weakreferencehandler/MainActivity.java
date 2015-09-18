@@ -1,7 +1,4 @@
-
 package cn.steve.weakreferencehandler;
-
-import java.lang.ref.WeakReference;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -11,14 +8,18 @@ import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import java.lang.ref.WeakReference;
+
 import cn.steve.study.R;
 
 /**
  * 为了防止内存泄露 将handler设置成static 然后对activity的引用采用弱引用
- * 
+ *
  * @author Steve
  */
 public class MainActivity extends Activity {
+
     public static final int DIALOG_SHOW = 2;
     public static final int DIALOG_DISMISS = 3;
 
@@ -26,7 +27,28 @@ public class MainActivity extends Activity {
     ProgressDialog mProgressDialog = null;
     MyHandler mHandler = null;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_file_io);
+        mHandler = new MyHandler(MainActivity.this);
+        findviews();
+    }
+
+    ;
+
+    private void findviews() {
+        mButton = (Button) findViewById(R.id.button);
+        mButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.mHandler.obtainMessage(DIALOG_SHOW).sendToTarget();
+            }
+        });
+    }
+
     static class MyHandler extends Handler {
+
         private WeakReference<MainActivity> mOuter;
 
         public MyHandler(MainActivity activity) {
@@ -52,24 +74,8 @@ public class MainActivity extends Activity {
                     mq.mProgressDialog.cancel();
                     break;
             }
-        };
-    };
+        }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_file_io);
-        mHandler = new MyHandler(MainActivity.this);
-        findviews();
-    }
-
-    private void findviews() {
-        mButton = (Button) findViewById(R.id.button);
-        mButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity.this.mHandler.obtainMessage(DIALOG_SHOW).sendToTarget();
-            }
-        });
+        ;
     }
 }

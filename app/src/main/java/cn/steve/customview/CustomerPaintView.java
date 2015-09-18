@@ -1,4 +1,3 @@
-
 package cn.steve.customview;
 
 import android.content.Context;
@@ -10,30 +9,27 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
 import cn.steve.study.R;
 
 /**
  * 这里只到二次贝塞尔曲线，再往上不会了
- * 
+ *
  * @author steve.yan
  */
 public class CustomerPaintView extends View {
-    private Resources myResources;
 
+    private static final float TOUCH_TOLERANCE = 4;
+    private Resources myResources;
     // 画笔，定义绘制属性
     private Paint myPaint;
     private Paint mBitmapPaint;
-
     // 绘制路径
     private Path myPath;
-
     // 画布及其底层位图
     private Bitmap myBitmap;
     private Canvas myCanvas;
-
     private float mX, mY;
-    private static final float TOUCH_TOLERANCE = 4;
-
     // 记录宽度和高度
     private int mWidth;
     private int mHeight;

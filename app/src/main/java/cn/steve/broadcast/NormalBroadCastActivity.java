@@ -1,7 +1,5 @@
-
 package cn.steve.broadcast;
 
-import cn.steve.study.R;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
@@ -11,20 +9,22 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import cn.steve.study.R;
+
 /**
  * 发送端activity
- * 
+ *
  * @author Steve
  */
 public class NormalBroadCastActivity extends Activity {
+
+    public static final String ACTION_NORMAL_BC = "cn.steve.broadcast.normalBC.VIEW";
     boolean isRegistered = false;
+    BroadcastReceiver normalBCReceiverA = new NormalBCReceiverA();
+    BroadcastReceiver normalBCReceiverB = new NormalBCReceiverA();
     private Button mButton_send;
     private Button mButton_register;
     private Button mButton_unregister;
-    BroadcastReceiver normalBCReceiverA = new NormalBCReceiverA();
-    BroadcastReceiver normalBCReceiverB = new NormalBCReceiverA();
-
-    public static final String ACTION_NORMAL_BC = "cn.steve.broadcast.normalBC.VIEW";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,4 +1,3 @@
-
 package cn.steve.service;
 
 import android.app.Service;
@@ -7,6 +6,7 @@ import android.os.Binder;
 import android.os.IBinder;
 
 public class MsgService extends Service {
+
     /**
      * 进度条的最大值
      */
@@ -23,8 +23,6 @@ public class MsgService extends Service {
 
     /**
      * 注册回调接口的方法，供外部调用
-     * 
-     * @param onProgressListener
      */
     public void setOnProgressListener(OnProgressListener onProgressListener) {
         this.onProgressListener = onProgressListener;
@@ -32,7 +30,7 @@ public class MsgService extends Service {
 
     /**
      * 增加get()方法，供Activity调用
-     * 
+     *
      * @return 下载进度
      */
     public int getProgress() {
@@ -72,21 +70,20 @@ public class MsgService extends Service {
         return new MsgBinder();
     }
 
-    public class MsgBinder extends Binder {
-        /**
-         * 获取当前Service的实例
-         * 
-         * @return
-         */
-        public MsgService getService() {
-            return MsgService.this;
-        }
-    }
-
     @Override
     public void onCreate() {
         System.out.println("MSGservice--->onCreate");
         super.onCreate();
+    }
+
+    public class MsgBinder extends Binder {
+
+        /**
+         * 获取当前Service的实例
+         */
+        public MsgService getService() {
+            return MsgService.this;
+        }
     }
 
 }

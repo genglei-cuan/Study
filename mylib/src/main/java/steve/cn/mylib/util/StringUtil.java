@@ -174,8 +174,8 @@ public class StringUtil {
     public static Boolean isEmail(String str) {
         Boolean isEmail = false;
         String
-                expr =
-                "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+            expr =
+            "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
         if (str.matches(expr)) {
             isEmail = true;
         }
@@ -444,7 +444,7 @@ public class StringUtil {
         ip = ip.replace(".", ",");
         String[] items = ip.split(",");
         return Long.valueOf(items[0]) << 24 | Long.valueOf(items[1]) << 16
-                | Long.valueOf(items[2]) << 8 | Long.valueOf(items[3]);
+               | Long.valueOf(items[2]) << 8 | Long.valueOf(items[3]);
     }
 
     /**

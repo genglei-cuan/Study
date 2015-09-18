@@ -14,9 +14,6 @@
 
 package cn.steve.spinnerdroplayout;
 
-import java.util.ArrayList;
-
-import cn.steve.study.R;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -26,47 +23,21 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import cn.steve.study.R;
+
 /**
  * spinner的adapter
  */
 public class SpinnerDropAdapter extends BaseAdapter {
 
-    private final LayoutInflater mInflater;
-
-    private final ArrayList<ListItem> mItems = new ArrayList<ListItem>();
-
     public static final int ITEM_SHORTCUT = 0;
     public static final int ITEM_APPWIDGET = 1;
     public static final int ITEM_LIVE_FOLDER = 2;
     public static final int ITEM_WALLPAPER = 3;
-
-    /**
-     * 我们的list要显示的项目的数据结构
-     */
-    public class ListItem {
-
-        public final CharSequence text;
-        public final Drawable image;
-        public final int actionTag;
-
-        public ListItem(Resources res, int textResourceId, int imageResourceId, int actionTag) {
-
-            text = res.getString(textResourceId);
-
-            if (imageResourceId != -1) {
-
-                image = res.getDrawable(imageResourceId);
-
-            } else {
-
-                image = null;
-            }
-
-            this.actionTag = actionTag;
-
-        }
-
-    }
+    private final LayoutInflater mInflater;
+    private final ArrayList<ListItem> mItems = new ArrayList<ListItem>();
 
     // 构造函数中为组件添加数据
     public SpinnerDropAdapter(SpinnerDropActivity context) {
@@ -77,20 +48,20 @@ public class SpinnerDropAdapter extends BaseAdapter {
         Resources res = context.getResources();
 
         ListItem listItem1 =
-                new ListItem(res, R.string.group_shortcuts, R.drawable.ic_launcher_shortcut,
-                        ITEM_SHORTCUT);
+            new ListItem(res, R.string.group_shortcuts, R.drawable.ic_launcher_shortcut,
+                         ITEM_SHORTCUT);
 
         ListItem listItem2 =
-                new ListItem(res, R.string.group_widgets, R.drawable.ic_launcher_appwidget,
-                        ITEM_APPWIDGET);
+            new ListItem(res, R.string.group_widgets, R.drawable.ic_launcher_appwidget,
+                         ITEM_APPWIDGET);
 
         ListItem listItem3 =
-                new ListItem(res, R.string.group_live_folders, R.drawable.ic_launcher_folder_live,
-                        ITEM_LIVE_FOLDER);
+            new ListItem(res, R.string.group_live_folders, R.drawable.ic_launcher_folder_live,
+                         ITEM_LIVE_FOLDER);
 
         ListItem listItem4 =
-                new ListItem(res, R.string.group_wallpapers, R.drawable.ic_launcher_gallery,
-                        ITEM_WALLPAPER);
+            new ListItem(res, R.string.group_wallpapers, R.drawable.ic_launcher_gallery,
+                         ITEM_WALLPAPER);
 
         mItems.add(listItem1);
 
@@ -162,6 +133,34 @@ public class SpinnerDropAdapter extends BaseAdapter {
         textView.setCompoundDrawablesWithIntrinsicBounds(item.image, null, null, null);
 
         return textView;
+
+    }
+
+    /**
+     * 我们的list要显示的项目的数据结构
+     */
+    public class ListItem {
+
+        public final CharSequence text;
+        public final Drawable image;
+        public final int actionTag;
+
+        public ListItem(Resources res, int textResourceId, int imageResourceId, int actionTag) {
+
+            text = res.getString(textResourceId);
+
+            if (imageResourceId != -1) {
+
+                image = res.getDrawable(imageResourceId);
+
+            } else {
+
+                image = null;
+            }
+
+            this.actionTag = actionTag;
+
+        }
 
     }
 

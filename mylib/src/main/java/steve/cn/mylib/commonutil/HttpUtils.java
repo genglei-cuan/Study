@@ -17,9 +17,6 @@ public class HttpUtils {
 
     /**
      * 异步的Get请求
-     *
-     * @param urlStr
-     * @param callBack
      */
     public static void doGetAsyn(final String urlStr, final CallBack callBack) {
         new Thread() {
@@ -41,11 +38,6 @@ public class HttpUtils {
 
     /**
      * 异步的Post请求
-     *
-     * @param urlStr
-     * @param params
-     * @param callBack
-     * @throws Exception
      */
     public static void doPostAsyn(final String urlStr, final String params,
                                   final CallBack callBack) throws Exception {
@@ -69,10 +61,6 @@ public class HttpUtils {
 
     /**
      * Get请求，获得返回数据
-     *
-     * @param urlStr
-     * @return
-     * @throws Exception
      */
     public static String doGet(String urlStr) {
         URL url = null;
@@ -106,13 +94,15 @@ public class HttpUtils {
             e.printStackTrace();
         } finally {
             try {
-                if (is != null)
+                if (is != null) {
                     is.close();
+                }
             } catch (IOException e) {
             }
             try {
-                if (baos != null)
+                if (baos != null) {
                     baos.close();
+                }
             } catch (IOException e) {
             }
             conn.disconnect();
@@ -128,7 +118,6 @@ public class HttpUtils {
      * @param url   发送请求的 URL
      * @param param 请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
      * @return 所代表远程资源的响应结果
-     * @throws Exception
      */
     public static String doPost(String url, String param) {
         PrintWriter out = null;
@@ -138,13 +127,13 @@ public class HttpUtils {
             URL realUrl = new URL(url);
             // 打开和URL之间的连接
             HttpURLConnection conn = (HttpURLConnection) realUrl
-                    .openConnection();
+                .openConnection();
             // 设置通用的请求属性
             conn.setRequestProperty("accept", "*/*");
             conn.setRequestProperty("connection", "Keep-Alive");
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type",
-                    "application/x-www-form-urlencoded");
+                                    "application/x-www-form-urlencoded");
             conn.setRequestProperty("charset", "utf-8");
             conn.setUseCaches(false);
             // 发送POST请求必须设置如下两行
@@ -163,7 +152,7 @@ public class HttpUtils {
             }
             // 定义BufferedReader输入流来读取URL的响应
             in = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()));
+                new InputStreamReader(conn.getInputStream()));
             String line;
             while ((line = in.readLine()) != null) {
                 result += line;
@@ -188,6 +177,7 @@ public class HttpUtils {
     }
 
     public interface CallBack {
+
         void onRequestComplete(String result);
     }
 }

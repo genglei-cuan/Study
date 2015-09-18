@@ -1,4 +1,3 @@
-
 package cn.steve.webview;
 
 import android.annotation.SuppressLint;
@@ -17,6 +16,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
+
 import cn.steve.study.R;
 
 /**
@@ -38,7 +38,9 @@ public class WebViewActivity extends Activity {
             cookieManager.setAcceptCookie(true);
             CookieSyncManager.getInstance().sync();
             mWebView.loadUrl(url);
-        };
+        }
+
+        ;
     };
 
     @SuppressLint("JavascriptInterface")
@@ -75,14 +77,16 @@ public class WebViewActivity extends Activity {
             }
 
             public void onReceivedError(WebView view, int errorCode, String description,
-                    String failingUrl) {
+                                        String failingUrl) {
 
                 // view.loadUrl("file//android_asset/error.html");
                 tv_error.setText("404000000000");
                 System.out.println("404");
                 mWebView.setVisibility(View.GONE);
                 super.onReceivedError(view, errorCode, description, failingUrl);
-            };
+            }
+
+            ;
         });
         mWebView.setDownloadListener(new MyDownloadListener());
 
@@ -91,6 +95,7 @@ public class WebViewActivity extends Activity {
     }
 
     class MyListener implements View.OnClickListener {
+
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
@@ -105,6 +110,7 @@ public class WebViewActivity extends Activity {
     }
 
     class MyDownloadListener implements DownloadListener {
+
         @Override
         public void onDownloadStart(String arg0, String arg1, String arg2, String arg3, long arg4) {
             System.out.println(arg0);

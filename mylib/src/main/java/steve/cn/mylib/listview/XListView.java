@@ -97,7 +97,8 @@ public class XListView extends ListView implements OnScrollListener {
         mFooterView = new XFooterView(context);
         mFooterLayout = new LinearLayout(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout
-                .LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                                                                             .LayoutParams.MATCH_PARENT,
+                                                                         LinearLayout.LayoutParams.MATCH_PARENT);
         params.gravity = Gravity.CENTER;
         mFooterLayout.addView(mFooterView, params);
 
@@ -137,8 +138,6 @@ public class XListView extends ListView implements OnScrollListener {
 
     /**
      * Enable or disable pull down refresh feature.
-     *
-     * @param enable
      */
     public void setPullRefreshEnable(boolean enable) {
         mEnablePullRefresh = enable;
@@ -149,8 +148,6 @@ public class XListView extends ListView implements OnScrollListener {
 
     /**
      * Enable or disable pull up load more feature.
-     *
-     * @param enable
      */
     public void setPullLoadEnable(boolean enable) {
         mEnablePullLoad = enable;
@@ -178,8 +175,6 @@ public class XListView extends ListView implements OnScrollListener {
 
     /**
      * Enable or disable auto load more feature when scroll to bottom.
-     *
-     * @param enable
      */
     public void setAutoLoadEnable(boolean enable) {
         mEnableAutoLoad = enable;
@@ -207,8 +202,6 @@ public class XListView extends ListView implements OnScrollListener {
 
     /**
      * Set last refresh time
-     *
-     * @param time
      */
     public void setRefreshTime(String time) {
         mHeaderTime.setText(time);
@@ -216,8 +209,6 @@ public class XListView extends ListView implements OnScrollListener {
 
     /**
      * Set listener.
-     *
-     * @param listener
      */
     public void setXListViewListener(IXListViewListener listener) {
         mListener = listener;
@@ -268,10 +259,14 @@ public class XListView extends ListView implements OnScrollListener {
 
     private void resetHeaderHeight() {
         int height = mHeader.getVisibleHeight();
-        if (height == 0) return;
+        if (height == 0) {
+            return;
+        }
 
         // refreshing and header isn't shown fully. do nothing.
-        if (mPullRefreshing && height <= mHeaderHeight) return;
+        if (mPullRefreshing && height <= mHeaderHeight) {
+            return;
+        }
 
         // default: scroll back to dismiss header.
         int finalHeight = 0;
@@ -337,13 +332,14 @@ public class XListView extends ListView implements OnScrollListener {
                 mLastY = ev.getRawY();
 
                 if (getFirstVisiblePosition() == 0 && (mHeader.getVisibleHeight() > 0 ||
-                        deltaY > 0)) {
+                                                       deltaY > 0)) {
                     // the first item is showing, header has shown or pull down.
                     updateHeaderHeight(deltaY / OFFSET_RADIO);
                     invokeOnScrolling();
 
                 } else if (getLastVisiblePosition() == mTotalItemCount - 1 && (mFooterView
-                        .getBottomMargin() > 0 || deltaY < 0)) {
+                                                                                   .getBottomMargin()
+                                                                               > 0 || deltaY < 0)) {
                     // last item, already pulled up or want to pull up.
                     updateFooterHeight(-deltaY / OFFSET_RADIO);
                 }
@@ -431,10 +427,11 @@ public class XListView extends ListView implements OnScrollListener {
     }
 
     /**
-     * You can listen ListView.OnScrollListener or this one. it will invoke
-     * onXScrolling when header/footer scroll back.
+     * You can listen ListView.OnScrollListener or this one. it will invoke onXScrolling when
+     * header/footer scroll back.
      */
     public interface OnXScrollListener extends OnScrollListener {
+
         public void onXScrolling(View view);
     }
 
@@ -444,6 +441,7 @@ public class XListView extends ListView implements OnScrollListener {
      * @author markmjw
      */
     public interface IXListViewListener {
+
         public void onRefresh();
 
         public void onLoadMore();

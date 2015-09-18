@@ -1,5 +1,6 @@
-
 package cn.steve.webview;
+
+import android.os.Environment;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,14 +8,13 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import android.os.Environment;
-
 /**
  * 自定义的下载线程
- * 
+ *
  * @author Steve
  */
 public class HttpDownload extends Thread {
+
     String mURL;
 
     public HttpDownload(String url) {

@@ -1,7 +1,5 @@
-
 package cn.steve.bottomtext;
 
-import java.util.List;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -26,9 +24,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 @SuppressLint("ViewConstructor")
 public class BottomPopupMenu extends PopupWindow {
+
     public final int TITLE_ID = 123456;
 
     private TitleChangeListener listner;
@@ -89,7 +90,7 @@ public class BottomPopupMenu extends PopupWindow {
         // linearLayout.setLayoutParams(new
         // LayoutParams(LayoutParams.MATCH_PARENT, 200));
         linearLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT));
+                                                      LayoutParams.MATCH_PARENT));
 
         /**
          * 获取屏幕宽度
@@ -178,7 +179,7 @@ public class BottomPopupMenu extends PopupWindow {
 
         scrollview = new ScrollView(context);
         scrollview.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT));
+                                                    LayoutParams.MATCH_PARENT));
         // scrollview.setVerticalScrollBarEnabled(true);
         // scrollview.setFillViewport(true);
 
@@ -188,7 +189,7 @@ public class BottomPopupMenu extends PopupWindow {
         // gv_body.setPadding(0, 10, 0, 10);
 
         gv_body.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT));
+                                                 LayoutParams.MATCH_PARENT));
 
         /**
          * 点击内容时的响应事件
@@ -256,14 +257,14 @@ public class BottomPopupMenu extends PopupWindow {
          * 重新设置textView布局属性 动态改变控件位置 第一步
          */
         RelativeLayout.LayoutParams lp =
-                new RelativeLayout.LayoutParams(screenWidth / 7, LayoutParams.MATCH_PARENT);
+            new RelativeLayout.LayoutParams(screenWidth / 7, LayoutParams.MATCH_PARENT);
 
         /**
          * 设置动画效果
          */
         Animation translateTextView;
         translateTextView =
-                new TranslateAnimation((preIndex - currentIndex) * screenWidth / 3, 0, 0, 0);
+            new TranslateAnimation((preIndex - currentIndex) * screenWidth / 3, 0, 0, 0);
 
         /**
          * 根据选中的标题确定布局 动态改变控件位置 第二步
@@ -301,13 +302,14 @@ public class BottomPopupMenu extends PopupWindow {
 
     }
 
-    // define a interface for the main thread to refresh the UI
-    interface TitleChangeListener {
-        public String getContent(int i);
-    }
-
     public void setListner(TitleChangeListener listner) {
         this.listner = listner;
+    }
+
+    // define a interface for the main thread to refresh the UI
+    interface TitleChangeListener {
+
+        public String getContent(int i);
     }
 
 }

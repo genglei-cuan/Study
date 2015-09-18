@@ -41,7 +41,6 @@
 
 ```javascript
   var PersonalFile = {
-    English Name  : "Steve Yan",
-    ÖĞÎÄÃû : "ÑÕÍ¢¸ı"
+    English Name  : "Steve Yan"
   }
 ```

@@ -1,4 +1,3 @@
-
 package cn.steve.handler;
 
 import android.app.Activity;
@@ -6,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
+
 import cn.steve.study.R;
 
 public class HandlerActivity02 extends Activity {

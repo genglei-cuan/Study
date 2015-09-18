@@ -67,7 +67,7 @@ public class BreathingViewHelper {
     }
 
     private static <Params, Progress, Result> void executeAsyncTask(
-            AsyncTask<Params, Progress, Result> task, Params... params) {
+        AsyncTask<Params, Progress, Result> task, Params... params) {
         if (Build.VERSION.SDK_INT >= 11) {
             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, params);
         } else {
@@ -102,40 +102,40 @@ public class BreathingViewHelper {
         Date firstDate = new Date();
         final long firstTime = firstDate.getTime();
         executeAsyncTask(
-                new AsyncTask<Void, Integer, Void>() {
-                    int n = 1, t = 4000;
-                    boolean increaseN;
+            new AsyncTask<Void, Integer, Void>() {
+                int n = 1, t = 4000;
+                boolean increaseN;
 
-                    @Override
-                    protected Void doInBackground(Void... params) {
-                        while (!isCancelled()) {
-                            Date currentDate = new Date();
-                            long diffTime = currentDate.getTime() - firstTime;
+                @Override
+                protected Void doInBackground(Void... params) {
+                    while (!isCancelled()) {
+                        Date currentDate = new Date();
+                        long diffTime = currentDate.getTime() - firstTime;
 
-                            double y = getCosY(diffTime);
-                            int alpha = (int) (y * 255);
-                            int resultColor = setAlphaComponent(mColor, alpha);
-                            if (alpha < 0.038 * 255) {
-                                publishProgress(0);
-                                this.cancel(true);
-                                return null;
-                            }
-                            publishProgress(resultColor, alpha);
-                            try {
-                                Thread.sleep(38);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                        double y = getCosY(diffTime);
+                        int alpha = (int) (y * 255);
+                        int resultColor = setAlphaComponent(mColor, alpha);
+                        if (alpha < 0.038 * 255) {
+                            publishProgress(0);
+                            this.cancel(true);
+                            return null;
                         }
-                        return null;
+                        publishProgress(resultColor, alpha);
+                        try {
+                            Thread.sleep(38);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
-
-                    @Override
-                    protected void onProgressUpdate(Integer... values) {
-                        super.onProgressUpdate(values);
-                        view.setBackgroundColor(values[0]);
-                    }
+                    return null;
                 }
+
+                @Override
+                protected void onProgressUpdate(Integer... values) {
+                    super.onProgressUpdate(values);
+                    view.setBackgroundColor(values[0]);
+                }
+            }
         );
     }
 

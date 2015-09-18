@@ -1,5 +1,7 @@
-
 package cn.steve.signature;
+
+import android.graphics.Bitmap;
+import android.os.Environment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,18 +10,14 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import android.graphics.Bitmap;
-import android.os.Environment;
-
 public class Utils {
+
     /**
      * 功能：将签好名的bitmap保存到sd卡
-     * 
-     * @param bitmap，待保存的图片
      */
     public static void storeInSD(Bitmap bitmap) {
         String SDCardRoot =
-                Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
+            Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         Date curDate = new Date(System.currentTimeMillis());// 获取当前时间
         String currentSystemTime = formatter.format(curDate);

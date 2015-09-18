@@ -13,6 +13,7 @@ import steve.cn.mylib.R;
 
 
 public class XFooterView extends LinearLayout {
+
     public final static int STATE_NORMAL = 0;
     public final static int STATE_READY = 1;
     public final static int STATE_LOADING = 2;
@@ -45,7 +46,7 @@ public class XFooterView extends LinearLayout {
     private void initView(Context context) {
         mLayout = LayoutInflater.from(context).inflate(R.layout.vw_footer, null);
         mLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.WRAP_CONTENT));
+                                                 LayoutParams.WRAP_CONTENT));
         addView(mLayout);
 
         mProgressBar = mLayout.findViewById(R.id.footer_progressbar);
@@ -53,12 +54,12 @@ public class XFooterView extends LinearLayout {
 //        mHintImage = (ImageView) mLayout.findViewById(R.id.footer_arrow);
 
         mRotateUpAnim = new RotateAnimation(0.0f, 180.0f, Animation.RELATIVE_TO_SELF, 0.5f,
-                Animation.RELATIVE_TO_SELF, 0.5f);
+                                            Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateUpAnim.setDuration(ROTATE_ANIM_DURATION);
         mRotateUpAnim.setFillAfter(true);
 
         mRotateDownAnim = new RotateAnimation(180.0f, 0.0f, Animation.RELATIVE_TO_SELF, 0.5f,
-                Animation.RELATIVE_TO_SELF, 0.5f);
+                                              Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateDownAnim.setDuration(ROTATE_ANIM_DURATION);
         mRotateDownAnim.setFillAfter(true);
     }
@@ -69,11 +70,11 @@ public class XFooterView extends LinearLayout {
      * @see #STATE_LOADING
      * @see #STATE_NORMAL
      * @see #STATE_READY
-     *
-     * @param state
      */
     public void setState(int state) {
-        if (state == mState) return;
+        if (state == mState) {
+            return;
+        }
 
         if (state == STATE_LOADING) {
 //            mHintImage.clearAnimation();
@@ -113,25 +114,23 @@ public class XFooterView extends LinearLayout {
     }
 
     /**
-     * Set footer view bottom margin.
-     *
-     * @param margin
-     */
-    public void setBottomMargin(int margin) {
-        if (margin < 0) return;
-        LayoutParams lp = (LayoutParams) mLayout.getLayoutParams();
-        lp.bottomMargin = margin;
-        mLayout.setLayoutParams(lp);
-    }
-
-    /**
      * Get footer view bottom margin.
-     *
-     * @return
      */
     public int getBottomMargin() {
         LayoutParams lp = (LayoutParams) mLayout.getLayoutParams();
         return lp.bottomMargin;
+    }
+
+    /**
+     * Set footer view bottom margin.
+     */
+    public void setBottomMargin(int margin) {
+        if (margin < 0) {
+            return;
+        }
+        LayoutParams lp = (LayoutParams) mLayout.getLayoutParams();
+        lp.bottomMargin = margin;
+        mLayout.setLayoutParams(lp);
     }
 
     /**

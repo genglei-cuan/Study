@@ -1,15 +1,16 @@
-
 package cn.steve.customdialog;
 
-import cn.steve.customdialog.dialog.Effectstype;
-import cn.steve.customdialog.dialog.NiftyDialogBuilder;
-import cn.steve.study.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import cn.steve.customdialog.dialog.Effectstype;
+import cn.steve.customdialog.dialog.NiftyDialogBuilder;
+import cn.steve.study.R;
+
 public class MainActivity_Dailoge extends Activity {
+
     private Effectstype effect;
 
     @Override
@@ -68,35 +69,35 @@ public class MainActivity_Dailoge extends Activity {
         }
 
         dialogBuilder.withTitle("Modal Dialog")
-                // .withTitle(null) no title
-                .withTitleColor("#FFFFFF")
+            // .withTitle(null) no title
+            .withTitleColor("#FFFFFF")
                 // def
-                .withDividerColor("#11000000")
+            .withDividerColor("#11000000")
                 // def
-                .withMessage("This is a modal Dialog.")
+            .withMessage("This is a modal Dialog.")
                 // .withMessage(null) no Msg
-                .withMessageColor("#FFFFFF")
+            .withMessageColor("#FFFFFF")
                 // def
-                .withIcon(getResources().getDrawable(R.drawable.customer_icon))
-                .isCancelableOnTouchOutside(true) // def | isCancelable(true)
-                .withDuration(700) // def
-                .withEffect(effect) // def Effectstype.Slidetop
-                .withButton1Text("OK") // def gone
-                .withButton2Text("Cancel") // def gone
-                .setCustomView(R.layout.dialog_view, v.getContext()) // .setCustomView(View
-                                                                     // or
-                                                                     // ResId,context)
-                .setButton1Click(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(v.getContext(), "i'm btn1", Toast.LENGTH_SHORT).show();
-                    }
-                }).setButton2Click(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(v.getContext(), "i'm btn2", Toast.LENGTH_SHORT).show();
-                    }
-                }).show();
+            .withIcon(getResources().getDrawable(R.drawable.customer_icon))
+            .isCancelableOnTouchOutside(true) // def | isCancelable(true)
+            .withDuration(700) // def
+            .withEffect(effect) // def Effectstype.Slidetop
+            .withButton1Text("OK") // def gone
+            .withButton2Text("Cancel") // def gone
+            .setCustomView(R.layout.dialog_view, v.getContext()) // .setCustomView(View
+                // or
+                // ResId,context)
+            .setButton1Click(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "i'm btn1", Toast.LENGTH_SHORT).show();
+                }
+            }).setButton2Click(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "i'm btn2", Toast.LENGTH_SHORT).show();
+            }
+        }).show();
 
     }
 

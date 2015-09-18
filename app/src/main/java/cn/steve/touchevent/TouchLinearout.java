@@ -1,4 +1,3 @@
-
 package cn.steve.touchevent;
 
 import android.annotation.SuppressLint;

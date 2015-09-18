@@ -1,18 +1,19 @@
-
 package cn.steve.click_xml;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
 import cn.steve.study.R;
 
 /**
  * 在XML文件中设置相应的方法
- * 
+ *
  * @author Steve
  */
 public class MXMLclick extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

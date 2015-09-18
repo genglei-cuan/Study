@@ -1,4 +1,3 @@
-
 package cn.steve.signature;
 
 import android.app.Activity;
@@ -7,14 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
 import cn.steve.study.R;
 
 /**
  * 手写签名
- * 
+ *
  * @author steve.yan
  */
 public class Activity_Signature extends Activity {
+
     private HandWritingView mHandWritingView = null;
     private Button mSig_button_clear = null;
     private Button mSig_button_save = null;
@@ -40,8 +41,8 @@ public class Activity_Signature extends Activity {
         mSig_button_save.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 HandWritingView.saveImage =
-                        Bitmap.createBitmap(mHandWritingView
-                                .HandWriting(HandWritingView.new1Bitmap));
+                    Bitmap.createBitmap(mHandWritingView
+                                            .HandWriting(HandWritingView.new1Bitmap));
                 Utils.storeInSD(mHandWritingView.saveImage());
             }
         });

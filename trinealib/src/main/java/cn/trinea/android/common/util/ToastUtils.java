@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 /**
  * ToastUtils
- * 
+ *
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2013-12-9
  */
 public class ToastUtils {
@@ -31,7 +31,8 @@ public class ToastUtils {
     }
 
     public static void show(Context context, int resId, Object... args) {
-        show(context, String.format(context.getResources().getString(resId), args), Toast.LENGTH_SHORT);
+        show(context, String.format(context.getResources().getString(resId), args),
+             Toast.LENGTH_SHORT);
     }
 
     public static void show(Context context, String format, Object... args) {

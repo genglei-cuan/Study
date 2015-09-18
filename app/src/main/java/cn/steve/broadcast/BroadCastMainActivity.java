@@ -1,4 +1,3 @@
-
 package cn.steve.broadcast;
 
 import android.app.Activity;
@@ -7,11 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
 import cn.steve.study.R;
 
 /**
  * 研究的是发送广播
- * 
+ *
  * @author Steve
  */
 public class BroadCastMainActivity extends Activity {
@@ -30,7 +30,8 @@ public class BroadCastMainActivity extends Activity {
         mButton_simple.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BroadCastMainActivity.this, NormalBroadCastActivity.class));
+                startActivity(
+                    new Intent(BroadCastMainActivity.this, NormalBroadCastActivity.class));
             }
         });
 

@@ -16,6 +16,7 @@ import steve.cn.mylib.R;
 
 
 public class XHeaderView extends LinearLayout {
+
     public final static int STATE_NORMAL = 0;
     public final static int STATE_READY = 1;
     public final static int STATE_REFRESHING = 2;
@@ -59,12 +60,12 @@ public class XHeaderView extends LinearLayout {
         mProgressBar = (ProgressBar) findViewById(R.id.header_progressbar);
 
         mRotateUpAnim = new RotateAnimation(0.0f, -180.0f, Animation.RELATIVE_TO_SELF, 0.5f,
-                Animation.RELATIVE_TO_SELF, 0.5f);
+                                            Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateUpAnim.setDuration(ROTATE_ANIM_DURATION);
         mRotateUpAnim.setFillAfter(true);
 
         mRotateDownAnim = new RotateAnimation(-180.0f, 0.0f, Animation.RELATIVE_TO_SELF, 0.5f,
-                Animation.RELATIVE_TO_SELF, 0.5f);
+                                              Animation.RELATIVE_TO_SELF, 0.5f);
         mRotateDownAnim.setDuration(ROTATE_ANIM_DURATION);
         mRotateDownAnim.setFillAfter(true);
     }
@@ -119,24 +120,22 @@ public class XHeaderView extends LinearLayout {
     }
 
     /**
-     * Set the header view visible height.
-     *
-     * @param height
-     */
-    public void setVisibleHeight(int height) {
-        if (height < 0) height = 0;
-        LayoutParams lp = (LayoutParams) mContainer.getLayoutParams();
-        lp.height = height;
-        mContainer.setLayoutParams(lp);
-    }
-
-    /**
      * Get the header view visible height.
-     *
-     * @return
      */
     public int getVisibleHeight() {
         return mContainer.getHeight();
+    }
+
+    /**
+     * Set the header view visible height.
+     */
+    public void setVisibleHeight(int height) {
+        if (height < 0) {
+            height = 0;
+        }
+        LayoutParams lp = (LayoutParams) mContainer.getLayoutParams();
+        lp.height = height;
+        mContainer.setLayoutParams(lp);
     }
 
 }

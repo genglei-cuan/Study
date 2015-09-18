@@ -1,4 +1,3 @@
-
 package cn.steve.floatLabelLayout;
 
 /*
@@ -30,17 +29,16 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
 import cn.steve.study.R;
 
 /**
- * Layout which an {@link android.widget.EditText} to show a floating label when
- * the hint is hidden due to the user inputting text.
- * 
- * @see <a
- *      href="https://dribbble.com/shots/1254439--GIF-Mobile-Form-Interaction">Matt
- *      D. Smith on Dribble</a>
- * @see <a href="http://bradfrostweb.com/blog/post/float-label-pattern/">Brad
- *      Frost's blog post</a>
+ * Layout which an {@link android.widget.EditText} to show a floating label when the hint is hidden
+ * due to the user inputting text.
+ *
+ * @see <a href="https://dribbble.com/shots/1254439--GIF-Mobile-Form-Interaction">Matt D. Smith on
+ * Dribble</a>
+ * @see <a href="http://bradfrostweb.com/blog/post/float-label-pattern/">Brad Frost's blog post</a>
  */
 public final class FloatLabelLayout extends FrameLayout {
 
@@ -65,15 +63,15 @@ public final class FloatLabelLayout extends FrameLayout {
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FloatLabelLayout);
 
         final int sidePadding =
-                a.getDimensionPixelSize(R.styleable.FloatLabelLayout_floatLabelSidePadding,
-                        dipsToPix(DEFAULT_PADDING_LEFT_RIGHT_DP));
+            a.getDimensionPixelSize(R.styleable.FloatLabelLayout_floatLabelSidePadding,
+                                    dipsToPix(DEFAULT_PADDING_LEFT_RIGHT_DP));
         mLabel = new TextView(context);
         mLabel.setPadding(sidePadding, 0, sidePadding, 0);
         mLabel.setVisibility(INVISIBLE);
 
         mLabel.setTextAppearance(context, a
-                .getResourceId(R.styleable.FloatLabelLayout_floatLabelTextAppearance,
-                        android.R.style.TextAppearance_Small));
+            .getResourceId(R.styleable.FloatLabelLayout_floatLabelTextAppearance,
+                           android.R.style.TextAppearance_Small));
 
         addView(mLabel, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
@@ -85,7 +83,8 @@ public final class FloatLabelLayout extends FrameLayout {
         if (child instanceof EditText) {
             // If we already have an EditText, throw an exception
             if (mEditText != null) {
-                throw new IllegalArgumentException("We already have an EditText, can only have one");
+                throw new IllegalArgumentException(
+                    "We already have an EditText, can only have one");
             }
 
             // Update the layout params so that the EditText is at the bottom,
@@ -101,6 +100,13 @@ public final class FloatLabelLayout extends FrameLayout {
 
         // Carry on adding the View...
         super.addView(child, index, params);
+    }
+
+    /**
+     * @return the {@link android.widget.EditText} text input
+     */
+    public EditText getEditText() {
+        return mEditText;
     }
 
     private void setEditText(EditText editText) {
@@ -149,13 +155,6 @@ public final class FloatLabelLayout extends FrameLayout {
     }
 
     /**
-     * @return the {@link android.widget.EditText} text input
-     */
-    public EditText getEditText() {
-        return mEditText;
-    }
-
-    /**
      * @return the {@link android.widget.TextView} label
      */
     public TextView getLabel() {
@@ -170,8 +169,8 @@ public final class FloatLabelLayout extends FrameLayout {
         mLabel.setAlpha(0f);
         mLabel.setTranslationY(mLabel.getHeight());
         mLabel.animate().alpha(1f).translationY(0f).setDuration(ANIMATION_DURATION)
-                .setListener(null)
-                .start();
+            .setListener(null)
+            .start();
     }
 
     /**
@@ -181,12 +180,12 @@ public final class FloatLabelLayout extends FrameLayout {
         mLabel.setAlpha(1f);
         mLabel.setTranslationY(0f);
         mLabel.animate().alpha(0f).translationY(mLabel.getHeight()).setDuration(ANIMATION_DURATION)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        mLabel.setVisibility(View.GONE);
-                    }
-                }).start();
+            .setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mLabel.setVisibility(View.GONE);
+                }
+            }).start();
     }
 
     /**
@@ -194,6 +193,6 @@ public final class FloatLabelLayout extends FrameLayout {
      */
     private int dipsToPix(float dps) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dps, getResources()
-                .getDisplayMetrics());
+            .getDisplayMetrics());
     }
 }

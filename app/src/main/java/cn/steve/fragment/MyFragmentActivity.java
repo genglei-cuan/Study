@@ -1,18 +1,19 @@
-
 package cn.steve.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+
 import cn.steve.study.R;
 
 /**
  * 添加fragment到界面上 简单的了解
- * 
+ *
  * @author steve.yan
  */
 public class MyFragmentActivity extends FragmentActivity {
+
     public FragmentTransaction fragmentTransaction;
 
     public void onCreate(Bundle savedInstanceState) {

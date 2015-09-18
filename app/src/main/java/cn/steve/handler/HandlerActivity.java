@@ -1,16 +1,16 @@
-
 package cn.steve.handler;
 
-import cn.steve.study.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cn.steve.study.R;
+
 /**
  * handler post一个runnable
- * 
+ *
  * @author Steve
  */
 public class HandlerActivity extends Activity {
@@ -40,7 +40,9 @@ public class HandlerActivity extends Activity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            };
+            }
+
+            ;
         }.start();
     }
 }

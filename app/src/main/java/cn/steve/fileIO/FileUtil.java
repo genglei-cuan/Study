@@ -1,5 +1,7 @@
-
 package cn.steve.fileIO;
+
+import android.content.Context;
+import android.os.Environment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -7,10 +9,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import android.content.Context;
-import android.os.Environment;
 
 public class FileUtil {
+
     Context context;
 
     public FileUtil(Context context) {
@@ -71,9 +72,10 @@ public class FileUtil {
 
     private boolean ExistSDCard() {
         if (android.os.Environment.getExternalStorageState().equals(
-                android.os.Environment.MEDIA_MOUNTED)) {
+            android.os.Environment.MEDIA_MOUNTED)) {
             return true;
-        } else
+        } else {
             return false;
+        }
     }
 }

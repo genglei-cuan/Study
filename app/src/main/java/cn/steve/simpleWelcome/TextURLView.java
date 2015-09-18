@@ -1,13 +1,13 @@
-
 package cn.steve.simpleWelcome;
 
-import cn.steve.study.R;
 import android.content.Context;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import cn.steve.study.R;
 
 public class TextURLView extends LinearLayout {
 
@@ -29,7 +29,9 @@ public class TextURLView extends LinearLayout {
     private void initView() {
         LayoutInflater.from(mContext).inflate(R.layout.activity_welcome_common_url_textview, this);
         url = (TextView) findViewById(R.id.tv_url_view);
-    };
+    }
+
+    ;
 
     public void setText(int txtRes) {
         url.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);

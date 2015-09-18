@@ -1,15 +1,15 @@
-
 package cn.steve.asynctask;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import cn.steve.study.R;
 
 /**
  * AsyncTask的一个demo，仿造下载的进度条
- * 
+ *
  * @author steve.yan
  */
 public class AsyncTaskMainActivity extends Activity {

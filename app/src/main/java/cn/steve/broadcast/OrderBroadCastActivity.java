@@ -1,7 +1,5 @@
-
 package cn.steve.broadcast;
 
-import cn.steve.study.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -10,22 +8,22 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import cn.steve.study.R;
+
 /**
  * 发送有序的广播
- * 
+ *
  * @author Steve
  */
 public class OrderBroadCastActivity extends Activity {
-    public static final String ACTION_ORDER_BC = "cn.steve.broadcast.orderBC.VIEW";
 
+    public static final String ACTION_ORDER_BC = "cn.steve.broadcast.orderBC.VIEW";
+    boolean isRegistered = false;
     private Button mButton_send;
     private Button mButton_register;
     private Button mButton_unregister;
-
     private OrderBCReceiverA mOrderBCReceiverA = new OrderBCReceiverA();
     private OrderBCReceiverB mOrderBCReceiverB = new OrderBCReceiverB();
-
-    boolean isRegistered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

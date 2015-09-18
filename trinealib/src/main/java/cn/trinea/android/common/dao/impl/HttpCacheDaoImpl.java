@@ -1,10 +1,11 @@
 package cn.trinea.android.common.dao.impl;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import android.content.ContentValues;
-import android.database.Cursor;
 import cn.trinea.android.common.constant.DbConstants;
 import cn.trinea.android.common.dao.HttpCacheDao;
 import cn.trinea.android.common.entity.HttpResponse;
@@ -14,7 +15,7 @@ import cn.trinea.android.common.util.TimeUtils;
 
 /**
  * HttpCacheDaoImpl
- * 
+ *
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2013-11-5
  */
 public class HttpCacheDaoImpl implements HttpCacheDao {
@@ -25,6 +26,23 @@ public class HttpCacheDaoImpl implements HttpCacheDao {
         this.sqliteUtils = sqliteUtils;
     }
 
+    /**
+     * convert HttpResponse to ContentValues
+     */
+    private static ContentValues httpResponseToCV(HttpResponse httpResponse) {
+        if (httpResponse == null || StringUtils.isEmpty(httpResponse.getUrl())) {
+            return null;
+        }
+
+        ContentValues values = new ContentValues();
+        values.put(DbConstants.HTTP_CACHE_TABLE_URL, httpResponse.getUrl());
+        values.put(DbConstants.HTTP_CACHE_TABLE_RESPONSE, httpResponse.getResponseBody());
+        values.put(DbConstants.HTTP_CACHE_TABLE_EXPIRES, httpResponse.getExpiredTime());
+        values.put(DbConstants.HTTP_CACHE_TABLE_CREATE_TIME, TimeUtils.getCurrentTimeInString());
+        values.put(DbConstants.HTTP_CACHE_TABLE_TYPE, httpResponse.getType());
+        return values;
+    }
+
     @Override
     public long insertHttpResponse(HttpResponse httpResponse) {
         ContentValues contentValues = httpResponseToCV(httpResponse);
@@ -32,7 +50,8 @@ public class HttpCacheDaoImpl implements HttpCacheDao {
             return -1;
         }
         synchronized (HttpCacheDaoImpl.class) {
-            return sqliteUtils.getDb().replace(DbConstants.HTTP_CACHE_TABLE_TABLE_NAME, null, contentValues);
+            return sqliteUtils.getDb()
+                .replace(DbConstants.HTTP_CACHE_TABLE_TABLE_NAME, null, contentValues);
         }
     }
 
@@ -47,7 +66,8 @@ public class HttpCacheDaoImpl implements HttpCacheDao {
         String[] appWhereArgs = {url};
         synchronized (HttpCacheDaoImpl.class) {
             Cursor cursor = sqliteUtils.getDb().query(DbConstants.HTTP_CACHE_TABLE_TABLE_NAME, null,
-                    appWhere.toString(), appWhereArgs, null, null, null);
+                                                      appWhere.toString(), appWhereArgs, null, null,
+                                                      null);
             if (cursor == null) {
                 return null;
             }
@@ -71,7 +91,8 @@ public class HttpCacheDaoImpl implements HttpCacheDao {
 
         synchronized (HttpCacheDaoImpl.class) {
             Cursor cursor = sqliteUtils.getDb().query(DbConstants.HTTP_CACHE_TABLE_TABLE_NAME, null,
-                    whereClause.toString(), whereClauseArgs, null, null, null);
+                                                      whereClause.toString(), whereClauseArgs, null,
+                                                      null, null);
 
             if (cursor == null) {
                 return null;
@@ -105,10 +126,6 @@ public class HttpCacheDaoImpl implements HttpCacheDao {
 
     /**
      * convert cursor to HttpResponse
-     * 
-     * @param cursor
-     * @param url
-     * @return
      */
     private HttpResponse cursorToHttpResponse(Cursor cursor, String url) {
         if (cursor == null) {
@@ -126,25 +143,5 @@ public class HttpCacheDaoImpl implements HttpCacheDao {
         httpResponse.setExpiredTime(cursor.getLong(DbConstants.HTTP_CACHE_TABLE_EXPIRES_INDEX));
         httpResponse.setType(cursor.getInt(DbConstants.HTTP_CACHE_TABLE_TYPE_INDEX));
         return httpResponse;
-    }
-
-    /**
-     * convert HttpResponse to ContentValues
-     * 
-     * @param httpResponse
-     * @return
-     */
-    private static ContentValues httpResponseToCV(HttpResponse httpResponse) {
-        if (httpResponse == null || StringUtils.isEmpty(httpResponse.getUrl())) {
-            return null;
-        }
-
-        ContentValues values = new ContentValues();
-        values.put(DbConstants.HTTP_CACHE_TABLE_URL, httpResponse.getUrl());
-        values.put(DbConstants.HTTP_CACHE_TABLE_RESPONSE, httpResponse.getResponseBody());
-        values.put(DbConstants.HTTP_CACHE_TABLE_EXPIRES, httpResponse.getExpiredTime());
-        values.put(DbConstants.HTTP_CACHE_TABLE_CREATE_TIME, TimeUtils.getCurrentTimeInString());
-        values.put(DbConstants.HTTP_CACHE_TABLE_TYPE, httpResponse.getType());
-        return values;
     }
 }

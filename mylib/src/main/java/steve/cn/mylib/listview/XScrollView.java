@@ -99,8 +99,8 @@ public class XScrollView extends ScrollView implements OnScrollListener {
         // init footer view
         mFooterView = new XFooterView(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT);
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT);
         params.gravity = Gravity.CENTER;
         LinearLayout footLayout = (LinearLayout) mLayout.findViewById(R.id.footer_layout);
         footLayout.addView(mFooterView, params);
@@ -131,8 +131,6 @@ public class XScrollView extends ScrollView implements OnScrollListener {
 
     /**
      * Set the content ViewGroup for XScrollView.
-     *
-     * @param content
      */
     public void setContentView(ViewGroup content) {
         if (mLayout == null) {
@@ -151,8 +149,6 @@ public class XScrollView extends ScrollView implements OnScrollListener {
 
     /**
      * Set the content View for XScrollView.
-     *
-     * @param content
      */
     public void setView(View content) {
         if (mLayout == null) {
@@ -167,8 +163,6 @@ public class XScrollView extends ScrollView implements OnScrollListener {
 
     /**
      * Enable or disable pull down refresh feature.
-     *
-     * @param enable
      */
     public void setPullRefreshEnable(boolean enable) {
         mEnablePullRefresh = enable;
@@ -179,8 +173,6 @@ public class XScrollView extends ScrollView implements OnScrollListener {
 
     /**
      * Enable or disable pull up load more feature.
-     *
-     * @param enable
      */
     public void setPullLoadEnable(boolean enable) {
         mEnablePullLoad = enable;
@@ -208,8 +200,6 @@ public class XScrollView extends ScrollView implements OnScrollListener {
 
     /**
      * Enable or disable auto load more feature when scroll to bottom.
-     *
-     * @param enable
      */
     public void setAutoLoadEnable(boolean enable) {
         mEnableAutoLoad = enable;
@@ -237,8 +227,6 @@ public class XScrollView extends ScrollView implements OnScrollListener {
 
     /**
      * Set last refresh time
-     *
-     * @param time
      */
     public void setRefreshTime(String time) {
         mHeaderTime.setText(time);
@@ -246,8 +234,6 @@ public class XScrollView extends ScrollView implements OnScrollListener {
 
     /**
      * Set listener.
-     *
-     * @param listener
      */
     public void setIXScrollViewListener(IXScrollViewListener listener) {
         mListener = listener;
@@ -303,10 +289,14 @@ public class XScrollView extends ScrollView implements OnScrollListener {
 
     private void resetHeaderHeight() {
         int height = mHeader.getVisibleHeight();
-        if (height == 0) return;
+        if (height == 0) {
+            return;
+        }
 
         // refreshing and header isn't shown fully. do nothing.
-        if (mPullRefreshing && height <= mHeaderHeight) return;
+        if (mPullRefreshing && height <= mHeaderHeight) {
+            return;
+        }
 
         // default: scroll back to dismiss header.
         int finalHeight = 0;
@@ -421,12 +411,13 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     }
 
     private boolean isTop() {
-        return getScrollY() <= 0 || mHeader.getVisibleHeight() > mHeaderHeight || mContentLayout.getTop() > 0;
+        return getScrollY() <= 0 || mHeader.getVisibleHeight() > mHeaderHeight
+               || mContentLayout.getTop() > 0;
     }
 
     private boolean isBottom() {
         return Math.abs(getScrollY() + getHeight() - computeVerticalScrollRange()) <= 5 ||
-                (getScrollY() > 0 && null != mFooterView && mFooterView.getBottomMargin() > 0);
+               (getScrollY() > 0 && null != mFooterView && mFooterView.getBottomMargin() > 0);
     }
 
     @Override
@@ -496,10 +487,11 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     }
 
     /**
-     * You can listen ListView.OnScrollListener or this one. it will invoke
-     * onXScrolling when header/footer scroll back.
+     * You can listen ListView.OnScrollListener or this one. it will invoke onXScrolling when
+     * header/footer scroll back.
      */
     public interface OnXScrollListener extends OnScrollListener {
+
         public void onXScrolling(View view);
     }
 
@@ -507,6 +499,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
      * Implements this interface to get refresh/load more event.
      */
     public interface IXScrollViewListener {
+
         public void onRefresh();
 
         public void onLoadMore();

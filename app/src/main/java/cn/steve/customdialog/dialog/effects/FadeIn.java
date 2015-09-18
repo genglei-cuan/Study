@@ -1,6 +1,5 @@
 package cn.steve.customdialog.dialog.effects;
 
-import android.util.Log;
 import android.view.View;
 
 import com.nineoldandroids.animation.ObjectAnimator;
@@ -10,11 +9,11 @@ import com.nineoldandroids.animation.ObjectAnimator;
  */
 public class FadeIn extends BaseEffects {
 
-  @Override
-  protected void setupAnimation(View view) {
-    getAnimatorSet().playTogether(
-        ObjectAnimator.ofFloat(view, "alpha", 0, 1).setDuration(mDuration)
+    @Override
+    protected void setupAnimation(View view) {
+        getAnimatorSet().playTogether(
+            ObjectAnimator.ofFloat(view, "alpha", 0, 1).setDuration(mDuration)
 
-    );
-  }
+        );
+    }
 }

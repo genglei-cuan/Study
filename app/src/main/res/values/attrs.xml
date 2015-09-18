@@ -14,12 +14,12 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
- 
+
 <resources>
- 
+
     <declare-styleable name="FloatLabelLayout">
-        <attr name="floatLabelTextAppearance" format="reference" />
-        <attr name="floatLabelSidePadding" format="reference|dimension" />
+        <attr name="floatLabelTextAppearance" format="reference"/>
+        <attr name="floatLabelSidePadding" format="reference|dimension"/>
     </declare-styleable>
- 
+
 </resources>

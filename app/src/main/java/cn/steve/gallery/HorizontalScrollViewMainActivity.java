@@ -1,4 +1,3 @@
-
 package cn.steve.gallery;
 
 import android.app.Activity;
@@ -12,12 +11,13 @@ import android.view.ViewTreeObserver;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import cn.steve.Utils.CalendarUntil;
 import cn.steve.study.R;
 
 /**
  * 后往前是从第六个开始跳转的
- * 
+ *
  * @author Steve
  */
 public class HorizontalScrollViewMainActivity extends Activity {
@@ -86,7 +86,7 @@ public class HorizontalScrollViewMainActivity extends Activity {
         for (int i = 0; i < child_count; i++) {
             TextView textView = new TextView(this);
             textView.setLayoutParams(new ViewGroup.LayoutParams(child_width,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
+                                                                ViewGroup.LayoutParams.MATCH_PARENT));
 
             // TODO 日期的逻辑
             textView.setText(currenMonth + "月" + (i + 1));
@@ -99,7 +99,7 @@ public class HorizontalScrollViewMainActivity extends Activity {
             TextView textView = new TextView(this);
 
             textView.setLayoutParams(new ViewGroup.LayoutParams(child_width,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
+                                                                ViewGroup.LayoutParams.MATCH_PARENT));
             textView.setText(currenMonth + "月" + (i + 1));
             textView.setGravity(Gravity.CENTER);
 
@@ -191,11 +191,11 @@ public class HorizontalScrollViewMainActivity extends Activity {
                                 // 为上个月补足日期
                                 for (int i = 0; i < d; i++) {
                                     TextView textView = new TextView(
-                                            HorizontalScrollViewMainActivity.this);
+                                        HorizontalScrollViewMainActivity.this);
                                     // TODO 添加设置文本的逻辑
                                     textView.setText("H");
                                     textView.setLayoutParams(new ViewGroup.LayoutParams(
-                                            child_width, ViewGroup.LayoutParams.MATCH_PARENT));
+                                        child_width, ViewGroup.LayoutParams.MATCH_PARENT));
                                     textView.setGravity(Gravity.CENTER);
                                     linearLayout.addView(textView, child_count + i);
                                 }
@@ -243,14 +243,14 @@ public class HorizontalScrollViewMainActivity extends Activity {
                                 int d = nextMonthDays - currenDaysOfMonth;
                                 for (int i = 0; i < d; i++) {
                                     TextView textView = new TextView(
-                                            HorizontalScrollViewMainActivity.this);
+                                        HorizontalScrollViewMainActivity.this);
                                     textView.setText("Hello");
                                     textView.setLayoutParams(new ViewGroup.LayoutParams(
-                                            child_width, ViewGroup.LayoutParams.MATCH_PARENT));
+                                        child_width, ViewGroup.LayoutParams.MATCH_PARENT));
                                     textView.setGravity(Gravity.CENTER);
                                     linearLayout.addView(textView, 2 * child_count + i);
                                 }
-                                childCountDelta=d;
+                                childCountDelta = d;
                                 child_count += childCountDelta;
                                 isDeleteLeft = false;
                             }
@@ -260,7 +260,7 @@ public class HorizontalScrollViewMainActivity extends Activity {
                             // TODO 当前位置到下次这个位置+3，同时注意他的前三个
                             int delta = current_item % child_count - child_start;
                             desIndexToChangeDateYearMonth = current_item % child_count + 3;
-                            desIndexToChangeAdd = child_count +5;
+                            desIndexToChangeAdd = child_count + 5;
                             desDate = 1;
                             desMonth = CalendarUntil.getCurrentMonth();
                             desYear = CalendarUntil.getCurrentYear();
@@ -272,8 +272,9 @@ public class HorizontalScrollViewMainActivity extends Activity {
                     case MotionEvent.ACTION_UP:
                         flag = true;
                         horizontalScrollView.smoothScrollTo(child_width * current_item
-                                - child_width / 2
-                                - hsv_width / 2, horizontalScrollView.getScrollY());
+                                                            - child_width / 2
+                                                            - hsv_width / 2,
+                                                            horizontalScrollView.getScrollY());
                         // 确定已选中
 
                         break;
@@ -296,7 +297,7 @@ public class HorizontalScrollViewMainActivity extends Activity {
                     TextView textView2 = new TextView(HorizontalScrollViewMainActivity.this);
                     textView2.setText("H");
                     textView2.setLayoutParams(new ViewGroup.LayoutParams(child_width,
-                            ViewGroup.LayoutParams.MATCH_PARENT));
+                                                                         ViewGroup.LayoutParams.MATCH_PARENT));
                     textView2.setGravity(Gravity.CENTER);
 
                     index = child_count + (child_count - childCountDelta) + i;
@@ -332,7 +333,7 @@ public class HorizontalScrollViewMainActivity extends Activity {
                     TextView textView2 = new TextView(HorizontalScrollViewMainActivity.this);
                     textView2.setText("H");
                     textView2.setLayoutParams(new ViewGroup.LayoutParams(child_width,
-                            ViewGroup.LayoutParams.MATCH_PARENT));
+                                                                         ViewGroup.LayoutParams.MATCH_PARENT));
                     textView2.setGravity(Gravity.CENTER);
                     linearLayout.addView(textView2, smallIndex);
                 }
@@ -375,9 +376,6 @@ public class HorizontalScrollViewMainActivity extends Activity {
 
     /**
      * 设置指定位置的状态
-     * 
-     * @param item
-     * @param isChecked
      */
     private void isChecked(int item, boolean isChecked) {
         TextView textView = (TextView) linearLayout.getChildAt(item - 1);
@@ -403,8 +401,8 @@ public class HorizontalScrollViewMainActivity extends Activity {
                     child_start_item += child_count;
                 }
                 horizontalScrollView.scrollTo(child_width * child_start_item - child_width / 2
-                        - hsv_width
-                        / 2, horizontalScrollView.getScrollY());
+                                              - hsv_width
+                                                / 2, horizontalScrollView.getScrollY());
                 isChecked(child_start_item, true);
                 return false;
             }

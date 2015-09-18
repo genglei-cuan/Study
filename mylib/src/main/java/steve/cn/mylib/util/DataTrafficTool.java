@@ -23,7 +23,7 @@ public class DataTrafficTool {
     public DataTrafficTool(Context context) {
         this.mContext = context;
         mConnectivityManager =
-                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
     }
 
@@ -36,9 +36,11 @@ public class DataTrafficTool {
         }
         try {
             // 判断是否有SIM卡
-            TelephonyManager tm = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager
+                tm =
+                (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
             if (tm == null || TelephonyManager.SIM_STATE_UNKNOWN == tm.getSimState()
-                    || tm.getNetworkOperatorName().equals("") || tm.getNetworkType() == 0) {
+                || tm.getNetworkOperatorName().equals("") || tm.getNetworkType() == 0) {
                 return;
             }
         } catch (Exception e) {
@@ -63,31 +65,33 @@ public class DataTrafficTool {
     private void setMobileDataEnabled(boolean state) {
         try {
             final ConnectivityManager conman = (ConnectivityManager) mContext
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
             final Class conmanClass = Class.forName(conman.getClass().getName());
             final Field iConnectivityManagerField = conmanClass.getDeclaredField("mService");
             iConnectivityManagerField.setAccessible(true);
             final Object iConnectivityManager = iConnectivityManagerField.get(conman);
             final Class iConnectivityManagerClass = Class.forName(iConnectivityManager.getClass()
-                    .getName());
+                                                                      .getName());
             final Method setMobileDataEnabledMethod;
             if (Build.VERSION.SDK_INT > 20) {
                 setMobileDataEnabledMethod = iConnectivityManagerClass.getDeclaredMethod(
-                        "setMobileDataEnabled", new Class[]{Boolean.TYPE});
+                    "setMobileDataEnabled", new Class[]{Boolean.TYPE});
             } else {
                 setMobileDataEnabledMethod =
-                        TelephonyManager.class.getDeclaredMethod("setDataEnabled", new Class[]{Boolean.TYPE});
+                    TelephonyManager.class
+                        .getDeclaredMethod("setDataEnabled", new Class[]{Boolean.TYPE});
             }
 
             setMobileDataEnabledMethod.setAccessible(true);
             if (Build.VERSION.SDK_INT > 20) {
                 setMobileDataEnabledMethod
-                        .invoke(iConnectivityManager, new Object[]{Boolean.valueOf(state)});
+                    .invoke(iConnectivityManager, new Object[]{Boolean.valueOf(state)});
             } else {
                 //目前这个权限似乎被谷歌收回了，声明权限也没用
                 TelephonyManager telephonyManager =
-                        (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-                setMobileDataEnabledMethod.invoke(telephonyManager, new Object[]{Boolean.valueOf(state)});
+                    (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+                setMobileDataEnabledMethod
+                    .invoke(telephonyManager, new Object[]{Boolean.valueOf(state)});
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,8 +103,8 @@ public class DataTrafficTool {
             return false;
         }
         if (mWifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLED
-                || mWifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLING
-                || mWifiManager.getWifiState() == WifiManager.WIFI_STATE_DISABLING) {
+            || mWifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLING
+            || mWifiManager.getWifiState() == WifiManager.WIFI_STATE_DISABLING) {
             return true;
         }
         return false;

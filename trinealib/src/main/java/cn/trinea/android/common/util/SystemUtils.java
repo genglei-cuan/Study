@@ -2,12 +2,15 @@ package cn.trinea.android.common.util;
 
 /**
  * SystemUtils
- * 
+ *
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2013-5-15
  */
 public class SystemUtils {
 
-    /** recommend default thread pool size according to system available processors, {@link #getDefaultThreadPoolSize()} **/
+    /**
+     * recommend default thread pool size according to system available processors, {@link
+     * #getDefaultThreadPoolSize()}
+     **/
     public static final int DEFAULT_THREAD_POOL_SIZE = getDefaultThreadPoolSize();
 
     private SystemUtils() {
@@ -27,7 +30,6 @@ public class SystemUtils {
     /**
      * get recommend default thread pool size
      *
-     * @param max
      * @return if 2 * availableProcessors + 1 less than max, return it, else return max;
      */
     public static int getDefaultThreadPoolSize(int max) {

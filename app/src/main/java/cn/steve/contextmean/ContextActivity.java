@@ -1,11 +1,12 @@
-
 package cn.steve.contextmean;
 
 import android.app.Activity;
 import android.os.Bundle;
+
 import cn.steve.study.R;
 
 public class ContextActivity extends Activity {
+
     private MyTextView tv = null;
 
     @Override
