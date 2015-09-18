@@ -30,3 +30,18 @@
 | weakreferencehandler   |  初设弱引用概念 |   初设弱引用概念   |
 | webview   |  加载URI，以及注入JS调用和混淆代码 |   加载URI，以及注入JS调用和混淆代码   |
 
+
+##感激
+感谢以下的项目,排名不分先后
+
+* [Trinea](https://github.com/Trinea) 
+* [代码家](https://github.com/daimajia)
+
+##关于作者
+
+```javascript
+  var PersonalFile = {
+    English Name  : "Steve Yan",
+    中文名 : "颜廷庚"
+  }
+```
