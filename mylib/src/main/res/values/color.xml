@@ -1,0 +1,9 @@
+<resources>
+
+    <!--listview上拉加载，下拉刷新 start-->
+    <color name="transparent">#00000000</color>
+    <color name="background">#F7F4F0</color>
+    <color name="title_color">#333333</color>
+    <!--listview上拉加载，下拉刷新 end-->
+
+</resources>
