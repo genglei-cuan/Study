@@ -32,7 +32,7 @@
 
 
 ##感激
-感谢以下的项目,排名不分先后
+感谢以下的作者,排名不分先后
 
 * [Trinea](https://github.com/Trinea) 
 * [代码家](https://github.com/daimajia)
