@@ -1,0 +1,9 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <header
+        android:fragment="cn.steve.preferenceactivity.PreferenceWithHeaders$Prefs1Fragment"
+        android:icon="@drawable/customer_icon"
+        android:summary="An example of some preferences."
+        android:title="Prefs 1" />
+
+</preference-headers>

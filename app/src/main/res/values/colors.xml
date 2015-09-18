@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- customer dialogue -->
+    <color name="text_color">#FFFFFF</color>
+    <color name="divider_color">#11000000</color>
+    <color name="msg_color">#FFFFFFFF</color>
+    <color name="dialog_bg">#ffe74c3c</color>
+    <color name="btn_press_color">#FFa5281b</color>
+    <color name="btn_unpress_color">#FFc0392b</color>
+
+    <!-- customer view and paint -->
+    <color name="red">#f00</color>
+    <color name="green">#0f0</color>
+    <color name="blue">#0000ff</color>
+    <color name="black">#000</color>
+    <color name="blue_light">#33b5e5</color>
+    <color name="blue_dark">#0099cc</color>
+    <color name="purple_light">#aa66cc</color>
+    <color name="purple_dark">#9933cc</color>
+    <color name="green_light">#99cc00</color>
+    <color name="green_dark">#669900</color>
+    <color name="yellow_light">#ffbb33</color>
+    <color name="yellow_dark">#ff8800</color>
+    <color name="red_light">#ff4444</color>
+    <color name="red_dark">#cc0000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- customer simple welcome activity -->
+    <color name="devide_line">#CBCED2</color>
+
+</resources>
