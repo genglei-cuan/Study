@@ -11,15 +11,15 @@ import java.util.List;
 import cn.steve.study.R;
 
 /**
- * ÀàËÆÓÚUCä¯ÀÀÆ÷ËÆµÄµ×²¿µÄ²Ëµ¥
+ * ç±»ä¼¼äºUCæµè§ˆå™¨ä¼¼çš„åº•éƒ¨çš„èœå•
  *
  * @author steve.yan
  */
 public class BottomMenuActivity extends Activity {
 
     private List<String> titles;
-    private List<List<String>> item_names; // Ñ¡ÏîÃû³Æ
-    private List<List<Integer>> item_images; // Ñ¡ÏîÍ¼±ê
+    private List<List<String>> item_names; // é€‰é¡¹åç§°
+    private List<List<Integer>> item_images; // é€‰é¡¹å›¾æ ‡
     private MyPopupMenu myPopupMenu;
 
     @Override
@@ -32,7 +32,7 @@ public class BottomMenuActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         /**
-         * ÏµÍ³²Ëµ¥±ØĞëÒª¼ÓÒ»¸ö£¬²ÅÓĞĞ§¹û
+         * ç³»ç»Ÿèœå•å¿…é¡»è¦åŠ ä¸€ä¸ªï¼Œæ‰æœ‰æ•ˆæœ
          */
         menu.add("");
         return super.onCreateOptionsMenu(menu);
@@ -45,10 +45,10 @@ public class BottomMenuActivity extends Activity {
             myPopupMenu.dismiss();
         } else {
             /**
-             * Õâ¾ä´úÂë¿ÉÒÔÊ¹²Ëµ¥À¸Èç¶Ô»°¿òÒ»Ñùµ¯³öµÄĞ§¹û
+             * è¿™å¥ä»£ç å¯ä»¥ä½¿èœå•æ å¦‚å¯¹è¯æ¡†ä¸€æ ·å¼¹å‡ºçš„æ•ˆæœ
              * myPopupMenu.setAnimationStyle(android.R.style.Animation_Dialog);
              */
-            // ÉèÖÃ²Ëµ¥À¸ÏÔÊ¾Î»ÖÃ
+            // è®¾ç½®èœå•æ æ˜¾ç¤ºä½ç½®
             myPopupMenu.showAtLocation(findViewById(R.id.layout), Gravity.BOTTOM, 0, 0);
             myPopupMenu.isShowing();
         }
@@ -58,19 +58,19 @@ public class BottomMenuActivity extends Activity {
     private void initMenu() {
 
         /**
-         * ²Ëµ¥À¸·ÖÀà±êÌâ
+         * èœå•æ åˆ†ç±»æ ‡é¢˜
          */
         titles = new ArrayList<String>();
         titles = array2list(new String[]{
-            "³£ÓÃ", "ÉèÖÃ", "¹¤¾ß"
+            "å¸¸ç”¨", "è®¾ç½®", "å·¥å…·"
         });
 
         /**
-         * Ñ¡ÏîÍ¼±ê
+         * é€‰é¡¹å›¾æ ‡
          */
         item_images = new ArrayList<List<Integer>>();
 
-        // µÚÒ»×é
+        // ç¬¬ä¸€ç»„
         Integer[] item_drawble =
             new Integer[]{
                 R.drawable.ic_action_call, R.drawable.ic_action_camera,
@@ -81,7 +81,7 @@ public class BottomMenuActivity extends Activity {
             };
         item_images.add(addItems(item_drawble));
 
-        // µÚ¶ş×é
+        // ç¬¬äºŒç»„
         item_drawble =
             new Integer[]{
                 R.drawable.ic_action_email, R.drawable.ic_action_full_screen,
@@ -92,7 +92,7 @@ public class BottomMenuActivity extends Activity {
             };
         item_images.add(addItems(item_drawble));
 
-        // µÚÈı×é
+        // ç¬¬ä¸‰ç»„
         item_drawble =
             new Integer[]{
                 R.drawable.ic_action_refresh, R.drawable.ic_action_save,
@@ -103,37 +103,37 @@ public class BottomMenuActivity extends Activity {
         item_images.add(addItems(item_drawble));
 
         /**
-         * Ñ¡ÏîÃû³Æ
+         * é€‰é¡¹åç§°
          */
         item_names = new ArrayList<List<String>>();
 
-        // µÚÒ»×é
+        // ç¬¬ä¸€ç»„
         String[] item_name = new String[]{
-            "µç»°", "Ïà»ú", "¸´ÖÆ", "²Ã¼ô", "¼ôÇĞ", "É¾³ı", "ÏÂÔØ", "±à¼­"
+            "ç”µè¯", "ç›¸æœº", "å¤åˆ¶", "è£å‰ª", "å‰ªåˆ‡", "åˆ é™¤", "ä¸‹è½½", "ç¼–è¾‘"
         };
         item_names.add(array2list(item_name));
 
         item_name = new String[]{
-            "ÓÊ¼ş", "È«ÆÁ", "°ïÖú", "ÊÕ²Ø", "µØÍ¼", "ÓïÒô", "Í¼Æ¬", "¶¨Î»"
+            "é‚®ä»¶", "å…¨å±", "å¸®åŠ©", "æ”¶è—", "åœ°å›¾", "è¯­éŸ³", "å›¾ç‰‡", "å®šä½"
         };
         item_names.add(array2list(item_name));
 
         item_name = new String[]{
-            "Ë¢ĞÂ", "±£´æ", "ËÑË÷", "·ÖÏí", "ÇĞ»»", "Â¼Ïñ", "ä¯ÀÀÆ÷", "Ğı×ªÆÁÄ»"
+            "åˆ·æ–°", "ä¿å­˜", "æœç´¢", "åˆ†äº«", "åˆ‡æ¢", "å½•åƒ", "æµè§ˆå™¨", "æ—‹è½¬å±å¹•"
         };
         item_names.add(array2list(item_name));
 
         myPopupMenu = new MyPopupMenu(this, titles, item_names, item_images);
 
         /**
-         * ÉèÖÃ²Ëµ¥À¸ÍÆÀ­¶¯»­Ğ§¹û res/animÖĞµÄxmlÎÄ¼şÓëstyles.xmlÖĞµÄstyleÅäºÏÊ¹ÓÃ
+         * è®¾ç½®èœå•æ æ¨æ‹‰åŠ¨ç”»æ•ˆæœ res/animä¸­çš„xmlæ–‡ä»¶ä¸styles.xmlä¸­çš„styleé…åˆä½¿ç”¨
          */
         myPopupMenu.setAnimationStyle(R.style.PopupAnimation);
 
     }
 
     /**
-     * ×ª»»ÎªList<String> ÓÃÓÚ²Ëµ¥À¸ÖĞµÄ²Ëµ¥ÏîÍ¼±ê¸³Öµ
+     * è½¬æ¢ä¸ºList<String> ç”¨äºèœå•æ ä¸­çš„èœå•é¡¹å›¾æ ‡èµ‹å€¼
      */
     private List<String> array2list(String[] values) {
 
@@ -146,7 +146,7 @@ public class BottomMenuActivity extends Activity {
     }
 
     /**
-     * ×ª»»ÎªList<Integer> ÓÃÓÚ²Ëµ¥À¸ÖĞµÄ±êÌâ¸³Öµ
+     * è½¬æ¢ä¸ºList<Integer> ç”¨äºèœå•æ ä¸­çš„æ ‡é¢˜èµ‹å€¼
      */
     private List<Integer> addItems(Integer[] values) {
 
