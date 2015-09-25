@@ -132,6 +132,10 @@
         </activity>
         <!-- 水平循环滚动 -->
         <activity android:name="cn.steve.gallery.HorizontalScrollViewMainActivity">
+        </activity>
+        <activity android:name="cn.steve.imageloader.ImageLoaderActivity"
+                android:theme="@style/Theme.AppCompat"
+                >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
