@@ -4,7 +4,7 @@
     android:versionCode="30"
     android:versionName="4.2.14"
     -->
-    <application android:allowBackup="true"
+    <application
             >
     </application>
 </manifest>

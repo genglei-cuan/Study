@@ -10,7 +10,8 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-            android:allowBackup="true"
+            android:name="cn.steve.UILApplication"
+            android:allowBackup="false"
             android:icon="@drawable/customer_icon"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
@@ -131,6 +132,10 @@
         </activity>
         <!-- 水平循环滚动 -->
         <activity android:name="cn.steve.gallery.HorizontalScrollViewMainActivity">
+        </activity>
+        <activity android:name="cn.steve.imageloader.ImageLoaderActivity"
+                android:theme="@style/Theme.AppCompat"
+                >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

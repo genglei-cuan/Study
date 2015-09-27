@@ -1,43 +1,45 @@
 # Study
     
-    Ñ§Ï°µÄdemo£¬¼òµ¥µÄÒ»Ğ©¸ÅÄîĞÔµÄ¶«Î÷£¬¹©×Ô¼ºÊìÏ¤APIºÍ¸ÅÄîÊ¹ÓÃ¡£
+    å­¦ä¹ çš„demoï¼Œç®€å•çš„ä¸€äº›æ¦‚å¿µæ€§çš„ä¸œè¥¿ï¼Œä¾›è‡ªå·±ç†Ÿæ‚‰APIå’Œæ¦‚å¿µä½¿ç”¨ã€‚
     
 ---
-| °üÃû        | ¹¦ÄÜ   |  ±¸×¢  |
+| åŒ…å        | åŠŸèƒ½   |  å¤‡æ³¨  |
 | --------    | -----: | :----: |
 | asyntask  |   |    |
-| buttonmenu  | ·ÂÔìÔçÆÚµÄUCä¯ÀÀÆ÷µÄ²Ëµ¥    |  ·ÂÔìÔçÆÚµÄUCä¯ÀÀÆ÷µÄ²Ëµ¥   |
-| buttontext  | ·ÂÔìÔçÆÚµÄUCä¯ÀÀÆ÷µÄ²Ëµ¥£¬½«²Ëµ¥»»³É¿É¹ö¶¯µÄÎÄ±¾    |  ·ÂÔìÔçÆÚµÄUCä¯ÀÀÆ÷µÄ²Ëµ¥£¬½«²Ëµ¥»»³É¿É¹ö¶¯µÄÎÄ±¾  |
-| click_xml   |  ÔÚXMLÎÄ¼şÖĞÉèÖÃÏàÓ¦µÄ·½·¨ |   ÔÚXMLÎÄ¼şÖĞÉèÖÃÏàÓ¦µÄ·½·¨  |
-| contextmean   |  ²âÊÔcontextµÄÕæÊµº¬Òå |   ²âÊÔcontextµÄÕæÊµº¬Òå  |
-| customdialog   |  ×Ô¶¨Òådialog |   ×Ô¶¨Òå¸÷ÖÖĞÎÊ½µÄdialogue(ÊìÏ¤stormzhangµÄ)   |
-| customview   |  ×Ô¶¨Òåview |   Õ¹Ê¾»­²¼µÄº¬Òå   |
-| fileIO   |  ÎÄ¼şµÄIO²Ù×÷ |   ÎÄ¼şµÄIO²Ù×÷   |
-| fragment   |  fragmentµÄ»ù±¾²Ù×÷ |   fragment²Ù×÷   |
-| handler   |  handlerµÄ»ù±¾²Ù×÷ |   handler post runnableµÄÊ¹ÓÃ   |
-| listview   |  listviewµÄ»ù±¾²Ù×÷ |   listview»º´æ£¬ÒÔ¼°Ò»¸öÍ¨ÓÃµÄviewholder   |
-| main   |  ÉèÖÃfragment»ùÀà |   ÉèÖÃfragment»ùÀà   |
-| preferenceactivity   |  ¹ØÓÚÆ«ºÃÉèÖÃµÄactivity |   ¹ØÓÚÆ«ºÃÉèÖÃµÄactivity   |
-| service   |  ¼òµ¥²âÊÔserviceµÄÉúÃüÖÜÆÚ£¬ÒÔ¼°ºÍactivityÖ®¼äµÄÍ¨ĞÅ |   ¼òµ¥²âÊÔserviceµÄÉúÃüÖÜÆÚ£¬ÒÔ¼°ºÍactivityÖ®¼äµÄÍ¨ĞÅ   |
-| signature   |  ÊÖĞ´Ç©Ãû |   ÊÖĞ´Ç©Ãû   |
-| simpkeWelcome   |  Ò»¸ö¼òµ¥µÄ»¶Ó­½çÃæ£¬·ÂÔìµÄQQ |   Ò»¸ö¼òµ¥µÄ»¶Ó­½çÃæ£¬·ÂÔìµÄQQ   |
-| spinnerdroplayout   |  spinnerÏÂÀ­Ñ¡Ïî |   spinnerÏÂÀ­Ñ¡Ïî   |
-| touchevent   |  touchevent£¬ÒÔ¼°×Ô¶¨Òåview |   touchevent £¬ÒÔ¼°×Ô¶¨Òåview  |
-| uicommunicate   |  ÔÚÖ÷Ïß³ÌÉÏ¿ª±ÙÏß³Ì |   ÔÚÖ÷Ïß³ÌÉÏ¿ª±ÙÏß³Ì   |
-| viewflipper   |  ²à»¬ |   ²à»¬   |
-| spinner   |  ÁĞ±í·Ö×é |   ÁĞ±í·Ö×é   |
-| handler   |  ÉèÖÃ³Éstatic |   ÉèÖÃ³Éstatic   |
-| weakreferencehandler   |  ³õÉèÈõÒıÓÃ¸ÅÄî |   ³õÉèÈõÒıÓÃ¸ÅÄî   |
-| webview   |  ¼ÓÔØURI£¬ÒÔ¼°×¢ÈëJSµ÷ÓÃºÍ»ìÏı´úÂë |   ¼ÓÔØURI£¬ÒÔ¼°×¢ÈëJSµ÷ÓÃºÍ»ìÏı´úÂë   |
+| buttonmenu  | ä»¿é€ æ—©æœŸçš„UCæµè§ˆå™¨çš„èœå•    |  ä»¿é€ æ—©æœŸçš„UCæµè§ˆå™¨çš„èœå•   |
+| buttontext  | ä»¿é€ æ—©æœŸçš„UCæµè§ˆå™¨çš„èœå•ï¼Œå°†èœå•æ¢æˆå¯æ»šåŠ¨çš„æ–‡æœ¬    |  ä»¿é€ æ—©æœŸçš„UCæµè§ˆå™¨çš„èœå•ï¼Œå°†èœå•æ¢æˆå¯æ»šåŠ¨çš„æ–‡æœ¬  |
+| click_xml   |  åœ¨XMLæ–‡ä»¶ä¸­è®¾ç½®ç›¸åº”çš„æ–¹æ³• |   åœ¨XMLæ–‡ä»¶ä¸­è®¾ç½®ç›¸åº”çš„æ–¹æ³•  |
+| contextmean   |  æµ‹è¯•contextçš„çœŸå®å«ä¹‰ |   æµ‹è¯•contextçš„çœŸå®å«ä¹‰  |
+| customdialog   |  è‡ªå®šä¹‰dialog |   è‡ªå®šä¹‰å„ç§å½¢å¼çš„dialogue(ç†Ÿæ‚‰stormzhangçš„)   |
+| customview   |  è‡ªå®šä¹‰view |   å±•ç¤ºç”»å¸ƒçš„å«ä¹‰   |
+| eventbus   |  eventbusçš„demo |   eventbus TODO    |
+| fileIO   |  æ–‡ä»¶çš„IOæ“ä½œ |   æ–‡ä»¶çš„IOæ“ä½œ   |
+| fragment   |  fragmentçš„åŸºæœ¬æ“ä½œ |   fragmentæ“ä½œ   |
+| handler   |  handlerçš„åŸºæœ¬æ“ä½œ |   handler post runnableçš„ä½¿ç”¨   |
+| imageloader   |  universalimageloader çš„demo |   æ‹·è´çš„å®˜æ–¹libä¸­çš„sampleï¼Œuniversalimageloaderçš„åŸºæœ¬æ“ä½œ     |
+| listview   |  listviewçš„åŸºæœ¬æ“ä½œ |   listviewç¼“å­˜ï¼Œä»¥åŠä¸€ä¸ªé€šç”¨çš„viewholder   |
+| main   |  è®¾ç½®fragmentåŸºç±» |   è®¾ç½®fragmentåŸºç±»   |
+| preferenceactivity   |  å…³äºåå¥½è®¾ç½®çš„activity |   å…³äºåå¥½è®¾ç½®çš„activity   |
+| service   |  ç®€å•æµ‹è¯•serviceçš„ç”Ÿå‘½å‘¨æœŸï¼Œä»¥åŠå’Œactivityä¹‹é—´çš„é€šä¿¡ |   ç®€å•æµ‹è¯•serviceçš„ç”Ÿå‘½å‘¨æœŸï¼Œä»¥åŠå’Œactivityä¹‹é—´çš„é€šä¿¡   |
+| signature   |  æ‰‹å†™ç­¾å |   æ‰‹å†™ç­¾å   |
+| simpkeWelcome   |  ä¸€ä¸ªç®€å•çš„æ¬¢è¿ç•Œé¢ï¼Œä»¿é€ çš„QQ |   ä¸€ä¸ªç®€å•çš„æ¬¢è¿ç•Œé¢ï¼Œä»¿é€ çš„QQ   |
+| spinnerdroplayout   |  spinnerä¸‹æ‹‰é€‰é¡¹ |   spinnerä¸‹æ‹‰é€‰é¡¹   |
+| touchevent   |  toucheventï¼Œä»¥åŠè‡ªå®šä¹‰view |   touchevent ï¼Œä»¥åŠè‡ªå®šä¹‰view  |
+| uicommunicate   |  åœ¨ä¸»çº¿ç¨‹ä¸Šå¼€è¾Ÿçº¿ç¨‹ |   åœ¨ä¸»çº¿ç¨‹ä¸Šå¼€è¾Ÿçº¿ç¨‹   |
+| viewflipper   |  ä¾§æ»‘ |   ä¾§æ»‘   |
+| spinner   |  åˆ—è¡¨åˆ†ç»„ |   åˆ—è¡¨åˆ†ç»„   |
+| handler   |  è®¾ç½®æˆstatic |   è®¾ç½®æˆstatic   |
+| weakreferencehandler   |  åˆè®¾å¼±å¼•ç”¨æ¦‚å¿µ |   åˆè®¾å¼±å¼•ç”¨æ¦‚å¿µ   |
+| webview   |  åŠ è½½URIï¼Œä»¥åŠæ³¨å…¥JSè°ƒç”¨å’Œæ··æ·†ä»£ç  |   åŠ è½½URIï¼Œä»¥åŠæ³¨å…¥JSè°ƒç”¨å’Œæ··æ·†ä»£ç    |
 
 
-##¸Ğ¼¤
-¸ĞĞ»ÒÔÏÂµÄ×÷Õß,ÅÅÃû²»·ÖÏÈºó
+##æ„Ÿæ¿€
+æ„Ÿè°¢ä»¥ä¸‹çš„ä½œè€…,æ’åä¸åˆ†å…ˆå
 
 * [Trinea](https://github.com/Trinea) 
-* [´úÂë¼Ò](https://github.com/daimajia)
+* [ä»£ç å®¶](https://github.com/daimajia)
 
-##¹ØÓÚ×÷Õß
+##å…³äºä½œè€…
 
 ```javascript
   var PersonalFile = {
