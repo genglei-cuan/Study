@@ -23,8 +23,8 @@ public class AlertDialogActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button btn = (Button) findViewById(R.id.btn);
+        setContentView(R.layout.activity_main_button);
+        Button btn = (Button) findViewById(R.id.buttonMain);
         btn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {

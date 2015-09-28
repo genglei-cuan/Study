@@ -133,14 +133,22 @@
         <!-- 水平循环滚动 -->
         <activity android:name="cn.steve.gallery.HorizontalScrollViewMainActivity">
         </activity>
+        <!--Universal image loader-->
         <activity android:name="cn.steve.imageloader.ImageLoaderActivity"
                 android:theme="@style/Theme.AppCompat"
+                >
+
+        </activity>
+        <!--Event Bus-->
+        <activity android:name="cn.steve.eventbus.EventBusActivity"
+                  android:theme="@style/Theme.AppCompat"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
