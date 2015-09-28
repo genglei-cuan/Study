@@ -24,6 +24,9 @@ public class ItemListFragment extends ListFragment {
     private OnFragmentInteractionListener mListener;
     private AbsListView mListView;
 
+    public ItemListFragment() {
+    }
+
     public static ItemListFragment newInstance(String param1, String param2) {
         ItemListFragment fragment = new ItemListFragment();
         Bundle args = new Bundle();
@@ -33,13 +36,13 @@ public class ItemListFragment extends ListFragment {
         return fragment;
     }
 
-    public ItemListFragment() {
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //注册事件总线
+        //在onCreate里面执行	EventBus.getDefault().register(this);意思是让EventBus扫描当前类，把所有onEvent开头的方法记录下来，如何记录呢？使用Map，Key为方法的参数类型，Value中包含我们的方法。
+        //这样在onCreate执行完成以后，我们的onEventMainThread就已经以键值对的方式被存储到EventBus中了。
+        //EventBus会根据post中实参的类型，去Map中查找对于的方法，于是找到了我们的onEventMainThread，最终调用反射去执行我们的方法。
         EventBus.getDefault().register(this);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -47,6 +50,15 @@ public class ItemListFragment extends ListFragment {
         }
     }
 
+    /**
+     * 这个方法最终要在UI线程执行
+     *
+     * 以onEvent开头，而且必须是非static，非抽象的，并且参数只能有一个
+     *
+     * 会扫描所有的父类，不仅仅是当前类。
+     *
+     * @param event 发布的消息
+     */
     public void onEventMainThread(ItemListEvent event) {
         //利用传递过来的事件中的数据封装成适配器
         ArrayAdapter<Item> itemArrayAdapter = new ArrayAdapter<Item>(getActivity(),
