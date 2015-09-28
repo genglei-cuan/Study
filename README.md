@@ -12,7 +12,7 @@
 | contextmean   |  测试context的真实含义 |   测试context的真实含义  |
 | customdialog   |  自定义dialog |   自定义各种形式的dialogue(熟悉stormzhang的)   |
 | customview   |  自定义view |   展示画布的含义   |
-| eventbus   |  eventbus的demo |   eventbus TODO    |
+| eventbus   |   左右两个fragment进行通信 |   用的是鸿洋的demo      |
 | fileIO   |  文件的IO操作 |   文件的IO操作   |
 | fragment   |  fragment的基本操作 |   fragment操作   |
 | handler   |  handler的基本操作 |   handler post runnable的使用   |
@@ -38,6 +38,7 @@
 
 * [Trinea](https://github.com/Trinea) 
 * [代码家](https://github.com/daimajia)
+* [鸿洋](http://blog.csdn.net/lmj623565791)
 
 ##关于作者
 
