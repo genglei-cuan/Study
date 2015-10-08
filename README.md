@@ -16,6 +16,7 @@
 | fileIO   |  文件的IO操作 |   文件的IO操作   |
 | fragment   |  fragment的基本操作 |   fragment操作   |
 | handler   |  handler的基本操作 |   handler post runnable的使用   |
+| http   |  关于http的一些知识点 |   目前有asynchttp的demo TODO    |
 | imageloader   |  universalimageloader 的demo |   拷贝的官方lib中的sample，universalimageloader的基本操作     |
 | listview   |  listview的基本操作 |   listview缓存，以及一个通用的viewholder   |
 | main   |  设置fragment基类 |   设置fragment基类   |
