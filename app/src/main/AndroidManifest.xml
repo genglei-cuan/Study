@@ -18,9 +18,7 @@
             >
 
         <!-- 对话框demo -->
-        <activity
-                android:name="cn.steve.alertDialog.AlertDialogActivity"
-                android:label="@string/app_name">
+        <activity android:name="cn.steve.alertDialog.AlertDialogActivity">
         </activity>
 
         <!-- fragment(碎片)demo -->

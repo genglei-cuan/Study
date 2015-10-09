@@ -17,6 +17,7 @@ import cn.steve.study.R;
  */
 public class AsyncHttpActivity extends AppCompatActivity {
 
+    private static final String GETURL = "https://raw.github.com/square/okhttp/master/README.md";
     private TextView textViewMain;
 
     @Override
@@ -28,7 +29,7 @@ public class AsyncHttpActivity extends AppCompatActivity {
         AsyncHttpClient client = new AsyncHttpClient();
 
         //get请求
-        client.get("https://www.baidu.com", new AsyncHttpResponseHandler() {
+        client.get(GETURL, new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart() {
