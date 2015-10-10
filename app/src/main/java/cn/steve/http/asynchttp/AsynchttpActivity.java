@@ -27,10 +27,8 @@ public class AsyncHttpActivity extends AppCompatActivity {
         this.textViewMain = (TextView) findViewById(R.id.textViewMain);
 
         AsyncHttpClient client = new AsyncHttpClient();
-
         //get请求
         client.get(GETURL, new AsyncHttpResponseHandler() {
-
             @Override
             public void onStart() {
                 // called before request is started
@@ -40,7 +38,8 @@ public class AsyncHttpActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 // called when response HTTP status is "200 OK"
                 if (statusCode == 200) {
-                    textViewMain.setText(String.valueOf(response));
+                    String s = new String(response);
+                    textViewMain.setText(s);
                 }
             }
 
@@ -48,7 +47,6 @@ public class AsyncHttpActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse,
                                   Throwable e) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                AsyncHttpActivity.this.textViewMain.setText(String.valueOf(statusCode));
             }
 
             @Override
@@ -61,6 +59,7 @@ public class AsyncHttpActivity extends AppCompatActivity {
         RequestParams params = new RequestParams();
         params.put("key", "value");
         params.put("more", "data");
+
 
 
     }
