@@ -26,7 +26,7 @@ public class ArticleFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        btn = (Button) getActivity().findViewById(R.id.btn);
+        btn = (Button) getActivity().findViewById(R.id.buttonMain);
         btn.setOnClickListener(new OnClickListener() {
 
             @Override

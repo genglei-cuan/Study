@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分享到微信好友"
+            android:id="@+id/buttonShareWeiXinFriend"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分享到微信朋友圈"
+            android:id="@+id/buttonShareWeiXinTimeLine"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分享到微博"
+            android:id="@+id/buttonShareWeiBo"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分享到QQ好友"
+            android:id="@+id/buttonShareQQFriend"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分享到QQ空间"
+            android:id="@+id/buttonShareQQZone"/>
+</LinearLayout>

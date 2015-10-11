@@ -10,7 +10,7 @@
             android:layout_height="fill_parent"
             android:text="fragment1"
             android:textSize="50dp"
-            android:id="@+id/btn"
+            android:id="@+id/buttonMain"
             />
 
 </LinearLayout>
