@@ -151,6 +151,10 @@
         </activity>
 
         <activity android:name="cn.steve.gallery.GalleryMainActivity">
+
+        </activity>
+
+        <activity android:name="cn.steve.gallery.MyGalleryMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
