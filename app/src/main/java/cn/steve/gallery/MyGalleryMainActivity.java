@@ -2,6 +2,7 @@ package cn.steve.gallery;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 import cn.steve.study.R;
 
@@ -17,5 +18,11 @@ public class MyGalleryMainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mygallery);
         this.myMainGallery = (MyGallery) findViewById(R.id.myMainGallery);
+        this.myMainGallery.setMonSelectedListener(new MyGallery.onSelectedListener() {
+            @Override
+            public void onSelected(MyGalleryModel model) {
+                Log.i("MyGalleryModel:", model.getYear() + "" + model.getMonth() + "" + model.getDay());
+            }
+        });
     }
 }

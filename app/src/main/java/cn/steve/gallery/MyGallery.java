@@ -1,8 +1,12 @@
 package cn.steve.gallery;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Gallery;
@@ -32,10 +36,27 @@ public class MyGallery extends LinearLayout {
     private int currentDay = 13;
     private int currentDays = 365;
 
+    private boolean isUp = true;
 
-    public MyGallery(Context context, Context mContext) {
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+        }
+    };
+    private Runnable mDismissOnScreenControlRunner = new Runnable() {
+        @Override
+        public void run() {
+            if (isUp) {
+                Log.i("停止了哦", "现在是稳定状态");
+            }
+        }
+    };
+
+    public MyGallery(Context context) {
         super(context);
-        this.mContext = mContext;
+        this.mContext = context;
     }
 
     public MyGallery(Context context, AttributeSet attrs) {
@@ -68,7 +89,8 @@ public class MyGallery extends LinearLayout {
                     getData(mCalendar, false);
                     gallery.setSelection(currentDays + position);
                 }
-
+                monSelectedListener.onSelected(model);
+                scheduleDismissOnScreenControls();
             }
 
             @Override
@@ -76,6 +98,19 @@ public class MyGallery extends LinearLayout {
             }
         };
         gallery.setOnItemSelectedListener(listener);
+        gallery.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+                    isUp = false;
+                }
+                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
+                    isUp = true;
+                }
+                return false;
+            }
+        });
+
     }
 
     //从当天往前数出一年的数据来，当到达最前面10天的时候，进行上年的更新
@@ -116,4 +151,18 @@ public class MyGallery extends LinearLayout {
 
     }
 
+    private onSelectedListener monSelectedListener;
+
+    public void setMonSelectedListener(onSelectedListener monSelectedListener) {
+        this.monSelectedListener = monSelectedListener;
+    }
+
+    public interface onSelectedListener {
+        void onSelected(MyGalleryModel model);
+    }
+
+    private void scheduleDismissOnScreenControls() {
+        mHandler.removeCallbacks(mDismissOnScreenControlRunner);
+        mHandler.postDelayed(mDismissOnScreenControlRunner, 1000);
+    }
 }
