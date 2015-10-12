@@ -30,6 +30,7 @@ public class MyGallery extends LinearLayout {
     private int currentYear = 2015;
     private int currentMonth = 10;
     private int currentDay = 13;
+    private int currentDays = 365;
 
 
     public MyGallery(Context context, Context mContext) {
@@ -42,9 +43,8 @@ public class MyGallery extends LinearLayout {
         mContext = context;
         mCalendar = Calendar.getInstance();
 
-
         myGalleryAdapter = new MyGalleryAdapter(datas, mContext);
-        getData(mCalendar);
+        getData(mCalendar, true);
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.gallery_layout, this);
@@ -64,8 +64,9 @@ public class MyGallery extends LinearLayout {
                 galleryTextViewYearMonth.setText(model.getYear() + "年" + model.getMonth() + "月");
 
                 //更新前一年的信息
-                if (model.getDay() == 10) {
-                    getData(mCalendar);
+                if (model.getYear() == currentYear && model.getMonth() == 1 && model.getDay() == 10) {
+                    getData(mCalendar, false);
+                    gallery.setSelection(currentDays + position);
                 }
 
             }
@@ -78,7 +79,7 @@ public class MyGallery extends LinearLayout {
     }
 
     //从当天往前数出一年的数据来，当到达最前面10天的时候，进行上年的更新
-    private void getData(Calendar calendar) {
+    private void getData(Calendar calendar, boolean isInit) {
 
         currentYear = calendar.get(Calendar.YEAR);
 
@@ -88,8 +89,15 @@ public class MyGallery extends LinearLayout {
         int month = 10;
         int day = 12;
         int week = 1;
+        int days = 0;
+        if (isInit)
+            days = calendar.get(Calendar.DAY_OF_YEAR);
+        else
+            days = calendar.getMaximum(Calendar.DAY_OF_YEAR);
 
-        int days = calendar.get(Calendar.DAY_OF_YEAR);
+        currentDays = days;
+        currentMonth = calendar.get(Calendar.MONTH) + 1;
+        currentDay = calendar.get(Calendar.DAY_OF_MONTH);
 
         for (int i = 0; i < days; i++) {
             year = calendar.get(Calendar.YEAR);
@@ -102,7 +110,7 @@ public class MyGallery extends LinearLayout {
 
         Collections.reverse(temps);
 
-        datas.addAll(0,temps);
+        datas.addAll(0, temps);
 
         myGalleryAdapter.notifyDataSetChanged();
 
