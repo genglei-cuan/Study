@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+    <!-- 文字居中显示  android:gravity -->
+    <!-- 控件居中显示  android:layout_gravity -->
+
+    <TextView
+            android:id="@+id/textViewGallery"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dip"
+            android:textColor="#ffff0000"
+            android:textSize="30sp"
+            android:text="Gallery Test"/>
+
+    <Gallery
+            android:id="@+id/gallery"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_below="@id/textViewGallery"/>
+
+</RelativeLayout>
