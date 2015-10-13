@@ -31,14 +31,12 @@ public class MyGallery extends LinearLayout {
     private TextView galleryTextViewYearMonth;
     private ArrayList<MyGalleryModel> datas = new ArrayList<MyGalleryModel>();
 
-
     //目前真实的时间
     private int realYear = 2015;
     private int realMonth = 10;
     private int realDayOfMonth = 13;
     private int realWeek = 2;
     private int realDayOfYear = 100;
-
 
     //当前传入的时间
     private int currentYear = 2015;
@@ -47,7 +45,10 @@ public class MyGallery extends LinearLayout {
     private int currentYearDays = 365;
     private int currentDayOfYear = 100;
 
+
     private boolean isUp = true;
+    private MyGalleryModel selectedModel = null;
+
 
     private Handler mHandler = new Handler() {
         @Override
@@ -56,15 +57,18 @@ public class MyGallery extends LinearLayout {
 
         }
     };
+
+
+    private onSelectedListener monSelectedListener;
     private Runnable mDismissOnScreenControlRunner = new Runnable() {
         @Override
         public void run() {
             if (isUp) {
                 Log.i("停止了哦", "现在是稳定状态");
+                monSelectedListener.onSelected(selectedModel);
             }
         }
     };
-    private onSelectedListener monSelectedListener;
 
     public MyGallery(Context context) {
         super(context);
@@ -82,7 +86,6 @@ public class MyGallery extends LinearLayout {
         realDayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
 
         myGalleryAdapter = new MyGalleryAdapter(datas, mContext);
-        getData(mCalendar, true);
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.gallery_layout, this);
@@ -107,7 +110,7 @@ public class MyGallery extends LinearLayout {
                     getData(mCalendar, false);
                     gallery.setSelection(currentYearDays + position);
                 }
-                monSelectedListener.onSelected(model);
+                selectedModel = model;
                 scheduleDismissOnScreenControls();
             }
 
@@ -128,11 +131,19 @@ public class MyGallery extends LinearLayout {
                 return false;
             }
         });
+        getData(mCalendar, true);
 
     }
 
+    public void setmCalendar(Calendar mCalendar) {
+        getData(mCalendar, true);
+    }
+
     //从当天往前数出一年的数据来，当到达最前面10天的时候，进行上年的更新
-    private void getData(Calendar calendar, boolean isInit) {
+    private void getData(Calendar calendar, boolean isClear) {
+        if (isClear) {
+            datas.clear();
+        }
 
         ArrayList<MyGalleryModel> temps = new ArrayList<MyGalleryModel>();
 
@@ -150,8 +161,12 @@ public class MyGallery extends LinearLayout {
         currentDayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
         currentYearDays = days;
 
+        //相差的年份
+        for (int i = 0; i < realYear - currentYear; i++) {
+        }
+
         //back
-        for (int i = currentDayOfMonth; i < realDayOfMonth; i++) {
+        for (int i = currentDayOfYear; i < realDayOfYear; i++) {
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH) + 1;
             day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -168,20 +183,25 @@ public class MyGallery extends LinearLayout {
         calendar.set(Calendar.DAY_OF_MONTH, currentDayOfMonth);
 
         temps.clear();
-        //pre
-        for (int i = 0; i < currentYearDays - 1; i++) {
+        //pre用以记录下标，还原正确的位置
+        int pre = 0;
+        for (int i = 0; i < currentDayOfYear - 1; i++) {
             calendar.add(Calendar.DAY_OF_MONTH, -1);
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH) + 1;
             day = calendar.get(Calendar.DAY_OF_MONTH);
             week = calendar.get(Calendar.DAY_OF_WEEK);
             temps.add(new MyGalleryModel(year, month, day, week));
+            pre += 1;
         }
+
         Collections.reverse(temps);
 
         datas.addAll(0, temps);
 
         myGalleryAdapter.notifyDataSetChanged();
+        //设置应在的位置
+        gallery.setSelection(pre);
 
     }
 
