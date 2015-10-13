@@ -31,10 +31,21 @@ public class MyGallery extends LinearLayout {
     private TextView galleryTextViewYearMonth;
     private ArrayList<MyGalleryModel> datas = new ArrayList<MyGalleryModel>();
 
+
+    //目前真实的时间
+    private int realYear = 2015;
+    private int realMonth = 10;
+    private int realDayOfMonth = 13;
+    private int realWeek = 2;
+    private int realDayOfYear = 100;
+
+
+    //当前传入的时间
     private int currentYear = 2015;
     private int currentMonth = 10;
-    private int currentDay = 13;
-    private int currentDays = 365;
+    private int currentDayOfMonth = 13;
+    private int currentYearDays = 365;
+    private int currentDayOfYear = 100;
 
     private boolean isUp = true;
 
@@ -53,6 +64,7 @@ public class MyGallery extends LinearLayout {
             }
         }
     };
+    private onSelectedListener monSelectedListener;
 
     public MyGallery(Context context) {
         super(context);
@@ -63,6 +75,11 @@ public class MyGallery extends LinearLayout {
         super(context, attrs);
         mContext = context;
         mCalendar = Calendar.getInstance();
+
+        realYear = mCalendar.get(Calendar.YEAR);
+        realMonth = mCalendar.get(Calendar.MONTH);
+        realDayOfMonth = mCalendar.get(Calendar.DAY_OF_MONTH);
+        realDayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
 
         myGalleryAdapter = new MyGalleryAdapter(datas, mContext);
         getData(mCalendar, true);
@@ -85,9 +102,10 @@ public class MyGallery extends LinearLayout {
                 galleryTextViewYearMonth.setText(model.getYear() + "年" + model.getMonth() + "月");
 
                 //更新前一年的信息
-                if (model.getYear() == currentYear && model.getMonth() == 1 && model.getDay() == 10) {
+                if (model.getYear() == currentYear && model.getMonth() == 1
+                    && model.getDay() == 10) {
                     getData(mCalendar, false);
-                    gallery.setSelection(currentDays + position);
+                    gallery.setSelection(currentYearDays + position);
                 }
                 monSelectedListener.onSelected(model);
                 scheduleDismissOnScreenControls();
@@ -116,8 +134,6 @@ public class MyGallery extends LinearLayout {
     //从当天往前数出一年的数据来，当到达最前面10天的时候，进行上年的更新
     private void getData(Calendar calendar, boolean isInit) {
 
-        currentYear = calendar.get(Calendar.YEAR);
-
         ArrayList<MyGalleryModel> temps = new ArrayList<MyGalleryModel>();
 
         int year = 2015;
@@ -125,24 +141,42 @@ public class MyGallery extends LinearLayout {
         int day = 12;
         int week = 1;
         int days = 0;
-        if (isInit)
-            days = calendar.get(Calendar.DAY_OF_YEAR);
-        else
-            days = calendar.getMaximum(Calendar.DAY_OF_YEAR);
 
-        currentDays = days;
-        currentMonth = calendar.get(Calendar.MONTH) + 1;
-        currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+        days = calendar.getMaximum(Calendar.DAY_OF_YEAR);
 
-        for (int i = 0; i < days; i++) {
+        currentYear = calendar.get(Calendar.YEAR);
+        currentMonth = calendar.get(Calendar.MONTH);
+        currentDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        currentDayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
+        currentYearDays = days;
+
+        //back
+        for (int i = currentDayOfMonth; i < realDayOfMonth; i++) {
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH) + 1;
             day = calendar.get(Calendar.DAY_OF_MONTH);
             week = calendar.get(Calendar.DAY_OF_WEEK);
             temps.add(new MyGalleryModel(year, month, day, week));
-            calendar.add(Calendar.DAY_OF_MONTH, -1);
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
+        //添加进数据，已包含了当天的时间
+        datas.addAll(temps);
 
+        //还原至当天
+        calendar.set(Calendar.YEAR, currentYear);
+        calendar.set(Calendar.MONTH, currentMonth);
+        calendar.set(Calendar.DAY_OF_MONTH, currentDayOfMonth);
+
+        temps.clear();
+        //pre
+        for (int i = 0; i < currentYearDays - 1; i++) {
+            calendar.add(Calendar.DAY_OF_MONTH, -1);
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH) + 1;
+            day = calendar.get(Calendar.DAY_OF_MONTH);
+            week = calendar.get(Calendar.DAY_OF_WEEK);
+            temps.add(new MyGalleryModel(year, month, day, week));
+        }
         Collections.reverse(temps);
 
         datas.addAll(0, temps);
@@ -151,18 +185,17 @@ public class MyGallery extends LinearLayout {
 
     }
 
-    private onSelectedListener monSelectedListener;
-
     public void setMonSelectedListener(onSelectedListener monSelectedListener) {
         this.monSelectedListener = monSelectedListener;
-    }
-
-    public interface onSelectedListener {
-        void onSelected(MyGalleryModel model);
     }
 
     private void scheduleDismissOnScreenControls() {
         mHandler.removeCallbacks(mDismissOnScreenControlRunner);
         mHandler.postDelayed(mDismissOnScreenControlRunner, 1000);
+    }
+
+    public interface onSelectedListener {
+
+        void onSelected(MyGalleryModel model);
     }
 }
