@@ -101,6 +101,10 @@ public class MyGallery extends LinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 MyGalleryAdapter adapter = (MyGalleryAdapter) parent.getAdapter();
+
+                adapter.setSelectedPosition(position);
+                adapter.notifyDataSetChanged();
+
                 MyGalleryModel model = adapter.getItem(position);
                 galleryTextViewYearMonth.setText(model.getYear() + "年" + model.getMonth() + "月");
 
@@ -186,7 +190,7 @@ public class MyGallery extends LinearLayout {
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
             }
         } else{
-            for (int i = currentDayOfYear; i < realDayOfYear; i++) {
+            for (int i = currentDayOfYear; i <= realDayOfYear; i++) {
                 year = calendar.get(Calendar.YEAR);
                 month = calendar.get(Calendar.MONTH) + 1;
                 day = calendar.get(Calendar.DAY_OF_MONTH);

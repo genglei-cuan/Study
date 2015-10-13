@@ -1,6 +1,7 @@
 package cn.steve.gallery;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,19 @@ public class MyGalleryAdapter extends BaseAdapter {
 
     private ArrayList<MyGalleryModel> data;
     private Context mContext;
+    private int selectedPosition = 0;
 
     public MyGalleryAdapter(ArrayList<MyGalleryModel> data, Context context) {
         this.data = data;
         this.mContext = context;
+    }
+
+    public int getSelectedPosition() {
+        return selectedPosition;
+    }
+
+    public void setSelectedPosition(int selectedPosition) {
+        this.selectedPosition = selectedPosition;
     }
 
     @Override
@@ -52,6 +62,16 @@ public class MyGalleryAdapter extends BaseAdapter {
         TextView galleryTextViewDay = (TextView) view.findViewById(R.id.galleryTextViewDay);
         galleryTextViewDay.setText(myGalleryModel.getDay() + "");
         galleryTextViewWeek.setText(getWeek(myGalleryModel.getWeek()));
+        if (position == selectedPosition) {
+            galleryTextViewDay.setTextColor(Color.parseColor("#1cd98e"));
+            galleryTextViewWeek.setTextColor(Color.parseColor("#1cd98e"));
+            view.setBackgroundDrawable(mContext.getResources().getDrawable(
+                R.drawable.boradunderline));
+        } else {
+            galleryTextViewDay.setTextColor(Color.parseColor("#0e9cd3"));
+            galleryTextViewWeek.setTextColor(Color.parseColor("#0e9cd3"));
+            view.setBackgroundDrawable(null);
+        }
         return view;
     }
 
