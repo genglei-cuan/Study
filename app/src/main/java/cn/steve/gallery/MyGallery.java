@@ -161,19 +161,41 @@ public class MyGallery extends LinearLayout {
         currentDayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
         currentYearDays = days;
 
+        //back
         //相差的年份
-        for (int i = 0; i < realYear - currentYear; i++) {
+        int delta = realYear - currentYear;
+        //当年的所有日期加入
+        for (int i = 0; i < delta; i++) {
+            int sum = calendar.getActualMaximum(Calendar.DAY_OF_YEAR);
+            for (int j = currentDayOfYear; j < sum; j++) {
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH) + 1;
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                week = calendar.get(Calendar.DAY_OF_WEEK);
+                temps.add(new MyGalleryModel(year, month, day, week));
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
+        }
+        if (delta > 0) {
+            for (int i = 0; i < realDayOfYear; i++) {
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH) + 1;
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                week = calendar.get(Calendar.DAY_OF_WEEK);
+                temps.add(new MyGalleryModel(year, month, day, week));
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
+        } else{
+            for (int i = currentDayOfYear; i < realDayOfYear; i++) {
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH) + 1;
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                week = calendar.get(Calendar.DAY_OF_WEEK);
+                temps.add(new MyGalleryModel(year, month, day, week));
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
         }
 
-        //back
-        for (int i = currentDayOfYear; i < realDayOfYear; i++) {
-            year = calendar.get(Calendar.YEAR);
-            month = calendar.get(Calendar.MONTH) + 1;
-            day = calendar.get(Calendar.DAY_OF_MONTH);
-            week = calendar.get(Calendar.DAY_OF_WEEK);
-            temps.add(new MyGalleryModel(year, month, day, week));
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
-        }
         //添加进数据，已包含了当天的时间
         datas.addAll(temps);
 
@@ -185,6 +207,7 @@ public class MyGallery extends LinearLayout {
         temps.clear();
         //pre用以记录下标，还原正确的位置
         int pre = 0;
+
         for (int i = 0; i < currentDayOfYear - 1; i++) {
             calendar.add(Calendar.DAY_OF_MONTH, -1);
             year = calendar.get(Calendar.YEAR);
