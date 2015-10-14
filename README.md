@@ -15,6 +15,8 @@
 | eventbus   |   左右两个fragment进行通信 |   用的是鸿洋的demo      |
 | fileIO   |  文件的IO操作 |   文件的IO操作   |
 | fragment   |  fragment的基本操作 |   fragment操作   |
+| gallery   |  对gallery的基本操作和一个自定义的滑动日期选择 |   利用gallery做的水平滚动选择日期   |
+| gson   |  gson这个库的利用 |   利用gson解析天气数据TODO    |
 | handler   |  handler的基本操作 |   handler post runnable的使用   |
 | http   |  关于http的一些知识点 |   目前有asynchttp的demo TODO    |
 | imageloader   |  universalimageloader 的demo |   拷贝的官方lib中的sample，universalimageloader的基本操作     |
