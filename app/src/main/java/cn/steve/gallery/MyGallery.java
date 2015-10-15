@@ -140,7 +140,7 @@ public class MyGallery extends LinearLayout {
 
                 //更新前一年的信息
                 if (model.getYear() == currentYear && model.getMonth() == 1
-                    && model.getDay() == 10) {
+                        && model.getDay() == 10) {
                     getData(mCalendar, false);
                     gallery.setSelection(currentYearDays + position);
                 }
@@ -259,7 +259,9 @@ public class MyGallery extends LinearLayout {
         //设置应在的位置
         gallery.setSelection(pre);
 
-        warningPosition = pre;
+        if (currentYear == realYear && currentDayOfYear == realDayOfYear) {
+            warningPosition = pre;
+        }
 
     }
 
