@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -49,23 +48,42 @@ public class MyGallery extends LinearLayout {
     private boolean isUp = true;
     private MyGalleryModel selectedModel = null;
 
+    private int warningPosition = 0;
+    private boolean isWarn = false;
+
 
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            int what = msg.what;
+            switch (what) {
+                case 1:
+                    gallery.setSelection(warningPosition);
+
+                    MyGalleryAdapter adapter = (MyGalleryAdapter) gallery.getAdapter();
+                    adapter.setSelectedPosition(warningPosition);
+                    adapter.notifyDataSetChanged();
+                    break;
+            }
 
         }
     };
 
 
     private onSelectedListener monSelectedListener;
+
     private Runnable mDismissOnScreenControlRunner = new Runnable() {
+
         @Override
         public void run() {
             if (isUp) {
-                Log.i("停止了哦", "现在是稳定状态");
-                monSelectedListener.onSelected(selectedModel);
+                if (!isWarn) {
+                    monSelectedListener.onSelected(selectedModel);
+                } else {
+                    //跳转到今天
+                    mHandler.obtainMessage(1).sendToTarget();
+                }
             }
         }
     };
@@ -74,6 +92,7 @@ public class MyGallery extends LinearLayout {
         super(context);
         this.mContext = context;
     }
+
 
     public MyGallery(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -100,8 +119,12 @@ public class MyGallery extends LinearLayout {
         AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > warningPosition) {
+                    isWarn = true;
+                } else {
+                    isWarn = false;
+                }
                 MyGalleryAdapter adapter = (MyGalleryAdapter) parent.getAdapter();
-
                 adapter.setSelectedPosition(position);
                 adapter.notifyDataSetChanged();
 
@@ -115,7 +138,7 @@ public class MyGallery extends LinearLayout {
                     gallery.setSelection(currentYearDays + position);
                 }
                 selectedModel = model;
-                scheduleDismissOnScreenControls();
+                scheduleDismissOnScreenControls(position);
             }
 
             @Override
@@ -136,7 +159,6 @@ public class MyGallery extends LinearLayout {
             }
         });
         getData(mCalendar, true);
-
     }
 
     public void setmCalendar(Calendar mCalendar) {
@@ -181,7 +203,7 @@ public class MyGallery extends LinearLayout {
             }
         }
         if (delta > 0) {
-            for (int i = 0; i < realDayOfYear; i++) {
+            for (int i = 0; i < currentYearDays; i++) {
                 year = calendar.get(Calendar.YEAR);
                 month = calendar.get(Calendar.MONTH) + 1;
                 day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -189,8 +211,8 @@ public class MyGallery extends LinearLayout {
                 temps.add(new MyGalleryModel(year, month, day, week));
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
             }
-        } else{
-            for (int i = currentDayOfYear; i <= realDayOfYear; i++) {
+        } else {
+            for (int i = currentDayOfYear; i <= currentYearDays; i++) {
                 year = calendar.get(Calendar.YEAR);
                 month = calendar.get(Calendar.MONTH) + 1;
                 day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -230,19 +252,22 @@ public class MyGallery extends LinearLayout {
         //设置应在的位置
         gallery.setSelection(pre);
 
+        warningPosition = pre;
+
     }
 
     public void setMonSelectedListener(onSelectedListener monSelectedListener) {
         this.monSelectedListener = monSelectedListener;
     }
 
-    private void scheduleDismissOnScreenControls() {
+    private void scheduleDismissOnScreenControls(int position) {
         mHandler.removeCallbacks(mDismissOnScreenControlRunner);
-        mHandler.postDelayed(mDismissOnScreenControlRunner, 1000);
+        mHandler.postDelayed(mDismissOnScreenControlRunner, 500);
     }
 
     public interface onSelectedListener {
 
         void onSelected(MyGalleryModel model);
     }
+
 }
