@@ -143,6 +143,7 @@
 
         <!--asynchttp请求的demo-->
         <activity android:name="cn.steve.http.asynchttp.AsyncHttpActivity">
+
         </activity>
         <activity android:name="cn.steve.http.okhttp.OkHttpActivity">
         </activity>
@@ -155,12 +156,14 @@
         </activity>
 
         <activity android:name="cn.steve.gallery.MyGalleryMainActivity">
+        </activity>
+
+        <activity android:name="cn.steve.gson.GsonMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

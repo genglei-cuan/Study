@@ -47,6 +47,8 @@ public class AsyncHttpActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse,
                                   Throwable e) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                String s = new String(errorResponse);
+                textViewMain.setText(s);
             }
 
             @Override
