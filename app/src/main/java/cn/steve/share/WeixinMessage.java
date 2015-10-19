@@ -5,6 +5,9 @@ package cn.steve.share;
  */
 public class WeixinMessage extends Message {
 
+    private String mTitle;
+    private String mContent;
+    private String mImageURL;
 
     @Override
     void shareMessage() {
