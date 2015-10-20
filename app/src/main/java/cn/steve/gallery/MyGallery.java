@@ -47,6 +47,7 @@ public class MyGallery extends LinearLayout {
 
     private boolean isUp = true;
     private MyGalleryModel selectedModel = null;
+    private int currentSelectedPosition = 0;
 
     private int warningPosition = 0;
     //记录滑动选择的位置，目的是为了回滚
@@ -145,7 +146,7 @@ public class MyGallery extends LinearLayout {
                     gallery.setSelection(currentYearDays + position);
                 }
                 selectedModel = model;
-                scheduleDismissOnScreenControls(position);
+                currentSelectedPosition = position;
             }
 
             @Override
@@ -161,6 +162,10 @@ public class MyGallery extends LinearLayout {
                 }
                 if (event.getActionMasked() == MotionEvent.ACTION_UP) {
                     isUp = true;
+                    scheduleDismissOnScreenControls(currentSelectedPosition);
+                }
+                if (event.getActionMasked() == MotionEvent.ACTION_MOVE) {
+
                 }
                 return false;
             }
