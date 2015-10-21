@@ -30,6 +30,7 @@
 1. main   设置fragment基类  
 1. preferenceactivity   关于偏好设置的activity
 1. radiobutton   radiobutton测试监听
+1. screenshot    屏幕截图测试监听 TODO 
 1. service   简单测试service的生命周期，以及和activity之间的通信
 1. share   内容分享的demo,分享到QQ，微信等的demo TODO
 1. signature   手写签名
@@ -37,6 +38,7 @@
 1. spinnerdroplayout   spinner下拉选项 
 1. touchevent   touchevent，以及自定义view 
 1. uicommunicate   在主线程上开辟线程 
+1. viewcoordinate   android中的坐标系
 1. viewflipper   侧滑
 1. weakreferencehandler   初设弱引用概念
 1. webview   加载URI，以及注入JS调用和混淆代码

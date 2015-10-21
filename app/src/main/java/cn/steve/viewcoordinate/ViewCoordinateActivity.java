@@ -11,6 +11,8 @@ import android.widget.TextView;
 import cn.steve.study.R;
 
 /**
+ * 测试android中的view的坐标系
+ *
  * Created by yantinggeng on 2015/10/20.
  */
 public class ViewCoordinateActivity extends AppCompatActivity {
@@ -18,6 +20,9 @@ public class ViewCoordinateActivity extends AppCompatActivity {
     private android.widget.TextView textviewUP;
     private android.widget.TextView textviewDown;
     private Button buttonChangePostion;
+
+    //记录绝对坐标
+    private int[] positionInWindow = new int[2];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,8 @@ public class ViewCoordinateActivity extends AppCompatActivity {
                 changePositon(270);
             }
         });
+
+        textviewUP.getLocationInWindow(positionInWindow);
 
     }
 
@@ -103,17 +110,17 @@ public class ViewCoordinateActivity extends AppCompatActivity {
                 break;
 
             case 270:
-                textviewUP.setX(left-textviewUP.getWidth());
+                textviewUP.setX(left - textviewUP.getWidth());
                 textviewUP.setY(y);
                 break;
 
             case 300:
-                textviewUP.setX(left-textviewUP.getWidth());
+                textviewUP.setX(left - textviewUP.getWidth());
                 textviewUP.setY(y - width / 4);
                 break;
 
             case 330:
-                textviewUP.setX(left-textviewUP.getWidth());
+                textviewUP.setX(left - textviewUP.getWidth());
                 textviewUP.setY(y - width / 2);
                 break;
 
