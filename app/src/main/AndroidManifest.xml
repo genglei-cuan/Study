@@ -161,7 +161,7 @@
         <activity android:name="cn.steve.gson.GsonMainActivity">
 
         </activity>
-        <activity android:name="cn.steve.screenshot.ScreenShotActivity">
+        <activity android:name="cn.steve.viewcoordinate.ViewCoordinateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
