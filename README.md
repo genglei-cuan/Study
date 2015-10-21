@@ -28,6 +28,7 @@
 1. imageloader    universalimageloader 的demo,拷贝的官方lib中的sample，universalimageloader的基本操作
 1. listview   listview的基本操作,listview缓存，以及一个通用的viewholder 
 1. main   设置fragment基类  
+1. percentlayout   percentlayout的使用demo  
 1. preferenceactivity   关于偏好设置的activity
 1. radiobutton   radiobutton测试监听
 1. screenshot    屏幕截图测试监听 TODO 
