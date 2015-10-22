@@ -22,4 +22,17 @@
         <attr name="floatLabelSidePadding" format="reference|dimension"/>
     </declare-styleable>
 
+    <!-- 今日数据 -->
+    <attr name="bordColor" format="color" />
+    <!-- 圆形的边框的颜色 -->
+    <attr name="timeColor" format="color" />
+    <!-- 刻度的颜色 -->
+    <attr name="bordWidth" format="dimension" />
+    <!-- 边框的宽度 -->
+
+    <declare-styleable name="SleepClockCircle">
+        <attr name="bordColor" />
+        <attr name="timeColor" />
+        <attr name="bordWidth" />
+    </declare-styleable>
 </resources>
