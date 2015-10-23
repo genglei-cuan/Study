@@ -166,17 +166,17 @@
         </activity>
 
         <activity android:name="cn.steve.screenshot.ScreenShotActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <activity android:name="cn.steve.percentlayout.PercentLayoutActivity">
         </activity>
 
         <activity android:name="cn.steve.circle.CircleMianActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
     </application>

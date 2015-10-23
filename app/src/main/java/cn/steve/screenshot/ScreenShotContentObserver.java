@@ -48,7 +48,7 @@ public class ScreenShotContentObserver extends ContentObserver {
                     if (query.getLong(query.getColumnIndexOrThrow("_size")) > 1
                         && !TextUtils.isEmpty(type) && (type.contains("image")
                                                         || type.contains("Image"))) {
-                        mHandler.obtainMessage(1,realPath).sendToTarget();
+                        mHandler.obtainMessage(1, realPath).sendToTarget();
                     }
                 }
             } catch (Exception e2) {

@@ -1,5 +1,7 @@
 package cn.steve.screenshot;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileObserver;
@@ -7,12 +9,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore.Images.Media;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.File;
 
 import cn.steve.study.R;
 
 /**
- *
  * 截图监听器测试
  *
  * Created by yantinggeng on 2015/10/21.
@@ -21,11 +25,17 @@ public class ScreenShotActivity extends AppCompatActivity {
 
     ScreenShotContentObserver observer;
     private TextView screenshot;
+    private ImageView imageViewScreenShotPreview;
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             screenshot.setText(msg.obj.toString());
+            File imgFile = new File(msg.obj.toString());
+            if (imgFile.exists()) {
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                imageViewScreenShotPreview.setImageBitmap(myBitmap);
+            }
         }
     };
 
@@ -33,6 +43,7 @@ public class ScreenShotActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screenshot);
+        this.imageViewScreenShotPreview = (ImageView) findViewById(R.id.imageViewScreenShotPreview);
         this.screenshot = (TextView) findViewById(R.id.screenshot);
         observer = new ScreenShotContentObserver(this.getApplicationContext(), handler);
         getContentResolver()
