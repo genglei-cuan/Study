@@ -146,6 +146,14 @@
             </intent-filter>
         </activity>
 
+        <!--activity的生命周期-->
+        <activity android:name="cn.steve.activitylifecycle.LifeActivityA"/>
+        <activity android:name="cn.steve.activitylifecycle.LifeActivityB"/>
+        <activity android:name="cn.steve.activitylifecycle.LifeCircleActivity">
+
+        </activity>
+
+
     </application>
 
 </manifest>

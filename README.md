@@ -11,6 +11,7 @@
 -----------
 # 包名对应的功能内容
 
+1. activitylifecycle activity的生命周期的研究
 1. asyntask asyntask异步任务的初步使用，模拟进度条
 1. buttonmenu 仿造早期的UC浏览器的菜单
 1. buttontext 仿造早期的UC浏览器的菜单，将菜单换成可滚动的文本
