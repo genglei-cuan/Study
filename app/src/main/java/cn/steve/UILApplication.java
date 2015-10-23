@@ -16,22 +16,6 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
  */
 public class UILApplication extends Application {
 
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-    @SuppressWarnings("unused")
-    @Override
-    public void onCreate() {
-        if (false && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-            StrictMode.setThreadPolicy(
-                new StrictMode.ThreadPolicy.Builder().detectAll().penaltyDialog().build());
-            StrictMode.setVmPolicy(
-                new StrictMode.VmPolicy.Builder().detectAll().penaltyDeath().build());
-        }
-
-        super.onCreate();
-
-        initImageLoader(getApplicationContext());
-    }
-
     //init the image loader params
     public static void initImageLoader(Context context) {
         // This configuration tuning is custom. You can tune every option, you may tune some of them,
@@ -48,4 +32,46 @@ public class UILApplication extends Application {
         // Initialize ImageLoader with configuration.
         ImageLoader.getInstance().init(config.build());
     }
+
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+    @SuppressWarnings("unused")
+    @Override
+    public void onCreate() {
+        if (false && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            StrictMode.setThreadPolicy(
+                new StrictMode.ThreadPolicy.Builder().detectAll().penaltyDialog().build());
+            StrictMode.setVmPolicy(
+                new StrictMode.VmPolicy.Builder().detectAll().penaltyDeath().build());
+        }
+        setActivityLifeCycleListener();
+
+        super.onCreate();
+
+        initImageLoader(getApplicationContext());
+    }
+
+    //注册activity的声明周期回调
+    private void setActivityLifeCycleListener() {
+
+        //TODO 事件监听回调 ps:这边似乎没有效果
+        Foreground.Listener myListener = new Foreground.Listener() {
+            @Override
+            public void onBecameForeground() {
+                System.out.printf("App 到达前台了");
+            }
+
+            @Override
+            public void onBecameBackground() {
+                System.out.printf("App 切换到了后台");
+            }
+        };
+
+        //添加activity的生命周期回调
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            Foreground.init(this);
+            Foreground.get().addListener(myListener);
+        }
+    }
+
+
 }
