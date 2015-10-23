@@ -1,182 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="cn.steve.study"
-          android:versionCode="1"
-          android:versionName="1.0">
+    package="cn.steve.study"
+    android:versionCode="1"
+    android:versionName="1.0">
 
     <!-- 添加读取sd卡的权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-            android:name="cn.steve.UILApplication"
-            android:allowBackup="false"
-            android:icon="@drawable/customer_icon"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat"
-            >
+        android:name="cn.steve.UILApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/customer_icon"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat">
 
         <!-- 对话框demo -->
-        <activity android:name="cn.steve.alertDialog.AlertDialogActivity">
-        </activity>
+        <activity android:name="cn.steve.alertDialog.AlertDialogActivity"></activity>
 
         <!-- fragment(碎片)demo -->
-        <activity android:name="cn.steve.fragment.MyFragmentActivity">
-        </activity>
+        <activity android:name="cn.steve.fragment.MyFragmentActivity"></activity>
 
         <!-- test the new click event -->
-        <activity android:name="cn.steve.click_xml.MXMLclick">
-        </activity>
+        <activity android:name="cn.steve.click_xml.MXMLclick"></activity>
 
         <!-- customer dialogue -->
-        <activity android:name="cn.steve.customdialog.MainActivity_Dailoge">
-        </activity>
+        <activity android:name="cn.steve.customdialog.MainActivity_Dailoge"></activity>
         <!-- 简单的dialog的包测试 -->
-        <activity android:name="cn.steve.customdialog.SimpleDialog">
-        </activity>
+        <activity android:name="cn.steve.customdialog.SimpleDialog"></activity>
 
         <!-- signature  simple  demo -->
-        <activity android:name="cn.steve.signature.Activity_Signature">
-        </activity>
+        <activity android:name="cn.steve.signature.Activity_Signature"></activity>
 
         <!-- customer paint view -->
-        <activity android:name="cn.steve.customview.CustomerPaintActivity">
-        </activity>
+        <activity android:name="cn.steve.customview.CustomerPaintActivity"></activity>
 
         <!-- 测试view的context的规则 -->
-        <activity android:name="cn.steve.contextmean.ContextActivity">
-        </activity>
-        <activity android:name="cn.steve.contextmean.ContextActivity_2">
-        </activity>
+        <activity android:name="cn.steve.contextmean.ContextActivity"></activity>
+        <activity android:name="cn.steve.contextmean.ContextActivity_2"></activity>
 
         <!--
              浮动的输入框，输入密码用户名会动态的变化,exported属性用作命令行启动 
         	这个API的使用最低需要时11
         -->
         <activity
-                android:name="cn.steve.floatLabelLayout.FloatLabelActivity"
-                android:exported="true">
-        </activity>
+            android:name="cn.steve.floatLabelLayout.FloatLabelActivity"
+            android:exported="true"></activity>
 
         <!-- simple  example of welcome  activity -->
-        <activity android:name="cn.steve.simpleWelcome.WelcomeActivity">
-        </activity>
-        <activity android:name="cn.steve.simpleWelcome.LoginActivity">
-        </activity>
+        <activity android:name="cn.steve.simpleWelcome.WelcomeActivity"></activity>
+        <activity android:name="cn.steve.simpleWelcome.LoginActivity"></activity>
 
         <!--类似于UC浏览器的底部菜单a bottom menu similar to the UC Browser-->
-        <activity android:name="cn.steve.bottomMenu.BottomMenuActivity">
-        </activity>
+        <activity android:name="cn.steve.bottomMenu.BottomMenuActivity"></activity>
 
         <!-- 修改的UC菜单，使得菜单替换成了文本，文本内容滚动 -->
-        <activity android:name="cn.steve.bottomtext.BottomTextActivity">
-        </activity>
+        <activity android:name="cn.steve.bottomtext.BottomTextActivity"></activity>
 
         <!-- 下拉列表 -->
-        <activity android:name="cn.steve.spinnerdroplayout.SpinnerDropActivity">
-        </activity>
+        <activity android:name="cn.steve.spinnerdroplayout.SpinnerDropActivity"></activity>
 
         <!-- viewFlipper -->
-        <activity android:name="cn.steve.viewflipper.AcitvityViewFlipper">
-        </activity>
-        <activity android:name="cn.steve.asynctask.AsyncTaskMainActivity">
-        </activity>
+        <activity android:name="cn.steve.viewflipper.AcitvityViewFlipper"></activity>
+        <activity android:name="cn.steve.asynctask.AsyncTaskMainActivity"></activity>
 
         <!-- the touch events demo -->
-        <activity android:name="cn.steve.touchevent.TouchMainActivity">
-        </activity>
+        <activity android:name="cn.steve.touchevent.TouchMainActivity"></activity>
         <!-- IO的操作 -->
-        <activity android:name="cn.steve.fileIO.MainActivity">
-        </activity>
+        <activity android:name="cn.steve.fileIO.MainActivity"></activity>
         <!-- weak 弱引用 -->
-        <activity android:name="cn.steve.weakreferencehandler.MainActivity">
-        </activity>
+        <activity android:name="cn.steve.weakreferencehandler.MainActivity"></activity>
         <!-- handler执行线程 -->
-        <activity android:name="cn.steve.handler.HandlerActivity">
-        </activity>
-        <activity android:name="cn.steve.handler.HandlerActivity02">
-        </activity>
+        <activity android:name="cn.steve.handler.HandlerActivity"></activity>
+        <activity android:name="cn.steve.handler.HandlerActivity02"></activity>
         <!-- webview -->
-        <activity android:name="cn.steve.webview.WebViewActivity">
-        </activity>
+        <activity android:name="cn.steve.webview.WebViewActivity"></activity>
         <!-- broadcast -->
-        <activity android:name="cn.steve.broadcast.NormalBroadCastActivity">
-        </activity>
-        <activity android:name="cn.steve.broadcast.BroadCastMainActivity">
-        </activity>
+        <activity android:name="cn.steve.broadcast.NormalBroadCastActivity"></activity>
+        <activity android:name="cn.steve.broadcast.BroadCastMainActivity"></activity>
 
-        <receiver android:name="cn.steve.broadcast.NormalBCReceiverA">
-        </receiver>
-        <receiver android:name="cn.steve.broadcast.NormalBCReceiverB">
-        </receiver>
+        <receiver android:name="cn.steve.broadcast.NormalBCReceiverA"></receiver>
+        <receiver android:name="cn.steve.broadcast.NormalBCReceiverB"></receiver>
 
-        <activity android:name="cn.steve.broadcast.OrderBroadCastActivity">
-        </activity>
+        <activity android:name="cn.steve.broadcast.OrderBroadCastActivity"></activity>
 
-        <receiver android:name="cn.steve.broadcast.OrderBCReceiverA">
-        </receiver>
-        <receiver android:name="cn.steve.broadcast.OrderBCReceiverB">
-        </receiver>
+        <receiver android:name="cn.steve.broadcast.OrderBCReceiverA"></receiver>
+        <receiver android:name="cn.steve.broadcast.OrderBCReceiverB"></receiver>
 
-        <activity android:name="cn.steve.service.ServiceMainActivity">
-        </activity>
+        <activity android:name="cn.steve.service.ServiceMainActivity"></activity>
 
-        <service android:name="cn.steve.service.MsgService">
-        </service>
+        <service android:name="cn.steve.service.MsgService"></service>
 
-        <activity android:name="cn.steve.uicommunicate.UIActivity">
-        </activity>
-        <activity android:name="cn.steve.listview.cache.ListViewMainActivity">
-        </activity>
+        <activity android:name="cn.steve.uicommunicate.UIActivity"></activity>
+        <activity android:name="cn.steve.listview.cache.ListViewMainActivity"></activity>
         <!-- 水平循环滚动 -->
-        <activity android:name="cn.steve.gallery.HorizontalScrollViewMainActivity">
-        </activity>
+        <activity android:name="cn.steve.gallery.HorizontalScrollViewMainActivity"></activity>
         <!--Universal image loader-->
-        <activity android:name="cn.steve.imageloader.ImageLoaderActivity"
-                >
-        </activity>
+        <activity android:name="cn.steve.imageloader.ImageLoaderActivity"></activity>
         <!--Event Bus-->
-        <activity android:name="cn.steve.eventbus.EventBusActivity"
-                >
-        </activity>
+        <activity android:name="cn.steve.eventbus.EventBusActivity"></activity>
 
         <!--asynchttp请求的demo-->
         <activity android:name="cn.steve.http.asynchttp.AsyncHttpActivity">
 
         </activity>
-        <activity android:name="cn.steve.http.okhttp.OkHttpActivity">
-        </activity>
+        <activity android:name="cn.steve.http.okhttp.OkHttpActivity"></activity>
 
-        <activity android:name="cn.steve.radiobutton.RadioButtonMainActivity">
-        </activity>
+        <activity android:name="cn.steve.radiobutton.RadioButtonMainActivity"></activity>
 
         <activity android:name="cn.steve.gallery.GalleryMainActivity">
 
         </activity>
 
-        <activity android:name="cn.steve.gallery.MyGalleryMainActivity">
-        </activity>
+        <activity android:name="cn.steve.gallery.MyGalleryMainActivity"></activity>
 
         <activity android:name="cn.steve.gson.GsonMainActivity">
 
         </activity>
-        <activity android:name="cn.steve.viewcoordinate.ViewCoordinateActivity">
-        </activity>
+        <activity android:name="cn.steve.viewcoordinate.ViewCoordinateActivity"></activity>
 
         <activity android:name="cn.steve.screenshot.ScreenShotActivity">
+
+        </activity>
+
+        <activity android:name="cn.steve.percentlayout.PercentLayoutActivity"></activity>
+
+        <activity android:name="cn.steve.circle.CircleMianActivity">
+
+        </activity>
+
+        <activity android:name="cn.steve.recyclerview.SimpleRecyclerViewMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-
-        <activity android:name="cn.steve.percentlayout.PercentLayoutActivity">
-        </activity>
-
-        <activity android:name="cn.steve.circle.CircleMianActivity">
-
         </activity>
 
     </application>
