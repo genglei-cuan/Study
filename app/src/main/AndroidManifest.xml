@@ -103,40 +103,34 @@
         <activity android:name="cn.steve.eventbus.EventBusActivity"></activity>
 
         <!--asynchttp请求的demo-->
-        <activity android:name="cn.steve.http.asynchttp.AsyncHttpActivity">
-        </activity>
+        <activity android:name="cn.steve.http.asynchttp.AsyncHttpActivity"></activity>
         <activity android:name="cn.steve.http.okhttp.OkHttpActivity"></activity>
 
         <!--单选控件-->
         <activity android:name="cn.steve.radiobutton.RadioButtonMainActivity"></activity>
 
-        <activity android:name="cn.steve.gallery.GalleryMainActivity">
-        </activity>
+        <activity android:name="cn.steve.gallery.GalleryMainActivity"></activity>
 
         <!--使用gallery实现时期滑动选择-->
         <activity android:name="cn.steve.gallery.MyGalleryMainActivity"></activity>
 
         <!--gson使用demo-->
-        <activity android:name="cn.steve.gson.GsonMainActivity">
-        </activity>
+        <activity android:name="cn.steve.gson.GsonMainActivity"></activity>
 
         <!--屏幕坐标-->
         <activity android:name="cn.steve.viewcoordinate.ViewCoordinateActivity"></activity>
 
         <!--截屏监听-->
-        <activity android:name="cn.steve.screenshot.ScreenShotActivity">
-        </activity>
+        <activity android:name="cn.steve.screenshot.ScreenShotActivity"></activity>
 
         <!--百分比布局-->
         <activity android:name="cn.steve.percentlayout.PercentLayoutActivity"></activity>
 
         <!--画圆-->
-        <activity android:name="cn.steve.circle.CircleMianActivity">
-        </activity>
+        <activity android:name="cn.steve.circle.CircleMianActivity"></activity>
 
         <!--recyclerview -->
-        <activity android:name="cn.steve.recyclerview.SimpleRecyclerViewMainActivity">
-        </activity>
+        <activity android:name="cn.steve.recyclerview.SimpleRecyclerViewMainActivity"></activity>
 
         <!--检测手机卡-->
         <activity android:name="cn.steve.simcardnet.SimCardMainActivity">
@@ -147,12 +141,21 @@
         </activity>
 
         <!--activity的生命周期-->
-        <activity android:name="cn.steve.activitylifecycle.LifeActivityA"/>
-        <activity android:name="cn.steve.activitylifecycle.LifeActivityB"/>
+        <activity android:name="cn.steve.activitylifecycle.LifeActivityA" />
+        <activity android:name="cn.steve.activitylifecycle.LifeActivityB" />
         <activity android:name="cn.steve.activitylifecycle.LifeCircleActivity">
 
         </activity>
 
+        <!--animator demo-->
+        <activity android:name="cn.steve.animator.AnimatorActivity">
+
+        </activity>
+
+        <!--audio demo-->
+        <activity android:name="cn.steve.audiomanager.AudioManagerActivity">
+
+        </activity>
 
     </application>
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <Button
+            android:id="@+id/button_switchModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="模式切换"/>
+
+    <Button
+            android:id="@+id/button_reduceVolume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="降低声音"/>
+
+    <Button
+            android:id="@+id/button_getCurrentModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获得当前的模式"/>
+
+    <Button
+            android:id="@+id/button_getVolumeFixed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获得isVolumeFixed的值"/>
+
+</LinearLayout>
