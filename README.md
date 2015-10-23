@@ -49,6 +49,8 @@
 
 
 
+> * Foreground 判断当前APP处在前台和后台判断
+> * UILApplication 为了初始化UIL库所加的的Application
 
 
 ##感激
