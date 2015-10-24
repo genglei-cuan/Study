@@ -153,9 +153,11 @@
         </activity>
 
         <!--audio demo-->
-        <activity android:name="cn.steve.audiomanager.AudioManagerActivity">
+        <activity android:name="cn.steve.audiomanager.AudioManagerActivity"></activity>
 
-        </activity>
+        <!--修改系统亮度的demo-->
+        <activity android:name="cn.steve.brightness.BrightnessActivity"></activity>
+        <activity android:name="cn.steve.brightness.SeekBarBrightnessActivity"></activity>
 
     </application>
 

@@ -15,6 +15,7 @@
 1. asyntask asyntask异步任务的初步使用，模拟进度条
 1. buttonmenu 仿造早期的UC浏览器的菜单
 1. buttontext 仿造早期的UC浏览器的菜单，将菜单换成可滚动的文本
+1. brightness 调节屏幕亮度
 1. broadcast  研究广播的demo，有序广播，正常广播等的区别
 1. circle     圆形的钟盘，携带刻度，通过设置前后的时间，画出刻度
 1. click_xml 在XML文件中设置相应的方法
