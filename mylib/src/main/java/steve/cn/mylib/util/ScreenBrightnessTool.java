@@ -1,4 +1,4 @@
-package cn.steve.brightness;
+package steve.cn.mylib.util;
 
 import android.app.Activity;
 import android.content.ContentResolver;

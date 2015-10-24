@@ -15,6 +15,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import cn.steve.study.R;
+import steve.cn.mylib.util.ScreenBrightnessTool;
 
 
 public class SeekBarBrightnessActivity extends Activity {
