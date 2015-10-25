@@ -167,6 +167,9 @@
         <!-- 当前设备的一些硬件信息 -->
         <activity android:name="cn.steve.deviceinfo.DeviceInfoActivity"></activity>
 
+        <!-- 悬浮窗demo -->
+        <activity android:name="cn.steve.floatingview.FloatingMainActivity"></activity>
+
     </application>
 
 </manifest>
