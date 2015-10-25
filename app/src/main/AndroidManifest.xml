@@ -161,10 +161,11 @@
 
         <!-- 手机网络状态的监听 -->
         <activity android:name="cn.steve.datatraffic.DataTrafficActivity">
-
         </activity>
         <receiver android:name="cn.steve.datatraffic.NetConnectBroadCastReceiver"></receiver>
 
+        <!-- 当前设备的一些硬件信息 -->
+        <activity android:name="cn.steve.deviceinfo.DeviceInfoActivity"></activity>
 
     </application>
 
