@@ -159,6 +159,13 @@
         <activity android:name="cn.steve.brightness.BrightnessActivity"></activity>
         <activity android:name="cn.steve.brightness.SeekBarBrightnessActivity"></activity>
 
+        <!-- 手机网络状态的监听 -->
+        <activity android:name="cn.steve.datatraffic.DataTrafficActivity">
+
+        </activity>
+        <receiver android:name="cn.steve.datatraffic.NetConnectBroadCastReceiver"></receiver>
+
+
     </application>
 
 </manifest>
