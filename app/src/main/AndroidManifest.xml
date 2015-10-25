@@ -170,6 +170,10 @@
         <!-- 悬浮窗demo -->
         <activity android:name="cn.steve.floatingview.FloatingMainActivity"></activity>
 
+        <!-- 流式布局的demo -->
+        <activity android:name="cn.steve.flowlayout.FlowLayoutMainActivity">
+        </activity>
+
     </application>
 
 </manifest>

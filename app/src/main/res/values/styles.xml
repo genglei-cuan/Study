@@ -66,4 +66,12 @@
 
     <style name="ProgressBarStyle" parent="@android:style/Widget.ProgressBar.Horizontal"/>
 
+    <!--瀑布流的样式-->
+    <style name="FlowLayoutTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:background">@drawable/flowlayoutback</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
 </resources>

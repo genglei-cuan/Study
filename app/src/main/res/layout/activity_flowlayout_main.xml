@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <cn.steve.flowlayout.FlowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:text="Welcome"/>
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:text="IT工程师"/>
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:text="学习ing"/>
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:text="恋爱ing"/>
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:text="挣钱ing"/>
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:text="努力ing"/>
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:text="I thick pre can"/>
+    </cn.steve.flowlayout.FlowLayout>
+
+
+    <cn.steve.flowlayout.FlowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:textColor="#323232"
+                android:text="Welcome"/>
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:textColor="#323232"
+                android:text="IT工程师"/>
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:textColor="#323232"
+                android:text="学习ing"/>
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:textColor="#323232"
+                android:text="恋爱ing"/>
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:textColor="#323232"
+                android:text="挣钱ing"/>
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:textColor="#323232"
+                android:text="努力ing"/>
+
+        <TextView
+                style="@style/FlowLayoutTextStyle"
+                android:textColor="#323232"
+                android:text="I thick pre can"/>
+    </cn.steve.flowlayout.FlowLayout>
+</LinearLayout>
