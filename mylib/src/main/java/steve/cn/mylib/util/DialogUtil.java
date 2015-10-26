@@ -22,20 +22,19 @@ import steve.cn.mylib.R;
  * loading Dialog工具类
  */
 public class DialogUtil {
-
     // 渐变退出的时间
     private static final int CANCEL_LOADING_TIME = 500;
     // 每旋转一圈的时间
     private static final int PER_REVOLUTION_TIME = 700;
     private SafeProgressDialog loadingDialog;
     //必须是activity
-    private Context mContext;
+    private Activity mContext;
     private LinearLayout ll_layout;
     private ImageView spaceshipImage;
     private TextView tipTextView;
     private int mDefaultTextSize = 20;
 
-    public DialogUtil(Context context) {
+    public DialogUtil(Activity context) {
         mContext = context;
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.loading_dialog, null);// 得到加载view
