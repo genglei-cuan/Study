@@ -12,7 +12,10 @@
 # 包名对应的功能内容
 
 1. activitylifecycle activity的生命周期的研究
-1. asyntask asyntask异步任务的初步使用，模拟进度条
+1. alertDialog       测试警告对话框
+1. animator          属性动画的简单使用
+1. asyntask asyntask 异步任务的初步使用，模拟进度条
+1. audiomanager      静音，震动等模式的切换
 1. buttonmenu 仿造早期的UC浏览器的菜单
 1. buttontext 仿造早期的UC浏览器的菜单，将菜单换成可滚动的文本
 1. brightness 调节屏幕亮度
@@ -22,11 +25,15 @@
 1. contextmean 测试context的真实含义
 1. customdialog 自定义各种形式的dialogue(熟悉stormzhang的)
 1. customview 自定义view,展示画布的含义
+1. datatraffic  流量，wifi开关的监听
+1. deviceinfo   获取一些手机的基本硬件信息
 1. eventbus   左右两个fragment进行通信,用的是鸿洋的demo
 1. fileIO   文件的IO操作
+1. floatingview    仿造一些广告商的SDK中的一些悬浮窗，注：有的华为小米等可以禁止悬浮窗的显示的。
+1. floatLabelLayout    仿造弘扬大大的流式布局写的demo
 1. fragment   fragment的基本操作
 1. gallery   对gallery的基本操作和一个自定义的滑动日期选择
-1. gson    利用gson解析天气数据TODO
+1. gson    利用gson解析天气数据 TODO
 1. handler    handler post runnable的使用
 1. http    关于http的一些知识点,目前有asynchttp的demo TODO
 1. imageloader    universalimageloader 的demo,拷贝的官方lib中的sample，universalimageloader的基本操作
