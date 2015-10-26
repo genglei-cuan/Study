@@ -115,7 +115,12 @@
         <activity android:name="cn.steve.gallery.MyGalleryMainActivity"></activity>
 
         <!--gson使用demo-->
-        <activity android:name="cn.steve.gson.GsonMainActivity"></activity>
+        <activity android:name="cn.steve.gson.GsonMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <!--屏幕坐标-->
         <activity android:name="cn.steve.viewcoordinate.ViewCoordinateActivity"></activity>
@@ -134,10 +139,7 @@
 
         <!--检测手机卡-->
         <activity android:name="cn.steve.simcardnet.SimCardMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <!--activity的生命周期-->

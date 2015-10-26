@@ -11,7 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import cn.steve.research.R;
+import cn.steve.study.R;
+
 
 /**
  * Created by Steve on 2015/9/2.

@@ -57,12 +57,12 @@ public class UILApplication extends Application {
         Foreground.Listener myListener = new Foreground.Listener() {
             @Override
             public void onBecameForeground() {
-                System.out.printf("App 到达前台了");
+                System.out.println("App 到达前台了");
             }
 
             @Override
             public void onBecameBackground() {
-                System.out.printf("App 切换到了后台");
+                System.out.println("App 切换到了后台");
             }
         };
 

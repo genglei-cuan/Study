@@ -14,7 +14,7 @@ public class WeatherRestClient {
 
     static {
         client = new AsyncHttpClient();
-        client.addHeader("appkey", "9bf616e5be3bf5e85a4c30d8fc6e9736");
+        client.addHeader("apikey", "9bf616e5be3bf5e85a4c30d8fc6e9736");
     }
 
     //get 请求

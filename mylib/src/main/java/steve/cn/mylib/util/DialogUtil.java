@@ -28,6 +28,7 @@ public class DialogUtil {
     // 每旋转一圈的时间
     private static final int PER_REVOLUTION_TIME = 700;
     private SafeProgressDialog loadingDialog;
+    //必须是activity
     private Context mContext;
     private LinearLayout ll_layout;
     private ImageView spaceshipImage;

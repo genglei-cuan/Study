@@ -28,7 +28,7 @@ public class GsonMainActivity extends AppCompatActivity {
     }
 
     private void request() {
-        final DialogUtil dialogUtil=new DialogUtil(getApplicationContext());
+        final DialogUtil dialogUtil = new DialogUtil(GsonMainActivity.this);
         RequestParams requestParams = new RequestParams();
         requestParams.put("city", "beijing");
         //get请求
@@ -52,6 +52,7 @@ public class GsonMainActivity extends AppCompatActivity {
                                   Throwable e) {
                 dialogUtil.cancelLoadingDialog();
                 String s = new String(errorResponse);
+                System.out.println("失败：" + s);
             }
 
             @Override
