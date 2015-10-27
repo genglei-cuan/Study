@@ -132,7 +132,15 @@
         <activity android:name="cn.steve.circle.CircleMianActivity"></activity>
 
         <!--recyclerview -->
-        <activity android:name="cn.steve.recyclerview.SimpleRecyclerViewMainActivity"></activity>
+        <activity android:name="cn.steve.recyclerview.SimpleRecyclerViewMainActivity">
+
+        </activity>
+        <activity android:name="cn.steve.recyclerview.multipleitem.MultipleItemMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <!--检测手机卡-->
         <activity android:name="cn.steve.simcardnet.SimCardMainActivity">
@@ -175,10 +183,7 @@
 
         <!-- APP运行在前后台的判断,只适用于Android4.0以上 -->
         <activity android:name="cn.steve.forebackground.ForeGroundMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity android:name="cn.steve.forebackground.ForeGroundActivityA"/>
 

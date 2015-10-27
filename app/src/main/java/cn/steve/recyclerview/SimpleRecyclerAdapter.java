@@ -15,7 +15,9 @@ import cn.steve.study.R;
 public class SimpleRecyclerAdapter extends RecyclerView.Adapter<SimpleRecyclerAdapter.ViewHolder>
     implements View.OnClickListener {
 
+    //文字部分的数据
     public String[] datas = null;
+    //点击监听器
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
 
     public SimpleRecyclerAdapter(String[] datas) {
@@ -64,6 +66,11 @@ public class SimpleRecyclerAdapter extends RecyclerView.Adapter<SimpleRecyclerAd
 
         public TextView mTextView;
 
+        /**
+         * 构造viewholder
+         *
+         * @param view 由外界传入
+         */
         public ViewHolder(View view) {
             super(view);
             mTextView = (TextView) view.findViewById(R.id.text);

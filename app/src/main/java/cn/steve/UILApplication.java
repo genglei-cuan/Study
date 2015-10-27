@@ -34,7 +34,6 @@ public class UILApplication extends Application {
     }
 
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-    @SuppressWarnings("unused")
     @Override
     public void onCreate() {
         if (false && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
@@ -54,22 +53,24 @@ public class UILApplication extends Application {
     private void setActivityLifeCycleListener() {
 
         //TODO 事件监听回调 ps:这边似乎没有效果
-        Foreground.Listener myListener = new Foreground.Listener() {
-            @Override
-            public void onBecameForeground() {
-                System.out.println("App 到达前台了");
-            }
+        Foreground.ForeBackStateChangedListener
+            myListener =
+            new Foreground.ForeBackStateChangedListener() {
+                @Override
+                public void onBecameForeground() {
+                    System.out.println("App 到达前台了");
+                }
 
-            @Override
-            public void onBecameBackground() {
-                System.out.println("App 切换到了后台");
-            }
-        };
+                @Override
+                public void onBecameBackground() {
+                    System.out.println("App 切换到了后台");
+                }
+            };
 
         //添加activity的生命周期回调
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             Foreground.init(this);
-            Foreground.get().addListener(myListener);
+            Foreground.listener = myListener;
         }
     }
 

@@ -44,14 +44,14 @@ public class SimpleRecyclerViewMainActivity extends Activity {
         //创建并设置Adapter
         mAdapter = new SimpleRecyclerAdapter(getDummyDatas());
         mAdapter.setOnItemClickListener(
-                new SimpleRecyclerAdapter.OnRecyclerViewItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, String data) {
-                        //Do fucking source
-                        Toast.makeText(SimpleRecyclerViewMainActivity.this, data, Toast.LENGTH_SHORT)
-                                .show();
-                    }
-                });
+            new SimpleRecyclerAdapter.OnRecyclerViewItemClickListener() {
+                @Override
+                public void onItemClick(View view, String data) {
+                    //Do fucking source
+                    Toast.makeText(SimpleRecyclerViewMainActivity.this, data, Toast.LENGTH_SHORT)
+                        .show();
+                }
+            });
 
         mRecyclerView.setAdapter(mAdapter);
     }
