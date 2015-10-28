@@ -9,8 +9,4 @@ public class WeixinMessage extends Message {
     private String mContent;
     private String mImageURL;
 
-    @Override
-    void shareMessage() {
-
-    }
 }

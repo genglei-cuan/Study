@@ -28,5 +28,6 @@
 
     <!-- customer simple welcome activity -->
     <color name="devide_line">#CBCED2</color>
+    <color name="main_gray">#9A9A9A</color>
 
 </resources>

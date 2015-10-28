@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.steve.study.R;
 
 /**
@@ -17,24 +18,25 @@ import cn.steve.study.R;
  */
 public class ShareMainActivity extends AppCompatActivity {
 
-    @Bind(R.id.buttonShareWeiXinFriend)
-    Button buttonShareWeiXinFriend;
-    @Bind(R.id.buttonShareWeiXinTimeLine)
-    Button buttonShareWeiXinTimeLine;
-    @Bind(R.id.buttonShareWeiBo)
-    Button buttonShareWeiBo;
-    @Bind(R.id.buttonShareQQFriend)
-    Button buttonShareQQFriend;
-    @Bind(R.id.buttonShareQQZone)
-    Button buttonShareQQZone;
-    private String text = "it is a test";
+    @Bind(R.id.buttonShare)
+    Button buttonShare;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
         ButterKnife.bind(this);
+
     }
 
+
+    @OnClick(R.id.buttonShare)
+    void showShare() {
+        final ShareDialog dialog = new ShareDialog(this);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setTitle("Title");
+        dialog.show();
+    }
 
 }
