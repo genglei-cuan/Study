@@ -133,10 +133,14 @@
 
         <!--recyclerview -->
         <activity android:name="cn.steve.recyclerview.SimpleRecyclerViewMainActivity">
-
         </activity>
         <activity android:name="cn.steve.recyclerview.multipleitem.MultipleItemMainActivity">
-
+        </activity>
+        <activity android:name="cn.steve.recyclerview.itemanimator.RecyclerViewItemAnimatorActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <!--检测手机卡-->
@@ -186,10 +190,7 @@
         <activity android:name="cn.steve.forebackground.ForeGroundActivityA"/>
 
         <activity android:name="cn.steve.click_xml.LayoutClickableMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
     </application>

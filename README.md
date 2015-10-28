@@ -42,7 +42,7 @@
 1. percentlayout   percentlayout的使用demo  
 1. preferenceactivity   关于偏好设置的activity
 1. radiobutton   radiobutton测试监听
-1. recyclerview   recyclerview的使用的简单demo,包含了设置监听器;添加了复杂类型的布局，多个item type
+1. recyclerview   recyclerview的使用的简单demo,包含了设置监听器;添加了复杂类型的布局，多个item type;添加item动画；
 1. screenshot    屏幕截图测试监听，通过系统的内容观察者来监听 
 1. service   简单测试service的生命周期，以及和activity之间的通信
 1. share   内容分享的demo,分享到QQ，微信等的demo TODO
