@@ -136,10 +136,7 @@
 
         </activity>
         <activity android:name="cn.steve.recyclerview.multipleitem.MultipleItemMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!--检测手机卡-->
@@ -184,9 +181,16 @@
         <!-- APP运行在前后台的判断,只适用于Android4.0以上 -->
         <activity android:name="cn.steve.forebackground.ForeGroundMainActivity">
 
+            <!-- 运行在前后台的测试 -->
         </activity>
         <activity android:name="cn.steve.forebackground.ForeGroundActivityA"/>
 
+        <activity android:name="cn.steve.click_xml.LayoutClickableMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
     </application>
 

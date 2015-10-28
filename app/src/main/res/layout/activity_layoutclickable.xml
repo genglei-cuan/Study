@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:id="@+id/linearLayoutClickable1"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layoutclickable"
+            android:clickable="true"
+            android:orientation="horizontal">
+    </LinearLayout>
+
+
+    <Button
+            android:id="@+id/ButtonClickable2"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:background="@drawable/layoutclickable"
+            android:layout_height="wrap_content"
+            android:textColor="@color/yellow_dark"
+            android:text="Button">
+    </Button>
+
+</LinearLayout>
