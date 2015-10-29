@@ -5,8 +5,4 @@ package cn.steve.share;
  */
 public class WeixinShareMessage extends ShareMessage {
 
-    private String mTitle;
-    private String mContent;
-    private String mImageURL;
-
 }

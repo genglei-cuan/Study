@@ -5,7 +5,5 @@ package cn.steve.share;
  */
 public class WeiboShareMessage extends ShareMessage {
 
-    private String mTitle;
-    private String mContent;
-    private String mImageURL;
+
 }

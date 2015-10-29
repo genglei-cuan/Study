@@ -5,4 +5,12 @@ package cn.steve.share;
  */
 public class QQShareMessage extends ShareMessage {
 
+    //分享的位置，分享到QQ和QQ空间
+    enum SHARETYPE {
+        QQZONE, QQ
+    }
+
+
+
+
 }

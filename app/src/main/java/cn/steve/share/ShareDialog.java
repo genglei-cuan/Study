@@ -66,12 +66,14 @@ public class ShareDialog extends Dialog {
         setContentView(view);
     }
 
+    //过多的行为逻辑被封装在了dialog中了，这样不好，目前想到的方案应该是在这里只是进行简单的调用逻辑
     private class OnclickShareListener implements View.OnClickListener {
 
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.ly_share_weichat_circle:
+                    share2WeChat();
                     break;
                 case R.id.ly_share_qq:
                     share2QQ();
@@ -90,10 +92,6 @@ public class ShareDialog extends Dialog {
         }
 
         private void share2WeChat() {
-
-        }
-
-        private void share2SMS() {
 
         }
 

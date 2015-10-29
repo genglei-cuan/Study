@@ -26,7 +26,8 @@ public class ShareMainActivity extends AppCompatActivity {
 
     @OnClick(R.id.buttonShare)
     void showShare() {
-
+        //这边应该只有开启dialog和封装一些基本的信息，将过多的行为逻辑放置于util中
+        
     }
 
 }
