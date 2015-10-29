@@ -1,5 +1,7 @@
 package cn.steve.gson;
 
+import com.google.gson.Gson;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
@@ -8,6 +10,9 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import cn.steve.study.R;
 import steve.cn.mylib.util.DialogUtil;
@@ -42,8 +47,21 @@ public class GsonMainActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 dialogUtil.cancelLoadingDialog();
                 if (statusCode == 200) {
+                    //解析返回的json数据，由于返回的数据中key含有空格，故而比较麻烦
                     String s = new String(response);
-                    System.out.println("成功:" + s);
+                    try {
+                        JSONObject completeObject = new JSONObject(s);
+                        JSONArray
+                            content =
+                            completeObject.getJSONArray("HeWeather data service 3.0");
+                        JSONObject trueWeatherData = content.getJSONObject(0);
+                        Gson gson = new Gson();
+                        WeatherData
+                            data =
+                            gson.fromJson(trueWeatherData.toString(), WeatherData.class);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
