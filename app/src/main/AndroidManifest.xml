@@ -116,10 +116,7 @@
 
         <!--gson使用demo-->
         <activity android:name="cn.steve.gson.GsonMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!--屏幕坐标-->
@@ -195,6 +192,14 @@
         <!-- 社交分享弹窗 -->
         <activity android:name="cn.steve.share.ShareMainActivity">
 
+        </activity>
+
+        <!-- 原生的下拉刷新控件 -->
+        <activity android:name="cn.steve.swiperefreshlayout.SwipeRefreshLayoutActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
     </application>

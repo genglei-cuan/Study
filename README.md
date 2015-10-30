@@ -50,6 +50,7 @@
 1. signature   手写签名
 1. simpkeWelcome   一个简单的欢迎界面，仿造的QQ 
 1. spinnerdroplayout   spinner下拉选项 
+1. swiperefreshlayout   SwipeRefreshLayout下拉刷新控件 
 1. touchevent   touchevent，以及自定义view 
 1. uicommunicate   在主线程上开辟线程 
 1. viewcoordinate   android中的坐标系
