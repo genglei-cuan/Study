@@ -14,6 +14,7 @@
 1. activitylifecycle activity的生命周期的研究
 1. alertDialog       测试警告对话框
 1. animator          属性动画的简单使用
+1. annotations       annotations的使用
 1. asyntask asyntask 异步任务的初步使用，模拟进度条
 1. audiomanager      静音，震动等模式的切换
 1. buttonmenu 仿造早期的UC浏览器的菜单
