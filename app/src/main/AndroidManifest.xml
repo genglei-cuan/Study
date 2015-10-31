@@ -210,6 +210,8 @@
         <activity android:name="cn.steve.netstate.NetStateActivity"></activity>
         <!--手势操作-->
         <activity android:name="cn.steve.gestureDetector.GestureDetectorMainActivity"></activity>
+        <!--listview显示错乱-->
+        <activity android:name="cn.steve.newsImoocListView.NewsImoocActivity"></activity>
 
     </application>
 
