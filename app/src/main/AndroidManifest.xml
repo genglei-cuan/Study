@@ -202,6 +202,15 @@
             </intent-filter>
         </activity>
 
+        <!--图片先缩放再显示-->
+        <activity android:name="cn.steve.image.ImagePreScaleActivity"></activity>
+        <!--viewstub -->
+        <activity android:name="cn.steve.layoutViewStub.ViewStubActivity"></activity>
+        <!--网络状态-->
+        <activity android:name="cn.steve.netstate.NetStateActivity"></activity>
+        <!--手势操作-->
+        <activity android:name="cn.steve.gestureDetector.GestureDetectorMainActivity"></activity>
+
     </application>
 
 </manifest>
