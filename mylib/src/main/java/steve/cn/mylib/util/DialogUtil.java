@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -73,6 +74,7 @@ public class DialogUtil {
      * @param textSize      提示消息的字体大小
      * @param setCancelable 是否可以点击空白处或者back键使Loading dialog消失
      */
+    @TargetApi(11)
     public void showLoadingDialog(String msg, int textSize,
                                   boolean setCancelable) {
         tipTextView.setTextSize(textSize);
@@ -103,6 +105,7 @@ public class DialogUtil {
      * @param textSize      提示消息的字体大小
      * @param setCancelable 是否可以点击空白处或者back键使Loading dialog消失
      */
+    @TargetApi(11)
     public void showLoadingDialogWithOutsizeCancelable(String msg, int textSize,
                                                        boolean setCancelable) {
         tipTextView.setTextSize(textSize);
@@ -129,6 +132,7 @@ public class DialogUtil {
     /**
      * 取消加载动画带渐变动画退出
      */
+    @TargetApi(11)
     public void cancelLoadingDialog() {
         spaceshipImage.clearAnimation();
         ObjectAnimator animator = ObjectAnimator.ofFloat(ll_layout, "alpha", 1.0f, 0.0f);

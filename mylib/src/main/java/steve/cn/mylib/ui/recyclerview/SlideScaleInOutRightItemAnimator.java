@@ -17,6 +17,7 @@
  */
 package steve.cn.mylib.ui.recyclerview;
 
+import android.annotation.TargetApi;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -119,6 +120,7 @@ public class SlideScaleInOutRightItemAnimator extends BaseItemAnimator {
         mEndScaleY = scaleY;
     }
 
+    @TargetApi(11)
     private void retrieveOriginalScale(RecyclerView.ViewHolder holder) {
         mOriginalScaleX = holder.itemView.getScaleX();
         mOriginalScaleY = holder.itemView.getScaleY();
