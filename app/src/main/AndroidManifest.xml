@@ -212,6 +212,13 @@
         <activity android:name="cn.steve.gestureDetector.GestureDetectorMainActivity"></activity>
         <!--listview显示错乱-->
         <activity android:name="cn.steve.newsImoocListView.NewsImoocActivity"></activity>
+        <!-- notification处点击进入APP -->
+        <activity android:name="cn.steve.notification.NotificationHandlerActivity"></activity>
+        <activity android:name="cn.steve.notification.ResultActivity"></activity>
+        <activity android:name="cn.steve.notification.StyleNotificationActivity"></activity>
+        <activity android:name="cn.steve.notification.TaskStackActivity"></activity>
+        <!--在notification出显示下载 -->
+
 
     </application>
 

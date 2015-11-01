@@ -45,6 +45,7 @@
 1. main   设置fragment基类  
 1. netstate   判断网络链接状态 
 1. newsImoocListView   慕课网中的demo，解决listview异步加载图片错乱的问题。 
+1. notification   在notification处显示通知，点击以后跳转到APP
 1. percentlayout   percentlayout的使用demo  
 1. preferenceactivity   关于偏好设置的activity
 1. radiobutton   radiobutton测试监听
