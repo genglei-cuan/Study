@@ -218,6 +218,7 @@
         <activity android:name="cn.steve.notification.StyleNotificationActivity"></activity>
         <activity android:name="cn.steve.notification.TaskStackActivity"></activity>
         <!--在notification出显示下载 -->
+        <activity android:name="cn.steve.notificationDownload.NotificationDownloadActivity"></activity>
 
 
     </application>
