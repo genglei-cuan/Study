@@ -202,6 +202,10 @@
             </intent-filter>
         </activity>
 
+        <!--魅族的适配-->
+        <activity android:name="cn.steve.flyme.FlymeAdapterActivity"></activity>
+        <activity android:name="cn.steve.recyclerview.itemtouchhelper.ItemTouchHelperMainActivity"></activity>
+
     </application>
 
 </manifest>
