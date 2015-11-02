@@ -15,7 +15,8 @@
             android:allowBackup="false"
             android:icon="@drawable/customer_icon"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat">
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:theme="@style/Theme.AppCompat.Light">
 
         <!-- 对话框demo -->
         <activity android:name="cn.steve.alertDialog.AlertDialogActivity"></activity>
@@ -196,12 +197,18 @@
 
         <!-- 原生的下拉刷新控件 -->
         <activity android:name="cn.steve.swiperefreshlayout.SwipeRefreshLayoutActivity">
+
+        </activity>
+
+        <activity
+                android:name="cn.steve.flyme.FlymeAdapterActivity"
+                android:uiOptions="splitActionBarWhenNarrow"
+                >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

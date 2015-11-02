@@ -31,7 +31,9 @@
 1. eventbus   左右两个fragment进行通信,用的是鸿洋的demo
 1. fileIO   文件的IO操作
 1. floatingview    仿造一些广告商的SDK中的一些悬浮窗，注：有的华为小米等可以禁止悬浮窗的显示的。
-1. floatLabelLayout    仿造弘扬大大的流式布局写的demo
+1. floatLabelLayout    
+1. flowLayout    仿造弘扬大大的流式布局写的demo
+1. flyme    适配魅族的smartbar,按照官方文档，目前还没出现效果，TODO 
 1. fragment   fragment的基本操作
 1. gallery   对gallery的基本操作和一个自定义的滑动日期选择
 1. gson    利用gson解析天气数据 TODO
@@ -43,7 +45,7 @@
 1. percentlayout   percentlayout的使用demo  
 1. preferenceactivity   关于偏好设置的activity
 1. radiobutton   radiobutton测试监听
-1. recyclerview   recyclerview的使用的简单demo,包含了设置监听器;添加了复杂类型的布局，多个item type;添加item动画；
+1. recyclerview   recyclerview的使用的简单demo,包含了设置监听器;添加了复杂类型的布局，多个item type;添加item动画；添加itemtouchhelper
 1. screenshot    屏幕截图测试监听，通过系统的内容观察者来监听 
 1. service   简单测试service的生命周期，以及和activity之间的通信
 1. share   内容分享的demo,分享到QQ，微信等的demo TODO
