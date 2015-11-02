@@ -36,12 +36,20 @@
 1. flyme    适配魅族的smartbar,按照官方文档，目前还没出现效果，TODO 
 1. fragment   fragment的基本操作
 1. gallery   对gallery的基本操作和一个自定义的滑动日期选择
+1. gestureDetector   手势监听的demo
 1. gson    利用gson解析天气数据 TODO
 1. handler    handler post runnable的使用
 1. http    关于http的一些知识点,目前有asynchttp的demo TODO
+1. image   图片显示的时候，先缩放再显示
 1. imageloader    universalimageloader 的demo,拷贝的官方lib中的sample，universalimageloader的基本操作
+1. layoutViewStub  layoutViewStub的使用
 1. listview   listview的基本操作,listview缓存，以及一个通用的viewholder 
 1. main   设置fragment基类  
+1. netstate   判断网络链接状态 
+1. newsImoocListView   慕课网中的demo，解决listview异步加载图片错乱的问题。 
+1. notification   在notification处显示通知，点击以后跳转到APP
+1. notificationDownload   在notification处显示下载进度
+1. numberFormat   解决西班牙等国外地区的一些小数点问题
 1. percentlayout   percentlayout的使用demo  
 1. preferenceactivity   关于偏好设置的activity
 1. radiobutton   radiobutton测试监听
