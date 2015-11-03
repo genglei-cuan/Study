@@ -11,8 +11,6 @@ import cn.steve.study.R;
 /**
  * 测试radioButton的使用
  *
- *
- *
  * Created by yantinggeng on 2015/10/12.
  */
 public class RadioButtonMainActivity extends AppCompatActivity {
@@ -24,6 +22,8 @@ public class RadioButtonMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_radiobutton);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        //这个设置会让默认的radioButton的回调调用两次，避免这个问题的方式是获取radioButton的对象，设置选中为true
+        //radioGroup.check(R.id.radioButton);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             /**
              * 当单选按钮的状态发生变化的时候才会被调用
