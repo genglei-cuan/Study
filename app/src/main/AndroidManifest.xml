@@ -196,15 +196,20 @@
 
         <!-- 原生的下拉刷新控件 -->
         <activity android:name="cn.steve.swiperefreshlayout.SwipeRefreshLayoutActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!--魅族的适配-->
         <activity android:name="cn.steve.flyme.FlymeAdapterActivity"></activity>
         <activity android:name="cn.steve.recyclerview.itemtouchhelper.ItemTouchHelperMainActivity"></activity>
+
+        <!-- 通过UIL为viewgroup设置背景图片 -->
+        <activity android:name="cn.steve.imageloader.UILGroupDisplayActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
     </application>
 
