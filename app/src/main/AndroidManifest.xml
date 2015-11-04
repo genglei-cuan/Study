@@ -209,6 +209,10 @@
 
         <!-- 详解 LayoutInflater的含义-->
         <activity android:name="cn.steve.layoutinflater.LayoutInflaterActivity">
+
+        </activity>
+        <!-- 测试imageview的缩放比例区分 -->
+        <activity android:name="cn.steve.scaletype.ScaleTypeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

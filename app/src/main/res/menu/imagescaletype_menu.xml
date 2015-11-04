@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+            android:id="@+id/scaletypeCENTER"
+            android:title="CENTER"
+            app:showAsAction="collapseActionView"
+            />
+
+    <item
+            android:id="@+id/scaletypeCENTER_CROP"
+            android:title="CENTER_CROP"
+            app:showAsAction="collapseActionView"
+            />
+
+    <item
+            android:id="@+id/scaletypeCENTER_INSIDER"
+            android:title="CENTER_INSIDE"
+            app:showAsAction="collapseActionView"
+            />
+
+    <item
+            android:id="@+id/scaletypeFIT_CENTER"
+            android:title="FIT_CENTER"
+            app:showAsAction="collapseActionView"
+            />
+    <item
+            android:id="@+id/scaletypeFIT_XY"
+            android:title="FIT_XY"
+            app:showAsAction="collapseActionView"
+            />
+
+</menu>
