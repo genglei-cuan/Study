@@ -213,6 +213,11 @@
         </activity>
         <!-- 测试imageview的缩放比例区分 -->
         <activity android:name="cn.steve.scaletype.ScaleTypeActivity">
+
+        </activity>
+
+        <!-- RxAndroid的demo -->
+        <activity android:name="cn.steve.rxandroid.RXAndroidActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
