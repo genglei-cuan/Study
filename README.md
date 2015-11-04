@@ -84,6 +84,7 @@
 * [Trinea](https://github.com/Trinea) 
 * [代码家](https://github.com/daimajia)
 * [鸿洋](http://blog.csdn.net/lmj623565791)
+* [扔物线](https://github.com/rengwuxian)
 
 ##关于作者
 
