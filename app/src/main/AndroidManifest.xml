@@ -218,6 +218,10 @@
 
         <!-- RxAndroid的demo -->
         <activity android:name="cn.steve.rxandroid.RXAndroidActivity">
+
+        </activity>
+        <!-- contentobserver的例子 -->
+        <activity android:name="cn.steve.contentobserver.ContentObserverActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
