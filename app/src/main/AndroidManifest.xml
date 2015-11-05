@@ -226,6 +226,10 @@
         </activity>
         <!-- 测试自定义listview中item的高度 -->
         <activity android:name="cn.steve.listview.customitemheight.CustomItemHeightActivity">
+
+        </activity>
+        <!-- 测试textview背景模糊效果 -->
+        <activity android:name="cn.steve.blurre.BlurreActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
