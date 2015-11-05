@@ -222,6 +222,10 @@
         </activity>
         <!-- contentobserver的例子 -->
         <activity android:name="cn.steve.contentobserver.ContentObserverActivity">
+
+        </activity>
+        <!-- 测试自定义listview中item的高度 -->
+        <activity android:name="cn.steve.listview.customitemheight.CustomItemHeightActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
