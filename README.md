@@ -27,6 +27,7 @@
 1. contextmean 测试context的真实含义
 1. customdialog 自定义各种形式的dialogue(熟悉stormzhang的)
 1. customview 自定义view,展示画布的含义
+1. dagger    dagger的简单demo TODO
 1. datatraffic  流量，wifi开关的监听
 1. deviceinfo   获取一些手机的基本硬件信息
 1. eventbus   左右两个fragment进行通信,用的是鸿洋的demo
