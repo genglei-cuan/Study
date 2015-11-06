@@ -30,3 +30,34 @@ Scheduler 的 API (一)
  * /
 
 
+
+ subscribeOn() 的线程切换发生在 OnSubscribe 中，即在它通知上一级 OnSubscribe 时，
+ 这时事件还没有开始发送，因此 subscribeOn() 的线程控制可以从事件发出的开端就造成影响；
+ 而 observeOn() 的线程切换则发生在它内建的 Subscriber 中，即发生在它即将给下一级 Subscriber 发送事件时，
+ 因此 observeOn() 控制的是它后面的线程。
+
+
+
+
+
+
+doOnSubscribe()
+然而，虽然超过一个的 subscribeOn() 对事件处理的流程没有影响，但在流程之前却是可以利用的。
+
+在前面讲 Subscriber 的时候，提到过 Subscriber 的 onStart() 可以用作流程开始前的初始化。
+
+然而 onStart() 由于在 subscribe() 发生时就被调用了，因此不能指定线程，而是只能执行在 subscribe() 被调用时的线程。
+
+这就导致如果 onStart() 中含有对线程有要求的代码（例如在界面上显示一个 ProgressBar，这必须在主线程执行），
+
+将会有线程非法的风险，因为有时你无法预测 subscribe() 将会在什么线程执行。
+
+而与 Subscriber.onStart() 相对应的，有一个方法 Observable.doOnSubscribe() 。
+
+它和 Subscriber.onStart() 同样是在 subscribe() 调用后而且在事件发送前执行，但区别在于它可以指定线程。默认情况下， doOnSubscribe() 执行在 subscribe() 发生的线程；
+
+而如果在 doOnSubscribe() 之后有 subscribeOn() 的话，它将执行在离它最近的 subscribeOn() 所指定的线程。
+
+
+
+
