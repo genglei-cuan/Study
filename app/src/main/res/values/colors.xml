@@ -30,4 +30,17 @@
     <color name="devide_line">#CBCED2</color>
     <color name="main_gray">#9A9A9A</color>
 
+    <!-- progress涉及的 -->
+    <color name="background_window">#FFE5E5E5</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="circle_blue">#33ccff</color>
+    <color name="circle_green">#6fdf69</color>
+    <color name="circle_red">#ff5151</color>
+    <color name="circle_yellow">#ffaa3b</color>
+    <color name="google_red">#d62d20</color>
+    <color name="google_blue">#0057e7</color>
+    <color name="google_green">#008744</color>
+    <color name="google_yellow">#ffa700</color>
+    <color name="gray_white">#ebebeb</color>
+    <color name="gray">#7c7c7c</color>
 </resources>

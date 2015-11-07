@@ -236,6 +236,11 @@
             </intent-filter>
         </activity>
 
+        <!-- progressbar的demo -->
+        <activity android:name="cn.steve.progressbar.ProgressMainActivity"></activity>
+        <activity android:name="cn.steve.progressbar.AbCircleProgressBarActivity"></activity>
+
+
     </application>
 
 </manifest>
