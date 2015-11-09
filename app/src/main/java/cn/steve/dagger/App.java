@@ -1,31 +1,41 @@
+
 package cn.steve.dagger;
 
 import android.app.Application;
 
+import java.util.Arrays;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import cn.steve.dagger.domain.AnalyticsManager;
 import dagger.ObjectGraph;
 
 /**
- * ObjectGraph创建和直接注入的组合方式在App类中可以看到。 主对象图在Application类中创建并被注入以获得依赖。
+ * demo来源于 ：https://github.com/antoniolg/DaggerExample
  *
- * Created by yantinggeng on 2015/11/6.
+ * 但是目前不知道为何不能运行。。。。。还不熟悉
  */
+
 public class App extends Application {
 
+    @Inject
+    AnalyticsManager analyticsManager;
     private ObjectGraph objectGraph;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        objectGraph = ObjectGraph.create();
+        objectGraph = ObjectGraph.create(getModules().toArray());
         objectGraph.inject(this);
-
+        analyticsManager.registerAppEnter();
     }
 
     private List<Object> getModules() {
-        return null;
+        return Arrays.<Object>asList(new AppModule(this));
     }
 
-
+    public ObjectGraph createScopedGraph(Object... modules) {
+        return objectGraph.plus(modules);
+    }
 }
