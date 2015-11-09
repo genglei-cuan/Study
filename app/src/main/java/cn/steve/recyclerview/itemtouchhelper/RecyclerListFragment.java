@@ -34,9 +34,9 @@ public class RecyclerListFragment extends Fragment implements OnStartDragListene
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerListAdapter adapter=new RecyclerListAdapter(getActivity(),this);
+        RecyclerListAdapter adapter = new RecyclerListAdapter(getActivity(), this);
 
-        RecyclerView recyclerView= (RecyclerView) view;
+        RecyclerView recyclerView = (RecyclerView) view;
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -46,10 +46,10 @@ public class RecyclerListFragment extends Fragment implements OnStartDragListene
         mItemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
+    //外部手动调用，实现拖动
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
         mItemTouchHelper.startDrag(viewHolder);
-
     }
 
 }

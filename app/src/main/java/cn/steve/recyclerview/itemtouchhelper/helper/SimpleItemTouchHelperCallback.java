@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
 /**
+ * 拖动滑动等的回调实现
+ *
  * Created by yantinggeng on 2015/11/9.
  */
 public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
@@ -78,6 +80,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
             if (viewHolder instanceof ItemTouchHelperViewHolder) {
                 // Let the view holder know that this item is being moved or dragged
                 ItemTouchHelperViewHolder itemViewHolder = (ItemTouchHelperViewHolder) viewHolder;
+                //滑动状态稳定之后，回调选中接口
                 itemViewHolder.onItemSelected();
             }
         }
@@ -91,6 +94,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         if (viewHolder instanceof ItemTouchHelperViewHolder) {
             // Tell the view holder it's time to restore the idle state
             ItemTouchHelperViewHolder itemViewHolder = (ItemTouchHelperViewHolder) viewHolder;
+            //删除之后，回调清空的接口
             itemViewHolder.onItemClear();
         }
     }

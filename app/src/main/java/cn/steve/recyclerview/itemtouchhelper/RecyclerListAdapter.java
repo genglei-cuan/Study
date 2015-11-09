@@ -52,7 +52,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (MotionEventCompat.getActionMasked(motionEvent) == MotionEvent.ACTION_DOWN) {
-                    mDragStartListener.onStartDrag(holder);
+                    mDragStartListener.onStartDrag(holder); //启动拖动监听
                 }
                 return false;
             }

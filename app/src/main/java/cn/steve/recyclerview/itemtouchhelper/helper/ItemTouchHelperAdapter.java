@@ -4,7 +4,7 @@ package cn.steve.recyclerview.itemtouchhelper.helper;
  * * Interface to listen for a move or dismissal event from a {@link
  * android.support.v7.widget.helper.ItemTouchHelper.Callback}.
  *
- * 用于通知底层数据的更新
+ * 用于在回调的过程中，在移动和删除之后，通知底层数据的更新的接口
  *
  * Created by yantinggeng on 2015/11/9.
  */
