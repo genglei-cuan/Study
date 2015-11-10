@@ -259,6 +259,10 @@
         <!-- material design 的demo -->
         <activity android:name="cn.steve.materialdesign.MaterialButtonActivity"
                 >
+
+        </activity>
+        <!-- MVP的demo -->
+        <activity android:name="cn.steve.mvp.MVPMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
