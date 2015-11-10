@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- application  start -->
+    <color name="colorPrimary">#3498db</color>
+    <color name="colorPrimaryDark">#34495e</color>
+    <color name="colorBackground">#3498db</color>
+    <!-- application  end -->
+
     <!-- customer dialogue -->
     <color name="text_color">#FFFFFF</color>
     <color name="divider_color">#11000000</color>

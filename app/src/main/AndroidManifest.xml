@@ -246,12 +246,18 @@
 
         <!-- recyclerview 的滑动demo-->
         <activity android:name="cn.steve.recyclerview.itemtouchhelper.ItemTouchHelperMainActivity">
+
+        </activity>
+
+        <!-- toolbar的使用demo,如果需要全局的话，可以把这个主题的设置放到Application处-->
+        <activity
+                android:name="cn.steve.toolbar.ToolBarMainActivity"
+                android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

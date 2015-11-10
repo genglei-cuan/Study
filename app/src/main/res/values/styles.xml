@@ -1,9 +1,14 @@
 <resources>
 
-    <!-- base application's -->
-    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
+    <!-- base application's start,目前只是放在测试的activity处 -->
+    <style name="AppTheme" parent="AppTheme.Base"/>
 
-    <style name="AppTheme" parent="AppBaseTheme"></style>
+    <style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
+    </style>
+    <!-- base application's end -->
 
     <!-- customer dialogue -->
     <style name="my_btn">
