@@ -253,6 +253,12 @@
         <activity
                 android:name="cn.steve.toolbar.ToolBarMainActivity"
                 android:theme="@style/AppTheme">
+
+        </activity>
+
+        <!-- material design 的demo -->
+        <activity android:name="cn.steve.materialdesign.MaterialButtonActivity"
+                >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
