@@ -257,16 +257,18 @@
         </activity>
 
         <!-- material design 的demo -->
-        <activity android:name="cn.steve.materialdesign.MaterialButtonActivity"
+        <activity
+                android:name="cn.steve.materialdesign.MaterialListActivity"
+                android:theme="@style/AppTheme"
                 >
-
-        </activity>
-        <!-- MVP的demo -->
-        <activity android:name="cn.steve.mvp.MVPMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <!-- MVP的demo -->
+        <activity android:name="cn.steve.mvp.MVPMainActivity">
+
         </activity>
     </application>
 
