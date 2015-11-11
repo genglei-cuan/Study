@@ -259,7 +259,6 @@
         <!-- material design 的demo -->
         <activity
                 android:name="cn.steve.materialdesign.MaterialListActivity"
-                android:theme="@style/AppTheme"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

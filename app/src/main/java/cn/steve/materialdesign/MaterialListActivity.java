@@ -15,7 +15,7 @@ import cn.steve.study.R;
 public class MaterialListActivity extends AppCompatActivity implements
                                                             MaterialItemListFragment.Interactior {
 
-    String[] data = {"MaterialButton", "2"};
+    String[] data = {"MaterialButton", "MaterialCard"};
 
 
     private FragmentManager manager;
@@ -41,6 +41,10 @@ public class MaterialListActivity extends AppCompatActivity implements
                 fragmentTransaction.commit();
                 break;
             case 1:
+                FragmentTransaction fragmentTransaction1 = manager.beginTransaction();
+                fragmentTransaction1
+                    .replace(R.id.materialContainer, FragmentMaterialCard.newInstance("", ""));
+                fragmentTransaction1.commit();
                 break;
         }
     }
