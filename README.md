@@ -96,6 +96,7 @@
 ```javascript
   var PersonalFile = {
     English Name  : "Steve Yan"
+	Chinese Name  :" 颜廷庚"
   }
 ```
 
