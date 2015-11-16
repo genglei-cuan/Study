@@ -46,7 +46,7 @@
 1. imageloader    universalimageloader 的demo,拷贝的官方lib中的sample，universalimageloader的基本操作
 1. layoutinflater 正解layoutinflater的使用及其参数的正确含义；
 1. layoutViewStub  layoutViewStub的使用
-1. listview   listview的基本操作,listview缓存，以及一个通用的viewholder；自定义item的高度 
+1. listview   listview的基本操作,listview缓存，以及一个通用的viewholder；自定义item的高度 ;添加郭林的下拉刷新
 1. main   设置fragment基类  
 1. materialdesign   材料设计 TODO   
 1. mvp      MVP架构探索   
