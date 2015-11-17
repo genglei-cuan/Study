@@ -402,19 +402,6 @@ public class RefreshableView extends LinearLayout implements OnTouchListener {
     }
 
     /**
-     * 使当前线程睡眠指定的毫秒数。
-     *
-     * @param time 指定当前线程睡眠多久，以毫秒为单位
-     */
-    private void sleep(int time) {
-        try {
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * 下拉刷新的监听器，使用下拉刷新的地方应该注册此监听器来获取刷新回调。
      *
      * @author guolin
@@ -430,8 +417,6 @@ public class RefreshableView extends LinearLayout implements OnTouchListener {
 
     /**
      * 正在刷新的任务，在此任务中会去回调注册进来的下拉刷新监听器。
-     *
-     * @author guolin
      */
     class RefreshingTask extends AsyncTask<Void, Integer, Void> {
 
