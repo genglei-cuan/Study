@@ -104,7 +104,12 @@
         <activity android:name="cn.steve.eventbus.EventBusActivity"></activity>
 
         <!--asynchttp请求的demo-->
-        <activity android:name="cn.steve.http.asynchttp.AsyncHttpActivity"></activity>
+        <activity android:name="cn.steve.http.asynchttp.AsyncHttpActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name="cn.steve.http.okhttp.OkHttpActivity"></activity>
 
         <!--单选控件-->
@@ -272,10 +277,7 @@
 
         <!-- 下拉刷新 -->
         <activity android:name="cn.steve.listview.pulltorefresh.PullToRefreshActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
     </application>

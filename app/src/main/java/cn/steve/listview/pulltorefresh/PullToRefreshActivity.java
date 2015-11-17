@@ -8,6 +8,9 @@ import android.widget.ListView;
 
 import cn.steve.study.R;
 
+/**
+ * 该例子来源于郭林的博客
+ */
 public class PullToRefreshActivity extends Activity {
 
     RefreshableView refreshableView;

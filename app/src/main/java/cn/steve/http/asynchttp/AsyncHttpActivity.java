@@ -2,6 +2,8 @@ package cn.steve.http.asynchttp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -18,6 +20,7 @@ import cn.steve.study.R;
 public class AsyncHttpActivity extends AppCompatActivity {
 
     private static final String GETURL = "https://raw.github.com/square/okhttp/master/README.md";
+    AsyncHttpClient client = new AsyncHttpClient();
     private TextView textViewMain;
 
     @Override
@@ -26,8 +29,18 @@ public class AsyncHttpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_textview);
         this.textViewMain = (TextView) findViewById(R.id.textViewMain);
 
-        AsyncHttpClient client = new AsyncHttpClient();
         //get请求
+        getMethod();
+
+        //post请求
+        RequestParams params = new RequestParams();
+        params.put("key", "value");
+        params.put("more", "data");
+
+
+    }
+
+    private void getMethod() {
         client.get(GETURL, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
@@ -47,8 +60,13 @@ public class AsyncHttpActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse,
                                   Throwable e) {
                 // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                String s = new String(errorResponse);
-                textViewMain.setText(s);
+                StringBuffer stringBuffer = new StringBuffer();
+                stringBuffer.append("statusCode:").append(statusCode);
+                if (errorResponse != null) {
+                    String s = new String(errorResponse);
+                    stringBuffer.append(s);
+                }
+                textViewMain.setText(stringBuffer.toString());
             }
 
             @Override
@@ -56,13 +74,18 @@ public class AsyncHttpActivity extends AppCompatActivity {
                 // called when request is retried
             }
         });
-
-        //post请求
-        RequestParams params = new RequestParams();
-        params.put("key", "value");
-        params.put("more", "data");
+    }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.swiperefreshlayout, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        getMethod();
+        return true;
     }
 }
