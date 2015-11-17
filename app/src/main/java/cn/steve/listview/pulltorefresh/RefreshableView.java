@@ -1,8 +1,13 @@
 package cn.steve.listview.pulltorefresh;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -440,7 +445,6 @@ public class RefreshableView extends LinearLayout implements OnTouchListener {
                     break;
                 }
                 publishProgress(topMargin);
-                sleep(10);
             }
             currentStatus = STATUS_REFRESHING;
             publishProgress(0);
@@ -461,8 +465,6 @@ public class RefreshableView extends LinearLayout implements OnTouchListener {
 
     /**
      * 隐藏下拉头的任务，当未进行下拉刷新或下拉刷新完成后，此任务将会使下拉头重新隐藏。
-     *
-     * @author guolin
      */
     class HideHeaderTask extends AsyncTask<Void, Integer, Integer> {
 
@@ -476,7 +478,6 @@ public class RefreshableView extends LinearLayout implements OnTouchListener {
                     break;
                 }
                 publishProgress(topMargin);
-                sleep(10);
             }
             return topMargin;
         }
@@ -484,14 +485,29 @@ public class RefreshableView extends LinearLayout implements OnTouchListener {
         @Override
         protected void onProgressUpdate(Integer... topMargin) {
             headerLayoutParams.topMargin = topMargin[0];
-            header.setLayoutParams(headerLayoutParams);
         }
 
+        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
         @Override
         protected void onPostExecute(Integer topMargin) {
-            headerLayoutParams.topMargin = topMargin;
-            header.setLayoutParams(headerLayoutParams);
-            currentStatus = STATUS_REFRESH_FINISHED;
+            //以动画的形式结束，避免太突兀
+            ValueAnimator valueAnimator = ValueAnimator.ofInt(Math.abs(topMargin));
+            valueAnimator.setDuration(500);
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    headerLayoutParams.topMargin = -(int) valueAnimator.getAnimatedValue();
+                    header.setLayoutParams(headerLayoutParams);
+                }
+            });
+            valueAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    currentStatus = STATUS_REFRESH_FINISHED;
+                }
+            });
+            valueAnimator.start();
         }
     }
 
