@@ -1,5 +1,5 @@
 
-package cn.steve.dagger.ui.main;
+package cn.steve.dagger.githubdemo.ui.main;
 
 import java.util.List;
 

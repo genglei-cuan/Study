@@ -1,7 +1,7 @@
-package cn.steve.dagger.interactors;
+package cn.steve.dagger.githubdemo.interactors;
 
 
-import cn.steve.dagger.ui.login.OnLoginFinishedListener;
+import cn.steve.dagger.githubdemo.ui.login.OnLoginFinishedListener;
 
 public interface LoginInteractor {
 

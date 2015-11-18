@@ -1,11 +1,11 @@
 
-package cn.steve.dagger.ui.main;
+package cn.steve.dagger.githubdemo.ui.main;
 
 
 import javax.inject.Singleton;
 
-import cn.steve.dagger.AppModule;
-import cn.steve.dagger.interactors.FindItemsInteractor;
+import cn.steve.dagger.githubdemo.AppModule;
+import cn.steve.dagger.githubdemo.interactors.FindItemsInteractor;
 import dagger.Module;
 import dagger.Provides;
 

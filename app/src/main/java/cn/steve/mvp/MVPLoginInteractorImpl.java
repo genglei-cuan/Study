@@ -3,7 +3,7 @@ package cn.steve.mvp;
 import android.os.Handler;
 import android.text.TextUtils;
 
-import cn.steve.dagger.ui.login.OnLoginFinishedListener;
+import cn.steve.dagger.githubdemo.ui.login.OnLoginFinishedListener;
 
 public class MVPLoginInteractorImpl implements MVPLoginInteractor {
 

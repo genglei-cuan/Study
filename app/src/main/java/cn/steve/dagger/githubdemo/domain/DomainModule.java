@@ -1,4 +1,4 @@
-package cn.steve.dagger.domain;
+package cn.steve.dagger.githubdemo.domain;
 
 import android.app.Application;
 

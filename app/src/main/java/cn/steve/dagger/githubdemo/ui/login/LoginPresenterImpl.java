@@ -1,7 +1,7 @@
-package cn.steve.dagger.ui.login;
+package cn.steve.dagger.githubdemo.ui.login;
 
 
-import cn.steve.dagger.interactors.LoginInteractor;
+import cn.steve.dagger.githubdemo.interactors.LoginInteractor;
 
 public class LoginPresenterImpl implements LoginPresenter, OnLoginFinishedListener {
 

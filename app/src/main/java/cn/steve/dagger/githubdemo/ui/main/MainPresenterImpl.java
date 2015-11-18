@@ -1,10 +1,10 @@
 
-package cn.steve.dagger.ui.main;
+package cn.steve.dagger.githubdemo.ui.main;
 
 
 import java.util.List;
 
-import cn.steve.dagger.interactors.FindItemsInteractor;
+import cn.steve.dagger.githubdemo.interactors.FindItemsInteractor;
 
 public class MainPresenterImpl implements MainPresenter, OnFinishedListener {
 

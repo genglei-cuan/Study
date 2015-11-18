@@ -1,5 +1,5 @@
 
-package cn.steve.dagger.ui.main;
+package cn.steve.dagger.githubdemo.ui.main;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +14,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import cn.steve.dagger.ui.common.BaseActivity;
+import cn.steve.dagger.githubdemo.ui.common.BaseActivity;
 import cn.steve.study.R;
 
 public class MainActivity extends BaseActivity

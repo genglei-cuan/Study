@@ -1,5 +1,5 @@
 
-package cn.steve.dagger;
+package cn.steve.dagger.githubdemo;
 
 import android.app.Application;
 
@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import cn.steve.dagger.domain.AnalyticsManager;
+import cn.steve.dagger.githubdemo.domain.AnalyticsManager;
 import dagger.ObjectGraph;
 
 /**

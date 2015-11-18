@@ -1,11 +1,11 @@
-package cn.steve.dagger.interactors;
+package cn.steve.dagger.githubdemo.interactors;
 
 import android.os.Handler;
 
 import java.util.Arrays;
 import java.util.List;
 
-import cn.steve.dagger.ui.main.OnFinishedListener;
+import cn.steve.dagger.githubdemo.ui.main.OnFinishedListener;
 
 public class FindItemsInteractorImpl implements FindItemsInteractor {
 

@@ -1,6 +1,6 @@
 package cn.steve.mvp;
 
-import cn.steve.dagger.ui.login.OnLoginFinishedListener;
+import cn.steve.dagger.githubdemo.ui.login.OnLoginFinishedListener;
 
 /**
  * 行为的操作类

@@ -1,11 +1,11 @@
-package cn.steve.dagger.ui.common;
+package cn.steve.dagger.githubdemo.ui.common;
 
 import android.app.Activity;
 import android.os.Bundle;
 
 import java.util.List;
 
-import cn.steve.dagger.App;
+import cn.steve.dagger.githubdemo.App;
 import dagger.ObjectGraph;
 
 public abstract class BaseActivity extends Activity {

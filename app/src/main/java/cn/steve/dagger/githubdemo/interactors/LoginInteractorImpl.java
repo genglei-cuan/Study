@@ -1,9 +1,9 @@
-package cn.steve.dagger.interactors;
+package cn.steve.dagger.githubdemo.interactors;
 
 import android.os.Handler;
 import android.text.TextUtils;
 
-import cn.steve.dagger.ui.login.OnLoginFinishedListener;
+import cn.steve.dagger.githubdemo.ui.login.OnLoginFinishedListener;
 
 
 public class LoginInteractorImpl implements LoginInteractor {

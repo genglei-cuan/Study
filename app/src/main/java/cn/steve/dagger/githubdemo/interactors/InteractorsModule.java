@@ -18,7 +18,7 @@
  *
  */
 
-package cn.steve.dagger.interactors;
+package cn.steve.dagger.githubdemo.interactors;
 
 import dagger.Module;
 import dagger.Provides;

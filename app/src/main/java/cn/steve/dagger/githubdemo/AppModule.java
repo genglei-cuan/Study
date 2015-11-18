@@ -1,9 +1,9 @@
-package cn.steve.dagger;
+package cn.steve.dagger.githubdemo;
 
 import android.app.Application;
 
-import cn.steve.dagger.domain.DomainModule;
-import cn.steve.dagger.interactors.InteractorsModule;
+import cn.steve.dagger.githubdemo.domain.DomainModule;
+import cn.steve.dagger.githubdemo.interactors.InteractorsModule;
 import dagger.Module;
 import dagger.Provides;
 

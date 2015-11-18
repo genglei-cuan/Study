@@ -1,5 +1,5 @@
 
-package cn.steve.dagger.ui.login;
+package cn.steve.dagger.githubdemo.ui.login;
 
 public interface OnLoginFinishedListener {
 

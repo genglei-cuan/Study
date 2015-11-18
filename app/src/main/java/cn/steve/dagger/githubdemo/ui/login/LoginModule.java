@@ -1,11 +1,11 @@
 
-package cn.steve.dagger.ui.login;
+package cn.steve.dagger.githubdemo.ui.login;
 
 
 import javax.inject.Singleton;
 
-import cn.steve.dagger.AppModule;
-import cn.steve.dagger.interactors.LoginInteractor;
+import cn.steve.dagger.githubdemo.AppModule;
+import cn.steve.dagger.githubdemo.interactors.LoginInteractor;
 import dagger.Module;
 import dagger.Provides;
 

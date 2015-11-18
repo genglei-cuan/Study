@@ -240,11 +240,11 @@
         <activity android:name="cn.steve.progressbar.AbCircleProgressBarActivity"></activity>
 
         <!-- dagger 的demo -->
-        <activity android:name="cn.steve.dagger.ui.login.LoginActivity">
+        <activity android:name="cn.steve.dagger.githubdemo.ui.login.LoginActivity">
 
         </activity>
         <!-- dagger 的demo-->
-        <activity android:name="cn.steve.dagger.ui.main.MainActivity"></activity>
+        <activity android:name="cn.steve.dagger.githubdemo.ui.main.MainActivity"></activity>
 
         <!-- recyclerview 的滑动demo-->
         <activity android:name="cn.steve.recyclerview.itemtouchhelper.ItemTouchHelperMainActivity">

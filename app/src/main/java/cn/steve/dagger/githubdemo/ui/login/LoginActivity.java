@@ -1,5 +1,5 @@
 
-package cn.steve.dagger.ui.login;
+package cn.steve.dagger.githubdemo.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +12,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import cn.steve.dagger.ui.common.BaseActivity;
-import cn.steve.dagger.ui.main.MainActivity;
+import cn.steve.dagger.githubdemo.ui.common.BaseActivity;
+import cn.steve.dagger.githubdemo.ui.main.MainActivity;
 import cn.steve.study.R;
 
 public class LoginActivity extends BaseActivity implements LoginView, View.OnClickListener {
