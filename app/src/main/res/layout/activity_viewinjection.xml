@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <TextView
+        android:id="@+id/view_injection1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/parallel_line"
+        android:text="aaaa" />
+
+    <TextView
+        android:id="@+id/view_injection2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/parallel_line"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/view_injection3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/parallel_line"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/view_injection4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/parallel_line"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/view_injection5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/parallel_line"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/view_injection6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/parallel_line"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/view_injection7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/parallel_line"
+        android:text="@string/hello_world" />
+
+    <Button
+        android:id="@+id/Button_injection8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button1" />
+
+    <Button
+        android:id="@+id/Button_injection9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button2" />
+
+</LinearLayout>
