@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import cn.steve.study.R;
 import steve.cn.mylib.util.DeviceInfoUtils;
+import steve.cn.mylib.util.ScreenInfoUtil;
 
 /**
  * 展示一些设备的基本信息，一些硬件信息
@@ -34,6 +35,8 @@ public class DeviceInfoActivity extends Activity {
         sb.append("\n cpu:" + cpu);
         String sdk = String.valueOf(DeviceInfoUtils.getAndroidSDKVersion());
         sb.append("\n sdk" + sdk);
+        sb.append("\n 屏幕信息：");
+        sb.append(ScreenInfoUtil.getScreenDetailInfo(this));
         textViewDeviceInfo.setText(sb);
     }
 
