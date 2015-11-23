@@ -29,7 +29,6 @@ public class BlurUtil {
     }
 
     private static void blur(Bitmap bkg, View view, Context context) {
-        long startMs = System.currentTimeMillis();
         float scaleFactor = 1;
         float radius = 20;
         Bitmap overlay = Bitmap.createBitmap((int) (view.getMeasuredWidth() / scaleFactor),

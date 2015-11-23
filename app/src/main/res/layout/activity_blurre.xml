@@ -7,6 +7,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/horse">
 
+    <!-- 单一的textview -->
     <TextView
             android:id="@+id/textViewBlurre"
             android:layout_width="wrap_content"
@@ -14,6 +15,23 @@
             android:layout_centerInParent="true"
             android:textSize="50dp"
             android:text="Steve Yan"/>
+
+
+    <!-- 组合的viewgroup -->
+    <LinearLayout
+            android:id="@+id/llBlurreRoot"
+            android:layout_marginTop="50dp"
+            android:layout_below="@id/textViewBlurre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="50dp"
+                android:text="Yan tinggeng"/>
+    </LinearLayout>
 
 
 </RelativeLayout>

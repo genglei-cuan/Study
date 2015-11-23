@@ -172,10 +172,7 @@
 
         <!-- 当前设备的一些硬件信息 -->
         <activity android:name="cn.steve.deviceinfo.DeviceInfoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <!-- 悬浮窗demo -->
@@ -231,7 +228,10 @@
         </activity>
         <!-- 测试textview背景模糊效果 -->
         <activity android:name="cn.steve.blurre.BlurreActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <!-- progressbar的demo -->
