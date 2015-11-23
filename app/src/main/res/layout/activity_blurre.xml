@@ -15,6 +15,7 @@
             android:layout_centerInParent="true"
             android:textSize="50dp"
             android:textColor="@color/white"
+            android:background="@drawable/corners_bg_transparent"
             android:text="Steve Yan"/>
 
 
@@ -23,6 +24,7 @@
             android:id="@+id/llBlurreRoot"
             android:layout_marginTop="50dp"
             android:layout_below="@id/textViewBlurre"
+            android:background="@drawable/corners_bg_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
