@@ -30,7 +30,8 @@ public class BlurUtil {
 
     private static void blur(Bitmap bkg, View view, Context context) {
         float scaleFactor = 1;
-        float radius = 20;
+        //模糊的半径
+        float radius = 10;
         Bitmap overlay = Bitmap.createBitmap((int) (view.getMeasuredWidth() / scaleFactor),
                                              (int) (view.getMeasuredHeight() / scaleFactor),
                                              Bitmap.Config.ARGB_8888);
