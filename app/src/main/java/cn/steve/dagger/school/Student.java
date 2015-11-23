@@ -6,7 +6,12 @@ package cn.steve.dagger.school;
 public class Student {
 
     public Student() {
-        
+        System.out.println("Student被构造");
     }
+
+    public void study() {
+        System.out.println(toString() + "Student is studing!");
+    }
+
 
 }

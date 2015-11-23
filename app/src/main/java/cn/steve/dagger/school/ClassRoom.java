@@ -32,12 +32,12 @@ public class ClassRoom {
 
 
     public void study() {
-        lazyStudent.get();//这样就能得到一个Student对象
+        lazyStudent.get().study();//这样就能得到一个Student对象
     }
 
     public void studyProvider() {
-        providerStudent.get();//得到对象1
-        providerStudent.get();//得到对象2
+        providerStudent.get().study();//得到对象1
+        providerStudent.get().study();//得到对象2
         //两个对象是不同的对象
     }
 

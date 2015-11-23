@@ -228,10 +228,7 @@
         </activity>
         <!-- 测试textview背景模糊效果 -->
         <activity android:name="cn.steve.blurre.BlurreActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- progressbar的demo -->
@@ -244,6 +241,12 @@
         </activity>
         <!-- dagger 的demo-->
         <activity android:name="cn.steve.dagger.githubdemo.ui.main.MainActivity"></activity>
+        <activity android:name="cn.steve.dagger.school.DaggerSchoolActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <!-- recyclerview 的滑动demo-->
         <activity android:name="cn.steve.recyclerview.itemtouchhelper.ItemTouchHelperMainActivity">
