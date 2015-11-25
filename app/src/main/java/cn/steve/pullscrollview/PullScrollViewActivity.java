@@ -3,7 +3,6 @@ package cn.steve.pullscrollview;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
-import android.widget.TableLayout;
 
 import cn.steve.study.R;
 
@@ -16,7 +15,6 @@ public class PullScrollViewActivity extends AppCompatActivity
     private PullScrollView mScrollView;
     private ImageView mHeadImg;
 
-    private TableLayout mMainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
