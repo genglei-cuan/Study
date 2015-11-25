@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.steve.study"
-    android:versionCode="1"
-    android:versionName="1.0">
+          package="cn.steve.study"
+          android:versionCode="1"
+          android:versionName="1.0">
 
     <!-- 添加读取sd卡的权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <!-- 测试dagger的时候，需要把application的name修改成cn.steve.dagger.app -->
     <application
-        android:name="cn.steve.UILApplication"
-        android:allowBackup="false"
-        android:icon="@drawable/customer_icon"
-        android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat.Light">
+            android:name="cn.steve.UILApplication"
+            android:allowBackup="false"
+            android:icon="@drawable/customer_icon"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light">
 
         <!-- 对话框demo -->
         <activity android:name="cn.steve.alertDialog.AlertDialogActivity"></activity>
@@ -48,8 +48,8 @@
         	这个API的使用最低需要时11
         -->
         <activity
-            android:name="cn.steve.floatLabelLayout.FloatLabelActivity"
-            android:exported="true"></activity>
+                android:name="cn.steve.floatLabelLayout.FloatLabelActivity"
+                android:exported="true"></activity>
 
         <!-- simple  example of welcome  activity -->
         <activity android:name="cn.steve.simpleWelcome.WelcomeActivity"></activity>
@@ -148,8 +148,8 @@
         </activity>
 
         <!--activity的生命周期-->
-        <activity android:name="cn.steve.activitylifecycle.LifeActivityA" />
-        <activity android:name="cn.steve.activitylifecycle.LifeActivityB" />
+        <activity android:name="cn.steve.activitylifecycle.LifeActivityA"/>
+        <activity android:name="cn.steve.activitylifecycle.LifeActivityB"/>
         <activity android:name="cn.steve.activitylifecycle.LifeCircleActivity">
 
         </activity>
@@ -185,7 +185,7 @@
         <activity android:name="cn.steve.forebackground.ForeGroundMainActivity"></activity>
 
         <!-- 运行在前后台的测试 -->
-        <activity android:name="cn.steve.forebackground.ForeGroundActivityA" />
+        <activity android:name="cn.steve.forebackground.ForeGroundActivityA"/>
 
         <activity android:name="cn.steve.click_xml.LayoutClickableMainActivity"></activity>
 
@@ -228,10 +228,7 @@
         </activity>
         <!-- 测试textview背景模糊效果 -->
         <activity android:name="cn.steve.blurre.BlurreActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- progressbar的demo -->
@@ -255,8 +252,8 @@
 
         <!-- toolbar的使用demo,如果需要全局的话，可以把这个主题的设置放到Application处-->
         <activity
-            android:name="cn.steve.toolbar.ToolBarMainActivity"
-            android:theme="@style/AppTheme">
+                android:name="cn.steve.toolbar.ToolBarMainActivity"
+                android:theme="@style/AppTheme">
 
         </activity>
 
@@ -280,6 +277,13 @@
         <!-- 注解的测试 -->
         <activity android:name="cn.steve.viewinjection.ViewInjectionTestActivity"></activity>
 
+        <!-- 个人中心下拉效果 -->
+        <activity android:name="cn.steve.pullscrollview.PullScrollViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
     </application>
 

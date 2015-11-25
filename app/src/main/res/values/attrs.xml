@@ -23,16 +23,25 @@
     </declare-styleable>
 
     <!-- 今日数据 -->
-    <attr name="bordColor" format="color" />
+    <attr name="bordColor" format="color"/>
     <!-- 圆形的边框的颜色 -->
-    <attr name="timeColor" format="color" />
+    <attr name="timeColor" format="color"/>
     <!-- 刻度的颜色 -->
-    <attr name="bordWidth" format="dimension" />
+    <attr name="bordWidth" format="dimension"/>
     <!-- 边框的宽度 -->
 
     <declare-styleable name="SleepClockCircle">
-        <attr name="bordColor" />
-        <attr name="timeColor" />
-        <attr name="bordWidth" />
+        <attr name="bordColor"/>
+        <attr name="timeColor"/>
+        <attr name="bordWidth"/>
     </declare-styleable>
+
+
+    <!-- 下拉的ScrollView，带阻尼效果 -->
+    <declare-styleable name="PullScrollView">
+        <attr name="header" format="reference"/>
+        <attr name="headerHeight" format="dimension"/>
+        <attr name="headerVisibleHeight" format="dimension"/>
+    </declare-styleable>
+
 </resources>
