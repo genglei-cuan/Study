@@ -279,6 +279,18 @@
 
         <!-- 个人中心下拉效果 -->
         <activity android:name="cn.steve.pullscrollview.PullScrollViewActivity">
+
+        </activity>
+
+        <!-- 官方的material design中的 -->
+        <activity
+                android:name="cn.steve.pullscrollview.CoordinatorLayoutActivity"
+                android:theme="@style/AppTheme">
+
+        </activity>
+
+        <!-- 滑动有回弹的效果 -->
+        <activity android:name="cn.steve.pullscrollview.OverScrollViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
