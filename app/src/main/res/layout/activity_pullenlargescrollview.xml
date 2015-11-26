@@ -5,13 +5,13 @@
                 android:background="@color/white"
                 android:orientation="vertical">
 
-    <!-- ImageView的高度需要设置与scrollview中的一级子节点的高度一致 -->
+    <!-- ImageView的高度需要设置与scrollview中的一级子节点的高度一致，目前未看出原因 -->
     <ImageView
             android:id="@+id/background_img"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:contentDescription="@null"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@drawable/xihu"/>
 
     <cn.steve.pullscrollview.PullEnlargeScrollView
