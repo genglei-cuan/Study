@@ -291,6 +291,11 @@
 
         <!-- 滑动有回弹的效果 -->
         <activity android:name="cn.steve.pullscrollview.OverScrollViewActivity">
+
+        </activity>
+
+        <!--  改造下拉滑动放大 -->
+        <activity android:name="cn.steve.pullscrollview.PullEnlargeScrollViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
