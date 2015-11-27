@@ -302,6 +302,8 @@
             </intent-filter>
         </activity>
 
+        <!-- 下拉放大，上拉收缩 -->
+
     </application>
 
 </manifest>
