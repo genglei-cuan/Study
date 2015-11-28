@@ -55,8 +55,6 @@
         nulla arcu sed leo
     </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- pull to refresh -->
     <string name="pull_to_refresh">下拉可以刷新</string>
