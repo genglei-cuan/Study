@@ -296,13 +296,16 @@
 
         <!--  改造下拉滑动放大 -->
         <activity android:name="cn.steve.pullscrollview.PullEnlargeScrollViewActivity">
+
+        </activity>
+
+        <!-- 下拉放大，上拉收缩 -->
+        <activity android:name="cn.steve.pullscrollview.MiniPullPushScrollViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <!-- 下拉放大，上拉收缩 -->
 
     </application>
 

@@ -58,7 +58,7 @@
 1. percentlayout   percentlayout的使用demo  
 1. preferenceactivity   关于偏好设置的activity
 1. progressbar   圆形，带数字的进度条，参考的是代码家的
-1. pullscrollview    仿的微博个人中心的下拉效果 TODO
+1. pullscrollview    仿的微博个人中心的下拉效果 TODO;仿造携程的个人中心下拉效果
 1. radiobutton   radiobutton测试监听
 1. recyclerview   recyclerview的使用的简单demo,包含了设置监听器;添加了复杂类型的布局，多个item type;添加item动画；添加itemtouchhelper
 1. rxandroid    rxandroid的使用demo
