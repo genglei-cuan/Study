@@ -74,7 +74,7 @@ public class MiniPullPushScrollView extends ScrollView {
         int action = ev.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                mStartPoint.set(ev.getX(), ev.getY());
+                mStartPoint.set(ev.getRawX(), ev.getRawY());
                 downY = ev.getRawY();
                 if (headHeight == 0) {
                     init();
@@ -84,7 +84,7 @@ public class MiniPullPushScrollView extends ScrollView {
                 break;
             case MotionEvent.ACTION_MOVE:
                 //误差操作规避
-                float deltaY = Math.abs(ev.getY() - downY);
+                float deltaY = Math.abs(ev.getRawY() - downY);
                 if (deltaY < 10) {
                     break;
                 }
@@ -135,7 +135,7 @@ public class MiniPullPushScrollView extends ScrollView {
             if (delta < headHeight / 2) {
                 isAuto2Top = false;
                 mState = State.UP;
-                mCurrentHeadHeight += (ev.getRawY()- downY);
+                mCurrentHeadHeight += (ev.getRawY() - downY);
             }
             //大于一半，小于整个的高度，自动滑动到顶端
             else if (delta <= headHeight) {
@@ -203,7 +203,7 @@ public class MiniPullPushScrollView extends ScrollView {
 
     //处理滑动
     private void doMove(MotionEvent ev) {
-        float deltaY = ev.getY() - downY;
+        float deltaY = ev.getRawY() - downY;
         //下拉
         if (deltaY > 0) {
             //下拉放大
