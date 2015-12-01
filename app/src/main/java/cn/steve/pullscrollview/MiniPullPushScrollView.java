@@ -34,12 +34,11 @@ public class MiniPullPushScrollView extends ScrollView {
     //head 设置的高度，通过设置高度，来实现下拉看似放大的效果
     private float mCurrentHeadHeight = 0;
     //高度的扩大比例，因为不能无限的放大head的高度，对外提供这个比例，实现head高度的最大值计算
-    private float headHeightScale = 3f;
+    private float headHeightScale = 1.2f;
     private float maxHeadHeight = headHeight;
 
     //触摸的Y轴坐标
     private float downY = 0;
-
     //当前的状态
     private State mState;
 
@@ -49,12 +48,10 @@ public class MiniPullPushScrollView extends ScrollView {
 
     public MiniPullPushScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
-//        init();
     }
 
     public MiniPullPushScrollView(Context context) {
         super(context);
-//        init();
     }
 
     //初始化一些数据量
@@ -90,15 +87,22 @@ public class MiniPullPushScrollView extends ScrollView {
                 break;
             case MotionEvent.ACTION_UP:
                 //假如是正在下拉，则恢复正常状态
-                if (mState == State.DOWN) {
+                if (mState == State.DOWN || mState == State.EXPANDING || mState == State.BOTTOM) {
                     rollUp2Normal();
                 }
+                //不在顶端，进行自动回弹的判断
                 if (mState == State.UP) {
                     //判断是否需要自动的滚回去
-                    if (mCurrentHeadHeight > headHeight / 2) {
-                        rollDown2Normal();
-                    } else {
-                        rollUp2Top();
+                    if (mState != State.TOP) {
+                        if (isAuto2Top) {
+                            rollUp2Top();
+                            mState = State.TOP;
+                            mCurrentHeadHeight = 0;
+                        } else {
+                            rollDown2Normal();
+                            mState = State.NORMAL;
+                            mCurrentHeadHeight = headHeight;
+                        }
                     }
                 }
                 break;
@@ -110,53 +114,41 @@ public class MiniPullPushScrollView extends ScrollView {
     //上滑的时候，松手，下滑回滚到正常状态
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void rollDown2Normal() {
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(mCurrentHeadHeight, headHeight);
-        valueAnimator.setDuration(500);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float value = (float) animation.getAnimatedValue();
-                head.getLayoutParams().height = (int) value;
-                postInvalidate();
-            }
-        });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                mState = State.NORMAL;
-            }
-        });
-        valueAnimator.start();
+        scrollTo(0, 0);
     }
 
     //上滑的时候，松手，上滑到顶端，到达TOP状态
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void rollUp2Top() {
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(mCurrentHeadHeight, 0);
-        valueAnimator.setDuration(500);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float value = (float) animation.getAnimatedValue();
-                head.getLayoutParams().height = (int) value;
-                postInvalidate();
-            }
-        });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                mState = State.TOP;
-            }
-        });
-        valueAnimator.start();
+        scrollTo(0, headHeight);
     }
 
 
     //通过正常的滑动,完成上滑的逻辑
     private void doUp(MotionEvent ev) {
-        mState = State.UP;
+        int delta = (int) Math.abs(ev.getY() - downY);
+        if (mCurrentHeadHeight > 0 && mCurrentHeadHeight < headHeight) {
+
+        }
+
+        if (mState != State.TOP) {
+
+            //滑动的距离小于一半，表示需要自动向下滑动到正常状态
+            if (delta < headHeight / 2) {
+                isAuto2Top = false;
+                mState = State.UP;
+            }
+            //大于一半，小于整个的高度，自动滑动到顶端
+            else if (delta < headHeight) {
+                isAuto2Top = true;
+                mState = State.UP;
+            }
+            //不采用自动滚动，表示已经通过顶端的临界值,到达了顶部状态
+            else {
+                mState = State.TOP;
+                isAuto2Top = false;
+            }
+        }
         //do nothing
         super.onTouchEvent(ev);
     }
@@ -174,7 +166,9 @@ public class MiniPullPushScrollView extends ScrollView {
             mState = State.EXPANDING;
             //改变头部的高度
             mCurrentHeadHeight = headHeight + deltaY * DEFAULT_SCROLL_RATIO;
-            head.getLayoutParams().height = (int) mCurrentHeadHeight;
+            ViewGroup.LayoutParams layoutParams = head.getLayoutParams();
+            layoutParams.height = (int) mCurrentHeadHeight;
+            head.setLayoutParams(layoutParams);
             requestLayout();
         } else {
             //切换状态，表示已经到达最底端
@@ -191,8 +185,11 @@ public class MiniPullPushScrollView extends ScrollView {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float value = (float) animation.getAnimatedValue();
-                head.getLayoutParams().height = (int) value;
-                postInvalidate();
+                mCurrentHeadHeight = value;
+                ViewGroup.LayoutParams layoutParams = head.getLayoutParams();
+                layoutParams.height = (int) mCurrentHeadHeight;
+                head.setLayoutParams(layoutParams);
+                requestLayout();
             }
         });
         valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -220,11 +217,7 @@ public class MiniPullPushScrollView extends ScrollView {
         }
         //上拉
         if (deltaY < 0) {
-            if (mCurrentHeadHeight >= headHeight) {
-                doDownEnlarge(deltaY);
-            } else {
-                doUp(ev);
-            }
+            doUp(ev);
         }
     }
 

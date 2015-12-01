@@ -301,15 +301,15 @@
 
         <!-- 下拉放大，上拉收缩 -->
         <activity android:name="cn.steve.pullscrollview.MiniPullPushScrollViewActivity">
-
-        </activity>
-
-        <!-- 动态改变控件的高度 -->
-        <activity android:name="cn.steve.viewcoordinate.LayoutParamsScrollActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+
+        <!-- 动态改变控件的高度 -->
+        <activity android:name="cn.steve.viewcoordinate.LayoutParamsScrollActivity">
+
         </activity>
 
     </application>
