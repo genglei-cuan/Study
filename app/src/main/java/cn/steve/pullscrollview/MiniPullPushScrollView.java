@@ -75,13 +75,13 @@ public class MiniPullPushScrollView extends ScrollView {
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 mStartPoint.set(ev.getX(), ev.getY());
-                downY = ev.getY();
+                downY = ev.getRawY();
                 if (headHeight == 0) {
                     init();
 //                    headHeight = head.getMeasuredHeight();
 //                    headWidth = head.getMeasuredWidth();
                 }
-                return super.onTouchEvent(ev);
+                break;
             case MotionEvent.ACTION_MOVE:
                 //误差操作规避
                 float deltaY = Math.abs(ev.getY() - downY);
@@ -107,7 +107,6 @@ public class MiniPullPushScrollView extends ScrollView {
                         mCurrentHeadHeight = headHeight;
                     }
                 }
-
                 break;
         }
         return super.onTouchEvent(ev);
@@ -129,20 +128,20 @@ public class MiniPullPushScrollView extends ScrollView {
 
     //通过正常的滑动,完成上滑的逻辑
     private void doUp(MotionEvent ev) {
-        int delta = (int) Math.abs(ev.getY() - downY);
+        int delta = (int) Math.abs(ev.getRawY() - downY);
         //到达了top状态之后，之后的上滑直接滑动即可
         if (mState == State.UP || mState == State.NORMAL) {
             //滑动的距离小于一半，表示需要自动向下滑动到正常状态
             if (delta < headHeight / 2) {
                 isAuto2Top = false;
                 mState = State.UP;
-                mCurrentHeadHeight += (ev.getY() - downY);
+                mCurrentHeadHeight += (ev.getRawY()- downY);
             }
             //大于一半，小于整个的高度，自动滑动到顶端
             else if (delta <= headHeight) {
                 isAuto2Top = true;
                 mState = State.UP;
-                mCurrentHeadHeight += (ev.getY() - downY);
+                mCurrentHeadHeight += (ev.getRawY() - downY);
             }
             //不采用自动滚动，表示已经通过顶端的临界值,到达了顶部状态
             else if (delta > headHeight) {
@@ -215,7 +214,6 @@ public class MiniPullPushScrollView extends ScrollView {
                 doDown(ev);
             }
         }
-
         //上拉
         if (deltaY < 0) {
             doUp(ev);
