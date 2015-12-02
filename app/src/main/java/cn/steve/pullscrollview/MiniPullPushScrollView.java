@@ -33,17 +33,19 @@ public class MiniPullPushScrollView extends ScrollView {
     private int headHeight = 0;
     private int headWidth = 0;
     //head 设置的高度，通过设置高度，来实现下拉看似放大的效果
-    private float mCurrentHeadHeight = 0;
+    private int mCurrentHeadHeight = 0;
     //高度的扩大比例，因为不能无限的放大head的高度，对外提供这个比例，实现head高度的最大值计算
     private float headHeightScale = 1.2f;
-    private float maxHeadHeight = headHeight;
+    private int maxHeadHeight = headHeight;
 
     //触摸的Y轴坐标
-    private float downY = 0;
+    private int downY = 0;
     private PointF mStartPoint = new PointF();
 
     //当前的状态
     private State mState;
+    //当前的方向
+    private DIRECTION mDirection;
 
     //正常状态下，头部已经上滑了半个大小（可以调用自动滑动到头部）
     private boolean isAuto2Top = false;
@@ -65,8 +67,9 @@ public class MiniPullPushScrollView extends ScrollView {
         mCurrentHeadHeight = headHeight = head.getMeasuredHeight();
         headWidth = head.getMeasuredWidth();
         //最大高度
-        maxHeadHeight = headHeight * headHeightScale;
+        maxHeadHeight = (int) (headHeight * headHeightScale);
         mState = State.NORMAL;
+        mDirection = DIRECTION.STABLE;
     }
 
     @Override
@@ -74,8 +77,8 @@ public class MiniPullPushScrollView extends ScrollView {
         int action = ev.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                mStartPoint.set(ev.getRawX(), ev.getRawY());
-                downY = ev.getRawY();
+                mStartPoint.set(ev.getX(), ev.getY());
+                downY = (int) ev.getY();
                 if (headHeight == 0) {
                     init();
 //                    headHeight = head.getMeasuredHeight();
@@ -84,7 +87,7 @@ public class MiniPullPushScrollView extends ScrollView {
                 break;
             case MotionEvent.ACTION_MOVE:
                 //误差操作规避
-                float deltaY = Math.abs(ev.getRawY() - downY);
+                float deltaY = Math.abs(ev.getY() - downY);
                 if (deltaY < 10) {
                     break;
                 }
@@ -95,16 +98,14 @@ public class MiniPullPushScrollView extends ScrollView {
                 if (mState == State.EXPANDING || mState == State.BOTTOM) {
                     rollUp2Normal();
                 }
-                //在上升的过程中，则进行自动回弹的判断
-                if (mState == State.UP) {
+                //TODO  进行自动回弹的判断
+                if (mState != State.TOP) {
                     if (isAuto2Top) {
                         rollUp2Top();
                         mState = State.TOP;
-                        mCurrentHeadHeight = 0;
                     } else {
                         rollDown2Normal();
                         mState = State.NORMAL;
-                        mCurrentHeadHeight = headHeight;
                     }
                 }
                 break;
@@ -128,30 +129,15 @@ public class MiniPullPushScrollView extends ScrollView {
 
     //通过正常的滑动,完成上滑的逻辑
     private void doUp(MotionEvent ev) {
-        int delta = (int) Math.abs(ev.getRawY() - downY);
+        int delta = (int) Math.abs(ev.getY() - downY);
         //到达了top状态之后，之后的上滑直接滑动即可
-        if (mState == State.UP || mState == State.NORMAL) {
-            //滑动的距离小于一半，表示需要自动向下滑动到正常状态
-            if (delta < headHeight / 2) {
-                isAuto2Top = false;
-                mState = State.UP;
-                mCurrentHeadHeight += (ev.getRawY() - downY);
-            }
-            //大于一半，小于整个的高度，自动滑动到顶端
-            else if (delta <= headHeight) {
-                isAuto2Top = true;
-                mState = State.UP;
-                mCurrentHeadHeight += (ev.getRawY() - downY);
-            }
-            //不采用自动滚动，表示已经通过顶端的临界值,到达了顶部状态
-            else if (delta > headHeight) {
-                isAuto2Top = false;
-                mState = State.TOP;
-                mCurrentHeadHeight = 0;
-            }
+        if (mState != State.BOTTOM) {
+            return;
+        } else {
+            //TODO 假如是从底部滑上去的，需要先恢复原状的大小
+            doSmall2Normal(delta);
         }
         //do nothing
-
     }
 
     //通过正常的滑动，完成下滑的逻辑
@@ -164,9 +150,9 @@ public class MiniPullPushScrollView extends ScrollView {
         if (mCurrentHeadHeight <= maxHeadHeight) {
             mState = State.EXPANDING;
             //改变头部的高度
-            mCurrentHeadHeight = headHeight + deltaY * DEFAULT_SCROLL_RATIO;
+            mCurrentHeadHeight = (int) (headHeight + deltaY * DEFAULT_SCROLL_RATIO);
             ViewGroup.LayoutParams layoutParams = head.getLayoutParams();
-            layoutParams.height = (int) mCurrentHeadHeight;
+            layoutParams.height = mCurrentHeadHeight;
             head.setLayoutParams(layoutParams);
             requestLayout();
         } else {
@@ -174,6 +160,23 @@ public class MiniPullPushScrollView extends ScrollView {
             mState = State.BOTTOM;
         }
     }
+
+    //上滑，缩小head到正常大小
+    private void doSmall2Normal(float deltaY) {
+        if (mCurrentHeadHeight > headHeight) {
+            mState = State.EXPANDING;
+            //改变头部的高度
+            mCurrentHeadHeight += (int) (deltaY * DEFAULT_SCROLL_RATIO);
+            ViewGroup.LayoutParams layoutParams = head.getLayoutParams();
+            layoutParams.height = mCurrentHeadHeight;
+            head.setLayoutParams(layoutParams);
+            requestLayout();
+        } else {
+            //从拉伸状态恢复到正常状态，注意此时onScroll里也会进行相应的设置
+            mState = State.NORMAL;
+        }
+    }
+
 
     //下拉的时候，松手回滚到正常状态
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -184,9 +187,9 @@ public class MiniPullPushScrollView extends ScrollView {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float value = (float) animation.getAnimatedValue();
-                mCurrentHeadHeight = value;
+                mCurrentHeadHeight = (int) value;
                 ViewGroup.LayoutParams layoutParams = head.getLayoutParams();
-                layoutParams.height = (int) mCurrentHeadHeight;
+                layoutParams.height = mCurrentHeadHeight;
                 head.setLayoutParams(layoutParams);
                 requestLayout();
             }
@@ -203,9 +206,10 @@ public class MiniPullPushScrollView extends ScrollView {
 
     //处理滑动
     private void doMove(MotionEvent ev) {
-        float deltaY = ev.getRawY() - downY;
+        float deltaY = ev.getY() - downY;
         //下拉
         if (deltaY > 0) {
+            mDirection = DIRECTION.DOWN;
             //下拉放大
             if (mState == State.NORMAL || mState == State.EXPANDING) {
                 doDownEnlarge(deltaY);
@@ -216,6 +220,7 @@ public class MiniPullPushScrollView extends ScrollView {
         }
         //上拉
         if (deltaY < 0) {
+            mDirection = DIRECTION.UP;
             doUp(ev);
         }
     }
@@ -227,9 +232,21 @@ public class MiniPullPushScrollView extends ScrollView {
         if (getScrollY() == 0) {
             mState = State.NORMAL;
         }
+        if (getScrollY() > 0 && getScrollY() < headHeight / 2) {
+            isAuto2Top = false;
+            mState = State.SHRINKING;
+        }
+        if (getScrollY() >= headHeight / 2 && getScrollY() < headHeight) {
+            isAuto2Top = true;
+            mState = State.SHRINKING;
+        }
+        if (getScrollY() >= headHeight) {
+            isAuto2Top = false;
+            mState = State.TOP;
+        }
     }
 
-    //定义控件所处的状态
+    //定义head所处的状态
     private enum State {
         //当前处于正常状态
         NORMAL,
@@ -239,11 +256,21 @@ public class MiniPullPushScrollView extends ScrollView {
         BOTTOM,
         //正在处于扩展的状态
         EXPANDING,
-        //正常状态下往TOP状态的过程中进行上拉
+        //露出部分,在收缩
+        SHRINKING
+
+    }
+
+    /**
+     * 定义手势的
+     */
+    private enum DIRECTION {
+        //进行上拉
         UP,
         //下拉状态
         DOWN,
-
+        //静止
+        STABLE
     }
 
 
