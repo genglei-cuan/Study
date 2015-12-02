@@ -301,16 +301,35 @@
 
         <!-- 下拉放大，上拉收缩 -->
         <activity android:name="cn.steve.pullscrollview.MiniPullPushScrollViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <!-- 动态改变控件的高度 -->
         <activity android:name="cn.steve.viewcoordinate.LayoutParamsScrollActivity">
 
         </activity>
+
+        <!-- 下拉方法的listview和scrollview -->
+        <activity
+                android:name="cn.steve.pulltozoomviewdemo.MainActivity"
+                android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+                android:name="cn.steve.pulltozoomviewdemo.PullToZoomListActivity"
+                />
+
+        <activity
+                android:name="cn.steve.pulltozoomviewdemo.PullToZoomScrollActivity"
+                />
+        <activity
+                android:name="cn.steve.pulltozoomviewdemo.recyclerview.PullToZoomRecyclerActivity"
+                />
+
 
     </application>
 
