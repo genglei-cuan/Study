@@ -230,6 +230,13 @@
         <activity android:name="cn.steve.blurre.BlurreActivity">
 
         </activity>
+        <activity android:name="cn.steve.blurre.renderscript.RenderScriptMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <!-- progressbar的demo -->
         <activity android:name="cn.steve.progressbar.ProgressMainActivity"></activity>
@@ -312,11 +319,7 @@
         <activity
                 android:name="cn.steve.pulltozoomviewdemo.MainActivity"
                 android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <activity
