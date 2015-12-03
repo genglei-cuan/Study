@@ -57,26 +57,18 @@ public class RenderScriptMainActivity extends AppCompatActivity {
         //资源
         Bitmap outBitmap = inputBitmap.copy(inputBitmap.getConfig(), true);
         Bitmap grayBitmap = inputBitmap.copy(inputBitmap.getConfig(), true);
-
         //创建context 和 I/O allocations
         final RenderScript rs = RenderScript.create(this);
-        final Allocation
-            input =
-            Allocation.createFromBitmap(rs, inputBitmap, Allocation.MipmapControl.MIPMAP_NONE,
-                                        Allocation.USAGE_SCRIPT);
+        final Allocation input =Allocation.createFromBitmap(rs, inputBitmap, Allocation.MipmapControl.MIPMAP_NONE,Allocation.USAGE_SCRIPT);
         final Allocation output = Allocation.createTyped(rs, input.getType());
-
         //Blur the image
         final ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
         script.setRadius(radius);
         script.setInput(input);
         script.forEach(output);
         output.copyTo(outBitmap);
-
         //Make the image greyscale
-        final ScriptIntrinsicColorMatrix
-            scriptColor =
-            ScriptIntrinsicColorMatrix.create(rs, Element.U8_4(rs));
+        final ScriptIntrinsicColorMatrix scriptColor =ScriptIntrinsicColorMatrix.create(rs, Element.U8_4(rs));
         scriptColor.setGreyscale();
         scriptColor.forEach(input, output);
         output.copyTo(grayBitmap);
