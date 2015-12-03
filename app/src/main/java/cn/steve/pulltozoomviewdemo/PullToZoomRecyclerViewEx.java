@@ -13,6 +13,7 @@ import android.view.animation.Interpolator;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import cn.steve.pulltozoomviewdemo.recyclerview.RecyclerViewHeaderAdapter;
 import steve.cn.mylib.pulltozoomview.PullToZoomBase;
@@ -106,7 +107,7 @@ public class PullToZoomRecyclerViewEx extends PullToZoomBase<RecyclerView> imple
     }
 
     @Override
-    public void setZoomView(View zoomView) {
+    public void setZoomView(ImageView zoomView) {
         if (zoomView != null) {
             this.mZoomView = zoomView;
             updateHeaderView();

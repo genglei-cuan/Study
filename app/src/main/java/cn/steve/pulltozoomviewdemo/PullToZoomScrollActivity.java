@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import cn.steve.study.R;
@@ -109,7 +110,7 @@ public class PullToZoomScrollActivity extends ActionBarActivity {
     private void loadViewForCode() {
         PullToZoomScrollViewEx scrollView = (PullToZoomScrollViewEx) findViewById(R.id.scroll_view);
         View headView = LayoutInflater.from(this).inflate(R.layout.profile_head_view, null, false);
-        View zoomView = LayoutInflater.from(this).inflate(R.layout.profile_zoom_view, null, false);
+        ImageView zoomView =(ImageView) LayoutInflater.from(this).inflate(R.layout.profile_zoom_view, null, false);
         View contentView = LayoutInflater.from(this).inflate(R.layout.profile_content_view, null, false);
         scrollView.setHeaderView(headView);
         scrollView.setZoomView(zoomView);

@@ -3,7 +3,6 @@ package steve.cn.mylib.pulltozoomview;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -12,9 +11,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import steve.cn.mylib.R;
+
 
 /**
  * Author:    ZhuWenWu
@@ -31,7 +32,7 @@ public abstract class PullToZoomBase<T extends View> extends LinearLayout implem
     private static final float FRICTION = 2.0f;
     protected T mRootView;
     protected View mHeaderView;//头部View
-    protected View mZoomView;//缩放拉伸View
+    protected ImageView mZoomView;//缩放拉伸View,这里为了定制，写死成imagevIew
 
     protected int mScreenHeight;
     protected int mScreenWidth;
@@ -81,7 +82,7 @@ public abstract class PullToZoomBase<T extends View> extends LinearLayout implem
 
             int zoomViewResId = a.getResourceId(R.styleable.PullToZoomView_zoomView, 0);
             if (zoomViewResId > 0) {
-                mZoomView = mLayoutInflater.inflate(zoomViewResId, null, false);
+                mZoomView = (ImageView) mLayoutInflater.inflate(zoomViewResId, null, false);
             }
 
             int headerViewResId = a.getResourceId(R.styleable.PullToZoomView_headerView, 0);
@@ -202,7 +203,7 @@ public abstract class PullToZoomBase<T extends View> extends LinearLayout implem
     }
 
     @Override
-    public boolean onTouchEvent(@NonNull MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent event) {
         if (!isPullToZoomEnabled() || isHideHeader()) {
             return false;
         }
@@ -272,7 +273,7 @@ public abstract class PullToZoomBase<T extends View> extends LinearLayout implem
 
     public abstract void setHeaderView(View headerView);
 
-    public abstract void setZoomView(View zoomView);
+    public abstract void setZoomView(ImageView zoomView);
 
     protected abstract T createRootView(Context context, AttributeSet attrs);
 

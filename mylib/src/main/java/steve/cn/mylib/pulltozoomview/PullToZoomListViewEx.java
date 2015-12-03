@@ -12,6 +12,7 @@ import android.widget.AbsListView;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -75,7 +76,7 @@ public class PullToZoomListViewEx extends PullToZoomBase<ListView> implements Ab
     }
 
     @Override
-    public void setZoomView(View zoomView) {
+    public void setZoomView(ImageView zoomView) {
         if (zoomView != null) {
             this.mZoomView = zoomView;
             updateHeaderView();

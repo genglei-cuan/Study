@@ -2,6 +2,8 @@ package steve.cn.mylib.pulltozoomview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -10,37 +12,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import steve.cn.mylib.R;
+import steve.cn.mylib.util.BlurUtil;
+
 
 /**
- * Author:    ZhuWenWu
- * Version    V1.0
- * Date:      2014/11/10  14:25.
- * Description:
- * Modification  History:
- * Date         	Author        		Version        	Description
- * -----------------------------------------------------------------------------------
- * 2014/11/10        ZhuWenWu            1.0                    1.0
- * Why & What is modified:
+ * Author:    ZhuWenWu Version    V1.0 Date:      2014/11/10  14:25. Description: Modification
+ * History: Date         	Author        		Version        	Description
+ * ----------------------------------------------------------------------------------- 2014/11/10
+ * ZhuWenWu            1.0                    1.0 Why & What is modified:
  */
 public class PullToZoomScrollViewEx extends PullToZoomBase<ScrollView> {
-    private static final String TAG = PullToZoomScrollViewEx.class.getSimpleName();
-    private boolean isCustomHeaderHeight = false;
-    private FrameLayout mHeaderContainer;
-    private LinearLayout mRootContainer;
-    private View mContentView;
-    private int mHeaderHeight;
-    private ScalingRunnable mScalingRunnable;
 
+    private static final String TAG = PullToZoomScrollViewEx.class.getSimpleName();
     private static final Interpolator sInterpolator = new Interpolator() {
         public float getInterpolation(float paramAnonymousFloat) {
             float f = paramAnonymousFloat - 1.0F;
             return 1.0F + f * (f * (f * (f * f)));
         }
     };
+    private boolean isCustomHeaderHeight = false;
+    private FrameLayout mHeaderContainer;
+    private LinearLayout mRootContainer;
+    private View mContentView;
+    private int mHeaderHeight;
+    private ScalingRunnable mScalingRunnable;
+    //记录head头部的初始化高度
+    private int mHeaderInitHeight = 0;
+    private Bitmap mSrc = null;
 
     public PullToZoomScrollViewEx(Context context) {
         this(context, null);
@@ -49,22 +52,25 @@ public class PullToZoomScrollViewEx extends PullToZoomBase<ScrollView> {
     public PullToZoomScrollViewEx(Context context, AttributeSet attrs) {
         super(context, attrs);
         mScalingRunnable = new ScalingRunnable();
-        ((InternalScrollView) mRootView).setOnScrollViewChangedListener(new OnScrollViewChangedListener() {
-            @Override
-            public void onInternalScrollChanged(int left, int top, int oldLeft, int oldTop) {
-                if (isPullToZoomEnabled() && isParallax()) {
-                    Log.d(TAG, "onScrollChanged --> getScrollY() = " + mRootView.getScrollY());
-                    float f = mHeaderHeight - mHeaderContainer.getBottom() + mRootView.getScrollY();
-                    Log.d(TAG, "onScrollChanged --> f = " + f);
-                    if ((f > 0.0F) && (f < mHeaderHeight)) {
-                        int i = (int) (0.65D * f);
-                        mHeaderContainer.scrollTo(0, -i);
-                    } else if (mHeaderContainer.getScrollY() != 0) {
-                        mHeaderContainer.scrollTo(0, 0);
+        ((InternalScrollView) mRootView)
+            .setOnScrollViewChangedListener(new OnScrollViewChangedListener() {
+                @Override
+                public void onInternalScrollChanged(int left, int top, int oldLeft, int oldTop) {
+                    if (isPullToZoomEnabled() && isParallax()) {
+                        Log.d(TAG, "onScrollChanged --> getScrollY() = " + mRootView.getScrollY());
+                        float
+                            f =
+                            mHeaderHeight - mHeaderContainer.getBottom() + mRootView.getScrollY();
+                        Log.d(TAG, "onScrollChanged --> f = " + f);
+                        if ((f > 0.0F) && (f < mHeaderHeight)) {
+                            int i = (int) (0.65D * f);
+                            mHeaderContainer.scrollTo(0, -i);
+                        } else if (mHeaderContainer.getScrollY() != 0) {
+                            mHeaderContainer.scrollTo(0, 0);
+                        }
                     }
                 }
-            }
-        });
+            });
     }
 
     @Override
@@ -76,14 +82,29 @@ public class PullToZoomScrollViewEx extends PullToZoomBase<ScrollView> {
         }
 
         ViewGroup.LayoutParams localLayoutParams = mHeaderContainer.getLayoutParams();
-        localLayoutParams.height = Math.abs(newScrollValue) + mHeaderHeight;
+
+        int newHeight = Math.abs(newScrollValue) + mHeaderHeight;
+        //限定滑动的最大高度
+        if (newHeight > mHeaderInitHeight * 1.2f) {
+            return;
+        }
+
+
+        localLayoutParams.height = newHeight;
         mHeaderContainer.setLayoutParams(localLayoutParams);
 
         if (isCustomHeaderHeight) {
             ViewGroup.LayoutParams zoomLayoutParams = mZoomView.getLayoutParams();
-            zoomLayoutParams.height = Math.abs(newScrollValue) + mHeaderHeight;
+            zoomLayoutParams.height = newHeight;
             mZoomView.setLayoutParams(zoomLayoutParams);
         }
+
+        //获取滚动的比例
+        int delta = newHeight - mHeaderInitHeight;
+        float total = 0.2f * mHeaderInitHeight;
+        float i = (total - delta) / total;
+        int alpha = (int) (i * 255);
+        mZoomView.getDrawable().setAlpha(alpha);
     }
 
     /**
@@ -112,7 +133,7 @@ public class PullToZoomScrollViewEx extends PullToZoomBase<ScrollView> {
     }
 
     @Override
-    public void setZoomView(View zoomView) {
+    public void setZoomView(ImageView zoomView) {
         if (zoomView != null) {
             mZoomView = zoomView;
             updateHeaderView();
@@ -192,9 +213,6 @@ public class PullToZoomScrollViewEx extends PullToZoomBase<ScrollView> {
 
     /**
      * 设置HeaderView高度
-     *
-     * @param width
-     * @param height
      */
     public void setHeaderViewSize(int width, int height) {
         if (mHeaderContainer != null) {
@@ -219,8 +237,9 @@ public class PullToZoomScrollViewEx extends PullToZoomBase<ScrollView> {
         if (mHeaderContainer != null) {
             mHeaderContainer.setLayoutParams(layoutParams);
             mHeaderHeight = layoutParams.height;
+            mHeaderInitHeight = mHeaderHeight;
             isCustomHeaderHeight = true;
-        }
+            mSrc=((BitmapDrawable) mZoomView.getDrawable()).getBitmap();        }
     }
 
     protected void onLayout(boolean paramBoolean, int paramInt1, int paramInt2,
@@ -229,10 +248,20 @@ public class PullToZoomScrollViewEx extends PullToZoomBase<ScrollView> {
         Log.d(TAG, "onLayout --> ");
         if (mHeaderHeight == 0 && mZoomView != null) {
             mHeaderHeight = mHeaderContainer.getHeight();
+            mHeaderInitHeight = mHeaderHeight;
+            mZoomView.setBackground(mZoomView.getDrawable());
+            mSrc = ((BitmapDrawable) mZoomView.getDrawable()).getBitmap();
+            mZoomView.setImageBitmap(BlurUtil.getBlurBitmap(getContext(), mSrc, 25f));
         }
     }
 
+    protected interface OnScrollViewChangedListener {
+
+        public void onInternalScrollChanged(int left, int top, int oldLeft, int oldTop);
+    }
+
     class ScalingRunnable implements Runnable {
+
         protected long mDuration;
         protected boolean mIsFinished = true;
         protected float mScale;
@@ -254,19 +283,32 @@ public class PullToZoomScrollViewEx extends PullToZoomBase<ScrollView> {
                 float f2;
                 ViewGroup.LayoutParams localLayoutParams;
                 if ((!mIsFinished) && (mScale > 1.0D)) {
-                    float f1 = ((float) SystemClock.currentThreadTimeMillis() - (float) mStartTime) / (float) mDuration;
-                    f2 = mScale - (mScale - 1.0F) * PullToZoomScrollViewEx.sInterpolator.getInterpolation(f1);
+                    float
+                        f1 =
+                        ((float) SystemClock.currentThreadTimeMillis() - (float) mStartTime)
+                        / (float) mDuration;
+                    f2 =
+                        mScale - (mScale - 1.0F) * PullToZoomScrollViewEx.sInterpolator
+                            .getInterpolation(
+                                f1);
                     localLayoutParams = mHeaderContainer.getLayoutParams();
                     Log.d(TAG, "ScalingRunnable --> f2 = " + f2);
                     if (f2 > 1.0F) {
-                        localLayoutParams.height = ((int) (f2 * mHeaderHeight));
+                        int newHeight = (int) (f2 * mHeaderHeight);
+                        localLayoutParams.height = newHeight;
                         mHeaderContainer.setLayoutParams(localLayoutParams);
                         if (isCustomHeaderHeight) {
                             ViewGroup.LayoutParams zoomLayoutParams;
                             zoomLayoutParams = mZoomView.getLayoutParams();
-                            zoomLayoutParams.height = ((int) (f2 * mHeaderHeight));
+                            zoomLayoutParams.height = newHeight;
                             mZoomView.setLayoutParams(zoomLayoutParams);
                         }
+                        //获取滚动的比例
+                        int delta = newHeight - mHeaderInitHeight;
+                        float total = 0.2f * mHeaderInitHeight;
+                        float i = (total - delta) / total;
+                        int alpha = (int) (i * 255);
+                        mZoomView.getDrawable().setAlpha(alpha);
                         post(this);
                         return;
                     }
@@ -287,6 +329,7 @@ public class PullToZoomScrollViewEx extends PullToZoomBase<ScrollView> {
     }
 
     protected class InternalScrollView extends ScrollView {
+
         private OnScrollViewChangedListener onScrollViewChangedListener;
 
         public InternalScrollView(Context context) {
@@ -297,7 +340,8 @@ public class PullToZoomScrollViewEx extends PullToZoomBase<ScrollView> {
             super(context, attrs);
         }
 
-        public void setOnScrollViewChangedListener(OnScrollViewChangedListener onScrollViewChangedListener) {
+        public void setOnScrollViewChangedListener(
+            OnScrollViewChangedListener onScrollViewChangedListener) {
             this.onScrollViewChangedListener = onScrollViewChangedListener;
         }
 
@@ -308,9 +352,5 @@ public class PullToZoomScrollViewEx extends PullToZoomBase<ScrollView> {
                 onScrollViewChangedListener.onInternalScrollChanged(l, t, oldl, oldt);
             }
         }
-    }
-
-    protected interface OnScrollViewChangedListener {
-        public void onInternalScrollChanged(int left, int top, int oldLeft, int oldTop);
     }
 }

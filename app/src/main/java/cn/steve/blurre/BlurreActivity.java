@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import cn.steve.study.R;
+import steve.cn.mylib.util.BlurUtil;
 
 /**
  * Created by yantinggeng on 2015/11/5.
