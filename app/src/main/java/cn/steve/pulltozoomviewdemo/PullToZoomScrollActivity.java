@@ -15,15 +15,10 @@ import cn.steve.study.R;
 import steve.cn.mylib.pulltozoomview.PullToZoomScrollViewEx;
 
 /**
- * Author:    ZhuWenWu
- * Version    V1.0
- * Date:      2014/9/4  17:30.
- * Description:
- * Modification  History:
- * Date         	Author        		Version        	Description
- * -----------------------------------------------------------------------------------
- * 2014/9/4        ZhuWenWu            1.0                    1.0
- * Why & What is modified:
+ * 这个类在2.3及其以下都有问题。 Author:    ZhuWenWu Version    V1.0 Date:      2014/9/4  17:30. Description:
+ * Modification  History: Date         	Author        		Version        	Description
+ * ----------------------------------------------------------------------------------- 2014/9/4
+ * ZhuWenWu            1.0                    1.0 Why & What is modified:
  */
 public class PullToZoomScrollActivity extends ActionBarActivity {
 
@@ -36,31 +31,36 @@ public class PullToZoomScrollActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         loadViewForCode();
         scrollView = (PullToZoomScrollViewEx) findViewById(R.id.scroll_view);
-        scrollView.getPullRootView().findViewById(R.id.tv_test1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("zhuwenwu", "onClick -->");
-            }
-        });
+        scrollView.getPullRootView().findViewById(R.id.tv_test1)
+            .setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("zhuwenwu", "onClick -->");
+                }
+            });
 
-        scrollView.getPullRootView().findViewById(R.id.tv_test2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("zhuwenwu", "onClick -->");
-            }
-        });
+        scrollView.getPullRootView().findViewById(R.id.tv_test2)
+            .setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("zhuwenwu", "onClick -->");
+                }
+            });
 
-        scrollView.getPullRootView().findViewById(R.id.tv_test3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("zhuwenwu", "onClick -->");
-            }
-        });
+        scrollView.getPullRootView().findViewById(R.id.tv_test3)
+            .setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("zhuwenwu", "onClick -->");
+                }
+            });
         DisplayMetrics localDisplayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(localDisplayMetrics);
         int mScreenHeight = localDisplayMetrics.heightPixels;
         int mScreenWidth = localDisplayMetrics.widthPixels;
-        LinearLayout.LayoutParams localObject = new LinearLayout.LayoutParams(mScreenWidth, (int) (9.0F * (mScreenWidth / 16.0F)));
+        LinearLayout.LayoutParams
+            localObject =
+            new LinearLayout.LayoutParams(mScreenWidth, (int) (9.0F * (mScreenWidth / 16.0F)));
         scrollView.setHeaderLayoutParams(localObject);
     }
 
@@ -110,8 +110,12 @@ public class PullToZoomScrollActivity extends ActionBarActivity {
     private void loadViewForCode() {
         PullToZoomScrollViewEx scrollView = (PullToZoomScrollViewEx) findViewById(R.id.scroll_view);
         View headView = LayoutInflater.from(this).inflate(R.layout.profile_head_view, null, false);
-        ImageView zoomView =(ImageView) LayoutInflater.from(this).inflate(R.layout.profile_zoom_view, null, false);
-        View contentView = LayoutInflater.from(this).inflate(R.layout.profile_content_view, null, false);
+        ImageView
+            zoomView =
+            (ImageView) LayoutInflater.from(this).inflate(R.layout.profile_zoom_view, null, false);
+        View
+            contentView =
+            LayoutInflater.from(this).inflate(R.layout.profile_content_view, null, false);
         scrollView.setHeaderView(headView);
         scrollView.setZoomView(zoomView);
         scrollView.setScrollContentView(contentView);
