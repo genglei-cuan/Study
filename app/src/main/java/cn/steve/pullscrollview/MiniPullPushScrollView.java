@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 
 /**
+ * 这个目前先保留，个人觉得实现不了那么效果，存在不可解决的问题。转战另外一种方案。
+ *
  * Created by yantinggeng on 2015/11/27.
  */
 public class MiniPullPushScrollView extends ScrollView {
