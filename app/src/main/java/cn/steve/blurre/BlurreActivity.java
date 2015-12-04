@@ -10,6 +10,8 @@ import cn.steve.study.R;
 import steve.cn.mylib.util.BlurUtil;
 
 /**
+ * 用的java层的模糊
+ *
  * Created by yantinggeng on 2015/11/5.
  */
 public class BlurreActivity extends AppCompatActivity {
