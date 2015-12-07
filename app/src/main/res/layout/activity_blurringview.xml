@@ -2,19 +2,41 @@
 <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/blurredView"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/xihu">
+        >
+
+    <FrameLayout
+            android:id="@+id/blurredView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+    </FrameLayout>
+
 
     <!-- Here, we customize the blurring view with values different from the defaults. -->
     <steve.cn.mylib.blur.BlurringView
             android:id="@+id/blurring_view"
-            android:layout_width="360dp"
-            android:layout_height="360dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             app:blurRadius="2"
             app:downsampleFactor="6"
             app:overlayColor="#99FFFFFF"/>
+
+    <Button
+            android:id="@+id/blurredViewButtonChangeBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="换背景"/>
+    <Button
+            android:id="@+id/blurredViewButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="模糊"/>
+
+
 </FrameLayout>
