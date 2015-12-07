@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:id="@+id/weChatLinearLayoutHead"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:padding="6dp">
+
+        <ImageView
+                android:id="@+id/weChatImageViewBack"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="left"
+                android:src="@drawable/icon_back"/>
+
+        <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=""/>
+
+        <ImageView
+                android:id="@+id/weChatImageViewPersonDetail"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="end"
+                android:src="@drawable/icon_person"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:id="@+id/weChatLinearLayoutBottom"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp">
+
+        <ImageView
+                android:id="@+id/weChatImageViewSound"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_sound"
+                android:layout_gravity="center"
+                />
+
+        <EditText
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"/>
+
+        <ImageView
+                android:id="@+id/weChatImageViewMore"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_plus"
+                android:layout_gravity="center"
+                />
+    </LinearLayout>
+
+    <ListView
+            android:id="@+id/weChatListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/weChatLinearLayoutHead"
+            android:layout_above="@id/weChatLinearLayoutBottom"
+            android:background="@color/gray_white"
+            >
+    </ListView>
+</RelativeLayout>

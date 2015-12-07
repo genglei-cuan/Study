@@ -78,6 +78,7 @@
 1. viewflipper   侧滑
 1. weakreferencehandler   初设弱引用概念
 1. webview   加载URI，以及注入JS调用和混淆代码
+1. wechat    仿造微信的聊天界面
 
 
 

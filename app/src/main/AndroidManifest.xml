@@ -234,11 +234,7 @@
 
         </activity>
         <activity android:name="cn.steve.blurre.BlurringViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <!-- progressbar的demo -->
@@ -336,7 +332,14 @@
                 android:name="cn.steve.pulltozoomviewdemo.recyclerview.PullToZoomRecyclerActivity"
                 />
 
+        <!-- 仿造微信的聊天界面-->
+        <activity android:name="cn.steve.wechat.WeChatMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
