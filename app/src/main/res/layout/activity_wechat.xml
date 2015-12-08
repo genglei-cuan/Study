@@ -10,6 +10,7 @@
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:padding="6dp">
 
         <ImageView
@@ -23,7 +24,10 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text=""/>
+                android:paddingLeft="10dp"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:text="SteveYan"/>
 
         <ImageView
                 android:id="@+id/weChatImageViewPersonDetail"
@@ -40,6 +44,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:padding="6dp">
 
         <ImageView
@@ -51,19 +56,21 @@
                 />
 
         <EditText
+                android:id="@+id/weChatEditTextMessage"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="40dp"/>
 
         <ImageView
-                android:id="@+id/weChatImageViewMore"
+                android:id="@+id/weChatImageViewSend"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/icon_plus"
+                android:src="@drawable/icon_send"
                 android:layout_gravity="center"
                 />
     </LinearLayout>
 
+    <!-- 聊天的内容列表 ，添加下面两个属性可以实现自动的滚动到最底端 -->
     <ListView
             android:id="@+id/weChatListView"
             android:layout_width="match_parent"
@@ -71,6 +78,8 @@
             android:layout_below="@id/weChatLinearLayoutHead"
             android:layout_above="@id/weChatLinearLayoutBottom"
             android:background="@color/gray_white"
+            android:transcriptMode="alwaysScroll"
+            android:stackFromBottom="true"
             >
     </ListView>
 </RelativeLayout>
