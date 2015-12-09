@@ -4,10 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#f0f0f0"
-        android:paddingRight="80dip"
-        android:paddingLeft="8dip"
-        android:paddingBottom="10dip"
-        android:paddingTop="10dip">
+        >
 
     <ImageView
             android:id="@+id/chatListImageOther"
@@ -20,12 +17,11 @@
     <TextView
             android:id="@+id/chatListTextOther"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dip"
             android:layout_toRightOf="@id/chatListImageOther"
             android:layout_alignTop="@id/chatListImageOther"
             android:gravity="center"
             android:text="Other"
             android:background="@drawable/balloon_left"
-            android:paddingTop="13dip"
-            android:paddingBottom="18dip"/>
+            />
 </RelativeLayout>
