@@ -69,7 +69,14 @@ public class WeChatMainActivity extends Activity {
             data.add(ModelCreater.createModel(str, WeChatAdapter.TYPE_ME));
             adapter.notifyDataSetChanged();
             editText.getText().clear();
+            data.add(ModelCreater.createModel(str, WeChatAdapter.TYPE_OTHER));
+            adapter.notifyDataSetChanged();
         }
+    }
+
+    @OnClick(R.id.weChatImageViewEmoji)
+    void showEmoji() {
+
     }
 
     private void initData() {
@@ -83,6 +90,8 @@ public class WeChatMainActivity extends Activity {
         adapter = new WeChatAdapter(this, data);
         listView.setAdapter(adapter);
     }
+
+
 
 
 }
