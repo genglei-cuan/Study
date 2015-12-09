@@ -234,7 +234,13 @@
 
         </activity>
         <activity android:name="cn.steve.blurre.BlurringViewActivity">
+        </activity>
+        <activity android:name="cn.steve.blurre.GpuBlurActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <!-- progressbar的demo -->
@@ -333,14 +339,11 @@
                 />
 
         <!-- 仿造微信的聊天界面-->
-        <activity android:name="cn.steve.wechat.WeChatMainActivity"
+        <activity
+                android:name="cn.steve.wechat.WeChatMainActivity"
                 android:theme="@android:style/Theme.NoTitleBar"
                 >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 
