@@ -338,6 +338,9 @@
                 android:name="cn.steve.wechat.WeChatMainActivity"
                 android:theme="@android:style/Theme.NoTitleBar"
                 >
+        </activity>
+        <!-- recyclerview版 -->
+        <activity android:name="cn.steve.wechat.recycleview.WeChatMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

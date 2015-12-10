@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_white"
+        >
+
+    <LinearLayout
+            android:id="@+id/weChatLinearLayoutHead"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="6dp"
+            >
+
+        <ImageView
+                android:id="@+id/weChatImageViewBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="left"
+                android:src="@drawable/icon_back"/>
+
+        <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:gravity="start|center"
+                android:textColor="@color/black"
+                android:text="SteveYan"/>
+
+        <ImageView
+                android:id="@+id/weChatImageViewPersonDetail"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:src="@drawable/icon_person"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/weChatLinearLayoutBottom"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp">
+
+        <ImageView
+                android:id="@+id/weChatImageViewSound"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_sound"
+                android:layout_gravity="center"
+                />
+
+        <EditText
+                android:id="@+id/weChatEditTextMessage"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"/>
+
+        <ImageView
+                android:id="@+id/weChatImageViewSend"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_send"
+                android:layout_gravity="center"
+                />
+
+        <ImageView
+                android:id="@+id/weChatImageViewEmoji"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_emoji"
+                android:layout_gravity="center"
+                />
+
+    </LinearLayout>
+
+    <!-- 聊天的内容列表 ，添加下面两个属性可以实现自动的滚动到最底端 -->
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/weChatListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/weChatLinearLayoutHead"
+            android:layout_above="@id/weChatLinearLayoutBottom"
+            >
+    </android.support.v7.widget.RecyclerView>
+
+
+</RelativeLayout>
