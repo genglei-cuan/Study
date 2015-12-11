@@ -65,10 +65,11 @@ public class WeChatMainActivity extends Activity {
         if (TextUtils.isEmpty(str)) {
         } else {
             data.add(ModelCreater.createModel(str, WeChatAdapter.TYPE_ME));
-            adapter.notifyDataSetChanged();
             editText.getText().clear();
             data.add(ModelCreater.createModel(str, WeChatAdapter.TYPE_OTHER));
-            adapter.notifyDataSetChanged();
+            //通知更改，这样能启用默认的动画
+            adapter.notifyItemInserted(adapter.getItemCount() - 2);
+            adapter.notifyItemInserted(adapter.getItemCount()-1);
             recyclerView.scrollToPosition(adapter.getItemCount()-1);
         }
     }
