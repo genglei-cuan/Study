@@ -69,6 +69,7 @@ public class WebViewActivity extends Activity {
             }
         });
 
+        //当设置了自定义的WebViewClient之后，就表示不回去调用系统的浏览器
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -85,13 +86,9 @@ public class WebViewActivity extends Activity {
                 mWebView.setVisibility(View.GONE);
                 super.onReceivedError(view, errorCode, description, failingUrl);
             }
-
-            ;
         });
         mWebView.setDownloadListener(new MyDownloadListener());
-
         new HttpCookie(mHanlder).start();
-
     }
 
     class MyListener implements View.OnClickListener {
