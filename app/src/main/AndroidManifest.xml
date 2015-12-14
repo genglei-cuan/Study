@@ -79,6 +79,12 @@
         <activity android:name="cn.steve.handler.HandlerActivity02"></activity>
         <!-- webview -->
         <activity android:name="cn.steve.webview.WebViewActivity"></activity>
+        <activity android:name="cn.steve.webview.WebViewTestAcitvity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <!-- broadcast -->
         <activity android:name="cn.steve.broadcast.NormalBroadCastActivity"></activity>
         <activity android:name="cn.steve.broadcast.BroadCastMainActivity"></activity>
@@ -341,11 +347,6 @@
         </activity>
         <!-- recyclerview版 -->
         <activity android:name="cn.steve.wechat.recycleview.WeChatMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
 
         </activity>
     </application>
