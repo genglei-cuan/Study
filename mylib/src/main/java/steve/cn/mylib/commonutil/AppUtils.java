@@ -46,4 +46,20 @@ public class AppUtils {
         return null;
     }
 
+    /**
+     * 判断是否安装了对应的软件
+     *
+     * @param packagename 需要检测的包名
+     * @param context     application context
+     * @return true：安装，false：未安装
+     */
+    public static boolean isPackageInstalled(String packagename, Context context) {
+        PackageManager pm = context.getPackageManager();
+        try {
+            pm.getPackageInfo(packagename, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
 }
