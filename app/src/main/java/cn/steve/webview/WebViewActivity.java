@@ -1,9 +1,11 @@
 package cn.steve.webview;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -90,6 +92,18 @@ public class WebViewActivity extends Activity {
         mWebView.setDownloadListener(new MyDownloadListener());
         new HttpCookie(mHanlder).start();
     }
+
+
+    //解决加载卡顿的问题，在小米4上容易浮现
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void disableHardWareAcc() {
+        try {
+            mWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     class MyListener implements View.OnClickListener {
 
