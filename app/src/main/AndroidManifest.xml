@@ -80,10 +80,6 @@
         <!-- webview -->
         <activity android:name="cn.steve.webview.WebViewActivity"></activity>
         <activity android:name="cn.steve.webview.WebViewTestAcitvity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <!-- broadcast -->
         <activity android:name="cn.steve.broadcast.NormalBroadCastActivity"></activity>
@@ -348,6 +344,13 @@
         <!-- recyclerview版 -->
         <activity android:name="cn.steve.wechat.recycleview.WeChatMainActivity">
 
+        </activity>
+        <!-- view的宽高获取 -->
+        <activity android:name="cn.steve.viewcoordinate.ObtainWidthHeightActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 
