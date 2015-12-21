@@ -11,6 +11,23 @@
 WebChromeClient：对于需要反馈到浏览器上的UI时，需要自定义一个WebChromeClient
 WebViewClient：需要对于浏览器上的内容渲染产生影响的时候，需要自定义一个WebViewClient
 
+DOM Storage 分为 sessionStorage 和 localStorage。DomStorage 适合存储比较简单的数据。
+webSettings.setDomStorageEnabled(true);启用 Dom Storage。
+
+H5 也提供基于 SQL 的数据库存储机制，用于存储适合数据库的结构化数据。
+webSettings.setDatabaseEnabled(true);
+webSettings.setDatabasePath("dbPath");
+
+AppCache 看起来是一种比较好的缓存方法，除了缓存静态资源文件外，也适合构建 Web 离线 App。
+HTML 在头中通过 manifest 属性引用 manifest 文件。manifest 文件，就是上面以 appcache 结尾的文件，是一个普通文件文件，列出了需要缓存的文件。
+需要通过 Webview 设置接口启用 AppCache，同时还要设置缓存文件的存储路径，另外还可以设置缓存的空间大小。
+webSettings.setAppCacheEnabled(true);
+webSettings.setAppCachePath(cachePath);
+webSettings.setAppCacheMaxSize(5*1024*1024);
+
+
+
+
 
 ## [webview的屏幕适配](http://developer.android.com/guide/webapps/targeting.html)
 在Android原生的开发中需要适配不同的屏幕尺寸和分辨率，同样的在H5页面也是一样的，Android规定了一些特有的meta来约定这些适配。
