@@ -233,7 +233,10 @@
 
         </activity>
         <activity android:name="cn.steve.blurre.renderscript.RenderScriptMainActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name="cn.steve.blurre.BlurringViewActivity">
         </activity>
@@ -347,10 +350,7 @@
         </activity>
         <!-- view的宽高获取 -->
         <activity android:name="cn.steve.viewcoordinate.ObtainWidthHeightActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
     </application>
 

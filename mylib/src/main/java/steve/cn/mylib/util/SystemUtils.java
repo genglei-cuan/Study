@@ -2,6 +2,7 @@ package steve.cn.mylib.util;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.os.Build;
 
 /**
  * Created by Steve on 2015/8/28.
@@ -45,4 +46,23 @@ public class SystemUtils {
         int availableProcessors = 2 * Runtime.getRuntime().availableProcessors() + 1;
         return availableProcessors > max ? max : availableProcessors;
     }
+
+
+    /**
+     * 获取CPU的指令集
+     */
+    public static String getABIS() {
+        if (Build.VERSION.SDK_INT < 21) {
+            return Build.CPU_ABI + " and " + Build.CPU_ABI2;
+        } else {
+            String[] supportedAbis = Build.SUPPORTED_ABIS;
+            StringBuffer s = new StringBuffer();
+            for (int i = 0; i < supportedAbis.length; i++) {
+                s.append(supportedAbis[i]);
+            }
+            return s.toString();
+        }
+    }
+
+
 }

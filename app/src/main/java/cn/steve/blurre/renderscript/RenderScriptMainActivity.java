@@ -4,17 +4,20 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
 import cn.steve.study.R;
 import steve.cn.mylib.util.BlurUtil;
+import steve.cn.mylib.util.SystemUtils;
 
 /**
  * Created by yantinggeng on 2015/12/3.
  */
 public class RenderScriptMainActivity extends AppCompatActivity {
 
+    private static final String TAG = "RenderScript";
     private android.widget.ImageView renderScriptImageView;
     private android.widget.SeekBar renderScriptSeekBar;
     private Bitmap mBitmap;
@@ -25,7 +28,7 @@ public class RenderScriptMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_renderscript);
         this.renderScriptSeekBar = (SeekBar) findViewById(R.id.renderScriptSeekBar);
         this.renderScriptImageView = (ImageView) findViewById(R.id.renderScriptImageView);
-
+        Log.i(TAG, "onCreate: " + SystemUtils.getABIS());
         mBitmap = ((BitmapDrawable) renderScriptImageView.getDrawable()).getBitmap();
 
         renderScriptSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -34,7 +37,8 @@ public class RenderScriptMainActivity extends AppCompatActivity {
                 if (progress <= 0) {
                     return;
                 }
-                renderScriptImageView.setImageBitmap(BlurUtil.getBlurBitmap(RenderScriptMainActivity.this,mBitmap,progress));
+                renderScriptImageView.setImageBitmap(
+                    BlurUtil.getBlurBitmap(RenderScriptMainActivity.this, mBitmap, progress));
             }
 
             @Override
