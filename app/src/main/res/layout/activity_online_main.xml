@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_white"
+        >
+
+    <LinearLayout
+            android:id="@+id/onlineServiceLinearLayoutHead"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="6dp"
+            >
+
+        <ImageView
+                android:id="@+id/onlineServiceImageViewBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="left"
+                android:src="@drawable/icon_back"/>
+
+        <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="在线客服"/>
+    </LinearLayout>
+
+
+    <FrameLayout
+            android:id="@+id/onlineServiceLinearLayoutBottom"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp">
+
+        <LinearLayout
+                android:id="@+id/onlineServiceSoundChat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                >
+
+            <ImageView
+                    android:id="@+id/onlineServiceImageViewSound"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/icon_sound"
+                    android:layout_gravity="center"
+                    />
+
+            <TextView
+                    android:id="@+id/onlineServiceTextViewSound"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:longClickable="true"
+                    android:text="按住说话"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:id="@+id/onlineServiceTextChat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                >
+
+            <ImageView
+                    android:id="@+id/onlineServiceImageViewText"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/icon_sound"
+                    android:layout_gravity="center"
+                    />
+
+            <EditText
+                    android:id="@+id/onlineServiceEditTextMessage"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"/>
+
+            <ImageView
+                    android:id="@+id/onlineServiceImageViewSend"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/icon_send"
+                    android:layout_gravity="center"
+                    />
+        </LinearLayout>
+    </FrameLayout>
+    <!-- 咨询的内容列表 ，添加下面两个属性可以实现自动的滚动到最底端 -->
+    <ListView
+            android:id="@+id/onlineServiceListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/onlineServiceLinearLayoutHead"
+            android:layout_above="@id/onlineServiceLinearLayoutBottom"
+            android:divider="@color/gray_white"
+            android:dividerHeight="5dp"
+            android:transcriptMode="alwaysScroll"
+            android:stackFromBottom="true"
+            >
+    </ListView>
+</RelativeLayout>
