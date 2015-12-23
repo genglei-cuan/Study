@@ -61,3 +61,19 @@ getDefaultZoom() and setDefaultZoom() 这两个获取和设置初始缩放比例
 
 
 
+
+
+
+##webview中一些问题集锦
+###认识误区一：
+关于自定义WebViewClient，实现shouldOverrideUrlLoading()方法，关于返回值的问题，一般默认都是返回的false，
+文档说是返回false代表交给默认的webview处理，application不处理，反之，application处理，不交给webview处理；
+意思是，交给webview处理，就是你需要在webview加载这个URL之前需要进行其他操作，亦或者是直接截断了。
+###白屏产生的原因之一
+页面内跳转本身webview就会有白屏现象。
+此外，一些H5页面有些内容是在页面加载成功之后，由JS进行填充的，这样，假如H5页面的框架是个空的，那么就会导致，
+即是页面已经加载完了，但是页面的内容还没完全填充好，会产生白屏，这样轻则为长时间白屏，重则有闪屏的视觉效果。
+
+
+
+
