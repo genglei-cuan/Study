@@ -43,8 +43,10 @@ public class AdvancedWebViewTestActivity extends AppCompatActivity
         webView.getSettings().setSupportMultipleWindows(true);
         webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         MyWebViewClient client = new MyWebViewClient();
+        MyChromeClient myChromeClient = new MyChromeClient();
         client.setmLoadListener(this);
         webView.setWebViewClient(client);
+        webView.setWebChromeClient(myChromeClient);
         webView.loadUrl(
             "http://m.lvmama.com/app740/destination/#/destination?hideAppHeader=1&id=3984&toDest=%E6%B8%85%E8%BF%88&firstChannel=ANDROID&formate=json&globalLatitude=31.237465&osVersion=5.1&lvversion=7.4.1&udid=353347060560396&globalLongitude=121.382673&secondChannel=FENZHONG");
     }
@@ -94,6 +96,7 @@ public class AdvancedWebViewTestActivity extends AppCompatActivity
             }
         }
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -105,6 +108,7 @@ public class AdvancedWebViewTestActivity extends AppCompatActivity
         }
         return super.onKeyDown(keyCode, event);
     }
+
     public void ivStop() {
         webView.getSettings().setBlockNetworkLoads(true);
         webView.getSettings().setBlockNetworkImage(true);
