@@ -23,6 +23,7 @@ public class DaggerSchoolActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_textview);
         this.textViewMain = (TextView) findViewById(R.id.textViewMain);
         ObjectGraph objectGraph = ObjectGraph.create(new AppModules());
+        objectGraph.inject(this);
         ClassRoom classRoom = objectGraph.get(ClassRoom.class);
         classRoom.study();
     }
