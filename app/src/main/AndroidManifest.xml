@@ -78,8 +78,8 @@
         <activity android:name="cn.steve.handler.HandlerActivity"></activity>
         <activity android:name="cn.steve.handler.HandlerActivity02"></activity>
         <!-- webview -->
-        <activity android:name="cn.steve.webview.WebViewActivity"></activity>
-        <activity android:name="cn.steve.webview.WebViewTestAcitvity">
+        <activity android:name="cn.steve.webview.simple.WebViewActivity"></activity>
+        <activity android:name="cn.steve.webview.simple.WebViewTestAcitvity">
         </activity>
         <!-- broadcast -->
         <activity android:name="cn.steve.broadcast.NormalBroadCastActivity"></activity>
@@ -350,6 +350,10 @@
 
         </activity>
         <activity android:name="cn.steve.listview.robot.OnlineActivity">
+
+        </activity>
+        <!-- 测试webview的高级用法 -->
+        <activity android:name="cn.steve.webview.advanced.AdvancedWebViewTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

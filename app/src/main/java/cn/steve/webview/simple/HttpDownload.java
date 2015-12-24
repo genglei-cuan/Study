@@ -1,4 +1,4 @@
-package cn.steve.webview;
+package cn.steve.webview.simple;
 
 import android.os.Environment;
 
