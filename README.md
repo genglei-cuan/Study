@@ -30,6 +30,7 @@
 1. dagger    dagger的简单demo  
 1. datatraffic  流量，wifi开关的监听
 1. deviceinfo   获取一些手机的基本硬件信息,以及一些屏幕的适配信息
+1. drawable    [自定义drawable,参考鸿洋博客](http://blog.csdn.net/lmj623565791/article/details/43752383)
 1. eventbus   左右两个fragment进行通信,用的是鸿洋的demo
 1. fileIO   文件的IO操作
 1. floatingview    仿造一些广告商的SDK中的一些悬浮窗，注：有的华为小米等可以禁止悬浮窗的显示的。

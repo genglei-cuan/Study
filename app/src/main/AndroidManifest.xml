@@ -232,11 +232,9 @@
         <activity android:name="cn.steve.blurre.BlurreActivity">
 
         </activity>
+        <!-- 用renderscript进行模糊-->
         <activity android:name="cn.steve.blurre.renderscript.RenderScriptMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity android:name="cn.steve.blurre.BlurringViewActivity">
         </activity>
@@ -359,6 +357,14 @@
         <activity android:name="cn.steve.webview.advanced.AdvancedWebViewTestActivity">
 
         </activity>
+        <!-- 测试自定义drawable-->
+        <activity android:name="cn.steve.drawable.CustomDrawableMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
