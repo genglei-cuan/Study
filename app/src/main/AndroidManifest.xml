@@ -233,7 +233,10 @@
 
         </activity>
         <activity android:name="cn.steve.blurre.renderscript.RenderScriptMainActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name="cn.steve.blurre.BlurringViewActivity">
         </activity>
@@ -251,10 +254,7 @@
         <!-- dagger 的demo-->
         <activity android:name="cn.steve.dagger.githubdemo.ui.main.MainActivity"></activity>
         <activity android:name="cn.steve.dagger.school.DaggerSchoolActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- recyclerview 的滑动demo-->

@@ -90,4 +90,24 @@ public class BlurUtil {
         rs.destroy();
         return outBitmap;
     }
+
+
+    /**
+     * 对于低于4.0版本的图片要进行脚本模糊的时候，需要先进行转换
+     * convert  the image
+     * @param img to be converted
+     * @return the converted result
+     */
+    private Bitmap RGB565toARGB888(Bitmap img) {
+        int numPixels = img.getWidth()* img.getHeight();
+        int[] pixels = new int[numPixels];
+        //Get JPEG pixels.  Each int is the color values for one pixel.
+        img.getPixels(pixels, 0, img.getWidth(), 0, 0, img.getWidth(), img.getHeight());
+        //Create a Bitmap of the appropriate format.
+        Bitmap result = Bitmap.createBitmap(img.getWidth(), img.getHeight(), Bitmap.Config.ARGB_8888);
+        //Set RGB pixels.
+        result.setPixels(pixels, 0, result.getWidth(), 0, 0, result.getWidth(), result.getHeight());
+        return result;
+    }
+
 }
