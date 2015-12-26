@@ -251,9 +251,6 @@
         </activity>
         <!-- dagger 的demo-->
         <activity android:name="cn.steve.dagger.githubdemo.ui.main.MainActivity"></activity>
-        <activity android:name="cn.steve.dagger.school.DaggerSchoolActivity">
-
-        </activity>
 
         <!-- recyclerview 的滑动demo-->
         <activity android:name="cn.steve.recyclerview.itemtouchhelper.ItemTouchHelperMainActivity">
