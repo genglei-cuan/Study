@@ -263,9 +263,6 @@
 
         </activity>
         <!-- MVP的demo -->
-        <activity android:name="cn.steve.mvp.MVPMainActivity">
-
-        </activity>
 
         <!-- 可以将一些随着类存在的静态量放到静态代码块内 -->
         <activity android:name="cn.steve.staticactivity.StaticActivity"></activity>
