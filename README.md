@@ -50,7 +50,7 @@
 1. listview   listview的基本操作,listview缓存，以及一个通用的viewholder；自定义item的高度 ;添加郭林的下拉刷新;自己写的一个自定义下拉刷新 TODO
 1. main   设置fragment基类  
 1. materialdesign   材料设计 TODO   
-1. mvp      MVP架构探索   
+1. mvp      MVP架构探索   TODO
 1. netstate   判断网络链接状态 
 1. newsImoocListView   慕课网中的demo，解决listview异步加载图片错乱的问题。 
 1. notification   在notification处显示通知，点击以后跳转到APP
@@ -63,6 +63,7 @@
 1. pulltozoomviewdemo    为各种下拉添加head可以拉伸的demo，目前这个包里的都是别人的代码，直接拷贝的，略加修改的。
 1. radiobutton   radiobutton测试监听
 1. recyclerview   recyclerview的使用的简单demo,包含了设置监听器;添加了复杂类型的布局，多个item type;添加item动画；添加itemtouchhelper
+1. Retrofit     Retrofit的使用demo TODO
 1. rxandroid    rxandroid的使用demo
 1. scaletype     区分imageview中的比例类型的区别
 1. screenshot    屏幕截图测试监听，通过系统的内容观察者来监听 
