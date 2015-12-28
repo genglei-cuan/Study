@@ -11,6 +11,7 @@ import dagger.Component;
 public interface ActivityComponent {
 
 
-    //inject方法需要一个消耗依赖的类型对象作为参数。次数不能写成activity
-    void inject(DaggerMainActivity activity);
+    //inject方法需要一个消耗依赖的类型对象作为参数。此处不能写成activity
+//    void inject(DaggerMainActivity activity);
+    UserModel userModel();
 }

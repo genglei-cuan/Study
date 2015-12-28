@@ -15,6 +15,9 @@ public class DaggerMainActivity extends AppCompatActivity {
 
     @Inject
     UserModel userModel;
+    @Inject
+    ShoppingCartModel cartModel;
+
     private ActivityComponent mActivityComponent;
     private TextView daggerTextView;
 
@@ -25,8 +28,12 @@ public class DaggerMainActivity extends AppCompatActivity {
         this.daggerTextView = (TextView) findViewById(R.id.daggerTextView);
         mActivityComponent =
             DaggerActivityComponent.builder().activityModule(new ActivityModule()).build();
-        mActivityComponent.inject(this);
-        daggerTextView.setText(userModel.name + userModel.gener);
 
+        ContainerComponent containerComponent =
+            DaggerContainerComponent.builder().activityComponent(mActivityComponent)
+                .containerModule(new ContainerModule()).build();
+        containerComponent.inject(this);
+
+        daggerTextView.setText(userModel.name + userModel.gener);
     }
 }
