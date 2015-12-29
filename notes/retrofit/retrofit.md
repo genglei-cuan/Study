@@ -36,3 +36,11 @@ Call是Retrofit中重要的一个概念，代表被封装成单个请求/响应�
 
 >*对于需要重新调用的请求可以clone再重新执行。
 
+retrofit2也支持多个convert，现在不提供默认的convert，需要显示声明。
+假如有多个序列化解析器，则需要将json的解析放在最后；因为其他类型的是通过继承关系来判断的，json比较特殊，
+没有明显的继承关系，所以需要将json放在最后一个，不然任何一个均会被json的convert认为可以解析的.
+在有需要用RxJava 来代替 call, 就需要一个 Call Adapter Factory:.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+Call Adapter Factory 是一个知道如何将 call 实例转换成其他类型的工厂类。
+目前，我们只有 RxJava 的类型，也就是将 Call 类型转换成 Observable 类型。
+如果你了解 RxJava, 其实还有一种新的 Observable 类型（一次只发射一个 item 的类型）。你可以用这个 call adapter factory 来转换到其中任意一种 Observable
+

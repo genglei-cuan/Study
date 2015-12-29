@@ -40,6 +40,9 @@ public class RetrofitMainActivity extends AppCompatActivity {
         Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(API)
             .addConverterFactory(GsonConverterFactory.create())
+                //需要用RxJava 来代替 call, 就需要一个 Call Adapter Factory
+                //Call Adapter Factory 是一个知道如何将 call 实例转换成其他类型的工厂类。
+//            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .client(new OkHttpClient())
             .build();
         //2. 创建请求服务，并为网络请求方法设置参数
