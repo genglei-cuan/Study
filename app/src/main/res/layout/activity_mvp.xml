@@ -36,7 +36,13 @@
             android:text="log_in"
             android:drawableRight="@drawable/ic_action_accept"
             />
-
+    <Button
+            android:id="@+id/buttonClear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:drawableRight="@drawable/ic_action_accept"
+            />
     <ProgressBar
             android:id="@+id/progress"
             android:layout_width="wrap_content"
