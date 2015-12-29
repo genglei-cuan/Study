@@ -350,6 +350,10 @@
         </activity>
         <!-- Dagger 的demo -->
         <activity android:name="cn.steve.dagger.DaggerMainActivity">
+
+        </activity>
+        <!-- retrofit -->
+        <activity android:name="cn.steve.retrofit.RetrofitMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
