@@ -289,6 +289,27 @@ public class RXAndroidActivity extends AppCompatActivity {
     }
 
 
+    //统一操作，在IO线程上产生信息，在主线程上进行消息的发送消费,这样就统一了操作
+    <T> Observable.Transformer<T, T> applySchedulers() {
+        return new Observable.Transformer<T, T>() {
+            @Override
+            public Observable<T> call(Observable<T> tObservable) {
+                return tObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+            }
+        };
+    }
+
+
+    private void simpleCompose2() {
+        Observable<Integer> observable = Observable.just(1, 2);
+        observable.compose(applySchedulers()).subscribe(new Action1<Object>() {
+            @Override
+            public void call(Object o) {
+
+            }
+        });
+    }
 }
 
 
