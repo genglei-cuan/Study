@@ -15,14 +15,14 @@ import rx.schedulers.Schedulers;
 
 /**
  * 介绍RXAndroid使用的demo,这些内容很多与JavaTest中的雷同，权当再次熟悉API
- *
- *
+ * <p/>
+ * <p/>
  * Observable 即被观察者，它决定什么时候触发事件以及触发怎样的事件。RxJava 使用 create() 方法来创建一个 Observable ，并为它定义事件触发规则。
- *
+ * <p/>
  * Observable 并不是在创建的时候就立即开始发送事件，而是在它被订阅的时候，即当 subscribe() 方法执行的时候。
- *
+ * <p/>
  * Created by yantinggeng on 2015/11/4.
- *
+ * <p/>
  * 内容和大部分的注释来自于： http://gank.io/post/560e15be2dca930e00da1083
  */
 
@@ -164,14 +164,14 @@ public class RXAndroidActivity extends AppCompatActivity {
     private void simpleScheduler() {
 
         Observable.just(1, 2, 3, 4)
-            .subscribeOn(Schedulers.io())//指定 subscribe() 发生在 IO 线程,即订阅发生在IO线程，那么事件的产生就在IO线程
-            .observeOn(AndroidSchedulers.mainThread())//指定 Subscriber 的回调发生在主线程，即事件的消费在主线程
-            .subscribe(new Action1<Integer>() {
-                @Override
-                public void call(Integer integer) {
-                    textViewMain.setText("" + integer);
-                }
-            });
+                .subscribeOn(Schedulers.io())//指定 subscribe() 发生在 IO 线程,即订阅发生在IO线程，那么事件的产生就在IO线程
+                .observeOn(AndroidSchedulers.mainThread())//指定 Subscriber 的回调发生在主线程，即事件的消费在主线程
+                .subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer integer) {
+                        textViewMain.setText("" + integer);
+                    }
+                });
 
 
     }
@@ -270,22 +270,22 @@ public class RXAndroidActivity extends AppCompatActivity {
     //doOnSubscribe,subscribe()调用后而且在事件发送前执行，能指定线程
     private void simpleDoOnSubscribe() {
         Observable.just("sss")
-            .subscribeOn(Schedulers.io()) //指定订阅发生在IO线程
-            .doOnSubscribe(new Action0() {
-                @Override
-                public void call() {
-                    System.out.println("准备工作是在主线程执行的哦！");
-                }
-            })
-            .subscribeOn(
-                AndroidSchedulers.mainThread())//doOnSubscribe()的后面跟一个 subscribeOn() ，就能指定准备工作的线程了。
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Action1<String>() {
-                @Override
-                public void call(String s) {
-                    //在IO线程执行的订阅
-                }
-            });
+                .subscribeOn(Schedulers.io()) //指定订阅发生在IO线程
+                .doOnSubscribe(new Action0() {
+                    @Override
+                    public void call() {
+                        System.out.println("准备工作是在主线程执行的哦！");
+                    }
+                })
+                .subscribeOn(
+                        AndroidSchedulers.mainThread())//doOnSubscribe()的后面跟一个 subscribeOn() ，就能指定准备工作的线程了。
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        //在IO线程执行的订阅
+                    }
+                });
     }
 
 
@@ -295,7 +295,7 @@ public class RXAndroidActivity extends AppCompatActivity {
             @Override
             public Observable<T> call(Observable<T> tObservable) {
                 return tObservable.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread());
+                        .observeOn(AndroidSchedulers.mainThread());
             }
         };
     }
@@ -310,6 +310,18 @@ public class RXAndroidActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void simpleRxRetrofit() {
+
+    }
+
+
+    //2015结束
+    //TODO 接下来是2016的代码
+
+
+
 }
 
 
