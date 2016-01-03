@@ -18,7 +18,7 @@ import cn.steve.study.R;
  * Created by yantinggeng on 2015/10/27.
  */
 public class RecyclerViewItemAnimatorAdapter
-    extends RecyclerView.Adapter<RecyclerViewItemAnimatorAdapter.SimpleViewHolder> {
+        extends RecyclerView.Adapter<RecyclerViewItemAnimatorAdapter.SimpleViewHolder> {
 
     public static final int LAST_POSITION = -1;
     private final Context mContext;
@@ -52,8 +52,8 @@ public class RecyclerViewItemAnimatorAdapter
 
     public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View
-            view =
-            LayoutInflater.from(mContext).inflate(R.layout.recycleview_item, parent, false);
+                view =
+                LayoutInflater.from(mContext).inflate(R.layout.recycleview_item, parent, false);
         return new SimpleViewHolder(view);
     }
 

@@ -10,9 +10,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.apache.http.Header;
-
 import cn.steve.study.R;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by yantinggeng on 2015/9/30.

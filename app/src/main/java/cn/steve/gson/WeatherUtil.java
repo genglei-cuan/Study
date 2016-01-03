@@ -1,17 +1,16 @@
 package cn.steve.gson;
 
-import com.google.gson.Gson;
-
 import android.app.Activity;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import cz.msebera.android.httpclient.Header;
 import steve.cn.mylib.util.DialogUtil;
 
 /**
