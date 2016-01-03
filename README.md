@@ -40,9 +40,9 @@
 1. fragment   fragment的基本操作
 1. gallery   对gallery的基本操作和一个自定义的滑动日期选择
 1. gestureDetector   手势监听的demo
-1. gson    利用gson解析天气数据 TODO
+1. gson    利用gson解析天气数据
 1. handler    handler post runnable的使用
-1. http    关于http的一些知识点,目前有asynchttp的demo TODO
+1. http    关于http的一些知识点,目前有asynchttp的demo
 1. image   图片显示的时候，先缩放再显示
 1. imageloader    universalimageloader 的demo,拷贝的官方lib中的sample，universalimageloader的基本操作
 1. layoutinflater 正解layoutinflater的使用及其参数的正确含义；
@@ -50,7 +50,7 @@
 1. listview   listview的基本操作,listview缓存，以及一个通用的viewholder；自定义item的高度 ;添加郭林的下拉刷新;自己写的一个自定义下拉刷新 TODO
 1. main   设置fragment基类  
 1. materialdesign   材料设计 TODO   
-1. mvp      MVP架构探索   TODO
+1. mvp      MVP架构探索
 1. netstate   判断网络链接状态 
 1. newsImoocListView   慕课网中的demo，解决listview异步加载图片错乱的问题。 
 1. notification   在notification处显示通知，点击以后跳转到APP
