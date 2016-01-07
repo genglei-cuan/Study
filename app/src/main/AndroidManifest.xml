@@ -218,10 +218,7 @@
         <!-- RxAndroid的demo -->
         <activity android:name="cn.steve.rxandroid.RXJavaActivity"></activity>
         <activity android:name="cn.steve.rxandroid.RXAndroidActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <!-- contentobserver的例子 -->
         <activity android:name="cn.steve.contentobserver.ContentObserverActivity">
@@ -364,6 +361,13 @@
         <!-- MVP-->
         <activity android:name="cn.steve.mvp.view.MVPActivity">
 
+        </activity>
+        <!-- Class Loader-->
+        <activity android:name="cn.steve.classloader.LoaderMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

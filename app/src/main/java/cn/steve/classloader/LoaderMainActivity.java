@@ -18,6 +18,11 @@ public class LoaderMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_textview);
         this.textViewMain = (TextView) findViewById(R.id.textViewMain);
+        StringBuffer stringBuffer = new StringBuffer();
+        for (ClassLoader classLoader = getClassLoader(); classLoader != null; classLoader = classLoader.getParent()) {
+            stringBuffer.append(classLoader.getClass()).append(" : ").append(classLoader.toString()).append("\n");
+        }
+        textViewMain.setText(stringBuffer.toString());
 
     }
 }
