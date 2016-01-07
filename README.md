@@ -23,6 +23,7 @@
 1. brightness 调节屏幕亮度
 1. broadcast  研究广播的demo，有序广播，正常广播等的区别
 1. circle     圆形的钟盘，携带刻度，通过设置前后的时间，画出刻度
+1. classloader     测试类加载器的例子 TODO
 1. click_xml 在XML文件中设置相应的方法
 1. contextmean 测试context的真实含义
 1. customdialog 自定义各种形式的dialogue(熟悉stormzhang的)
