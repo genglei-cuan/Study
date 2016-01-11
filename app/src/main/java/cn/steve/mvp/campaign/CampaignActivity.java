@@ -46,6 +46,7 @@ public class CampaignActivity extends Activity implements ICampaignView {
         campaignPresenter = new CampaignPresenter(campaignBiz);
         campaignPresenter.attachView(this);
         campaignPresenter.start();
+        campaignPresenter.loadCampaigns();
     }
 
     @Override
@@ -67,5 +68,11 @@ public class CampaignActivity extends Activity implements ICampaignView {
     @Override
     public void hideLoading(boolean success) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        campaignPresenter.detachView();
+        super.onDestroy();
     }
 }
