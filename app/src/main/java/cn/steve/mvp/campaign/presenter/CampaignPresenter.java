@@ -42,4 +42,8 @@ public class CampaignPresenter implements IPresenter {
     @Override
     public void onError(Exception exception) {
     }
+
+    public void handleClick(String id){
+        campaignBiz.intent2Detail(id);
+    }
 }

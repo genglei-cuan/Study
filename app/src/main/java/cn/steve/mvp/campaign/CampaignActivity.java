@@ -2,6 +2,8 @@ package cn.steve.mvp.campaign;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -27,7 +29,18 @@ public class CampaignActivity extends Activity implements ICampaignView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campaign);
+        init();
+    }
+
+    private void init() {
         this.campaignListView = (ListView) findViewById(R.id.campaignListView);
+        this.campaignListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Campaign item = (Campaign) parent.getAdapter().getItem(position);
+                campaignPresenter.handleClick(item.getTitle());
+            }
+        });
         campaignAdapter = new CampaignAdapter(this);
         campaignBiz = new CampaignBiz(this);
         campaignPresenter = new CampaignPresenter(campaignBiz);
