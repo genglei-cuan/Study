@@ -1,4 +1,4 @@
-package cn.steve.mvp.bean;
+package cn.steve.mvp.simple.bean;
 
 /**
  * 数据实体类

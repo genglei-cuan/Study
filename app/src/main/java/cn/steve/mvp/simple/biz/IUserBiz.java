@@ -1,4 +1,4 @@
-package cn.steve.mvp.biz;
+package cn.steve.mvp.simple.biz;
 
 /**
  * Created by yantinggeng on 2015/12/29.

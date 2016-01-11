@@ -1,12 +1,12 @@
-package cn.steve.mvp.presenter;
+package cn.steve.mvp.simple.presenter;
 
 import android.os.Handler;
 
-import cn.steve.mvp.bean.User;
-import cn.steve.mvp.biz.IUserBiz;
-import cn.steve.mvp.biz.OnLoginListener;
-import cn.steve.mvp.biz.UserBiz;
-import cn.steve.mvp.view.IUserLoginView;
+import cn.steve.mvp.simple.bean.User;
+import cn.steve.mvp.simple.biz.IUserBiz;
+import cn.steve.mvp.simple.biz.OnLoginListener;
+import cn.steve.mvp.simple.biz.UserBiz;
+import cn.steve.mvp.simple.view.IUserLoginView;
 
 /**
  * Created by yantinggeng on 2015/12/29.

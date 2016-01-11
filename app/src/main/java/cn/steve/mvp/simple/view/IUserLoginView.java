@@ -1,6 +1,6 @@
-package cn.steve.mvp.view;
+package cn.steve.mvp.simple.view;
 
-import cn.steve.mvp.bean.User;
+import cn.steve.mvp.simple.bean.User;
 
 /**
  * Created by yantinggeng on 2015/12/29.

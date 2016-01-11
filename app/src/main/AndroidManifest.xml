@@ -359,11 +359,14 @@
         </activity>
 
         <!-- MVP-->
-        <activity android:name="cn.steve.mvp.view.MVPActivity">
-
+        <activity android:name="cn.steve.mvp.simple.view.MVPActivity">
         </activity>
         <!-- Class Loader-->
         <activity android:name="cn.steve.classloader.LoaderMainActivity">
+
+        </activity>
+        <!-- 消息盒子，采用MVP的模式-->
+        <activity android:name="cn.steve.mvp.campaign.CampaignActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

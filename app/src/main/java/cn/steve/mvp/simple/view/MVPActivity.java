@@ -1,4 +1,4 @@
-package cn.steve.mvp.view;
+package cn.steve.mvp.simple.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +8,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import cn.steve.mvp.bean.User;
-import cn.steve.mvp.presenter.UserLoginPresenter;
+import cn.steve.mvp.simple.bean.User;
+import cn.steve.mvp.simple.presenter.UserLoginPresenter;
 import cn.steve.study.R;
 
 /**
