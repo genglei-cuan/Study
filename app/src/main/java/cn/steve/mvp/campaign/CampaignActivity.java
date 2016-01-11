@@ -44,7 +44,7 @@ public class CampaignActivity extends Activity implements ICampaignView {
         campaignAdapter = new CampaignAdapter(this);
         campaignBiz = new CampaignBiz(this);
         campaignPresenter = new CampaignPresenter(campaignBiz);
-        campaignPresenter.setView(this);
+        campaignPresenter.attachView(this);
         campaignPresenter.start();
     }
 

@@ -22,8 +22,13 @@ public class CampaignPresenter implements IPresenter {
     }
 
     @Override
-    public void setView(IView view) {
+    public void attachView(IView view) {
         this.campaignView = (ICampaignView) view;
+    }
+
+    @Override
+    public void detachView() {
+
     }
 
     @Override
@@ -43,7 +48,7 @@ public class CampaignPresenter implements IPresenter {
     public void onError(Exception exception) {
     }
 
-    public void handleClick(String id){
+    public void handleClick(String id) {
         campaignBiz.intent2Detail(id);
     }
 }
