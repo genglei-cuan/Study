@@ -20,6 +20,6 @@ public interface IPresenter {
     // such as the dialog should dismiss
     void stop();
 
-    // when have some error ,we shold have a tip
+    // when have some error ,we should have a tip
     void onError(Exception exception);
 }

@@ -21,9 +21,10 @@
             app:cardCornerRadius="3dp"
             app:cardElevation="8dp">
 
-        <LinearLayout
+        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:orientation="vertical">
 
             <ImageView
@@ -36,6 +37,7 @@
                     android:id="@+id/campaignItemTitleTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/campaignItemImageView"
                     android:text="出游去哪玩，盘点十大赏花好去处"
                     android:textSize="25sp"/>
 
@@ -43,16 +45,32 @@
                     android:id="@+id/campaignItemDescTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/campaignItemTitleTextView"
                     android:text="避暑乐园嗨翻天，399园五星酒店套餐任性抢>>"
                     android:textSize="20sp"/>
 
+
             <TextView
                     android:id="@+id/campaignItemDetailTextView"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="查看详情>>"
-                    android:drawableRight="@drawable/redcircle"/>
+                    android:layout_below="@id/campaignItemDescTextView"
+                    android:gravity="center"
+                    android:text="查看详情>>"/>
 
-        </LinearLayout>
+            <ImageView
+                    android:id="@+id/redCircleImageView"
+                    android:layout_gravity="center"
+                    android:src="@drawable/redcircle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/campaignItemDetailTextView"
+                    android:layout_toEndOf="@id/campaignItemDetailTextView"
+                    android:layout_alignTop="@id/campaignItemDetailTextView"
+                    android:layout_alignBottom="@id/campaignItemDetailTextView"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    />
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

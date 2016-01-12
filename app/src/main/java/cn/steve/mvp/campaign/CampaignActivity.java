@@ -63,10 +63,12 @@ public class CampaignActivity extends Activity implements ICampaignView {
 
     @Override
     public void showLoading(String message) {
+        //TODO can show a dialog
     }
 
     @Override
     public void hideLoading(boolean success) {
+        //TODO can hide the dialog
 
     }
 
