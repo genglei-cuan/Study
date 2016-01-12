@@ -37,7 +37,10 @@ public class CampaignActivity extends Activity implements ICampaignView {
         this.campaignListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Campaign item = (Campaign) parent.getAdapter().getItem(position);
+                CampaignAdapter adapter = ((CampaignAdapter) parent.getAdapter());
+                Campaign item = adapter.getItem(position);
+                item.setIsRead(true);
+                adapter.notifyDataSetChanged();
                 campaignPresenter.handleClick(item.getTitle());
             }
         });
@@ -55,7 +58,7 @@ public class CampaignActivity extends Activity implements ICampaignView {
             campaignAdapter.getData().clear();
         }
         campaignAdapter.setData(data);
-        if (this.campaignListView.getAdapter()==null){
+        if (this.campaignListView.getAdapter() == null) {
             this.campaignListView.setAdapter(campaignAdapter);
         }
         campaignAdapter.notifyDataSetChanged();

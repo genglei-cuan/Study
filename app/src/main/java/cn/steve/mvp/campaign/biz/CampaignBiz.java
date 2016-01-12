@@ -21,19 +21,20 @@ public class CampaignBiz implements ICampaignBiz {
     @Override
     public void intent2Detail(String id) {
         //TODO implements the click jump
+        System.out.println("has click the " + id);
     }
 
     @Override
     public List<Campaign> getData() {
         //TODO implemets get the data from  source, such as network or cache
-        List<Campaign> data =new ArrayList<>();
+        List<Campaign> data = new ArrayList<>();
         Campaign campaign;
         for (int i = 0; i < 10; i++) {
-            campaign=new Campaign();
-            campaign.setTime("09:00:"+i);
+            campaign = new Campaign();
+            campaign.setTime("09:00:" + i);
             campaign.setDescription("H" + i);
             campaign.setImageUrl("wwww");
-            campaign.setIsRead(true);
+            campaign.setIsRead(false);
             campaign.setTitle("Title" + i);
             data.add(campaign);
         }

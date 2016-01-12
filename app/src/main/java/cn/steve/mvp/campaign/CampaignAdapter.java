@@ -59,15 +59,18 @@ public class CampaignAdapter extends BaseAdapter {
             viewHolder.imageView = (ImageView) root.findViewById(R.id.campaignItemImageView);
             viewHolder.title = (TextView) root.findViewById(R.id.campaignItemTitleTextView);
             viewHolder.desc = (TextView) root.findViewById(R.id.campaignItemDescTextView);
-            viewHolder.detail = (TextView) root.findViewById(R.id.campaignItemDetailTextView);
+            viewHolder.redCircle = (ImageView) root.findViewById(R.id.redCircleImageView);
             root.setTag(viewHolder);
         } else {
             root = convertView;
             viewHolder = (ViewHolder) root.getTag();
         }
-        viewHolder.title.setText(data.get(position).getTitle());
-        viewHolder.desc.setText(data.get(position).getDescription());
-        viewHolder.time.setText(data.get(position).getTime());
+        Campaign campaign = data.get(position);
+        viewHolder.time.setText(campaign.getTime());
+        viewHolder.title.setText(campaign.getTitle());
+        viewHolder.desc.setText(campaign.getDescription());
+        viewHolder.time.setText(campaign.getTime());
+        viewHolder.redCircle.setVisibility(campaign.isRead() ? View.INVISIBLE : View.VISIBLE);
         return root;
     }
 
@@ -77,7 +80,7 @@ public class CampaignAdapter extends BaseAdapter {
         ImageView imageView;
         TextView desc;
         TextView title;
-        TextView detail;
+        ImageView redCircle;
     }
 
 
