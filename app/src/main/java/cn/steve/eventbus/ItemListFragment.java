@@ -1,6 +1,6 @@
 package cn.steve.eventbus;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -9,11 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import de.greenrobot.event.EventBus;
-
 import cn.steve.eventbus.Event.ItemListEvent;
 import cn.steve.eventbus.dummy.ContentHelper;
 import cn.steve.eventbus.dummy.Item;
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
+import de.greenrobot.event.ThreadMode;
 
 public class ItemListFragment extends ListFragment {
 
@@ -51,20 +52,17 @@ public class ItemListFragment extends ListFragment {
     }
 
     /**
-     * 这个方法最终要在UI线程执行
+     * update the ListView
      *
-     * 以onEvent开头，而且必须是非static，非抽象的，并且参数只能有一个
-     *
-     * 会扫描所有的父类，不仅仅是当前类。
-     *
-     * @param event 发布的消息
+     * @param event published event
      */
-    public void onEventMainThread(ItemListEvent event) {
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void updateListView(ItemListEvent event) {
         //利用传递过来的事件中的数据封装成适配器
-        ArrayAdapter<Item> itemArrayAdapter = new ArrayAdapter<Item>(getActivity(),
-                                                                     android.R.layout.simple_list_item_activated_1,
-                                                                     android.R.id.text1,
-                                                                     event.getItems());
+        ArrayAdapter<Item> itemArrayAdapter = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_list_item_activated_1,
+                android.R.id.text1,
+                event.getItems());
         setListAdapter(itemArrayAdapter);
     }
 
@@ -87,13 +85,13 @@ public class ItemListFragment extends ListFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
             mListener = (OnFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                                         + " must implement OnFragmentInteractionListener");
+                    + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -123,7 +121,7 @@ public class ItemListFragment extends ListFragment {
 
     public interface OnFragmentInteractionListener {
 
-        public void onFragmentInteraction(String id);
+        void onFragmentInteraction(String id);
     }
 
 }

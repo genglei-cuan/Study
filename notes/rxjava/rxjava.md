@@ -36,4 +36,3 @@ RxAndroid是RxJava的一个针对Android平台的扩展。
 1. 使用Merge操作符你可以将多个Observables的输出合并，就好像它们是一个单个的Observable一样。(界面需要等到多个接口并发取完数据，再更新)
 1. flatMap解决嵌套回调的问题。
 1. throttleFirst放置按钮被连续点击等操作。
-

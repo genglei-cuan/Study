@@ -11,16 +11,15 @@ public class Event {
 
     public static class ItemListEvent {
 
-        public List<Item> getItems() {
-            return items;
-        }
-
         private List<Item> items;
 
         public ItemListEvent(List<Item> items) {
             this.items = items;
         }
 
+        public List<Item> getItems() {
+            return items;
+        }
 
 
     }

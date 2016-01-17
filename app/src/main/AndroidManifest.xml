@@ -103,7 +103,12 @@
         <!--Universal image loader-->
         <activity android:name="cn.steve.imageloader.ImageLoaderActivity"></activity>
         <!--Event Bus-->
-        <activity android:name="cn.steve.eventbus.EventBusActivity"></activity>
+        <activity android:name="cn.steve.eventbus.EventBusActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!--asynchttp请求的demo-->
         <activity android:name="cn.steve.http.asynchttp.AsyncHttpActivity">
@@ -367,10 +372,7 @@
         </activity>
         <!-- 消息盒子，采用MVP的模式-->
         <activity android:name="cn.steve.mvp.campaign.CampaignActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
     </application>
 
