@@ -24,5 +24,9 @@ public class Event {
 
     }
 
+    public static class FetchEvent {
+
+    }
+
 
 }

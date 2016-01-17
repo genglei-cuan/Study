@@ -30,6 +30,8 @@ dependencies {
     compile 'com.android.support:support-annotations:23.1.1'
     //EventBus
     compile 'de.greenrobot:eventbus:3.0.0-beta1'
+    provided 'de.greenrobot:eventbus-annotation-processor:3.0.0-beta1'
+
     //ButterKnife
     compile 'com.jakewharton:butterknife:7.0.1'
     //okHttp

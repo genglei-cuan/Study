@@ -69,19 +69,20 @@ public class ItemListFragment extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        EventBus.getDefault().post(new Event.FetchEvent());
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.BackgroundThread)
+    public void fetchData(Event.FetchEvent event) {
         //开启线程加载列表
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(2000);
-                    //发布事件，在后台线程发的事件
-                    EventBus.getDefault().post(new ItemListEvent(ContentHelper.Items));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+        try {
+            Thread.sleep(2000);
+            //发布事件，在后台线程发的事件
+            EventBus.getDefault().post(new ItemListEvent(ContentHelper.Items));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
