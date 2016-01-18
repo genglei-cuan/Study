@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+            android:id="@+id/recommendAttractionsImageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/xihu"/>
+
+    <TextView
+            android:id="@+id/recommendAttractionsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recommendAttractionsImageView"
+            android:text="东方明珠AAAA景区"
+            android:textSize="@dimen/text_size_22"
+            android:gravity="left"/>
+
+    <TextView
+            android:id="@+id/recommendPrePriceTextView"
+            android:layout_below="@id/recommendAttractionsTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#666666"
+            android:text="100"
+            android:textSize="@dimen/text_size_20"/>
+
+
+    <TextView
+            android:id="@+id/recommendPriceTextView"
+            android:layout_below="@id/recommendAttractionsTextView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#d30775"
+            android:text="90"
+            android:textSize="@dimen/text_size_32"/>
+
+</RelativeLayout>
