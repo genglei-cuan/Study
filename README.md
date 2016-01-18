@@ -78,6 +78,8 @@
 1. touchevent   touchevent，以及自定义view 
 1. uicommunicate   在主线程上开辟线程 
 1. viewcoordinate   android中的坐标系
+1. viewinjection    注解
+1. viewpager    viewpager的demo
 1. viewflipper   侧滑
 1. weakreferencehandler   初设弱引用概念
 1. webview   加载URI，以及注入JS调用和混淆代码

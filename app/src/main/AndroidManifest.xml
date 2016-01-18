@@ -175,10 +175,7 @@
 
         <!-- 当前设备的一些硬件信息 -->
         <activity android:name="cn.steve.deviceinfo.DeviceInfoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <!-- 悬浮窗demo -->
@@ -372,7 +369,14 @@
         </activity>
         <!-- 消息盒子，采用MVP的模式-->
         <activity android:name="cn.steve.mvp.campaign.CampaignActivity">
+        </activity>
 
+        <!-- viewpager demo-->
+        <activity android:name="cn.steve.viewpager.ViewPagerMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
