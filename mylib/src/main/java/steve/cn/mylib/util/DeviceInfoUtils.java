@@ -26,13 +26,23 @@ public class DeviceInfoUtils {
         }
         if (uuid == null) {
             TelephonyManager tm = (TelephonyManager) context
-                    .getSystemService(Context.TELEPHONY_SERVICE);
+                .getSystemService(Context.TELEPHONY_SERVICE);
             String id = tm.getDeviceId();
             if (id != null) {
                 uuid = UUID.nameUUIDFromBytes(id.getBytes());
             }
         }
         return uuid;
+    }
+
+    public static String getDeviceIMEI(Context context) {
+        if (context == null) {
+            return null;
+        }
+        TelephonyManager tm =
+            (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        String id = tm.getDeviceId();
+        return id;
     }
 
     /**

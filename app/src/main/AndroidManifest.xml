@@ -104,10 +104,7 @@
         <activity android:name="cn.steve.imageloader.ImageLoaderActivity"></activity>
         <!--Event Bus-->
         <activity android:name="cn.steve.eventbus.EventBusActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <!--asynchttp请求的demo-->
@@ -178,7 +175,10 @@
 
         <!-- 当前设备的一些硬件信息 -->
         <activity android:name="cn.steve.deviceinfo.DeviceInfoActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- 悬浮窗demo -->

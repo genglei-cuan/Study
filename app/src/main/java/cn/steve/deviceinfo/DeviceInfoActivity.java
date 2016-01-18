@@ -23,14 +23,16 @@ public class DeviceInfoActivity extends Activity {
 
         textViewDeviceInfo = (TextView) findViewById(R.id.textViewMain);
         String text = "getDeviceName():" + DeviceInfoUtils.getDeviceName() + "\n Brand:"
-                + DeviceInfoUtils.getDeviceBrand() + "\n Model:" + DeviceInfoUtils
-                .getDeviceModel()
-                + "\n MANUFACTURER:" + DeviceInfoUtils.getDeviceManufacturer()
-                + "\n BOOTLOADER:"
-                + DeviceInfoUtils.getDeviceBootloader();
+                      + DeviceInfoUtils.getDeviceBrand() + "\n Model:" + DeviceInfoUtils
+                          .getDeviceModel()
+                      + "\n MANUFACTURER:" + DeviceInfoUtils.getDeviceManufacturer()
+                      + "\n BOOTLOADER:"
+                      + DeviceInfoUtils.getDeviceBootloader();
         sb.append(text);
         String getDeviceUUID = DeviceInfoUtils.getDeviceUUID(this).toString();
         sb.append("\n UUID:" + getDeviceUUID);
+        String imei = DeviceInfoUtils.getDeviceIMEI(this);
+        sb.append("\n imei:" + imei);
         String cpu = DeviceInfoUtils.getCpuType();
         sb.append("\n cpu:" + cpu);
         String sdk = String.valueOf(DeviceInfoUtils.getAndroidSDKVersion());
@@ -38,6 +40,7 @@ public class DeviceInfoActivity extends Activity {
         sb.append("\n 屏幕信息：");
         sb.append(ScreenInfoUtil.getScreenDetailInfo(this));
         textViewDeviceInfo.setText(sb);
+        System.out.println("Devices info:" + sb.toString());
     }
 
 }
