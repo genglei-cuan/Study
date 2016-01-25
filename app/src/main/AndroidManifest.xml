@@ -373,6 +373,9 @@
 
         <!-- viewpager demo-->
         <activity android:name="cn.steve.viewpager.ViewPagerMainActivity">
+
+        </activity>
+        <activity android:name="cn.steve.edittext.EditTextViewMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
