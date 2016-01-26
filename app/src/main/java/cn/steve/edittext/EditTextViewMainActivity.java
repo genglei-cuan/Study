@@ -8,6 +8,8 @@ import android.widget.EditText;
 import cn.steve.study.R;
 
 /**
+ * 测试输入框中对手机号自动格式化的能力
+ *
  * Created by yantinggeng on 2016/1/25.
  */
 public class EditTextViewMainActivity extends AppCompatActivity {
