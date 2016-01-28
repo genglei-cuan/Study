@@ -28,10 +28,12 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:percent:23.1.1'
     compile 'com.android.support:support-annotations:23.1.1'
+    //logger
+    compile 'com.github.orhanobut:logger:1.12'
+
     //EventBus
     compile 'de.greenrobot:eventbus:3.0.0-beta1'
     provided 'de.greenrobot:eventbus-annotation-processor:3.0.0-beta1'
-
     //ButterKnife
     compile 'com.jakewharton:butterknife:7.0.1'
     //okHttp
