@@ -375,10 +375,15 @@
         <activity android:name="cn.steve.viewpager.ViewPagerMainActivity">
 
         </activity>
+        <!-- 测试输入电话，自动格式化-->
         <activity android:name="cn.steve.edittext.EditTextViewMainActivity">
+
+        </activity>
+        <!-- 圆形头像-->
+        <activity android:name="cn.steve.circleimageview.CircleImageViewActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>
