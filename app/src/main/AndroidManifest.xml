@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
             android:name="cn.steve.UILApplication"
@@ -381,10 +382,14 @@
         </activity>
         <!-- 圆形头像-->
         <activity android:name="cn.steve.circleimageview.CircleImageViewActivity">
+        </activity>
+        <!-- 悬浮窗-->
+        <activity android:name="cn.steve.floatingview.simple.FloatingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
     </application>
 
