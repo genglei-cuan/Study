@@ -24,9 +24,7 @@ public class ImageLoaderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uil);
-        int
-            pagerPosition =
-            savedInstanceState == null ? 0 : savedInstanceState.getInt(STATE_POSITION);
+        int pagerPosition = savedInstanceState == null ? 0 : savedInstanceState.getInt(STATE_POSITION);
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(new ImagePagerAdapter(getSupportFragmentManager()));
         pager.setCurrentItem(pagerPosition);

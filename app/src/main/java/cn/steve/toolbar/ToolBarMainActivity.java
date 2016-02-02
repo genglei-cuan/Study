@@ -28,7 +28,7 @@ public class ToolBarMainActivity extends AppCompatActivity {
         //不设置setSupportActionBar就可以很自由的操作toolbar了
         //设置主标题及其颜色
         toolbar.setTitle("此处可以自定义的标题");
-        toolbar.setTitleTextColor(R.color.yellow_light);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.yellow_light));
         // 设置次标题及其颜色
         toolbar.setSubtitle("SteveYan");
         toolbar.setSubtitleTextColor(Color.LTGRAY);

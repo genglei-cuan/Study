@@ -1,15 +1,12 @@
 /*******************************************************************************
  * Copyright 2011-2014 Sergey Tarasevich
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the License.
  *******************************************************************************/
 package cn.steve.imageloader.fragment;
 
@@ -49,8 +46,7 @@ public class ImageListFragment extends AbsListViewBaseFragment {
     public static final int INDEX = 0;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fr_image_list, container, false);
         listView = (ListView) rootView.findViewById(android.R.id.list);
         ((ListView) listView).setAdapter(new ImageAdapter(getActivity()));
@@ -74,8 +70,7 @@ public class ImageListFragment extends AbsListViewBaseFragment {
         private static final String[] IMAGE_URLS = Constants.IMAGES;
 
         private LayoutInflater inflater;
-        private ImageLoadingListener
-            animateFirstListener = new AnimateFirstDisplayListener();
+        private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
         private DisplayImageOptions options;
 
