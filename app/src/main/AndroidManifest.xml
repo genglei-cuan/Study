@@ -17,7 +17,7 @@
             android:allowBackup="false"
             android:icon="@drawable/customer_icon"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.Light">
+            android:theme="@style/AppTheme">
 
         <!-- 对话框demo -->
         <activity android:name="cn.steve.alertDialog.AlertDialogActivity"></activity>
@@ -258,7 +258,10 @@
         <activity
                 android:name="cn.steve.toolbar.ToolBarMainActivity"
                 android:theme="@style/AppTheme">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
 
         </activity>
 
@@ -386,10 +389,7 @@
         </activity>
         <!-- 悬浮窗-->
         <activity android:name="cn.steve.floatingview.simple.FloatingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
     </application>
 
