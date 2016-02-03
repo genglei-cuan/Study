@@ -258,10 +258,7 @@
         <activity
                 android:name="cn.steve.toolbar.ToolBarMainActivity"
                 android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
 
         </activity>
 
@@ -389,7 +386,10 @@
         </activity>
         <!-- 悬浮窗-->
         <activity android:name="cn.steve.floatingview.simple.FloatingActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

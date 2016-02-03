@@ -29,11 +29,16 @@ public class FloatingActivity extends AppCompatActivity {
     private WindowManager mWindowManager;
     private ImageButton mFloatView;
 
+    //
+    private FloatingUtil floatingUtil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_textview);
-        createFloatView();
+//        createFloatView();
+        floatingUtil = new FloatingUtil(this);
+        floatingUtil.createFloatView();
     }
 
     @SuppressWarnings("static-access")
@@ -111,9 +116,12 @@ public class FloatingActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mFloatLayout != null) {
-            //移除悬浮窗口
-            mWindowManager.removeView(mFloatLayout);
+        if (floatingUtil!=null){
+            floatingUtil.onDestroy();
         }
+//        if (mFloatLayout != null) {
+//            //移除悬浮窗口
+//            mWindowManager.removeView(mFloatLayout);
+//        }
     }
 }
