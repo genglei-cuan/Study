@@ -26,8 +26,7 @@ public class FragmentMaterialButton extends Fragment {
     }
 
     /**
-     * Use this factory method to create a new instance of this fragment using the provided
-     * parameters.
+     * Use this factory method to create a new instance of this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
@@ -53,8 +52,7 @@ public class FragmentMaterialButton extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_material_button, container, false);
     }
 

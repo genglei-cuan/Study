@@ -12,8 +12,7 @@ import cn.steve.study.R;
  *
  * Created by yantinggeng on 2015/11/10.
  */
-public class MaterialListActivity extends AppCompatActivity implements
-                                                            MaterialItemListFragment.Interactior {
+public class MaterialListActivity extends AppCompatActivity implements MaterialItemListFragment.Interactior {
 
     String[] data = {"MaterialButton", "MaterialCard"};
 
@@ -36,14 +35,12 @@ public class MaterialListActivity extends AppCompatActivity implements
         switch (position) {
             case 0:
                 FragmentTransaction fragmentTransaction = manager.beginTransaction();
-                fragmentTransaction.replace(R.id.materialContainer,
-                                            FragmentMaterialButton.newInstance("", ""));
+                fragmentTransaction.replace(R.id.materialContainer, FragmentMaterialButton.newInstance("", ""));
                 fragmentTransaction.commit();
                 break;
             case 1:
                 FragmentTransaction fragmentTransaction1 = manager.beginTransaction();
-                fragmentTransaction1
-                    .replace(R.id.materialContainer, FragmentMaterialCard.newInstance("", ""));
+                fragmentTransaction1.replace(R.id.materialContainer, FragmentMaterialCard.newInstance("", ""));
                 fragmentTransaction1.commit();
                 break;
         }

@@ -30,8 +30,7 @@ public class MaterialItemListFragment extends ListFragment {
         if (getArguments() != null) {
             datas = getArguments().getStringArray(ARG_PARAM1);
         }
-        setListAdapter(
-            new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, datas));
+        setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, datas));
     }
 
 
