@@ -264,10 +264,7 @@
 
         <!-- material design 的demo -->
         <activity android:name="cn.steve.materialdesign.MaterialListActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <!-- MVP的demo -->
 
@@ -390,6 +387,14 @@
         <!-- 悬浮窗-->
         <activity android:name="cn.steve.floatingview.simple.FloatingActivity">
 
+        </activity>
+
+        <!-- touch delegate -->
+        <activity android:name="cn.steve.touchdelegate.TouchDelegateActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

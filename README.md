@@ -76,7 +76,8 @@
 1. spinnerdroplayout   spinner下拉选项 
 1. swiperefreshlayout   SwipeRefreshLayout下拉刷新控件 
 1. toolbar   替代actionBar的toolbar 的demo
-1. touchevent   touchevent，以及自定义view 
+1. touchdelegate   用于更改View的触摸区域。场景：比如在RecyclerView的ItemView里包含了CheckBox组件, 然后想实现点击ItemView的时候，也可以触发CheckBox，就可以使用此类。
+1. touchevent   touchevent，以及自定义view
 1. uicommunicate   在主线程上开辟线程 
 1. viewcoordinate   android中的坐标系
 1. viewinjection    注解
