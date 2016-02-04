@@ -391,6 +391,12 @@
 
         <!-- touch delegate -->
         <activity android:name="cn.steve.touchdelegate.TouchDelegateActivity">
+
+        </activity>
+
+        <!-- layout change animation -->
+        <activity android:name="cn.steve.animator.layoutchange.LayoutChangesActivity"
+                android:theme="@style/AlertDialog.AppCompat.Light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
