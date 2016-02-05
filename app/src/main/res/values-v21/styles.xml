@@ -1,7 +1,8 @@
 <resources>
     <!-- 5.0之后才会采用这个主题，一般所有的需要用到material design 的主题都要放在这 -->
-    <!-- 修改虚拟导航栏的颜色 -->
     <style name="AppTheme" parent="AppTheme.Base">
+        <!-- 修改虚拟导航栏的颜色 -->
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
     </style>
 </resources>

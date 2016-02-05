@@ -16,8 +16,8 @@
 
 package cn.steve.animator.layoutchange;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,7 +33,7 @@ import cn.steve.study.R;
  *
  * <p>In this sample, the user can add rows to and remove rows from a vertical {@link android.widget.LinearLayout}.</p>
  */
-public class LayoutChangesActivity extends Activity {
+public class LayoutChangesActivity extends AppCompatActivity {
 
     /**
      * A static list of country names.

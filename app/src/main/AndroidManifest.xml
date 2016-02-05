@@ -256,8 +256,7 @@
 
         <!-- toolbar的使用demo,如果需要全局的话，可以把这个主题的设置放到Application处-->
         <activity
-                android:name="cn.steve.toolbar.ToolBarMainActivity"
-                android:theme="@style/AppTheme">
+                android:name="cn.steve.toolbar.ToolBarMainActivity">
 
 
         </activity>
@@ -395,13 +394,14 @@
         </activity>
 
         <!-- layout change animation -->
-        <activity android:name="cn.steve.animator.layoutchange.LayoutChangesActivity"
-                android:theme="@style/AlertDialog.AppCompat.Light">
+        <activity android:name="cn.steve.animator.layoutchange.LayoutChangesActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
