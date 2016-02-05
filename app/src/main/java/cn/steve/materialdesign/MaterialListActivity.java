@@ -19,13 +19,14 @@ public class MaterialListActivity extends AppCompatActivity implements MaterialI
 
 
     private FragmentManager manager;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_material_content);
         manager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+        fragmentTransaction = manager.beginTransaction();
         fragmentTransaction.add(R.id.materialContainer, MaterialItemListFragment.newInstance(data));
         fragmentTransaction.commit();
     }
@@ -33,16 +34,17 @@ public class MaterialListActivity extends AppCompatActivity implements MaterialI
 
     @Override
     public void onSelectedItem(int position) {
+        fragmentTransaction = manager.beginTransaction();
         switch (position) {
             case 0:
-                FragmentTransaction fragmentTransaction = manager.beginTransaction();
                 fragmentTransaction.replace(R.id.materialContainer, FragmentMaterialButton.newInstance("", ""));
+                fragmentTransaction.addToBackStack("FragmentMaterialButton");
                 fragmentTransaction.commit();
                 break;
             case 1:
-                FragmentTransaction fragmentTransaction1 = manager.beginTransaction();
-                fragmentTransaction1.replace(R.id.materialContainer, FragmentMaterialCard.newInstance("", ""));
-                fragmentTransaction1.commit();
+                fragmentTransaction.replace(R.id.materialContainer, FragmentMaterialCard.newInstance("", ""));
+                fragmentTransaction.addToBackStack("FragmentMaterialCard");
+                fragmentTransaction.commit();
                 break;
             case 2:
                 Intent intent = new Intent(this, TranslucentBarColorActivity.class);
