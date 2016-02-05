@@ -1,5 +1,6 @@
 package cn.steve.materialdesign;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,7 +15,7 @@ import cn.steve.study.R;
  */
 public class MaterialListActivity extends AppCompatActivity implements MaterialItemListFragment.Interactior {
 
-    String[] data = {"MaterialButton", "MaterialCard"};
+    String[] data = {"MaterialButton", "MaterialCard", "TranslucentBarColorActivity", "TranslucentBarImageActivity"};
 
 
     private FragmentManager manager;
@@ -42,6 +43,14 @@ public class MaterialListActivity extends AppCompatActivity implements MaterialI
                 FragmentTransaction fragmentTransaction1 = manager.beginTransaction();
                 fragmentTransaction1.replace(R.id.materialContainer, FragmentMaterialCard.newInstance("", ""));
                 fragmentTransaction1.commit();
+                break;
+            case 2:
+                Intent intent = new Intent(this, TranslucentBarColorActivity.class);
+                startActivity(intent);
+                break;
+            case 3:
+                Intent intent2 = new Intent(this, TranslucentBarImageActivity.class);
+                startActivity(intent2);
                 break;
         }
     }

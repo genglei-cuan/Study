@@ -263,8 +263,15 @@
 
         <!-- material design 的demo -->
         <activity android:name="cn.steve.materialdesign.MaterialListActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
+        <activity android:name="cn.steve.materialdesign.TranslucentBarColorActivity"
+                android:theme="@style/ColorTranslucentTheme"/>
+        <activity android:name="cn.steve.materialdesign.TranslucentBarImageActivity"
+                android:theme="@style/ImageTranslucentTheme"/>
         <!-- MVP的demo -->
 
         <!-- 可以将一些随着类存在的静态量放到静态代码块内 -->
@@ -396,10 +403,7 @@
         <!-- layout change animation -->
         <activity android:name="cn.steve.animator.layoutchange.LayoutChangesActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
     </application>
