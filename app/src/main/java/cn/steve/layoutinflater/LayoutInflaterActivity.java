@@ -42,14 +42,12 @@ public class LayoutInflaterActivity extends AppCompatActivity {
 
         // result: layout_height=25dp layout_width=25dp
         // view=textView due to attachRoot=false
-        view =
-            LayoutInflater.from(this).inflate(R.layout.activity_layoutinflater_sub, parent, false);
+        view = LayoutInflater.from(this).inflate(R.layout.activity_layoutinflater_sub, parent, false);
         parent.addView(view);
 
         // result: layout_height=25dp layout_width=25dp
         // parent.addView not necessary as this is already done by attachRoot=true
         // view=root due to parent supplied as hierarchy root and attachRoot=true
-        view =
-            LayoutInflater.from(this).inflate(R.layout.activity_layoutinflater_sub, parent, true);
+        view = LayoutInflater.from(this).inflate(R.layout.activity_layoutinflater_sub, parent, true);
     }
 }
