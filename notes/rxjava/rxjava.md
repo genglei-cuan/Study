@@ -36,3 +36,29 @@ RxAndroid是RxJava的一个针对Android平台的扩展。
 1. 使用Merge操作符你可以将多个Observables的输出合并，就好像它们是一个单个的Observable一样。(界面需要等到多个接口并发取完数据，再更新)
 1. flatMap解决嵌套回调的问题。
 1. throttleFirst放置按钮被连续点击等操作。
+
+
+##JUST
+你可以将一个函数作为参数传给just()方法，你将会得到一个已存在代码的原始Observable版本。在一个新的响应式架构的基础上迁移已存在的代码，这个方法可能是一个有用的开始点。等于是在原有的代码基础上套了一层，转换成Observable。
+
+##From
+引入from()函数。使用这个特殊的“创建”函数，我们可以从一个列表中创建一个Observable。Observable将发射出列表中的每一个元素，我们可以通过订阅它们来对这些发出的元素做出响应。
+
+##repeat
+对一个Observable重复发射。
+
+##defer
+有这样一个场景，你想在这声明一个Observable但是你又想推迟这个Observable的创建直到观察者订阅时。
+
+##range
+你需要从一个指定的数字X开始发射N个数字吗？你可以用range:
+
+##interval
+interval()函数在你需要创建一个轮询程序时非常好用。
+
+##timer
+如果你需要一个一段时间之后才发射的Observable。
+
+##总结
+以上我们从头、从已有的列表、从一个已存在的传统Java函数来创建Observable。我们也学习了如何创建重复发射的Observables，间隔发射的Observables以及延迟发射的Observables。
+##过滤：可观测序列的本质
