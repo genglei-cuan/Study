@@ -28,21 +28,16 @@ public class AlertDialogActivity extends Activity {
         btn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                new AlertDialog.Builder(AlertDialogActivity.this).setTitle("title")
-                    .setSingleChoiceItems(allDivisionNames, 0,
-                                          new DialogInterface.OnClickListener() {
-                                              @Override
-                                              public void onClick(DialogInterface dialog,
-                                                                  int which) {
-                                                  try {
-                                                      Toast.makeText(getApplicationContext(),
-                                                                     allDivisionNames[which],
-                                                                     Toast.LENGTH_SHORT).show();
-                                                  } finally {
-                                                      dialog.dismiss();
-                                                  }
-                                              }
-                                          }).show();
+                new AlertDialog.Builder(AlertDialogActivity.this).setTitle("title").setSingleChoiceItems(allDivisionNames, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            Toast.makeText(getApplicationContext(), allDivisionNames[which], Toast.LENGTH_SHORT).show();
+                        } finally {
+                            dialog.dismiss();
+                        }
+                    }
+                }).show();
             }
         });
 

@@ -20,7 +20,15 @@
             android:theme="@style/AppTheme">
 
         <!-- 对话框demo -->
-        <activity android:name="cn.steve.alertDialog.AlertDialogActivity"></activity>
+        <activity android:name="cn.steve.alertDialog.AlertDialogActivity">
+
+        </activity>
+        <activity android:name="cn.steve.alertDialog.ShareSuccessActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <!-- fragment(碎片)demo -->
         <activity android:name="cn.steve.fragment.MyFragmentActivity"></activity>
@@ -29,9 +37,13 @@
         <activity android:name="cn.steve.click_xml.MXMLclick"></activity>
 
         <!-- customer dialogue -->
-        <activity android:name="cn.steve.customdialog.MainActivity_Dailoge"></activity>
+        <activity android:name="cn.steve.customdialog.MainActivity_Dailoge">
+
+        </activity>
         <!-- 简单的dialog的包测试 -->
-        <activity android:name="cn.steve.customdialog.SimpleDialog"></activity>
+        <activity android:name="cn.steve.customdialog.SimpleDialog">
+
+        </activity>
 
         <!-- signature  simple  demo -->
         <activity android:name="cn.steve.signature.Activity_Signature"></activity>
@@ -213,10 +225,7 @@
         <activity android:name="cn.steve.layoutinflater.LayoutInflaterActivity">
         </activity>
         <activity android:name="cn.steve.layoutinflater.InflaterGoneViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <!-- 测试imageview的缩放比例区分 -->
         <activity android:name="cn.steve.scaletype.ScaleTypeActivity">

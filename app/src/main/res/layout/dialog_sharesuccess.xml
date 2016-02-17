@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <!-- 分享成功，有钱拿-->
+    <RelativeLayout
+            android:id="@+id/orderPaySuccessShareWithReward"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+        <TextView
+                android:id="@+id/rewardTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="您已成功分享了"/>
+
+        <TextView
+                android:id="@+id/shareSuccessRewardName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rewardTitle"
+                android:textSize="20sp"
+                android:text="活动名称"/>
+
+        <TextView
+                android:id="@+id/rewardTip1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/shareSuccessRewardName"
+                android:text="本地分享您获得奖金"/>
+
+
+        <TextView
+                android:id="@+id/rewardTip2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rewardTip1"
+                android:text="*活动奖金会在48小时内发放到您驴妈妈账号奖金账户"/>
+
+        <TextView
+                android:id="@+id/rewardNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/rewardTip1"
+                android:layout_above="@id/rewardTip2"
+                android:textSize="20sp"
+                android:text="5.5元"/>
+    </RelativeLayout>
+
+    <!-- 分享失败-->
+    <LinearLayout
+            android:id="@+id/orderPaySuccessShareFail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分享失败"/>
+
+        <Button
+                android:id="@+id/shareFailButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="朕知道了"/>
+    </LinearLayout>
+    <!-- 分享成功，但是没有钱 -->
+    <LinearLayout
+            android:id="@+id/orderPaySuccessShareNoReward"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="您已成功分享了"/>
+
+        <TextView
+                android:id="@+id/shareSuccessActivityName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="活动名称"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="神马!红包领完了?"/>
+    </LinearLayout>
+
+</FrameLayout>
