@@ -14,6 +14,7 @@ public class ShareSuccessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_textview);
-        ShareSuccessDialog.buildDialog(this, 1, new ShareSuccessDialog.ShareSuccessResultModel("Hello", "5.5")).show();
+        ShareSuccessDialog dialog = ShareSuccessDialog.buildDialog(this, 3, new ShareSuccessDialog.ShareSuccessResultModel("Hello", "5.5"));
+        dialog.show();
     }
 }

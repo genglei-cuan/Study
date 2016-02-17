@@ -4,11 +4,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cn.steve.study.R;
 
@@ -24,9 +23,9 @@ public class ShareSuccessDialog extends Dialog {
     private android.widget.TextView rewardNumber;
     private android.widget.RelativeLayout orderPaySuccessShareWithReward;
     private android.widget.Button shareFailButton;
-    private android.widget.LinearLayout orderPaySuccessShareFail;
+    private android.widget.RelativeLayout orderPaySuccessShareFail;
     private android.widget.TextView shareSuccessActivityName;
-    private android.widget.LinearLayout orderPaySuccessShareNoReward;
+    private android.widget.RelativeLayout orderPaySuccessShareNoReward;
 
     public ShareSuccessDialog(Context context, int themeResId) {
         super(context, themeResId);
@@ -43,10 +42,11 @@ public class ShareSuccessDialog extends Dialog {
                 break;
             case 2:
                 dialog.orderPaySuccessShareFail.setVisibility(View.VISIBLE);
+                dialog.setCanceledOnTouchOutside(false);
                 dialog.shareFailButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(dialog.getContext(), "have click"+data.getActivtyName(), Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
                     }
                 });
                 break;
@@ -59,11 +59,12 @@ public class ShareSuccessDialog extends Dialog {
     }
 
     private void createView() {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.dialog_sharesuccess, null);
-        this.orderPaySuccessShareNoReward = (LinearLayout) view.findViewById(R.id.orderPaySuccessShareNoReward);
+        this.orderPaySuccessShareNoReward = (RelativeLayout) view.findViewById(R.id.orderPaySuccessShareNoReward);
         this.shareSuccessActivityName = (TextView) view.findViewById(R.id.shareSuccessActivityName);
-        this.orderPaySuccessShareFail = (LinearLayout) view.findViewById(R.id.orderPaySuccessShareFail);
+        this.orderPaySuccessShareFail = (RelativeLayout) view.findViewById(R.id.orderPaySuccessShareFail);
         this.shareFailButton = (Button) view.findViewById(R.id.shareFailButton);
         this.orderPaySuccessShareWithReward = (RelativeLayout) view.findViewById(R.id.orderPaySuccessShareWithReward);
         this.rewardNumber = (TextView) view.findViewById(R.id.rewardNumber);
