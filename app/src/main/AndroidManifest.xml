@@ -21,10 +21,7 @@
 
         <!-- 对话框demo -->
         <activity android:name="cn.steve.alertDialog.AlertDialogActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity android:name="cn.steve.alertDialog.ShareSuccessActivity">
 
@@ -283,6 +280,13 @@
                 android:theme="@style/ColorTranslucentTheme"/>
         <activity android:name="cn.steve.materialdesign.TranslucentBarImageActivity"
                 android:theme="@style/ImageTranslucentTheme"/>
+        <activity android:name="cn.steve.materialdesign.TabLayoutActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
         <!-- MVP的demo -->
 
         <!-- 可以将一些随着类存在的静态量放到静态代码块内 -->
