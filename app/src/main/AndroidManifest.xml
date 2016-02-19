@@ -21,13 +21,13 @@
 
         <!-- 对话框demo -->
         <activity android:name="cn.steve.alertDialog.AlertDialogActivity">
-
-        </activity>
-        <activity android:name="cn.steve.alertDialog.ShareSuccessActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name="cn.steve.alertDialog.ShareSuccessActivity">
+
         </activity>
 
         <!-- fragment(碎片)demo -->

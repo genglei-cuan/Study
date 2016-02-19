@@ -41,6 +41,25 @@ public class AlertDialogActivity extends Activity {
             }
         });
 
+
+        btn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AlertDialogActivity.this);
+                builder.setTitle("提示");
+                builder.setMessage("这是一个普通的对话框！");
+                builder.setIcon(R.drawable.ic_launcher);
+                builder.setCancelable(false);
+                builder.setPositiveButton("知道了！", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.create().show();
+            }
+        });
+
     }
 
     public String[] getData() {
