@@ -74,14 +74,14 @@ Observable的生命周期包含了三种可能的易于与Iterable生命周期�
 这样，我们不需要等待结果，等到有结果的时候，会有通知，这个过程是异步的。这中间可以做很多其他的事情，保存到缓存，显示进度条等等。
 
 
-## 概念
+### 概念
 
-### Observable
+#### Observable
 当我们异步执行一些复杂的事情，Java提供了传统的类，例如Thread、Future、FutureTask、CompletableFuture来处理这些问题。当复杂度提升，这些方案就会变得麻烦和难以维护。最糟糕的是，它们都不支持链式调用。RxJava Observables可以解决这些问题。它可以作用于单个结果程序上，也可以作用于序列上。无论何时你想发射单个标量值，或者一连串值，甚至是无穷个数值流，你都可以使用Observable。和传统的观察者模式一样，也有冷热之分。
 - 热的observable，只要创建了observable，就开始发射数据了，所以，后续订阅他的observer可能从中间某个位置开始接收数据。
 - 冷的observable，等到有订阅的时候才开始发射数据。
 
-## Observer
+### Observer
 观察者，订阅observable发射的数据，对其做出相应，对可能出现的情况的定义就在这里。
 
 三个重要的回调方法 (onNext, onCompleted, onError)
@@ -92,14 +92,14 @@ Observable的生命周期包含了三种可能的易于与Iterable生命周期�
 
 根据Observable协议的定义，onNext可能会被调用**零次或者很多次**，最后会有一次onCompleted或onError调用（不会同时），传递数据给onNext通常被称作发射，onCompleted和onError被称作通知。
 
-## Subscriber
+### Subscriber
 Observers和Subscribers是两个“消费”实体。Subscriber是一个实现了Observer的一个抽象类。相对于基本的observer，提供了手动解开订阅的方法unsubscribe和在 subscribe 刚开始，而事件还未发送之前被调用的方法onStart。其他的使用方式是一样的。
-## Subjects
+### Subjects
 Subject = Observable + Observer。
 subject是一个神奇的对象，它可以是一个Observable同时也可以是一个Observer：它作为连接这两个世界的一座桥梁。一个Subject可以订阅一个Observable，就像一个观察者，并且它可以发射新的数据，或者传递它接受到的数据，就像一个Observable。很明显，作为一个Observable，观察者们或者其它Subject都可以订阅它。
 一旦Subject订阅了Observable，它将会触发Observable开始发射。如果原始的Observable是“冷”的，这将会对订阅一个“热”的Observable变量产生影响。
 
-# How怎么使用
+### How怎么使用
 
 接下来讨论他的具体使用方法。首先是需要搭建环境，我们就以AS为例。
 - 因为就是为了Android开发所学的，在module的gradle中添加RxAndroid的仓库地址,RxAndroid本身是依赖RxJava的，所以会自动下载RxJava的依赖包。
@@ -107,9 +107,9 @@ subject是一个神奇的对象，它可以是一个Observable同时也可以是
 compile 'io.reactivex:rxandroid:1.1.0'
 ```
 
-## 创建Observable
+#### 创建Observable
 
-### Create之从头创建
+##### Create之从头创建
 这个操作符传递一个**含有观察者作为参数的函数**的对象，编写这个函数让它的行为表现为一个Observable--恰当的调用观察者的onNext，onError和onCompleted方法。下面是个非常简单的一个例子，先有个直观的大致的认识。
 
 ```Java
@@ -143,17 +143,22 @@ Observable.OnSubscribe<String> f = new Observable.OnSubscribe<String>() {
         observable.subscribe(subscriber);
 ```
 
-### From
+##### From
+
 这个操作符需要传入数组或者列表等可以迭代的类型，将会返回一个observable对象，这个observable会迭代列表里的数据，然后将数据一个一个的发射出去。
 
-### Just
+##### Just
+
 这个操作符会返回一个observable，这个observable将传入的对象直接发射出去。这个操作符对于进行旧版本的改造非常有用，对于暂时不想做过多操作的函数，可以直接传入到just操作符中，这样就自动构造出了一个数据流。
 
-### Repeat
+##### Repeat
+
 这个操作符需要一个整形数字作为参数，代表了重复发射的次数，比如发射“123”三次，就会变成发射"123123123"。
 
-### defer
+##### defer
+
 这个操作符可以延迟observable的创建，当有订阅者的时候才开始创建，这个对于一些不是每次都需要创建的数据流而言，很有用。怎么理解呢，我们简单的看个例子。
+
 ```Java
 public class MainActivity extends AppCompatActivity {
 
@@ -261,8 +266,81 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### range 从一个指定的数字X开始发射N个数字
+##### range 从一个指定的数字X开始发射N个数字
 range()函数用两个数字作为参数：第一个是起始点，第二个是我们想发射数字的个数。目前未发现在实际项目中的用处。
 
-### interval 需要创建一个轮询程序时非常好用
-interval()函数的两个参数：一个指定两次发射的时间间隔，另一个是用到的时间单位。
+##### interval  重复轮训操作
+interval()函数的两个参数：一个指定两次发射的时间间隔，另一个是用到的时间单位。需要创建一个轮询程序时非常好用
+
+##### timer 一段时间之后才发射的Observable
+接受两个参数，一个是延迟发射的时间，第二个参数是时间的。
+
+
+
+#### 可观测序列的本质：过滤
+过滤：如何从发射的Observable中选取我们想要的值，如何获取有限个数的值，如何处理溢出的场景，以及更多的有用的技巧。
+
+##### filter函数，进行内容的过滤
+接受一个参数，对数据流中的每个数据进行过滤。
+
+##### Take,取序列的前N个元素
+take()函数用整数N来作为一个参数，从原始的序列中发射前N个元素
+
+##### takeLast,取序列的最后的N个元素
+如果我们想要最后N个元素，接给takeLast
+函数传入N作为参数。有一点值得注意，为了得到最后的数据，所以takeLast方法只能作用于一组有限的序列（发射元素），它只能应用于一个完整的序列。否则他无从知晓最后到哪。
+
+##### Distinct 有且仅有一个
+distinct函数去掉重复的。就像takeLast一样，distinct也必须作用于一个完整的序列，然后得到重复的过滤项，它需要记录每一个发射的值。如果你在处理一大堆序列或者大的数据记得关注内存使用情况。
+
+##### DistinctUntilsChanged 改变的时候就记录
+如果我们想在一个可观测序列发射一个不同于之前的一个新值时，让我们得到通知，就可以用这个操作符。
+
+##### First And Last
+从Observable中只发射第一个元素或者最后一个元素。这两个都可以传Func1作为参数，：一个可以确定我们感兴趣的第一个或者最后一个的谓词。
+与first()和last()相似的变量有：firstOrDefault()和lastOrDefault().这两个函数当可观测序列完成时不再发射任何值时用得上。在这种场景下，如果Observable不再发射任何值时我们可以指定发射一个默认的值
+
+
+##### Skip And SkipLast
+它们用整数N作参数，从本质上来说，它们不让Observable发射前N个或者后N个值。这个和上面的First和Last正好相反。
+
+##### elementAt 观察指定位置的数据
+elementAt()函数仅从一个序列中发射第n个元素然后就完成了。
+如果我们想查找第五个元素但是可观测序列只有三个元素可供发射时该怎么办？我们可以使用elementAtOrDefault()。
+
+
+##### sample 每隔一段时间取最近的数据
+创建一个新的可观测序列，它将在一个指定的时间间隔里由Observable发射最近一次的数值。
+如果我们想让它定时发射第一个元素而不是最近的一个元素，我们可以使用throttleFirst()。
+
+
+##### timeout 超时操作
+使用timeout()函数来监听源可观测序列,就是在我们设定的时间间隔内如果没有得到一个值则发射一个错误。
+
+##### debounce 除去发射过快的数据
+debounce()函数过滤掉由Observable发射的速率过快的数据；如果在一个指定的时间间隔过去了仍旧没有发射一个，那么它将发射最后的那个。
+
+
+#### 转换Observables
+
+##### Map 
+转换发射的数据，将发射数据A的observable变换成发射数据B的observable。适用于对数据的再加工场景。
+
+##### FlatMap 铺平序列
+这样的Observable：它发射一个数据序列，这些数据本身也可以发射Observable。等于是说发射的数据可以再发射数据。flatMap函数提供一种铺平序列的方式，然后合并这些Observables发射的数据，最后将合并后的结果作为最终的Observable
+
+当我们在处理可能有大量的Observables时，重要是记住任何一个Observables发生错误的情况，flatMap将会触发它自己的onError函数并放弃整个链。
+
+重要的一点提示是关于合并部分：它允许交叉。正如上图所示，这意味着flatMap不能够保证在最终生成的Observable中源Observables确切的发射顺序。
+
+##### ConcatMap 保证有序的铺平
+和上面的FlatMap一样，就是弥补了交叉这个一个特点。
+
+##### FlatMapIterable
+它将源数据两两结成对并生成Iterable，而不是原始数据项和生成的Observables。
+
+##### SwitchMap 切换数据流(喜新厌旧)
+switchMap()和flatMap()很像，除了一点：每当源Observable发射一个新的数据项（Observable）时，它将取消订阅并停止监视之前那个数据项产生的Observable，并开始监视当前发射的这一个。
+
+##### Scan
+RxJava的scan()函数可以看做是一个累积函数。scan()函数对原始Observable发射的每一项数据都应用一个函数，计算出函数的结果值，并将该值填充回可观测序列，等待和下一次发射的数据一起使用。
