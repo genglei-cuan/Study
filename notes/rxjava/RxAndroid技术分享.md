@@ -1,4 +1,4 @@
-# RxJava篇
+# RxJava以及响应式函数思想篇
 
 ## Why技术产生的背景
 
@@ -442,3 +442,11 @@ observeOn()方法将会在指定的调度器上返回结果。observeOn()方法�
 
 Retrofit完美的支持Rx编程，可以完美的结合。
 
+
+##感激,非常感激，万分的感激！
+
+感谢以下的文章以及其作者和翻译的开发者们,排名不分先后
+
+* [RxJava Essentials 中文翻译版](http://rxjava.yuxingxin.com/)
+* [ReactiveX文档中文翻译](https://mcxiaoke.gitbooks.io/rxdocs/content/)
+* [给 Android 开发者的 RxJava 详解](http://gank.io/post/560e15be2dca930e00da1083)
