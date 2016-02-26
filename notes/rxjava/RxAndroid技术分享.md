@@ -10,6 +10,7 @@
 - 还不需要回调。
 
 ## What ReactiveX是什么
+
 Reactive Extensions,简称RX，原来只是微软开发的一个LINQ的一个扩展。
 
 微软给的定义是，Rx是一个函数库，让开发者可以利用**可观察序列**和**LINQ风格查询操作符**来编写**异步**和基于**事件**的程序，使用Rx，开发者可以用Observables表示异步数据流，用LINQ操作符查询异步数据流，用Schedulers参数化异步数据流的并发处理，Rx可以这样定义：**Rx = Observables + LINQ + Schedulers。**
@@ -31,6 +32,7 @@ ReactiveX.io给的定义是，Rx是一个使用可观察数据流进行异步编
 -	一种响应式方法。
 
 ## RxJava与传统的Java的不同
+
 在Rx中，开发者用Observables模拟可被观察的异步数据流，从纯Java的观点看，RxJava的Observable类源自于经典的 Gang Of Four 的观察者模式。
 
 
@@ -67,6 +69,7 @@ Observable的生命周期包含了三种可能的易于与Iterable生命周期�
 所以，由以上这些新增的特点，开发者只要简单的去请求，当请求完成的时候，会得到一个通知。开发者需要对可能发生的每个事件提供一个清晰的响应链。
 
 ### 举个例子：
+
 用户提交完用户名和密码，我们可以用observable模拟这个登录的数据流，而后我们需要对可能发生的情况进行定义；
 - 用户名密码正确，登录成功，转到登录成功界面。
 - 用户名和密码匹配不成功，登录失败，给用户个提示。
@@ -74,14 +77,16 @@ Observable的生命周期包含了三种可能的易于与Iterable生命周期�
 这样，我们不需要等待结果，等到有结果的时候，会有通知，这个过程是异步的。这中间可以做很多其他的事情，保存到缓存，显示进度条等等。
 
 
-### 概念
+## 概念
 
-#### Observable
+### Observable
+
 当我们异步执行一些复杂的事情，Java提供了传统的类，例如Thread、Future、FutureTask、CompletableFuture来处理这些问题。当复杂度提升，这些方案就会变得麻烦和难以维护。最糟糕的是，它们都不支持链式调用。RxJava Observables可以解决这些问题。它可以作用于单个结果程序上，也可以作用于序列上。无论何时你想发射单个标量值，或者一连串值，甚至是无穷个数值流，你都可以使用Observable。和传统的观察者模式一样，也有冷热之分。
 - 热的observable，只要创建了observable，就开始发射数据了，所以，后续订阅他的observer可能从中间某个位置开始接收数据。
 - 冷的observable，等到有订阅的时候才开始发射数据。
 
 ### Observer
+
 观察者，订阅observable发射的数据，对其做出相应，对可能出现的情况的定义就在这里。
 
 三个重要的回调方法 (onNext, onCompleted, onError)
@@ -93,13 +98,16 @@ Observable的生命周期包含了三种可能的易于与Iterable生命周期�
 根据Observable协议的定义，onNext可能会被调用**零次或者很多次**，最后会有一次onCompleted或onError调用（不会同时），传递数据给onNext通常被称作发射，onCompleted和onError被称作通知。
 
 ### Subscriber
+
 Observers和Subscribers是两个“消费”实体。Subscriber是一个实现了Observer的一个抽象类。相对于基本的observer，提供了手动解开订阅的方法unsubscribe和在 subscribe 刚开始，而事件还未发送之前被调用的方法onStart。其他的使用方式是一样的。
+
 ### Subjects
+
 Subject = Observable + Observer。
 subject是一个神奇的对象，它可以是一个Observable同时也可以是一个Observer：它作为连接这两个世界的一座桥梁。一个Subject可以订阅一个Observable，就像一个观察者，并且它可以发射新的数据，或者传递它接受到的数据，就像一个Observable。很明显，作为一个Observable，观察者们或者其它Subject都可以订阅它。
 一旦Subject订阅了Observable，它将会触发Observable开始发射。如果原始的Observable是“冷”的，这将会对订阅一个“热”的Observable变量产生影响。
 
-### How怎么使用
+## How怎么使用
 
 接下来讨论他的具体使用方法。首先是需要搭建环境，我们就以AS为例。
 - 因为就是为了Android开发所学的，在module的gradle中添加RxAndroid的仓库地址,RxAndroid本身是依赖RxJava的，所以会自动下载RxJava的依赖包。
@@ -107,9 +115,10 @@ subject是一个神奇的对象，它可以是一个Observable同时也可以是
 compile 'io.reactivex:rxandroid:1.1.0'
 ```
 
-#### 创建Observable
+### 创建Observable
 
-##### Create之从头创建
+#### Create之从头创建
+
 这个操作符传递一个**含有观察者作为参数的函数**的对象，编写这个函数让它的行为表现为一个Observable--恰当的调用观察者的onNext，onError和onCompleted方法。下面是个非常简单的一个例子，先有个直观的大致的认识。
 
 ```Java
@@ -143,19 +152,19 @@ Observable.OnSubscribe<String> f = new Observable.OnSubscribe<String>() {
         observable.subscribe(subscriber);
 ```
 
-##### From
+#### From
 
 这个操作符需要传入数组或者列表等可以迭代的类型，将会返回一个observable对象，这个observable会迭代列表里的数据，然后将数据一个一个的发射出去。
 
-##### Just
+#### Just
 
 这个操作符会返回一个observable，这个observable将传入的对象直接发射出去。这个操作符对于进行旧版本的改造非常有用，对于暂时不想做过多操作的函数，可以直接传入到just操作符中，这样就自动构造出了一个数据流。
 
-##### Repeat
+#### Repeat
 
 这个操作符需要一个整形数字作为参数，代表了重复发射的次数，比如发射“123”三次，就会变成发射"123123123"。
 
-##### defer
+#### defer
 
 这个操作符可以延迟observable的创建，当有订阅者的时候才开始创建，这个对于一些不是每次都需要创建的数据流而言，很有用。怎么理解呢，我们简单的看个例子。
 
@@ -266,125 +275,170 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-##### range 从一个指定的数字X开始发射N个数字
+#### range 从一个指定的数字X开始发射N个数字
+
 range()函数用两个数字作为参数：第一个是起始点，第二个是我们想发射数字的个数。目前未发现在实际项目中的用处。
 
-##### interval  重复轮训操作
+#### interval  重复轮训操作
+
 interval()函数的两个参数：一个指定两次发射的时间间隔，另一个是用到的时间单位。需要创建一个轮询程序时非常好用
 
-##### timer 一段时间之后才发射的Observable
+#### timer 一段时间之后才发射的Observable
+
 接受两个参数，一个是延迟发射的时间，第二个参数是时间的。
 
+### 可观测序列的本质：过滤
 
-
-#### 可观测序列的本质：过滤
 过滤：如何从发射的Observable中选取我们想要的值，如何获取有限个数的值，如何处理溢出的场景，以及更多的有用的技巧。
 
-##### filter函数，进行内容的过滤
+#### filter函数，进行内容的过滤
+
 接受一个参数，对数据流中的每个数据进行过滤。
 
-##### Take,取序列的前N个元素
+#### Take,取序列的前N个元素
+
 take()函数用整数N来作为一个参数，从原始的序列中发射前N个元素
 
-##### takeLast,取序列的最后的N个元素
+#### takeLast,取序列的最后的N个元素
+
 如果我们想要最后N个元素，接给takeLast
 函数传入N作为参数。有一点值得注意，为了得到最后的数据，所以takeLast方法只能作用于一组有限的序列（发射元素），它只能应用于一个完整的序列。否则他无从知晓最后到哪。
 
-##### Distinct 有且仅有一个
+#### Distinct 有且仅有一个
+
 distinct函数去掉重复的。就像takeLast一样，distinct也必须作用于一个完整的序列，然后得到重复的过滤项，它需要记录每一个发射的值。如果你在处理一大堆序列或者大的数据记得关注内存使用情况。
 
-##### DistinctUntilsChanged 改变的时候就记录
+#### DistinctUntilsChanged 改变的时候就记录
+
 如果我们想在一个可观测序列发射一个不同于之前的一个新值时，让我们得到通知，就可以用这个操作符。
 
-##### First And Last
+#### First And Last
+
 从Observable中只发射第一个元素或者最后一个元素。这两个都可以传Func1作为参数，：一个可以确定我们感兴趣的第一个或者最后一个的谓词。
 与first()和last()相似的变量有：firstOrDefault()和lastOrDefault().这两个函数当可观测序列完成时不再发射任何值时用得上。在这种场景下，如果Observable不再发射任何值时我们可以指定发射一个默认的值
 
+#### Skip And SkipLast
 
-##### Skip And SkipLast
 它们用整数N作参数，从本质上来说，它们不让Observable发射前N个或者后N个值。这个和上面的First和Last正好相反。
 
-##### elementAt 观察指定位置的数据
+#### elementAt 观察指定位置的数据
+
 elementAt()函数仅从一个序列中发射第n个元素然后就完成了。
 如果我们想查找第五个元素但是可观测序列只有三个元素可供发射时该怎么办？我们可以使用elementAtOrDefault()。
 
+#### sample 每隔一段时间取最近的数据
 
-##### sample 每隔一段时间取最近的数据
 创建一个新的可观测序列，它将在一个指定的时间间隔里由Observable发射最近一次的数值。
 如果我们想让它定时发射第一个元素而不是最近的一个元素，我们可以使用throttleFirst()。
 
+#### timeout 超时操作
 
-##### timeout 超时操作
 使用timeout()函数来监听源可观测序列,就是在我们设定的时间间隔内如果没有得到一个值则发射一个错误。
 
-##### debounce 除去发射过快的数据
+#### debounce 除去发射过快的数据
+
 debounce()函数过滤掉由Observable发射的速率过快的数据；如果在一个指定的时间间隔过去了仍旧没有发射一个，那么它将发射最后的那个。
 
 
-#### 转换Observables
+### 转换Observables
 
-##### Map 
+#### Map 
+
 转换发射的数据，将发射数据A的observable变换成发射数据B的observable。适用于对数据的再加工场景。
 
-##### FlatMap 铺平序列
+#### FlatMap 铺平序列
+
 这样的Observable：它发射一个数据序列，这些数据本身也可以发射Observable。等于是说发射的数据可以再发射数据。flatMap函数提供一种铺平序列的方式，然后合并这些Observables发射的数据，最后将合并后的结果作为最终的Observable
 
 当我们在处理可能有大量的Observables时，重要是记住任何一个Observables发生错误的情况，flatMap将会触发它自己的onError函数并放弃整个链。
 
 重要的一点提示是关于合并部分：它允许交叉。正如上图所示，这意味着flatMap不能够保证在最终生成的Observable中源Observables确切的发射顺序。
 
-##### ConcatMap 保证有序的铺平
+#### ConcatMap 保证有序的铺平
+
 和上面的FlatMap一样，就是弥补了交叉这个一个特点。
 
-##### FlatMapIterable
+#### FlatMapIterable
+
 它将源数据两两结成对并生成Iterable，而不是原始数据项和生成的Observables。
 
-##### SwitchMap 切换数据流(喜新厌旧)
+#### SwitchMap 切换数据流(喜新厌旧)
+
 switchMap()和flatMap()很像，除了一点：每当源Observable发射一个新的数据项（Observable）时，它将取消订阅并停止监视之前那个数据项产生的Observable，并开始监视当前发射的这一个。
 
-##### Scan
+#### Scan
+
 RxJava的scan()函数可以看做是一个累积函数。scan函数对原始Observable发射的每一项数据都应用一个函数，计算出函数的结果值，并将该值填充回可观测序列，等待和下一次发射的数据一起使用。简单的说是每次可以处理的数据有本次的和上次的数据。
 
-##### groupBy 分组
+#### groupBy 分组
+
 接受一个方法，在方法里进行分组操作，返回一个自定义的值，系统将根据这个值将进行分组。
 
-##### buffer
+#### buffer
+
 每次发射一组值，是一个列表，而不是一个个的发射。接受一个整形参数N，表示N个一组进行发射。也可以接受两个参数，SKIP，表示SKIP个值中取N个一组进行发射。
 
-##### window
+#### window
+
 和buffer类似，但是他发射的不是一个列表，而是一个observable。
 
-##### cast
+#### cast
+
 和map类似，不同的是将数据进行转换成一个新的类型。TODO 目前测试未发现怎么使用。
 
 
-#### 组合Observable
-以上的内容是对observable的发射数据进行过滤，
-##### merge
+### 组合Observable
+
+以上的内容是对observable的发射数据进行过滤，接下来谈谈怎么组合数据流。
+
+#### merge
+
 将多个observable发射的值进行合并成一个新的observable然后再发射。中途合并的时候出现任何一个错误都会导致链条断裂，如果想延迟这样的错误处理，可以用mergeDelayError。
 
-##### zip
+#### zip
+
 这个操作符和merge一样，也是合并两个observable的数据；不一样的是，他是将两个未进行打包的数据根据传入的谓词规则进行合并成一个新的数据,再进行发射。值得注意的是，两个数据流的长度必须一样，多余的数据将会因为不能打包而得不到发射。
 
-##### join TODO 待详细验证用途
+#### join TODO 待详细验证用途
+
 有四个参数，
 - 第一个参数为，Observable，表示和源Observable结合的数据流。
 - Func1参数：在指定的由时间窗口定义时间间隔内，源Observable发射的数据和从第二个Observable发射的数据相互配合返回的Observable。
 - Func1参数：在指定的由时间窗口定义时间间隔内，第二个Observable发射的数据和从源Observable发射的数据相互配合返回的Observable。
 - Func2参数：定义已发射的数据如何与新发射的数据项相结合。
 
-##### combineLatest
+#### combineLatest
+
 和Zip一样，去组合两个数据流发射的数据，并且进行组合，合并成一个新的数据进行发射，不同的是，Zip发射的是最近未进行打包的，而combineLatest走的是相反的路线，打包最近发射的数据，不管是否已经打包过了。这样的话，就会弥补Zip的长度限制，全部得到发射。
 
-##### startWith
+#### startWith
+
 Observable开始发射他们的数据之前， startWith()通过传递一个参数来先发射一个数据序列。 表示发射之前先将传入的参数法发射出去。
 
-#### Schedulers 随时切换运行的线程
+### Schedulers 随时切换运行的线程
+
 这里大致说一下有哪几种情况，因为在Java中的情况和Android稍有差异，并且必须结合实例才能明白这个好处。
 
-##### RxJava提供的五种调度器
+#### RxJava提供的五种调度器
+
 - .io()
+这个调度器时用于I/O操作。它基于根据需要，增长或缩减来自适应的线程池。由于它专用于I/O操作，所以并不是RxJava的默认方法；正确的使用它是由开发者决定的。重点需要注意的是线程池是无限制的，大量的I/O调度操作将创建许多个线程并占用内存。
 - .computation()
+这个是计算工作默认的调度器，与I/O操作无关。也是许多RxJava方法的默认调度器：buffer(),debounce(),delay(),interval(),sample(),skip()。所以可以将一些耗时的，但是与IO无关的一些操作。
 - .immediate()
+这个调度器允许你立即在当前线程执行你指定的工作。它是timeout(),timeInterval(),以及timestamp()方法默认的调度器。
 - .newThread()
+这个调度器正如它所看起来的那样：它为指定任务启动一个新的线程。
 - .trampoline()
+当我们想在当前线程执行一个任务时，并不是立即，我们可以用
+.trampoline将它入队。这个调度器将会处理它的队列并且按序运行队列中每一个任务。它是repeat()和retry()方法默认的调度器。
+
+#### SubscribeOn and ObserveOn，指定线程，线程切换
+
+subscribeOn()方法来用于每个Observable对象。subscribeOn()方法用Scheduler来作为参数并在这个Scheduler上执行Observable调用。
+observeOn()方法将会在指定的调度器上返回结果。observeOn()方法用Scheduler来作为参数，在指定的线程上返回结果，观察者在返回结果的线程上消费这个结果。
+
+### Retrofit 
+
+Retrofit完美的支持Rx编程，可以完美的结合。
+
