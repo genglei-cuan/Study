@@ -99,7 +99,7 @@ public View inflate(@LayoutRes int resource, @Nullable ViewGroup root) {
 ```
 当root为空的时候，直接返回了temp(temp是从xml布局文件中加载的view)，而当root不为空的时候，会将root作为父布局，根据xml解析布局文件中的节点，获取属性元素，重新生成temp的布局参数params(此时假如attachToRoot为false，则会将temp的布局参数设置成生成的布局参数params),而后根据temp重新inflate temp中的子view，该设置params的设置params。而后如果parent不为空，attachToRoot为true，就会将整个布局中的所有元素挨个添加到parent中。最后返回的是parent。
 
-那么当parent为空的时候，又是什么个情况呢？因为parent为空，也就是xml文件根布局没有parent作为参照，解析的时候，他的宽无论节点上设置的是什么都会默认是wrap_content，高都会是match_parent。
+那么当parent为空的时候，又是什么个情况呢？因为parent为空，也就是xml文件根布局没有parent作为参照，解析的时候，他的高无论节点上设置的是什么都会默认是wrap_content，宽都会是match_parent。
 
 
 假设目前有个布局文件为
@@ -156,6 +156,9 @@ public class LayoutInflaterActivity extends AppCompatActivity {
         parent.addView(view);
 ```
 
+效果就是加载的布局宽度为充满match_parent，高度为wrap_content。
+
+
 - 第二种方案
 
 ```java
@@ -163,6 +166,8 @@ public class LayoutInflaterActivity extends AppCompatActivity {
         view = LayoutInflater.from(this).inflate(R.layout.activity_layoutinflater_sub, null);
         parent.addView(view, 100, 100);
 ```
+效果就是加载的布局宽宽高均为100个像素。
+
 
 - 第三种方案
 
@@ -173,6 +178,8 @@ public class LayoutInflaterActivity extends AppCompatActivity {
         parent.addView(view);
 ```
 
+效果就是加载的布局宽宽高均为布局中设置的25dp。
+
 - 第四种
 
 ```java 
@@ -181,6 +188,8 @@ public class LayoutInflaterActivity extends AppCompatActivity {
         // view=root due to parent supplied as hierarchy root and attachRoot=true
         view = LayoutInflater.from(this).inflate(R.layout.activity_layoutinflater_sub, parent, true);
 ```
+效果就是加载的布局宽宽高均为布局中设置的25dp，并且添加到了当前的布局中。
 
 ## 总结
+
 所以，要能在getview中，自定义宽高，办法有两个，一个是在最外层再套一层布局，然后parent设为null。另一个是指定parent，将attachToRoot设为false。
