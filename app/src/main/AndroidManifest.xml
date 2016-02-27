@@ -220,6 +220,10 @@
 
         <!-- 详解 LayoutInflater的含义-->
         <activity android:name="cn.steve.layoutinflater.LayoutInflaterActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name="cn.steve.layoutinflater.InflaterGoneViewActivity">
 
@@ -281,10 +285,7 @@
         <activity android:name="cn.steve.materialdesign.TranslucentBarImageActivity"
                 android:theme="@style/ImageTranslucentTheme"/>
         <activity android:name="cn.steve.materialdesign.TabLayoutActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- MVP的demo -->
