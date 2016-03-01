@@ -126,10 +126,11 @@ RxAndroid是基于响应式的编程，我们考虑将以上的网络请求产�
 
 指定数据产生发射的线程和订阅响应的线程。
  ```java
-     getDestinationDataObservable(url).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(subscriber);
-
+ getDestinationDataObservable(url).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(subscriber);
  ```
  subscribeOn表示observable执行所在的线程，这里指的是网络请求，请求的数据进行gson解析，再将数据发射的线程。
  observeOn表示的订阅响应的线程，这里指的是填充发射过来的数据到列表中。
- 运行就能看到我们想要的效果。
+ 运行就能看到我们想要的效果。到此我们学会了最基本的一些使用，基本上掌握了这几个就可以轻松地展开工作了。当然还有很多其他的技巧。
 
+### From && Just
+我们刚刚有说过，数据流不一定是连续的，那么肯定存在连续的，连续不断的弹射，更符合官方文档那种弹珠示意图。from就是一个这样的操作符。
