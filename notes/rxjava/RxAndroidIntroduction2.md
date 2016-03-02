@@ -229,3 +229,145 @@ private Observable<Integer> getInt() {
 所以，这里被延迟的是我们getInt被调用的时机。注意：create中的发射42和延迟 *无关*，这个call函数就是在 *发射* 数据，*订阅的时候才会发射数据* ，一旦订阅发生的额时候，就会发射42。
 
 总之记住，defer延迟的是参数function中的操作。只要将需要延迟创建的操作放到function函数中即可。这个对于数据的新鲜度有要求的操作很有用。
+
+### filter
+我们接受到的数据常常用些是不满足我们的需求的，这时候就可以用filter操作符。
+```java
+getDestinationDataObservableByCreate(url).filter(new Func1<DestinationDataModel, Boolean>() {
+           @Override
+           public Boolean call(DestinationDataModel destinationDataModel) {
+               return destinationDataModel != null;
+           }
+       })
+           .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+           .subscribe(subscriber);
+```
+比如我们可以对发射的数据中null数据进行过滤，虽然我们也可以在onnext或者在subscriber中进行过滤，那样就会破坏代码的业务逻辑，这样，每个函数只要注重自身的业务逻辑即可。
+
+### Map
+我们有时候随着需求的变更，版本的迭代，可能用同一套数据可能会做不用的用处，亦或者同一个功能的同一个数据源，但是上层的应用对数据结构的需求发生了变化。这时候，如果我们去变更数据提供层，或者让上层去适配，都会破坏代码逻辑。
+
+```java
+getDestinationDataObservableByCreate(url).map(new Func1<DestinationDataModel, String>() {
+    @Override
+    public String call(DestinationDataModel destinationDataModel) {
+        return destinationDataModel.getVersion();
+    }
+}).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+    .subscribe(new Action1<String>() {
+        @Override
+        public void call(String s) {
+            System.out.println(s);
+        }
+    });
+```
+看上面，我们并没有修改getDestinationDataObservableByCreate的业务逻辑，这样就不会影响其他的代码逻辑，也不会去贸然修改底层数据提供，用map操作符，我们就将getDestinationDataObservableByCreate发射的DestinationDataModel类型的数据，一个个变换成了String类型。
+map适用于这些数据结构的变化的操作。
+### FlatMap && ConcatMap
+对于一些Observable本身也会返回observable，我们可以将这些子Observable发射的数据进行统一，合并这些Observables发射的数据，最后将合并后的结果作为最终的Observable。
+这就是为什么叫做铺平的原因。
+提示：合并部分是允许交叉的。意味着flatMap()不能够保证在最终生成的Observable中源Observables确切的发射顺序。ConcatMap可以保证顺序，用法和flatMap一样。
+```java
+private Observable<Observable<DestinationDataModel>> getDestinationDataObservableByFlatMap(final String url) {
+        return Observable.create(new Observable.OnSubscribe<Observable<DestinationDataModel>>() {
+            @Override
+            public void call(Subscriber<? super Observable<DestinationDataModel>> subscriber) {
+                Gson gson = new Gson();
+                Request request = new Request.Builder().url(url).build();
+                Response response = null;
+                try {
+                    response = client.newCall(request).execute();
+                    DestinationDataModel destinationDataModel = gson.fromJson(response.body().string(), DestinationDataModel.class);
+                    if (subscriber.isUnsubscribed()) {//判断连接是否断开，避免无谓的操作
+                        return;
+                    }
+                    subscriber.onNext(Observable.just(destinationDataModel));
+                    subscriber.onNext(Observable.just(destinationDataModel));
+                    subscriber.onCompleted();
+                    if (!subscriber.isUnsubscribed()) {
+                        subscriber.onCompleted();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+```
+
+```java
+getDestinationDataObservableByFlatMap(url).flatMap(new Func1<Observable<DestinationDataModel>, Observable<DestinationDataModel>>() {
+            @Override
+            public Observable<DestinationDataModel> call(Observable<DestinationDataModel> destinationDataModelObservable) {
+                return destinationDataModelObservable;
+            }
+        })
+        .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())subscribe(subscriber);
+```
+
+上面我们用subscriber.onNext(Observable.just(destinationDataModel));模拟发送两个observable,然后通过flatMap进行扁平化处理。我们看到效果是列表中有两组相同的数据。
+flatMap() 和 map() 有一个相同点：它也是把传入的参数转化之后返回另一个对象。 但需要注意，和 map() 不同的是， flatMap() 中返回的是个 Observable 对象，并且这个 Observable 对象并不是被直接发送到了 Subscriber 的回调方法中。
+ flatMap() 的原理是这样的：
+ 1. 使用传入的事件对象创建一个 Observable 对象；
+ 2. 并不发送这个 Observable, 而是将它激活，于是它开始发送事件；
+ 3. 每一个创建出来的 Observable 发送的事件，都被汇入同一个 Observable ，而这个 Observable 负责将这些事件统一交给 Subscriber 的回调方法。
+这三个步骤，把事件拆成了两级，通过一组新创建的 Observable 将初始的对象『铺平』之后通过统一路径分发了下去。 而这个『铺平』就是 flatMap() 所谓的 flat。
+
+### SwitchMap
+和上面的操作符类似 ，都是observable发射observable,不同的是，这个操作不会合并数据项中的所有数据，而是当遇到后一个observable发射数据的时候，就停止对前一个observable的接收。
+```java
+getDestinationDataObservableByFlatMap(url).switchMap(new Func1<Observable<DestinationDataModel>, Observable<DestinationDataModel>>() {
+    @Override
+    public Observable<DestinationDataModel> call(Observable<DestinationDataModel> destinationDataModelObservable) {
+        return destinationDataModelObservable;
+    }
+}).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+    .subscribe(subscriber);
+```
+只要换个操作符即可switchMap，这里因为发射的数据只有一个，效果不明显，如果是列表，交叉发射的话，会很明显，效果回事丢失一部分数据。
+
+### GroupBy
+
+我们对数据按照某个依据进行分组。
+```java
+Observable<GroupedObservable<String, DestinationDataModel>> groupedObservableObservable = getDestinationDataObservableByCreate(url).groupBy(new Func1<DestinationDataModel, String>() {
+            @Override
+            public String call(DestinationDataModel destinationDataModel) {
+                return destinationDataModel.getVersion();
+            }
+        });
+        Observable.concat(groupedObservableObservable).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(subscriber);
+```
+以上依旧版本号对数据进行分组，一组的将在一起当做一个observable发射。
+
+### merge
+对数据进行整合一起发射。
+```java
+Observable<DestinationDataModel> merge1 = getDestinationDataObservableByCreate(url);
+Observable<DestinationDataModel> merge2 = getDestinationDataObservableByCreate(url);
+Observable<DestinationDataModel> merge = Observable.merge(merge1, merge2);
+merge.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(subscriber);
+```
+merge作为一个可观测序列，发射源merge1，merge2中的所有数据。注意发射的数据被交叉合并到一个Observable里面。如果同步的合并Observable，它们将连接在一起并且不会交叉。
+
+### zip $$ join && combineLatest
+上面的数据，是原样的放在一个可观测序列中进行发射的，然而如果我们想对源数据中两两的进行操作后再放到一个数据列中呢？
+```java
+Observable<DestinationDataModel> zip1 = getDestinationDataObservableByCreate(url);
+       Observable<DestinationDataModel> zip2 = getDestinationDataObservableByCreate(url);
+       Observable<DestinationDataModel> zip = Observable.zip(zip1, zip2, new Func2<DestinationDataModel, DestinationDataModel, DestinationDataModel>() {
+           @Override
+           public DestinationDataModel call(DestinationDataModel destinationDataModel, DestinationDataModel destinationDataModel2) {
+               //进行数据的合并操作
+               destinationDataModel.setCode(destinationDataModel.getCode() + destinationDataModel2.getCode());
+               return destinationDataModel;
+           }
+       });
+       zip.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(subscriber);
+```
+
+上面在Func2中对两个数据源中的数据进行两两操作，我们只是简单的将model的code值相加来模拟合并操作，作为新的数据返回，假如两数据源的长度相同，则只会返回一个数据源长度的数据，假如长度不一样，以短的数据长度为准。
+
+zip作用于最近未打包的两个Observables,还有一个需求就是我们不一定要非都是未打包的，并不一定要两个数据源要一定的长度相等，这个时候可以用combineLatest，相反，combineLatest()作用于最近发射的数据项：如果Observable1发射了A并且Observable2发射了B和C，combineLatest()将会分组处理AB和AC。
+
+join操作符把类似于combineLatest操作符，也是两个Observable产生的结果进行合并，合并的结果组成一个新的Observable，但是join操作符可以控制每个Observable产生结果的生命周期，在每个结果的生命周期内，可以与另一个Observable产生的结果按照一定的规则进行合并。
