@@ -134,3 +134,98 @@ RxAndroid是基于响应式的编程，我们考虑将以上的网络请求产�
 
 ### From && Just
 我们刚刚有说过，数据流不一定是连续的，那么肯定存在连续的，连续不断的弹射，更符合官方文档那种弹珠示意图。from就是一个这样的操作符。
+这个目前未想到在当前这个模块的应用场景。
+
+
+### repeat
+这个是重复，我们让当前的列表中的数据重复发送两次。
+```java
+getDestinationDataObservableByCreate(url).repeat(2)
+            .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe(subscriber);
+```
+修改下subscriber
+```java
+@Override
+            public void onNext(DestinationDataModel destinationDataModel) {
+                if (destinationRecyclerView.getAdapter() == null) {
+                    DestinationRecyclerAdapter adapter = new DestinationRecyclerAdapter(getActivity(), destinationDataModel.getDatas());
+                    destinationRecyclerView.setAdapter(adapter);
+                } else {
+                    DestinationRecyclerAdapter adapter = (DestinationRecyclerAdapter) destinationRecyclerView.getAdapter();
+                    adapter.datas.get(0).getInfos().addAll(destinationDataModel.getDatas().get(0).getInfos());
+                }
+            }
+```
+上面的结果是，请求两次网络。我们会看到数据重复了，同样的数据被发送了两次，并且是从头到尾的重复了两次。
+
+### defer
+延迟操作，等到订阅的时候再准备数据流。这里尤其对just和from操作符的效果最为明显,以下是国外的一个just的例子说明，from的原理一样。
+[借用一个国外的例子](http://blog.danlew.net/2015/07/23/deferring-observable-code-until-subscription-in-rxjava/)
+[国内的翻译](http://www.jianshu.com/p/c83996149f5b)
+```java
+public class SomeType {  
+private String value;
+
+public void setValue(String value) {
+  this.value = value;
+}
+
+public Observable<String> valueObservable() {
+  return Observable.just(value);
+}
+}
+```
+对于以下代码的调用会出现怎么样的结果呢？
+```java
+SomeType instance = new SomeType();  
+Observable<String> value = instance.valueObservable();  
+instance.setValue("Some Value");  
+value.subscribe(System.out::println); //订阅的时候发射数据
+```
+如果你认为会打印出“Some Value”，那就错了。而实际打印结果是“null”。因为在调用Observable.just()的时候，value已经初始化了。
+just()，from()这类能够创建Observable的操作符（译者注：创建Observable的操作符）在创建之初，就已经存储了对象的值，而不被订阅的时候。订阅的时候只是发射数据。
+这种情况，显然不是预期表现，我想要的valueObservable()是无论什么时候请求，都能够表现为当前值。所以我们需要延迟数据的创建直到有人订阅。有两个方法，一个是用create自主创建，我们可以自己精确的控制发射什么，什么时候发射，还有一个是用的defer延迟操作符。defer()中的代码直到被订阅才会执行。我们只需要在请求数据的时候调用Observable.just()就行了，使用defer()操作符的唯一缺点就是，每次订阅都会创建一个新的Observable对象。create()操作符则为每一个订阅者都使用同一个函数，所以，后者效率更高。
+
+因为我学习的时候，难以想清楚延迟和create操作符中的call的时间顺序和区别，我们用另外一个例子解释一下。
+```java
+private Observable<Integer> getInt() {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String currentDateandTime = sdf.format(new Date());
+        Log.e("GetInt", currentDateandTime);
+
+        return Observable.create(new Observable.OnSubscribe<Integer>() {
+            @Override
+            public void call(Subscriber<? super Integer> subscriber) {
+                if (subscriber.isUnsubscribed()) {
+                    return;
+                }
+                subscriber.onNext(42);
+                subscriber.onCompleted();
+            }
+        });
+    }
+
+    //simple defer
+    private void simpleDefer() {
+        //defer中的getInt操作等到有人订阅deferObservable的时候才会被执行
+        //假如这里不用defer，直接用getInt返回，那么调用simpleDefer的时候就会打印时间
+        deferObservable = Observable.defer(new Func0<Observable<Integer>>() {
+            @Override
+            public Observable<Integer> call() {
+                return getInt();
+            }
+        });
+//        deferObservable.subscribe(new Action1<Integer>() {
+//            @Override
+//            public void call(Integer integer) {
+//                System.out.println("subscribe:" + integer);
+//            }
+//        });
+    }
+```
+在不用延迟的情况下，我们调用simpleDefer返回一个数据流的时候就会打印时间，反之我们不用延迟的话，则会在调用simpleDefer的时候就已经打印了当前的时间。
+所以，这里被延迟的是我们getInt被调用的时机。注意：create中的发射42和延迟 *无关*，这个call函数就是在 *发射* 数据，*订阅的时候才会发射数据* ，一旦订阅发生的额时候，就会发射42。
+
+总之记住，defer延迟的是参数function中的操作。只要将需要延迟创建的操作放到function函数中即可。这个对于数据的新鲜度有要求的操作很有用。

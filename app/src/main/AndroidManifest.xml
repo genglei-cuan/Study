@@ -233,7 +233,10 @@
         <!-- RxAndroid的demo -->
         <activity android:name="cn.steve.rxandroid.RXJavaActivity"></activity>
         <activity android:name="cn.steve.rxandroid.RXAndroidActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <!-- contentobserver的例子 -->
         <activity android:name="cn.steve.contentobserver.ContentObserverActivity">
@@ -282,10 +285,7 @@
         <activity android:name="cn.steve.materialdesign.TranslucentBarImageActivity"
                 android:theme="@style/ImageTranslucentTheme"/>
         <activity android:name="cn.steve.materialdesign.TabLayoutActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- MVP的demo -->

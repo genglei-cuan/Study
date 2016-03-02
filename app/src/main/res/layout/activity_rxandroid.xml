@@ -45,5 +45,9 @@
         android:layout_height="wrap_content"
         android:enabled="false"
         android:text="注册" />
-
+    <Button
+            android:id="@+id/rxAndroidTestButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test" />
 </LinearLayout>
