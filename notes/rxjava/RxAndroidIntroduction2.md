@@ -1,4 +1,4 @@
-title: RxAndroid入门分享2.md
+title: RxAndroid入门分享(一)
 date: 2016-02-26 22:50:26
 tags: [Android,RxJava]
 ---
@@ -563,7 +563,7 @@ private void simpleInterval() {
             });
     }
 ```
-
+以两秒为周期，不断的发送数据。
 
 使用throttleFirst防止按钮重复点击,ps：debounce也能达到同样的效果
 ```java
@@ -588,3 +588,6 @@ private void simpleInterval() {
             });
     }
 ```
+以上的含义是在一秒以内，只接收第一个数据，其他的将会被忽略。
+
+
