@@ -5,7 +5,6 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -56,26 +55,26 @@ public class RXAndroidActivity extends AppCompatActivity {
         textViewRxAndroid = (TextView) findViewById(R.id.textViewRxAndroid);
         LoginButton = (Button) findViewById(R.id.LoginButton);
         rxAndroidTestButton = (Button) findViewById(R.id.rxAndroidTestButton);
-//        simpleDebounce();
-//        simpleCombineLatest();
-//        simpleMerge();
-//        simpleConcat();
-//        simpleTimer();
-        rxAndroidTestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deferObservable.subscribe(new Action1<Integer>() {
-                    @Override
-                    public void call(Integer integer) {
-                        System.out.println(integer);
-                    }
-                });
-            }
-        });
-        simpleDefer();
+        simpleDebounce();
+        simpleCombineLatest();
+        simpleMerge();
+        simpleConcat();
+        simpleTimer();
+//        rxAndroidTestButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                deferObservable.subscribe(new Action1<Integer>() {
+//                    @Override
+//                    public void call(Integer integer) {
+//                        System.out.println(integer);
+//                    }
+//                });
+//            }
+//        });
+//        simpleDefer();
     }
 
-    //用简单的话讲就是当N个结点发生的时间太靠近（即发生的时间差小于设定的值T），debounce就会自动过滤掉前N-1个结点。
+    //两个事件源的时间间隔小于规定的时间单位的，都会被忽略。
     private void simpleDebounce() {
         RxTextView.textChangeEvents(editTextRXAndroid)
             .debounce(400, TimeUnit.MILLISECONDS)

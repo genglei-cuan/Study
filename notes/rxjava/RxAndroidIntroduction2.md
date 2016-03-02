@@ -371,3 +371,220 @@ Observable<DestinationDataModel> zip1 = getDestinationDataObservableByCreate(url
 zip作用于最近未打包的两个Observables,还有一个需求就是我们不一定要非都是未打包的，并不一定要两个数据源要一定的长度相等，这个时候可以用combineLatest，相反，combineLatest()作用于最近发射的数据项：如果Observable1发射了A并且Observable2发射了B和C，combineLatest()将会分组处理AB和AC。
 
 join操作符把类似于combineLatest操作符，也是两个Observable产生的结果进行合并，合并的结果组成一个新的Observable，但是join操作符可以控制每个Observable产生结果的生命周期，在每个结果的生命周期内，可以与另一个Observable产生的结果按照一定的规则进行合并。
+
+
+## RxAndroid rxbinding
+Jake为Android控件写的包，这个的使用就太多了。这个我们以一个登陆界面为例。
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayoutRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textViewRxAndroid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Result" />
+
+    <EditText
+        android:id="@+id/editTextRXAndroid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入自己的内容，上面的textview会在400毫秒之后显示出来"
+        android:textColor="@color/blue_light" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:textColor="@color/blue_light" />
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone"
+        android:textColor="@color/blue_light" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="UserName"
+        android:textColor="@color/blue_light" />
+
+    <Button
+        android:id="@+id/LoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="注册" />
+
+</LinearLayout>
+```
+我们用第一个textview来演示怎么样定时操作textview的响应。场景常见于搜索，智能提示，我们不能用户输入什么就不停地网络请求。比如用户停止输入的内容有变，500秒之后再进行。
+
+```java
+    //两个事件源的时间间隔小于规定的时间单位的，都会被忽略。
+    private void simpleDebounce() {
+        RxTextView.textChangeEvents(editTextRXAndroid)
+            .debounce(400, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Observer<TextViewTextChangeEvent>() {
+                @Override
+                public void onCompleted() {
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                }
+
+                @Override
+                public void onNext(TextViewTextChangeEvent textViewTextChangeEvent) {
+                  //模拟响应
+                    textViewRxAndroid.setText(textViewTextChangeEvent.text());
+                }
+            });
+    }
+```
+以上的代码中，在400毫秒的时间窗口内，如若临近的事件发生间隔在400毫秒以内的，都将被忽略，当相差的时间间隔达到400毫秒到达的时候，发射最近的一次事件。
+
+
+在登录的时候，必须验证三要素都齐全才能进行注册的网络请求
+```java
+    //使用combineLatest合并最近N个结点
+    private void simpleCombineLatest() {
+        Observable<CharSequence> emailChangeObservable = RxTextView.textChanges(email);
+        Observable<CharSequence> phoneChangeObservable = RxTextView.textChanges(phone);
+        Observable<CharSequence> usernameChangeObservable = RxTextView.textChanges(username);
+        Observable.combineLatest(emailChangeObservable, phoneChangeObservable, usernameChangeObservable, new Func3<CharSequence, CharSequence, CharSequence, Boolean>() {
+            @Override
+            public Boolean call(CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
+                if (!TextUtils.isEmpty(charSequence) && !TextUtils.isEmpty(charSequence2) && !TextUtils.isEmpty(charSequence3)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }).subscribe(new Action1<Boolean>() {
+            @Override
+            public void call(Boolean aBoolean) {
+                if (aBoolean) {
+                    LoginButton.setEnabled(true);
+                } else {
+                    LoginButton.setEnabled(false);
+                }
+            }
+        });
+
+    }
+```
+我们使用combineLatest操作符，合并三个textview的事件源，判断三个事件源都满足条件的时候，我们就返回true，接着进行响应。
+
+
+有时候，我们获取数据的渠道有很多，最后我们还是需要放到一起进行显示。
+```java
+  //使用merge合并两个数据源。
+    private void simpleMerge() {
+        Observable.merge(getDataFromFile(), getDataFromNet())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Action1<String>() {
+                @Override
+                public void call(String s) {
+                    textViewRxAndroid.setText(s + textViewRxAndroid.getText());
+                }
+            });
+    }
+```
+以上我们对来自于本地的和网络请求的数据进行merge操作，产生新的数据流。
+
+
+对于数据获取，我们有时候也有优先级，先去判断内存中是否有数据，有我们取内存中的，依次接下里是本地缓存，再次我们再去请求网络获取数据。
+```java
+//依次检查memory、disk、network
+        Observable.concat(memory, disk, network)
+            .first()
+            .subscribeOn(Schedulers.newThread())
+            .subscribe(new Action1<String>() {
+                @Override
+                public void call(String s) {
+                    System.out.println("选择了：" + s);
+                }
+            });
+```
+
+
+使用timer做定时操作。当有“x秒后执行y操作”类似的需求的时候，想到使用timer
+```java
+    private void simpleTimer() {
+        Observable.timer(2, TimeUnit.SECONDS)
+            .subscribe(new Observer<Long>() {
+                @Override
+                public void onCompleted() {
+                    System.out.println("现在是2秒之后");
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(Long aLong) {
+
+                }
+            });
+
+    }
+```
+
+
+使用interval做周期性操作。当有“每隔xx秒后执行yy操作”类似的需求的时候，想到使用interval
+```java
+private void simpleInterval() {
+        Observable.interval(2, TimeUnit.SECONDS)
+            .subscribe(new Observer<Long>() {
+                @Override
+                public void onCompleted() {
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                }
+
+                @Override
+                public void onNext(Long number) {
+                }
+            });
+    }
+```
+
+
+使用throttleFirst防止按钮重复点击,ps：debounce也能达到同样的效果
+```java
+    private void simpleThrottleFirst() {
+        RxView.clicks(LoginButton)
+            .throttleFirst(1, TimeUnit.SECONDS)
+            .subscribe(new Subscriber<Void>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(Void aVoid) {
+
+                }
+            });
+    }
+```
