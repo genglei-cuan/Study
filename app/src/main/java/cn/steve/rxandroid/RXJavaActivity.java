@@ -340,7 +340,7 @@ public class RXJavaActivity extends AppCompatActivity {
                     return false;
                 }
             }
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Integer>() {
+        }).observeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Integer>() {
             @Override
             public void call(Integer integer) {
                 System.out.println("Action1:" + Thread.currentThread());
