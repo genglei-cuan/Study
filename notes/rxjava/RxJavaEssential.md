@@ -1,0 +1,115 @@
+看下lift源码
+```java
+public final <R> Observable<R> lift(final Operator<? extends R, ? super T> operator) {
+        return new Observable<R>(new OnSubscribe<R>() {
+            @Override
+            public void call(Subscriber<? super R> o) {
+                try {
+                    Subscriber<? super T> st = hook.onLift(operator).call(o);
+                    try {
+                        // new Subscriber created and being subscribed with so 'onStart' it
+                        st.onStart();
+                        onSubscribe.call(st);
+                    } catch (Throwable e) {
+                        // localized capture of errors rather than it skipping all operators 
+                        // and ending up in the try/catch of the subscribe method which then
+                        // prevents onErrorResumeNext and other similar approaches to error handling
+                        Exceptions.throwIfFatal(e);
+                        st.onError(e);
+                    }
+                } catch (Throwable e) {
+                    Exceptions.throwIfFatal(e);
+                    // if the lift function failed all we can do is pass the error to the final Subscriber
+                    // as we don't have the operator available to us
+                    o.onError(e);
+                }
+            }
+        });
+    }
+ ```
+ 
+ 我们一个变量一个变量的看。
+ 
+ 
+ - lift内部返回的是一个新建的observable，此时产生了一个新的OnSubscribe，此时的OnSubscribe的call方法内传入的Subscriber
+   变量o就是我们写在代码中的订阅者。
+ 
+ - hook.onLift(operator).call(o);新建了一个Subscriber变量st，这个变量用的是我们传入的Subscriber变量o。
+   而且还是用的operator创建的，我们先不管如何实现的，待会儿我们看看这个是怎么实现的。
+   
+ - onSubscribe.call(st);这个onSubscribe是个final类型，因为目前我们还是处于方法内，所以这个onSubscribe还是源observable
+   的onSubscribe对象(比如我们自己写的发射时机等那段代码),这个时候onSubscribe会调用它的call方法，传入的是我们新建的Subscriber变量st。
+   接下来，新的Subscriber变量st会接收到源observable发送来的数据。我们可以自然得想到，这个新的st肯定会经过operator对象中的一些
+   定义的方法对数据操作后，又发送到了我们传入的Subscriber变量o，实现整体的连接。
+ 
+   其实说白了，我们其实是在中间创建了一个代理。hook的意思不就是钩子嘛。
+   
+   接下来来看刚刚未能解决的疑问，hook是怎么工作的。
+   
+  ```java
+  public <T, R> Operator<? extends R, ? super T> onLift(final Operator<? extends R, ? super T> lift) {
+         return lift;
+     }
+  ```
+  
+  我们看到，并未做任何变化，直接将operator变换直接返回了。
+  
+  
+  接着我们继续看，以filter为例。
+  ```java
+  public final Observable<T> filter(Func1<? super T, Boolean> predicate) {
+          return lift(new OperatorFilter<T>(predicate));
+      }
+  ```
+ 
+ 传入的是一个OperatorFilter对象。
+ 
+ ```java
+ public final class OperatorFilter<T> implements Operator<T, T> {
+ 
+     private final Func1<? super T, Boolean> predicate;
+ 
+     public OperatorFilter(Func1<? super T, Boolean> predicate) {
+         this.predicate = predicate;
+     }
+ 
+     @Override
+     public Subscriber<? super T> call(final Subscriber<? super T> child) {
+         return new Subscriber<T>(child) {
+ 
+             @Override
+             public void onCompleted() {
+                 child.onCompleted();
+             }
+ 
+             @Override
+             public void onError(Throwable e) {
+                 child.onError(e);
+             }
+ 
+             @Override
+             public void onNext(T t) {
+                 try {
+                     if (predicate.call(t)) {
+                         child.onNext(t);
+                     } else {
+                         // TODO consider a more complicated version that batches these
+                         request(1);
+                     }
+                 } catch (Throwable e) {
+                     Exceptions.throwOrReport(e, child, t);
+                 }
+             }
+ 
+         };
+     }
+ 
+ }
+ ```
+ 
+ 变量predicate就是我们自己定义的过滤规则，在上面的代码中我们已经看到了，call传入的child就是我们上面分析，我们自己定义的
+ 变量o。
+ 
+ 这下基本清晰了，每次源observable发射的数据都被OperatorFilter给接收了，然后根据我们自己定义的过滤规则进行判断，通过的，
+ 就给child发射过去。
+ 
