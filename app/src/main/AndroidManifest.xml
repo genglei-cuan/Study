@@ -21,36 +21,32 @@
 
         <!-- 对话框demo -->
         <activity android:name="cn.steve.alertDialog.AlertDialogActivity">
-
         </activity>
         <activity android:name="cn.steve.alertDialog.ShareSuccessActivity">
-
         </activity>
 
         <!-- fragment(碎片)demo -->
-        <activity android:name="cn.steve.fragment.MyFragmentActivity"></activity>
+        <activity android:name="cn.steve.fragment.MyFragmentActivity"/>
 
         <!-- test the new click event -->
-        <activity android:name="cn.steve.click_xml.MXMLclick"></activity>
+        <activity android:name="cn.steve.click_xml.MXMLclick"/>
 
         <!-- customer dialogue -->
         <activity android:name="cn.steve.customdialog.MainActivity_Dailoge">
-
         </activity>
         <!-- 简单的dialog的包测试 -->
         <activity android:name="cn.steve.customdialog.SimpleDialog">
-
         </activity>
 
         <!-- signature  simple  demo -->
-        <activity android:name="cn.steve.signature.Activity_Signature"></activity>
+        <activity android:name="cn.steve.signature.Activity_Signature"/>
 
         <!-- customer paint view -->
-        <activity android:name="cn.steve.customview.CustomerPaintActivity"></activity>
+        <activity android:name="cn.steve.customview.CustomerPaintActivity"/>
 
         <!-- 测试view的context的规则 -->
-        <activity android:name="cn.steve.contextmean.ContextActivity"></activity>
-        <activity android:name="cn.steve.contextmean.ContextActivity_2"></activity>
+        <activity android:name="cn.steve.contextmean.ContextActivity"/>
+        <activity android:name="cn.steve.contextmean.ContextActivity_2"/>
 
         <!--
              浮动的输入框，输入密码用户名会动态的变化,exported属性用作命令行启动 
@@ -58,203 +54,181 @@
         -->
         <activity
                 android:name="cn.steve.floatLabelLayout.FloatLabelActivity"
-                android:exported="true"></activity>
+                android:exported="true"/>
 
         <!-- simple  example of welcome  activity -->
-        <activity android:name="cn.steve.simpleWelcome.WelcomeActivity"></activity>
-        <activity android:name="cn.steve.simpleWelcome.LoginActivity"></activity>
+        <activity android:name="cn.steve.simpleWelcome.WelcomeActivity"/>
+        <activity android:name="cn.steve.simpleWelcome.LoginActivity"/>
 
-        <!--类似于UC浏览器的底部菜单a bottom menu similar to the UC Browser-->
-        <activity android:name="cn.steve.bottomMenu.BottomMenuActivity"></activity>
+        <!-- 类似于UC浏览器的底部菜单a bottom menu similar to the UC Browser -->
+        <activity android:name="cn.steve.bottomMenu.BottomMenuActivity"/>
 
         <!-- 修改的UC菜单，使得菜单替换成了文本，文本内容滚动 -->
-        <activity android:name="cn.steve.bottomtext.BottomTextActivity"></activity>
+        <activity android:name="cn.steve.bottomtext.BottomTextActivity"/>
 
         <!-- 下拉列表 -->
-        <activity android:name="cn.steve.spinnerdroplayout.SpinnerDropActivity"></activity>
+        <activity android:name="cn.steve.spinnerdroplayout.SpinnerDropActivity"/>
 
         <!-- viewFlipper -->
-        <activity android:name="cn.steve.viewflipper.AcitvityViewFlipper"></activity>
-        <activity android:name="cn.steve.asynctask.AsyncTaskMainActivity"></activity>
+        <activity android:name="cn.steve.viewflipper.AcitvityViewFlipper"/>
+        <activity android:name="cn.steve.asynctask.AsyncTaskMainActivity"/>
 
         <!-- the touch events demo -->
-        <activity android:name="cn.steve.touchevent.TouchMainActivity"></activity>
+        <activity android:name="cn.steve.touchevent.TouchMainActivity"/>
         <!-- IO的操作 -->
-        <activity android:name="cn.steve.fileIO.MainActivity"></activity>
+        <activity android:name="cn.steve.fileIO.MainActivity"/>
         <!-- weak 弱引用 -->
-        <activity android:name="cn.steve.weakreferencehandler.MainActivity"></activity>
+        <activity android:name="cn.steve.weakreferencehandler.MainActivity"/>
         <!-- handler执行线程 -->
-        <activity android:name="cn.steve.handler.HandlerActivity"></activity>
-        <activity android:name="cn.steve.handler.HandlerActivity02"></activity>
+        <activity android:name="cn.steve.handler.HandlerActivity"/>
+        <activity android:name="cn.steve.handler.HandlerActivity02"/>
         <!-- webview -->
-        <activity android:name="cn.steve.webview.simple.WebViewActivity"></activity>
+        <activity android:name="cn.steve.webview.simple.WebViewActivity"/>
         <activity android:name="cn.steve.webview.simple.WebViewTestAcitvity">
         </activity>
         <!-- broadcast -->
-        <activity android:name="cn.steve.broadcast.NormalBroadCastActivity"></activity>
-        <activity android:name="cn.steve.broadcast.BroadCastMainActivity"></activity>
+        <activity android:name="cn.steve.broadcast.NormalBroadCastActivity"/>
+        <activity android:name="cn.steve.broadcast.BroadCastMainActivity"/>
 
-        <receiver android:name="cn.steve.broadcast.NormalBCReceiverA"></receiver>
-        <receiver android:name="cn.steve.broadcast.NormalBCReceiverB"></receiver>
+        <receiver android:name="cn.steve.broadcast.NormalBCReceiverA"/>
+        <receiver android:name="cn.steve.broadcast.NormalBCReceiverB"/>
 
-        <activity android:name="cn.steve.broadcast.OrderBroadCastActivity"></activity>
+        <activity android:name="cn.steve.broadcast.OrderBroadCastActivity"/>
 
-        <receiver android:name="cn.steve.broadcast.OrderBCReceiverA"></receiver>
-        <receiver android:name="cn.steve.broadcast.OrderBCReceiverB"></receiver>
+        <receiver android:name="cn.steve.broadcast.OrderBCReceiverA"/>
+        <receiver android:name="cn.steve.broadcast.OrderBCReceiverB"/>
 
-        <activity android:name="cn.steve.service.ServiceMainActivity"></activity>
+        <activity android:name="cn.steve.service.ServiceMainActivity"/>
 
-        <service android:name="cn.steve.service.MsgService"></service>
+        <service android:name="cn.steve.service.MsgService"/>
 
-        <activity android:name="cn.steve.uicommunicate.UIActivity"></activity>
-        <activity android:name="cn.steve.listview.cache.ListViewMainActivity"></activity>
+        <activity android:name="cn.steve.uicommunicate.UIActivity"/>
+        <activity android:name="cn.steve.listview.cache.ListViewMainActivity"/>
         <!-- 水平循环滚动 -->
-        <activity android:name="cn.steve.gallery.HorizontalScrollViewMainActivity"></activity>
-        <!--Universal image loader-->
-        <activity android:name="cn.steve.imageloader.ImageLoaderActivity"></activity>
-        <!--Event Bus-->
+        <activity android:name="cn.steve.gallery.HorizontalScrollViewMainActivity"/>
+        <!-- Universal image loader -->
+        <activity android:name="cn.steve.imageloader.ImageLoaderActivity"/>
+        <!-- Event Bus -->
         <activity android:name="cn.steve.eventbus.EventBusActivity">
-
         </activity>
 
-        <!--asynchttp请求的demo-->
+        <!-- asynchttp请求的demo -->
         <activity android:name="cn.steve.http.asynchttp.AsyncHttpActivity">
-
         </activity>
-        <activity android:name="cn.steve.http.okhttp.OkHttpActivity"></activity>
+        <activity android:name="cn.steve.http.okhttp.OkHttpActivity"/>
 
-        <!--单选控件-->
-        <activity android:name="cn.steve.radiobutton.RadioButtonMainActivity"></activity>
+        <!-- 单选控件 -->
+        <activity android:name="cn.steve.radiobutton.RadioButtonMainActivity"/>
+        <activity android:name="cn.steve.gallery.GalleryMainActivity"/>
 
-        <activity android:name="cn.steve.gallery.GalleryMainActivity"></activity>
+        <!-- 使用gallery实现时期滑动选择 -->
+        <activity android:name="cn.steve.gallery.MyGalleryMainActivity"/>
 
-        <!--使用gallery实现时期滑动选择-->
-        <activity android:name="cn.steve.gallery.MyGalleryMainActivity"></activity>
-
-        <!--gson使用demo-->
+        <!-- gson使用demo -->
         <activity android:name="cn.steve.gson.GsonMainActivity">
-
         </activity>
 
-        <!--屏幕坐标-->
-        <activity android:name="cn.steve.viewcoordinate.ViewCoordinateActivity"></activity>
+        <!-- 屏幕坐标 -->
+        <activity android:name="cn.steve.viewcoordinate.ViewCoordinateActivity"/>
 
-        <!--截屏监听-->
-        <activity android:name="cn.steve.screenshot.ScreenShotActivity"></activity>
+        <!-- 截屏监听 -->
+        <activity android:name="cn.steve.screenshot.ScreenShotActivity"/>
 
-        <!--百分比布局-->
-        <activity android:name="cn.steve.percentlayout.PercentLayoutActivity"></activity>
+        <!-- 百分比布局 -->
+        <activity android:name="cn.steve.percentlayout.PercentLayoutActivity"/>
 
-        <!--画圆-->
-        <activity android:name="cn.steve.circle.CircleMianActivity"></activity>
+        <!-- 画圆 -->
+        <activity android:name="cn.steve.circle.CircleMianActivity"/>
 
-        <!--recyclerview -->
-        <activity android:name="cn.steve.recyclerview.SimpleRecyclerViewMainActivity"></activity>
-        <activity android:name="cn.steve.recyclerview.multipleitem.MultipleItemMainActivity"></activity>
+        <!-- recyclerview -->
+        <activity android:name="cn.steve.recyclerview.SimpleRecyclerViewMainActivity"/>
+        <activity android:name="cn.steve.recyclerview.multipleitem.MultipleItemMainActivity"/>
         <activity android:name="cn.steve.recyclerview.itemanimator.RecyclerViewItemAnimatorActivity">
-
         </activity>
 
-        <!--检测手机卡-->
+        <!-- 检测手机卡 -->
         <activity android:name="cn.steve.simcardnet.SimCardMainActivity">
-
         </activity>
 
-        <!--activity的生命周期-->
+        <!-- activity的生命周期 -->
         <activity android:name="cn.steve.activitylifecycle.LifeActivityA"/>
         <activity android:name="cn.steve.activitylifecycle.LifeActivityB"/>
         <activity android:name="cn.steve.activitylifecycle.LifeCircleActivity">
-
         </activity>
 
-        <!--animator demo-->
+        <!-- animator demo -->
         <activity android:name="cn.steve.animator.AnimatorActivity">
-
         </activity>
 
-        <!--audio demo-->
-        <activity android:name="cn.steve.audiomanager.AudioManagerActivity"></activity>
+        <!-- audio demo -->
+        <activity android:name="cn.steve.audiomanager.AudioManagerActivity"/>
 
-        <!--修改系统亮度的demo-->
-        <activity android:name="cn.steve.brightness.BrightnessActivity"></activity>
-        <activity android:name="cn.steve.brightness.SeekBarBrightnessActivity"></activity>
+        <!-- 修改系统亮度的demo -->
+        <activity android:name="cn.steve.brightness.BrightnessActivity"/>
+        <activity android:name="cn.steve.brightness.SeekBarBrightnessActivity"/>
 
         <!-- 手机网络状态的监听 -->
-        <activity android:name="cn.steve.datatraffic.DataTrafficActivity"></activity>
-        <receiver android:name="cn.steve.datatraffic.NetConnectBroadCastReceiver"></receiver>
+        <activity android:name="cn.steve.datatraffic.DataTrafficActivity"/>
+
+        <receiver android:name="cn.steve.datatraffic.NetConnectBroadCastReceiver"/>
 
         <!-- 当前设备的一些硬件信息 -->
         <activity android:name="cn.steve.deviceinfo.DeviceInfoActivity">
-
         </activity>
 
         <!-- 悬浮窗demo -->
-        <activity android:name="cn.steve.floatingview.FloatingMainActivity"></activity>
+        <activity android:name="cn.steve.floatingview.FloatingMainActivity"/>
 
         <!-- 流式布局的demo -->
-        <activity android:name="cn.steve.flowlayout.FlowLayoutMainActivity"></activity>
+        <activity android:name="cn.steve.flowlayout.FlowLayoutMainActivity"/>
 
         <!-- APP运行在前后台的判断,只适用于Android4.0以上 -->
-        <activity android:name="cn.steve.forebackground.ForeGroundMainActivity"></activity>
+        <activity android:name="cn.steve.forebackground.ForeGroundMainActivity"/>
 
         <!-- 运行在前后台的测试 -->
         <activity android:name="cn.steve.forebackground.ForeGroundActivityA"/>
-
-        <activity android:name="cn.steve.click_xml.LayoutClickableMainActivity"></activity>
+        <activity android:name="cn.steve.click_xml.LayoutClickableMainActivity"/>
 
         <!-- 社交分享弹窗 -->
         <activity android:name="cn.steve.share.ShareMainActivity">
-
         </activity>
 
         <!-- 原生的下拉刷新控件 -->
         <activity android:name="cn.steve.swiperefreshlayout.SwipeRefreshLayoutActivity">
-
         </activity>
 
-        <!--魅族的适配-->
-        <activity android:name="cn.steve.flyme.FlymeAdapterActivity"></activity>
+        <!-- 魅族的适配 -->
+        <activity android:name="cn.steve.flyme.FlymeAdapterActivity"/>
 
         <!-- 通过UIL为viewgroup设置背景图片 -->
-        <activity android:name="cn.steve.imageloader.UILGroupDisplayActivity"></activity>
+        <activity android:name="cn.steve.imageloader.UILGroupDisplayActivity"/>
 
-        <!-- 详解 LayoutInflater的含义-->
+        <!-- 详解 LayoutInflater的含义 -->
         <activity android:name="cn.steve.layoutinflater.LayoutInflaterActivity">
-
         </activity>
         <activity android:name="cn.steve.layoutinflater.InflaterGoneViewActivity">
-
         </activity>
         <!-- 测试imageview的缩放比例区分 -->
         <activity android:name="cn.steve.scaletype.ScaleTypeActivity">
-
         </activity>
 
         <!-- RxAndroid的demo -->
         <activity android:name="cn.steve.rxandroid.RXJavaActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity android:name="cn.steve.rxandroid.RXAndroidActivity">
-
         </activity>
         <!-- contentobserver的例子 -->
         <activity android:name="cn.steve.contentobserver.ContentObserverActivity">
-
         </activity>
         <!-- 测试自定义listview中item的高度 -->
         <activity android:name="cn.steve.listview.customitemheight.CustomItemHeightActivity">
-
         </activity>
         <!-- 测试textview背景模糊效果 -->
         <activity android:name="cn.steve.blurre.BlurreActivity">
-
         </activity>
-        <!-- 用renderscript进行模糊-->
+        <!-- 用renderscript进行模糊 -->
         <activity android:name="cn.steve.blurre.renderscript.RenderScriptMainActivity">
-
         </activity>
         <activity android:name="cn.steve.blurre.BlurringViewActivity">
         </activity>
@@ -262,67 +236,58 @@
         </activity>
 
         <!-- progressbar的demo -->
-        <activity android:name="cn.steve.progressbar.ProgressMainActivity"></activity>
-        <activity android:name="cn.steve.progressbar.AbCircleProgressBarActivity"></activity>
+        <activity android:name="cn.steve.progressbar.ProgressMainActivity"/>
+        <activity android:name="cn.steve.progressbar.AbCircleProgressBarActivity"/>
 
-
-        <!-- recyclerview 的滑动demo-->
+        <!-- recyclerview 的滑动demo -->
         <activity android:name="cn.steve.recyclerview.itemtouchhelper.ItemTouchHelperMainActivity">
-
         </activity>
 
-        <!-- toolbar的使用demo,如果需要全局的话，可以把这个主题的设置放到Application处-->
-        <activity
-                android:name="cn.steve.toolbar.ToolBarMainActivity">
-
-
+        <!-- toolbar的使用demo,如果需要全局的话，可以把这个主题的设置放到Application处 -->
+        <activity android:name="cn.steve.toolbar.ToolBarMainActivity">
         </activity>
 
         <!-- material design 的demo -->
         <activity android:name="cn.steve.materialdesign.MaterialListActivity">
-
         </activity>
-        <activity android:name="cn.steve.materialdesign.TranslucentBarColorActivity"
+        <activity
+                android:name="cn.steve.materialdesign.TranslucentBarColorActivity"
                 android:theme="@style/ColorTranslucentTheme"/>
-        <activity android:name="cn.steve.materialdesign.TranslucentBarImageActivity"
+        <activity
+                android:name="cn.steve.materialdesign.TranslucentBarImageActivity"
                 android:theme="@style/ImageTranslucentTheme"/>
         <activity android:name="cn.steve.materialdesign.TabLayoutActivity">
-
         </activity>
 
         <!-- MVP的demo -->
 
+
         <!-- 可以将一些随着类存在的静态量放到静态代码块内 -->
-        <activity android:name="cn.steve.staticactivity.StaticActivity"></activity>
+        <activity android:name="cn.steve.staticactivity.StaticActivity"/>
 
         <!-- 下拉刷新 -->
         <activity android:name="cn.steve.listview.pulltorefresh.PullToRefreshActivity">
-
         </activity>
 
         <!-- 注解的测试 -->
-        <activity android:name="cn.steve.viewinjection.ViewInjectionTestActivity"></activity>
+        <activity android:name="cn.steve.viewinjection.ViewInjectionTestActivity"/>
 
         <!-- 个人中心下拉效果 -->
         <activity android:name="cn.steve.pullscrollview.PullScrollViewActivity">
-
         </activity>
 
         <!-- 官方的material design中的 -->
         <activity
                 android:name="cn.steve.pullscrollview.CoordinatorLayoutActivity"
                 android:theme="@style/AppTheme">
-
         </activity>
 
         <!-- 滑动有回弹的效果 -->
         <activity android:name="cn.steve.pullscrollview.OverScrollViewActivity">
-
         </activity>
 
-        <!--  改造下拉滑动放大 -->
+        <!-- 改造下拉滑动放大 -->
         <activity android:name="cn.steve.pullscrollview.PullEnlargeScrollViewActivity">
-
         </activity>
 
         <!-- 下拉放大，上拉收缩 -->
@@ -331,99 +296,82 @@
 
         <!-- 动态改变控件的高度 -->
         <activity android:name="cn.steve.viewcoordinate.LayoutParamsScrollActivity">
-
         </activity>
 
         <!-- 下拉方法的listview和scrollview -->
         <activity
                 android:name="cn.steve.pulltozoomviewdemo.MainActivity"
                 android:label="@string/app_name">
-
         </activity>
+        <activity android:name="cn.steve.pulltozoomviewdemo.PullToZoomListActivity"/>
+        <activity android:name="cn.steve.pulltozoomviewdemo.PullToZoomScrollActivity"/>
+        <activity android:name="cn.steve.pulltozoomviewdemo.recyclerview.PullToZoomRecyclerActivity"/>
 
-        <activity
-                android:name="cn.steve.pulltozoomviewdemo.PullToZoomListActivity"
-                />
-
-        <activity
-                android:name="cn.steve.pulltozoomviewdemo.PullToZoomScrollActivity"
-                />
-        <activity
-                android:name="cn.steve.pulltozoomviewdemo.recyclerview.PullToZoomRecyclerActivity"
-                />
-
-        <!-- 仿造微信的聊天界面-->
+        <!-- 仿造微信的聊天界面 -->
         <activity
                 android:name="cn.steve.wechat.WeChatMainActivity"
-                android:theme="@android:style/Theme.NoTitleBar"
-                >
+                android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         <!-- recyclerview版 -->
         <activity android:name="cn.steve.wechat.recycleview.WeChatMainActivity">
-
         </activity>
         <!-- view的宽高获取 -->
         <activity android:name="cn.steve.viewcoordinate.ObtainWidthHeightActivity">
-
         </activity>
         <activity android:name="cn.steve.listview.robot.OnlineActivity">
-
         </activity>
         <!-- 测试webview的高级用法 -->
         <activity android:name="cn.steve.webview.advanced.AdvancedWebViewTestActivity">
-
         </activity>
-        <!-- 测试自定义drawable-->
+        <!-- 测试自定义drawable -->
         <activity android:name="cn.steve.drawable.CustomDrawableMainActivity">
-
         </activity>
         <!-- Dagger 的demo -->
         <activity android:name="cn.steve.dagger.DaggerMainActivity">
-
         </activity>
         <!-- retrofit -->
         <activity android:name="cn.steve.retrofit.RetrofitMainActivity">
-
         </activity>
 
-        <!-- MVP-->
+        <!-- MVP -->
         <activity android:name="cn.steve.mvp.simple.view.MVPActivity">
         </activity>
-        <!-- Class Loader-->
+        <!-- Class Loader -->
         <activity android:name="cn.steve.classloader.LoaderMainActivity">
-
         </activity>
-        <!-- 消息盒子，采用MVP的模式-->
+        <!-- 消息盒子，采用MVP的模式 -->
         <activity android:name="cn.steve.mvp.campaign.CampaignActivity">
         </activity>
 
-        <!-- viewpager demo-->
+        <!-- viewpager demo -->
         <activity android:name="cn.steve.viewpager.ViewPagerMainActivity">
-
         </activity>
-        <!-- 测试输入电话，自动格式化-->
+        <!-- 测试输入电话，自动格式化 -->
         <activity android:name="cn.steve.edittext.EditTextViewMainActivity">
-
         </activity>
-        <!-- 圆形头像-->
+        <!-- 圆形头像 -->
         <activity android:name="cn.steve.circleimageview.CircleImageViewActivity">
         </activity>
-        <!-- 悬浮窗-->
+        <!-- 悬浮窗 -->
         <activity android:name="cn.steve.floatingview.simple.FloatingActivity">
-
         </activity>
 
         <!-- touch delegate -->
         <activity android:name="cn.steve.touchdelegate.TouchDelegateActivity">
-
         </activity>
 
         <!-- layout change animation -->
         <activity android:name="cn.steve.animator.layoutchange.LayoutChangesActivity">
-
-
         </activity>
-
+        <activity
+                android:name="cn.steve.fragment.SimpleFragmentActivity"
+                android:label="@string/title_activity_simple_fragment"
+                android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
