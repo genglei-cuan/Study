@@ -364,9 +364,7 @@
         <activity android:name="cn.steve.animator.layoutchange.LayoutChangesActivity">
         </activity>
         <activity
-                android:name="cn.steve.fragment.SimpleFragmentActivity"
-                android:label="@string/title_activity_simple_fragment"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:name="cn.steve.fragment.SimpleFragmentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

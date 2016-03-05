@@ -5,7 +5,7 @@ tags: [RxJava,source]
 
 # RxJava要点解析
 
-## 变换操作的原理
+## lift变换操作的原理
 
 因为发现，通过过滤操作符filter，发现工作的线程是主线程。
 大致的代码如下。
@@ -192,3 +192,127 @@ public final <R> Observable<R> lift(final Operator<? extends R, ? super T> opera
  
 ### 待解决疑问：
  -  虽然变换的原理弄明白了，还是未找到线程切换的原理。
+
+
+## Scheduler 线程切换的原理
+
+上面说到了变换的时候，用到的线程的切换的问题，那到底是怎么切换的线程呢？
+说到线程切换，必须说到两个操作。
+- subscribeOn：指定observable调用obsubsriber发射数据所在的线程。
+- observeOn： 指定订阅者进行订阅处理所在的线程。
+
+```java
+public final Observable<T> subscribeOn(Scheduler scheduler) {
+        if (this instanceof ScalarSynchronousObservable) {
+            return ((ScalarSynchronousObservable<T>)this).scalarScheduleOn(scheduler);
+        }
+        return nest().lift(new OperatorSubscribeOn<T>(scheduler));
+    }
+```
+以上是subscribeOn的源码。传入了指定的发送数据所在的线程Scheduler对象，判断当前的observable是否是一个需要同步的数据流，如果是怎么根据同步的方式进行指定，如果不是，就将当前的这个observable进行一次lift变换。
+看下nest方法是什么？
+```java
+public final Observable<Observable<T>> nest() {
+        return just(this);
+    }
+```
+创建了一个新的observable对象，这个新的observable对象将会直接发射我们当前的这个observable。
+
+再看下just方法的内容。
+
+```java
+public final static <T> Observable<T> just(final T value) {
+        return ScalarSynchronousObservable.create(value);
+    }
+```
+
+just方法返回的就是一个在subscribeOn中会加以判断的ScalarSynchronousObservable类型。也就是说中会判断是否是ScalarSynchronousObservable类型，不是就根据当前的创造一个ScalarSynchronousObservable类型，再进行lift变换。
+我们先不管源observable本来就是ScalarSynchronousObservable类型的情况，待会儿再看，我们先看看大多数需要变换的这个逻辑。
+
+通过nest方法返回一个新的ScalarSynchronousObservable类型的observable，接着进行lift操作，上面的分析指出，lift内部是又创建了一个observable和一个subscriber。(其实到这里，我们已经出现了三个observable)。上面有讲到过，内部实现的时候，是现将发射的数据发送到lift中新建的subscriber，而后这个新的subscriber接收到数据的时候，会先经由operator进行操作，再继续发射给自主设定的subscriber。
+我们看到subscribeOn中也是新建了一个操作符 OperatorSubscribeOn<T>(scheduler)，我们猜测大致的原理应该一样，内部应该也是新建的subscriber，新的subscriber也会按照这个新的操作符OperatorSubscribeOn去操作数据，再发射给自主设定的subscriber。
+我们看下源码。
+```java
+public class OperatorSubscribeOn<T> implements Operator<T, Observable<T>> {
+
+    private final Scheduler scheduler;
+
+    public OperatorSubscribeOn(Scheduler scheduler) {
+        this.scheduler = scheduler;
+    }
+
+    @Override
+    public Subscriber<? super Observable<T>> call(final Subscriber<? super T> subscriber) {
+        final Worker inner = scheduler.createWorker();
+        subscriber.add(inner);
+        return new Subscriber<Observable<T>>(subscriber) {
+
+            @Override
+            public void onCompleted() {
+                // ignore because this is a nested Observable and we expect only 1 Observable<T> emitted to onNext
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                subscriber.onError(e);
+            }
+
+            @Override
+            public void onNext(final Observable<T> o) {
+                inner.schedule(new Action0() {
+
+                    @Override
+                    public void call() {
+                        final Thread t = Thread.currentThread();
+                        o.unsafeSubscribe(new Subscriber<T>(subscriber) {
+
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(T t) {
+                                subscriber.onNext(t);
+                            }
+
+                            @Override
+                            public void setProducer(final Producer producer) {
+                                subscriber.setProducer(new Producer() {
+
+                                    @Override
+                                    public void request(final long n) {
+                                        if (Thread.currentThread() == t) {
+                                            // don't schedule if we're already on the thread (primarily for first setProducer call)
+                                            // see unit test 'testSetProducerSynchronousRequest' for more context on this
+                                            producer.request(n);
+                                        } else {
+                                            inner.schedule(new Action0() {
+
+                                                @Override
+                                                public void call() {
+                                                    producer.request(n);
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                });
+                            }
+
+                        });
+                    }
+                });
+            }
+
+        };
+    }
+}
+```
+
+我们看到源码和上面的filter指定的差不多。构造的时候会传入一个Scheduler对象，我们直接看里面的call方法，call方法的参数，subscriber就是我们后面自主设定的subscriber，这里通过scheduler.createWorker()，创建了一个worker对象，将这个worker设定给了作为参数传进来的subscriber，而后再用这个时候的subscriber又新建了一个subscriber，这个是到现在为止出现的第二个subscriber，我们看下这个subscriber会怎么运作，当有消息发送来的时候，新建的worker对象就会调用schedule方法，传入一个action0对象，在这个对象里我们看到了。
