@@ -30,7 +30,8 @@ public class RXJavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_textview);
         textViewMain = (TextView) findViewById(R.id.textViewMain);
 //        simpleAction();
-        simpleFilter();
+//        simpleFilter();
+        simpleConcatMap();
     }
 
 
@@ -348,6 +349,22 @@ public class RXJavaActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    //concatMap
+    private void simpleConcatMap() {
+        Observable.just("aaaaa").concatMap(new Func1<String, Observable<String>>() {
+            @Override
+            public Observable<String> call(String s) {
+                return Observable.just(s.toUpperCase());
+            }
+        }).subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                System.out.println("simple Concat map" + s);
+            }
+        });
     }
 
 

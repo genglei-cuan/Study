@@ -214,7 +214,10 @@
 
         <!-- RxAndroid的demo -->
         <activity android:name="cn.steve.rxandroid.RXJavaActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name="cn.steve.rxandroid.RXAndroidActivity">
         </activity>
@@ -363,12 +366,8 @@
         <!-- layout change animation -->
         <activity android:name="cn.steve.animator.layoutchange.LayoutChangesActivity">
         </activity>
-        <activity
-                android:name="cn.steve.fragment.SimpleFragmentActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+        <activity android:name="cn.steve.fragment.SimpleFragmentActivity">
+
         </activity>
     </application>
 
