@@ -31,7 +31,8 @@ public class RXJavaActivity extends AppCompatActivity {
         textViewMain = (TextView) findViewById(R.id.textViewMain);
 //        simpleAction();
 //        simpleFilter();
-        simpleConcatMap();
+//        simpleConcatMap();
+        simpleFunction();
     }
 
 
@@ -367,6 +368,29 @@ public class RXJavaActivity extends AppCompatActivity {
         });
     }
 
+    //func1,2,3
+    private void simpleFunction() {
+        String[] words = {"Hello", "Hi", "Aloha", "Last"};
+        Observable.from(words)
+            .map(new Func1<String, String>() {
+                @Override
+                public String call(String s) {
+                    return s;
+                }
+            })
+            .scan(new Func2<String, String, String>() {
+                @Override
+                public String call(String s, String s2) {
+                    return s + s2;
+                }
+            })
+            .subscribe(new Action1<String>() {
+                @Override
+                public void call(String s) {
+                    System.out.println(s);
+                }
+            });
+    }
 
 }
 
