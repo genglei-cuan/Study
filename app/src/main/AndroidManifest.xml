@@ -154,10 +154,7 @@
         <activity android:name="cn.steve.activitylifecycle.LifeActivityA"/>
         <activity android:name="cn.steve.activitylifecycle.LifeActivityB"/>
         <activity android:name="cn.steve.activitylifecycle.LifeCircleActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- animator demo -->
@@ -202,7 +199,12 @@
         </activity>
 
         <!-- 魅族的适配 -->
-        <activity android:name="cn.steve.flyme.FlymeAdapterActivity"/>
+        <activity android:name="cn.steve.flyme.FlymeAdapterActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <!-- 通过UIL为viewgroup设置背景图片 -->
         <activity android:name="cn.steve.imageloader.UILGroupDisplayActivity"/>
