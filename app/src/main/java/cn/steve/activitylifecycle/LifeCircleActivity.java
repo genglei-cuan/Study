@@ -2,6 +2,7 @@ package cn.steve.activitylifecycle;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.TextView;
 
 import cn.steve.study.R;
@@ -51,4 +52,16 @@ public class LifeCircleActivity extends Activity {
         textView.setText(s);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add("Menu");
+        System.out.println("onCreateOptionsMenu");
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onResume() {
+        System.out.println("onResume");
+        super.onResume();
+    }
 }
