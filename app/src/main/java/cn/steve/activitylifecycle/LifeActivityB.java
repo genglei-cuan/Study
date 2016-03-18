@@ -3,6 +3,8 @@ package cn.steve.activitylifecycle;
 import android.app.Activity;
 import android.os.Bundle;
 
+import cn.steve.study.R;
+
 /**
  * Created by Steve on 2015/9/6.
  */
@@ -11,7 +13,9 @@ public class LifeActivityB extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_imageview);
         System.out.println("onCreate--B");
+        LifeUtils.activity = this;
     }
 
     @Override
@@ -57,4 +61,10 @@ public class LifeActivityB extends Activity {
         System.out.println("onRestart--B");
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("onDestroy--B");
+    }
 }

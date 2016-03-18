@@ -151,7 +151,12 @@
         </activity>
 
         <!-- activity的生命周期 -->
-        <activity android:name="cn.steve.activitylifecycle.LifeActivityA"/>
+        <activity android:name="cn.steve.activitylifecycle.LifeActivityA">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name="cn.steve.activitylifecycle.LifeActivityB"/>
         <activity android:name="cn.steve.activitylifecycle.LifeCircleActivity">
 
@@ -371,10 +376,7 @@
         </activity>
         <!-- zxing二维码-->
         <activity android:name="cn.steve.zxing.ZxingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
     </application>
 

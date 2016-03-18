@@ -9,10 +9,7 @@ import cn.steve.study.R;
 
 
 /**
- * 启动第二个activity的时候，第一个activity的onPause()执行完之后才能第二个activity的创建工作。
- * 当第二个activity的onResume()方法执行完之后，说明已经完全到达前台了，
- * 这时候，第一个activity才会执行onSaveInstanceState()和onStop()方法。
- * Created by Steve on 2015/9/6.
+ * 启动第二个activity的时候，第一个activity的onPause()执行完之后才能第二个activity的创建工作。 当第二个activity的onResume()方法执行完之后，说明已经完全到达前台了， 这时候，第一个activity才会执行onSaveInstanceState()和onStop()方法。 Created by Steve on 2015/9/6.
  */
 public class LifeActivityA extends Activity {
 
