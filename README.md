@@ -18,6 +18,7 @@
 1. asyntask asyntask 异步任务的初步使用，模拟进度条
 1. audiomanager      静音，震动等模式的切换
 1. blurre            模糊效果，指定位置的背景模糊，即部分模糊 
+1. bottombar         google新的设计规范，直接借用的[github例子](https://github.com/roughike/BottomBar)
 1. buttonmenu 仿造早期的UC浏览器的菜单
 1. buttontext 仿造早期的UC浏览器的菜单，将菜单换成可滚动的文本
 1. brightness 调节屏幕亮度
