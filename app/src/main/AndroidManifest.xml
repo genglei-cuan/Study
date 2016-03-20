@@ -337,6 +337,12 @@
         <!-- retrofit -->
         <activity android:name="cn.steve.retrofit.RetrofitMainActivity">
         </activity>
+        <activity android:name="cn.steve.retrofit.RetrofitRxJavaActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <!-- MVP -->
         <activity android:name="cn.steve.mvp.simple.view.MVPActivity">
@@ -377,10 +383,7 @@
         </activity>
         <!-- bottombar-->
         <activity android:name="cn.steve.bottombar.BottomBarActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
     </application>
 
