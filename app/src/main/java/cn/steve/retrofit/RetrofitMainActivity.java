@@ -5,22 +5,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.squareup.okhttp.OkHttpClient;
-
 import java.io.IOException;
 import java.util.List;
 
 import cn.steve.study.R;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
+
 
 /**
  * Created by yantinggeng on 2015/12/28.
@@ -60,13 +60,16 @@ public class RetrofitMainActivity extends AppCompatActivity {
           Call<List<Contributor>> cloneCall = call.clone();
           cloneCall.enqueue(new Callback<List<Contributor>>() {
             @Override
-            public void onResponse(Response<List<Contributor>> response, Retrofit retrofit) {
+            public void onResponse(Call<List<Contributor>> call, Response<List<Contributor>> response) {
               Log.e(TAG, "onResponse:" + response.body().toString());
+
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<List<Contributor>> call, Throwable t) {
+
             }
+
           });
         } catch (IOException e) {
           e.printStackTrace();
@@ -85,8 +88,6 @@ public class RetrofitMainActivity extends AppCompatActivity {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(onNext);
-
-
 
 
   }
