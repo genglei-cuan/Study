@@ -118,8 +118,7 @@ public final <R> Observable<R> lift(final Operator<? extends R, ? super T> opera
 
  - onSubscribe.call(st);这个onSubscribe是个final类型，因为目前我们还是处于方法内，所以这个onSubscribe还是源observable
    的onSubscribe对象(比如我们自己写的发射时机等那段代码),这个时候onSubscribe会调用它的call方法，传入的是我们新建的Subscriber变量st。
-   接下来，新的Subscriber变量st会接收到源observable发送来的数据。我们可以自然得想到，这个新的st肯定会经过operator对象中的一些
-   定义的方法对数据操作后，又发送到了我们传入的Subscriber变量o，实现整体的连接。
+   接下来，新的Subscriber变量st会接收到源observable发送来的数据。我们可以自然得想到，这个新的st肯定会经过operator对象中的一些定义的方法对数据操作后，又发送到了我们传入的Subscriber变量o，实现整体的连接。
 
    其实说白了，我们其实是在中间创建了一个代理。hook的意思不就是钩子嘛。
 
@@ -141,7 +140,7 @@ public final <R> Observable<R> lift(final Operator<? extends R, ? super T> opera
       }
   ```
 
- 传入的是一个OperatorFilter对象。
+ 传入的是一个 OperatorFilter 对象。
 
  ```java
  public final class OperatorFilter<T> implements Operator<T, T> {
@@ -189,9 +188,6 @@ public final <R> Observable<R> lift(final Operator<? extends R, ? super T> opera
  变量predicate就是我们自己定义的过滤规则，在上面的代码中我们已经看到了，call传入的child就是我们上面分析，我们自己定义的变量o。
 
  这下基本清晰了，每次源observable发射的数据都被OperatorFilter内新的subscriber给接收了，然后根据传入到OperatorFilter我们自己定义的过滤规则进行判断，通过的，就给child发射过去，这样实现了过滤的作用，实现了新的subscriber将数据传送到了我们自定义的subscriber。
-
-### 待解决疑问：
- -  虽然变换的原理弄明白了，还是未找到线程切换的原理。
 
 
 ## Scheduler 线程切换的原理
@@ -243,6 +239,7 @@ public Observable<T> scalarScheduleOn(final Scheduler scheduler) {
 ```
 以上是scalarScheduleOn的源码，可以看到内部是通过Func1函数进行转换的，通过传入的scheduler创建指定的线程，在指定的线程上调用Func1中传入进来的Action0。
 那么Action0代表的又是什么呢？我们看到onSchedule又作为参数去构造ScalarAsyncOnSubscribe了。
+
 ```java
 /**
      * The OnSubscribe implementation that creates the ScalarAsyncProducer for each
@@ -322,9 +319,7 @@ public Observable<T> scalarScheduleOn(final Scheduler scheduler) {
         }
     }
 ```
-注释上说，这个类是用来代表一个生产者，这个生产者通过给定的线程回调，在第一个激活的请求上发射数据。在具体看代码之前，我们可以根据注释大致猜到这个是充当了发射数据的生产者，并且要是能实现线程切换，应该是在作为构造参数传递进来的onSchedule上进行调用和回调的。看下里面的源码，
-在request方法中，
-这里的actual就是刚刚传入的自定义订阅者对象s,我们看到call方法中就是直接调用了actual的onNext方法，将数据传递到订阅者。
+注释上说，这个类是用来代表一个生产者，这个生产者通过给定的线程回调，在第一个激活的请求上发射数据。在具体看代码之前，我们可以根据注释大致猜到这个是充当了发射数据的生产者，并且要是能实现线程切换，应该是在作为构造参数传递进来的onSchedule上进行调用和回调的。看下里面的源码，在request方法中，这里的actual就是刚刚传入的自定义订阅者对象s,我们看到call方法中就是直接调用了actual的onNext方法，将数据传递到订阅者。
 再看重点，request方法，有个参数n代表一次性请求的数据的数量，actual.add(onSchedule.call(this))；这个命令我们看到有调用onSchedule的call方法，那么经过这么长时间下来，这个call方法又是啥玩意？这个onSchedule就是我们在scalarScheduleOn中定义的Func1，这个也就是说在这里调用了Func1的call方法，传递进去的按理说是Action0对象，我们注意到ScalarAsyncProducer已经实现了Action0接口。也就是说这里调用了ScalarAsyncProducer(生产者)的call方法。当前ScalarAsyncProducer的call方法就是直接调用自定义订阅者的onNext发射数据。我们在上面说了Func1的call方法会在一个新建的线程中调用call方法传递进来的action0对象(就是此处实现Action0接口的ScalarAsyncProducer)的call方法。到目前为止，关于ScalarSynchronousObservable对象的线程切换的原理就分析结束了。
 
 -  接下来看下，如果不是ScalarSynchronousObservable对象调用subscribeOn方法又会是什么逻辑呢？
@@ -419,9 +414,134 @@ public final class OperatorSubscribeOn<T> implements OnSubscribe<T> {
     }
 }
 ```
-注释直接表明，这个类是用来在指定的线程上指定subscriber。最主要的方法是call方法，在这个方法里，创建了一个Worker对象，Worker对象调用schedule方法传入一个Action0,
-在这里Action0的call方法被调用的时候，首先记录当前调用Action0的call方法的线程。在内部用传入的原始subscriber创建一个新的Subscriber对象s,在这个s的内部又进行原始subscriber的onNext方法调用发射数据，又覆写了新的subscriber对象的setProducer方法，在覆写的时候对原始的subscriber对象设置一个新的Producer(生产者)，在这个新的生产者的request方法中，会判断当前的线程会否就是scheduler指定的线程(刚刚在Action0的call方法中记录了)，如果是，则立即执行；否则将交给scheduler对象指定的Worker对象重新安排这个任务，直到线程一致为止才执行。最后让执行subscribeOn产生的新的observable去订阅这个新产生的subscriber即可。
+注释直接表明，这个类是用来在指定的线程上订阅subscriber。最主要的方法是call方法，在这个方法里，创建了一个Worker对象，Worker对象调用schedule方法传入一个Action0,在这里Action0的call方法被调用的时候，首先记录当前调用Action0的call方法的线程。在内部用传入的原始subscriber创建一个新的Subscriber对象s(两个subscriber了),在这个s的内部又进行原始subscriber的onNext方法调用发射数据，又覆写了新的subscriber对象的setProducer方法，在覆写的时候对原始的subscriber对象设置一个新的Producer(两个Producer)，在这个新的生产者的request方法中，会判断当前的线程会否就是scheduler指定的线程(刚刚在Action0的call方法中记录了)，如果是，则立即执行；否则将交给scheduler对象指定的Worker对象重新安排这个任务，直到线程一致为止才执行。最后让执行subscribeOn产生的新的observable去订阅这个新产生的subscriber即可。
 
 ####  subscribeOn总结：
 
-线程的切换是由Scheduler对象中的Worker对象负责安排这些任务，不同类型的Scheduler创建出对应的Worker对象，在Worker对象内部会在相应的线程上创建新的Subscriber，通过subscriber，新的subscriber再设置Producer，通过Producer代理了实现发射线程的切换。
+线程的切换是由Scheduler对象中的Worker对象负责安排这些任务，不同类型的Scheduler创建出对应的Worker对象，在Worker对象内部会在相应的线程上创建新的Subscriber，通过给新的subscriber设置Producer，通过新的Producer在指定的线程上请求数据，代理了实现发射线程的切换。
+
+### observeOn分析
+
+接下来分析observeOn,了解在异步线程上分发事件就可以知道线程切换的大致原理了。
+
+```java
+public final Observable<T> observeOn(Scheduler scheduler) {
+        if (this instanceof ScalarSynchronousObservable) {
+            return ((ScalarSynchronousObservable<T>)this).scalarScheduleOn(scheduler);
+        }
+        return lift(new OperatorObserveOn<T>(scheduler, false));
+}
+```
+可以看到假如是ScalarSynchronousObservable实例的话，操作和subscribeOn是一样的。直接看看第二种不是ScalarSynchronousObservable的情况。
+我们看到使用的是lift操作符，Operator的构造方式和上面的filter有点不一样，传入了scheduler和一个false。看下这个OperatorObserveOn的代码。按照刚刚lift操作的原理，操作符中的call方法是关键，是会被代理调用的。下面代码太长，不贴全的了，上面的都是全的。
+
+```java
+@Override
+    public Subscriber<? super T> call(Subscriber<? super T> child) {
+        if (scheduler instanceof ImmediateScheduler) {
+            // avoid overhead, execute directly
+            return child;
+        } else if (scheduler instanceof TrampolineScheduler) {
+            // avoid overhead, execute directly
+            return child;
+        } else {
+            ObserveOnSubscriber<T> parent = new ObserveOnSubscriber<T>(scheduler, child, delayError);
+            parent.init();
+            return parent;
+        }
+    }
+```
+根据上面的经验，这里的返回的Subscriber的将会在lift新创建的 observable 中 OnSubscribe 对象的call方法中被原始自定义的OnSubscribe当做参数传递给它的call方法中，这里有点乱，但是是和上面的lift是一样的。所以数据先通过这里创建的ObserveOnSubscriber，也就是这里返回的child或者parent。child的应该比较简单，是直接返回自定义的Subscriber，这样在lift中的情况也一样，其实是直接发给了原始的observable，相当于没做任何的线程变换。
+那么重点就是在 ObserveOnSubscriber 上了，这个应该是在做线程的切换了。
+
+```java
+        @Override
+        public void onNext(final T t) {
+            if (isUnsubscribed() || finished) {
+                return;
+            }
+            if (!queue.offer(on.next(t))) {
+                onError(new MissingBackpressureException());
+                return;
+            }
+            schedule();
+        }
+
+```
+当在新的 OnSubscribe中被调用的时候，肯定会调用这里的onNext方法，在onNext方法中，又调用了 schedule方法。
+
+```java
+protected void schedule() {
+            if (counter.getAndIncrement() == 0) {
+                recursiveScheduler.schedule(this);
+            }
+        }
+```
+
+schedule方法里是将当前的对象加入到任务安排中，我们知道schedule方法的参数是一个Action0对象，所以需要看下当前对象实现Action0接口中的call方法。
+
+```java
+@Override
+        public void call() {
+            long emitted = 0L;
+
+            long missed = 1L;
+
+            // these are accessed in a tight loop around atomics so
+            // loading them into local variables avoids the mandatory re-reading
+            // of the constant fields
+            final Queue<Object> q = this.queue;
+            final Subscriber<? super T> localChild = this.child;
+            final NotificationLite<T> localOn = this.on;
+            
+            // requested and counter are not included to avoid JIT issues with register spilling
+            // and their access is is amortized because they are part of the outer loop which runs
+            // less frequently (usually after each RxRingBuffer.SIZE elements)
+            
+            for (;;) {
+                if (checkTerminated(finished, q.isEmpty(), localChild, q)) {
+                    return;
+                }
+
+                long requestAmount = requested.get();
+                boolean unbounded = requestAmount == Long.MAX_VALUE;
+                long currentEmission = 0L;
+                
+                while (requestAmount != 0L) {
+                    boolean done = finished;
+                    Object v = q.poll();
+                    boolean empty = v == null;
+                    
+                    if (checkTerminated(done, empty, localChild, q)) {
+                        return;
+                    }
+                    
+                    if (empty) {
+                        break;
+                    }
+                    
+                    localChild.onNext(localOn.getValue(v));
+                    
+                    requestAmount--;
+                    currentEmission--;
+                    emitted++;
+                }
+                
+                if (currentEmission != 0L && !unbounded) {
+                    requested.addAndGet(currentEmission);
+                }
+                
+                missed = counter.addAndGet(-missed);
+                if (missed == 0L) {
+                    break;
+                }
+            }
+            
+            if (emitted != 0L) {
+                request(emitted);
+            }
+        }
+```
+
+可以看到上面其实和Android本身的looper一样，也是一个循环发射的一个过程，checkTerminated根据当前发射的完成状况和subscriber的订阅状态判断是否需要停止。不去过多的解决，看重点for循环。
+在for循环里还有一个while循环，在while中给Subscriber对象发射数据。这样就是在recursiveScheduler中新的线程中发射的数据。这样就实现了observeOn中的线程切换。
