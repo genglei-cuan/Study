@@ -337,10 +337,8 @@ public class RXJavaActivity extends AppCompatActivity {
         //  决定了最终在哪个线程调用OnSubscribe的call方法，这会让源observable订阅subscribeOn内新创建的subscriber,
         //  内部新的subscriber会在指定的IO线程上执行。
         .subscribeOn(Schedulers.io())
-            // filter会返回一个 observable，这个observable会订阅后面的subscriber，接收到之后交给Func1操作完之后再交给调用这个filter
-            // 的observable中的OnSubscribe调用。
-            // 所以，在不指定filter返回的observable运行的线程，也不指定新建的subscriber的运行线程的情况下，
-            // 默认运行在调用这个filter的observable的call方法运行的线程上。
+            // filter会返回一个 observable，这个observable会订阅后面的subscriber，接收到之后交给Operator，Operator调用Func1操作完之后再交给调用这个filter
+            // 的observable中的OnSubscribe调用，运行在调用这个filter的observable的call方法运行的线程上。
         .filter(new Func1<Integer, Boolean>() {
           @Override
           public Boolean call(Integer integer) {
@@ -352,7 +350,8 @@ public class RXJavaActivity extends AppCompatActivity {
             }
           }
         })
-            // 指定subscriber中的call方法运行的线程，内部也是通过lift操作实现的，也新建了一个subscriber，
+
+        // 指定subscriber中的call方法运行的线程，内部也是通过lift操作实现的，也新建了一个subscriber，
             // 这个新的subscriber为后面订阅的subscriber设置了新producer，
             // 新的producer指定了后面订阅的subscriber的分发数据的线程，也就是订阅的subscriber调用onNext的线程。
         .observeOn(AndroidSchedulers.mainThread())
