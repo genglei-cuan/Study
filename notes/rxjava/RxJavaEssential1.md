@@ -432,8 +432,8 @@ public final Observable<T> observeOn(Scheduler scheduler) {
         return lift(new OperatorObserveOn<T>(scheduler, false));
 }
 ```
-可以看到假如是ScalarSynchronousObservable实例的话，操作和subscribeOn是一样的。直接看看第二种不是ScalarSynchronousObservable的情况。
-我们看到使用的是lift操作符，Operator的构造方式和上面的filter有点不一样，传入了scheduler和一个false。看下这个OperatorObserveOn的代码。按照刚刚lift操作的原理，操作符中的call方法是关键，是会被代理调用的。下面代码太长，不贴全的了，上面的都是全的。
+可以看到假如是 ScalarSynchronousObservable 实例的话，操作和 subscribeOn 是一样的。直接看看第二种不是 ScalarSynchronousObservable 的情况。
+我们看到使用的是 lift 操作符，Operator 的构造方式和上面的 filter 有点不一样，传入了 scheduler 和一个 false 。看下这个 OperatorObserveOn 的代码。按照刚刚 lift 操作的原理，操作符中的 call 方法是关键，是会被代理调用的。这边的代码太长，贴关键部分的代码，上面的都是全的。
 
 ```java
 @Override
@@ -451,10 +451,30 @@ public final Observable<T> observeOn(Scheduler scheduler) {
         }
     }
 ```
-根据上面的经验，这里的返回的Subscriber的将会在lift新创建的 observable 中 OnSubscribe 对象的call方法中被原始自定义的OnSubscribe当做参数传递给它的call方法中，这里有点乱，但是是和上面的lift是一样的。所以数据先通过这里创建的ObserveOnSubscriber，也就是这里返回的child或者parent。child的应该比较简单，是直接返回自定义的Subscriber，这样在lift中的情况也一样，其实是直接发给了原始的observable，相当于没做任何的线程变换。
+根据上面的经验，这里的返回的 Subscriber 的将会在 lift 新创建的 observable 中的 OnSubscribe 对象的 call 方法中被原始自定义的 OnSubscribe 当做参数传递给它自身的 call 方法中，这里有点乱，但是是和上面的 lift 是一样的，可以回到上面看看 lift 的分析。所以数据会先通过这里创建的 ObserveOnSubscriber ，也就是这里返回的 child 或者 parent。child 的应该比较简单，是直接返回自定义的  Subscriber，这样在 lift 中的情况也一样，其实是直接发给了原始的 observable，相当于没做任何的线程变换。
 那么重点就是在 ObserveOnSubscriber 上了，这个应该是在做线程的切换了。
 
 ```java
+        void init() {
+            // don't want this code in the constructor because `this` can escape through the 
+            // setProducer call
+            Subscriber<? super T> localChild = child;
+            
+            localChild.setProducer(new Producer() {
+
+                @Override
+                public void request(long n) {
+                    if (n > 0L) {
+                        BackpressureUtils.getAndAddRequest(requested, n);
+                        schedule();
+                    }
+                }
+
+            });
+            localChild.add(recursiveScheduler);
+            localChild.add(this);
+        }
+
         @Override
         public void onNext(final T t) {
             if (isUnsubscribed() || finished) {
@@ -468,7 +488,9 @@ public final Observable<T> observeOn(Scheduler scheduler) {
         }
 
 ```
-当在新的 OnSubscribe中被调用的时候，肯定会调用这里的onNext方法，在onNext方法中，又调用了 schedule方法。
+
+上面看到，在创建 parent的时候，会调用 init 方法，在 init 方法中为 child (自定义的 subscriber )设置了 Producer，在 request 里调用了 schedule 方法，
+schedule 方法就是执行在指定的异步线程上的。我们看到在 onNext 方法中，又调用了 schedule 方法，这样就实现了循环分发的效果，直到把所有的数据分发完。
 
 ```java
 protected void schedule() {
@@ -543,5 +565,11 @@ schedule方法里是将当前的对象加入到任务安排中，我们知道sch
         }
 ```
 
-可以看到上面其实和Android本身的looper一样，也是一个循环发射的一个过程，checkTerminated根据当前发射的完成状况和subscriber的订阅状态判断是否需要停止。不去过多的解决，看重点for循环。
-在for循环里还有一个while循环，在while中给Subscriber对象发射数据。这样就是在recursiveScheduler中新的线程中发射的数据。这样就实现了observeOn中的线程切换。
+可以看到上面其实和 Android 本身的 looper 一样，也是一个循环发射的一个过程，checkTerminated 根据当前发射的完成状况和 subscriber 的订阅状态判断是否需要停止。不去过多的理解这个，看重点for循环。
+在 for 循环里还有一个 while 循环，在 while 中给 Subscriber 对象发射数据。这样就是在 recursiveScheduler 中新的线程中发射的数据。这样就实现了 observeOn 中的线程切换。
+
+
+#### observeOn总结
+observeOn 的线程切换也是通过给自定义的 Subscriber 设置新的 Producer，在新的 Producer中 指定分发(subscriber.onNext())调用的线程,这样就实现了 observeOn 线程的切换。
+
+
