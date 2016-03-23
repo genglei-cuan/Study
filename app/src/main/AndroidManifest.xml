@@ -219,7 +219,10 @@
 
         <!-- RxAndroid的demo -->
         <activity android:name="cn.steve.rxandroid.RXJavaActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name="cn.steve.rxandroid.RXAndroidActivity">
         </activity>
@@ -338,10 +341,7 @@
         <activity android:name="cn.steve.retrofit.RetrofitMainActivity">
         </activity>
         <activity android:name="cn.steve.retrofit.RetrofitRxJavaActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- MVP -->

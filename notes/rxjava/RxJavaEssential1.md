@@ -4,79 +4,9 @@ tags: [RxJava,source]
 ---
 
 # RxJava要点解析
+对于rxjava还是有很多不理解的地方，加上又有点好奇心，就看看源码，记录在此，水平有限，肯定存在错误的地方，望路过的同行不吝赐教。
 
 ## lift变换操作的原理
-
-因为发现，通过过滤操作符filter，发现工作的线程是主线程。
-大致的代码如下。
-
-```java
-private void simpleFilter() {
-        Observable.create(new Observable.OnSubscribe<Integer>() {
-            @Override
-            public void call(Subscriber<? super Integer> subscriber) {
-                System.out.println("Observable:" + Thread.currentThread());
-                for (int i = 0; i < 10; i++) {
-                    subscriber.onNext(i);
-                }
-                subscriber.onCompleted();
-            }
-        }).subscribeOn(Schedulers.io()).filter(new Func1<Integer, Boolean>() {
-            @Override
-            public Boolean call(Integer integer) {
-                System.out.println("filter:" + Thread.currentThread());
-                if (integer > 2) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Integer>() {
-            @Override
-            public void call(Integer integer) {
-                System.out.println("Action1:" + Thread.currentThread());
-                textViewMain.setText(integer.toString());
-            }
-        });
-
-    }
-```
-
-运行以上代码，我们会发现，Observable是运行在IO线程，filter和action是在一个线程。晚上想到，filter返回的也是一个observable，难道需要再次指定它运行的线程？试了一下，发现真的是这样。
-
-```java
-private void simpleFilter() {
-        Observable.create(new Observable.OnSubscribe<Integer>() {
-            @Override
-            public void call(Subscriber<? super Integer> subscriber) {
-                System.out.println("Observable:" + Thread.currentThread());
-                for (int i = 0; i < 10; i++) {
-                    subscriber.onNext(i);
-                }
-                subscriber.onCompleted();
-            }
-        }).subscribeOn(Schedulers.io()).filter(new Func1<Integer, Boolean>() {
-            @Override
-            public Boolean call(Integer integer) {
-                System.out.println("filter:" + Thread.currentThread());
-                if (integer > 2) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }).observeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Integer>() {
-            @Override
-            public void call(Integer integer) {
-                System.out.println("Action1:" + Thread.currentThread());
-                textViewMain.setText(integer.toString());
-            }
-        });
-
-    }
-```
-
-这个observable充当了subscriber的角色了？那明确定义的subscriber又咋回事呢？不禁想看看这里面的实现原理。
 
 看下lift源码,直接拷贝的源码，未做删减。
 ```java
@@ -622,8 +552,52 @@ private static <T> Subscription subscribe(Subscriber<? super T> subscriber, Obse
         }
     }
 ```
-我们看到hook.onSubscribeStart(observable, observable.onSubscribe).call(subscriber);这就是所谓的只要在订阅的时候才会发射数据的原因。 subscriber 作为参数传递到执行 subscribe 方法的 observable 中 onSubscribe 的 call 方法了。
+我们看到hook.onSubscribeStart(observable, observable.onSubscribe).call(subscriber);这就是所谓的只要在订阅的时候才会发射数据的原因。 subscriber 作为参数传递到调用 subscribe 方法的 observable 中 onSubscribe 的 call 方法了。也就是说最终的subscriber是被传递给了最后一个调用它的 observable 了，因为我们知道在整个操作链中，每个操作符都会返回一个新的 observable ，并且内部都是创建了一个新的 subscriber ，利用代理的方式调用我们自定义的 subscriber。
 
 
+### 实例讲解流程
+```java
+private void simpleFilter() {
+    Observable.create(new Observable.OnSubscribe<Integer>() {
+      @Override
+      public void call(Subscriber<? super Integer> subscriber) {
+        System.out.println("Observable:" + Thread.currentThread());
+        for (int i = 0; i < 10; i++) {
+          subscriber.onNext(i);
+        }
+        subscriber.onCompleted();
+      }
+    })
+        //  决定了最终在哪个线程调用OnSubscribe的call方法，这会让源observable订阅subscribeOn内新创建的subscriber,
+        //  内部新的subscriber会在指定的IO线程上执行。
+        .subscribeOn(Schedulers.io())
+            // filter会返回一个 observable，这个observable会订阅后面的subscriber，接收到之后交给Func1操作完之后再交给调用这个filter
+            // 的observable中的OnSubscribe调用。
+            // 所以，在不指定filter返回的observable运行的线程，也不指定新建的subscriber的运行线程的情况下，
+            // 默认运行在调用这个filter的observable的call方法运行的线程上。
+        .filter(new Func1<Integer, Boolean>() {
+          @Override
+          public Boolean call(Integer integer) {
+            System.out.println("filter:" + Thread.currentThread());
+            if (integer > 2) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+        })
+            // 指定subscriber中的call方法运行的线程，内部也是通过lift操作实现的，也新建了一个subscriber，
+            // 这个新的subscriber为后面订阅的subscriber设置了新producer，
+            // 新的producer指定了后面订阅的subscriber的分发数据的线程，也就是订阅的subscriber调用onNext的线程。
+        .observeOn(AndroidSchedulers.mainThread())
+            //订阅，直接运行，分发数据
+        .subscribe(new Action1<Integer>() {
+          @Override
+          public void call(Integer integer) {
+            System.out.println("Action1:" + Thread.currentThread());
+            textViewMain.setText(integer.toString());
+          }
+        });
 
-
+  }
+```
