@@ -573,3 +573,57 @@ schedule方法里是将当前的对象加入到任务安排中，我们知道sch
 observeOn 的线程切换也是通过给自定义的 Subscriber 设置新的 Producer，在新的 Producer中 指定分发(subscriber.onNext())调用的线程,这样就实现了 observeOn 线程的切换。
 
 
+### subscribe分析
+
+再看看订阅的执行流程。
+
+```java
+public final Subscription subscribe(Subscriber<? super T> subscriber) {
+        return Observable.subscribe(subscriber, this);
+}
+private static <T> Subscription subscribe(Subscriber<? super T> subscriber, Observable<T> observable) {
+     // validate and proceed
+        if (subscriber == null) {
+            throw new IllegalArgumentException("observer can not be null");
+        }
+        if (observable.onSubscribe == null) {
+            throw new IllegalStateException("onSubscribe function can not be null.");
+        }
+        // new Subscriber so onStart it
+        subscriber.onStart();
+        // if not already wrapped
+        if (!(subscriber instanceof SafeSubscriber)) {
+            // assign to `observer` so we return the protected version
+            subscriber = new SafeSubscriber<T>(subscriber);
+        }
+        // The code below is exactly the same an unsafeSubscribe but not used because it would 
+        // add a significant depth to already huge call stacks.
+        try {
+            // allow the hook to intercept and/or decorate
+            hook.onSubscribeStart(observable, observable.onSubscribe).call(subscriber);
+            return hook.onSubscribeReturn(subscriber);
+        } catch (Throwable e) {
+            // special handling for certain Throwable/Error/Exception types
+            Exceptions.throwIfFatal(e);
+            // if an unhandled error occurs executing the onSubscribe we will propagate it
+            try {
+                subscriber.onError(hook.onSubscribeError(e));
+            } catch (Throwable e2) {
+                Exceptions.throwIfFatal(e2);
+                // if this happens it means the onError itself failed (perhaps an invalid function implementation)
+                // so we are unable to propagate the error correctly and will just throw
+                RuntimeException r = new RuntimeException("Error occurred attempting to subscribe [" + e.getMessage() + "] and then again while trying to pass to onError.", e2);
+                // TODO could the hook be the cause of the error in the on error handling.
+                hook.onSubscribeError(r);
+                // TODO why aren't we throwing the hook's return value.
+                throw r;
+            }
+            return Subscriptions.unsubscribed();
+        }
+    }
+```
+我们看到hook.onSubscribeStart(observable, observable.onSubscribe).call(subscriber);这就是所谓的只要在订阅的时候才会发射数据的原因。 subscriber 作为参数传递到执行 subscribe 方法的 observable 中 onSubscribe 的 call 方法了。
+
+
+
+

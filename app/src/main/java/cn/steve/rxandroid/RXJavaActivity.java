@@ -7,6 +7,7 @@ import android.widget.TextView;
 import cn.steve.study.R;
 import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
@@ -83,7 +84,7 @@ public class RXJavaActivity extends AppCompatActivity {
             }
         });
 
-        observable.subscribe(observer);
+        Subscription subscribe = observable.subscribe(observer);
     }
 
 
