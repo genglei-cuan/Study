@@ -152,11 +152,9 @@
 
         <!-- activity的生命周期 -->
         <activity android:name="cn.steve.activitylifecycle.LifeActivityA">
-
         </activity>
         <activity android:name="cn.steve.activitylifecycle.LifeActivityB"/>
         <activity android:name="cn.steve.activitylifecycle.LifeCircleActivity">
-
         </activity>
 
         <!-- animator demo -->
@@ -202,7 +200,6 @@
 
         <!-- 魅族的适配 -->
         <activity android:name="cn.steve.flyme.FlymeAdapterActivity">
-
         </activity>
 
         <!-- 通过UIL为viewgroup设置背景图片 -->
@@ -219,10 +216,7 @@
 
         <!-- RxAndroid的demo -->
         <activity android:name="cn.steve.rxandroid.RXJavaActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity android:name="cn.steve.rxandroid.RXAndroidActivity">
         </activity>
@@ -341,7 +335,6 @@
         <activity android:name="cn.steve.retrofit.RetrofitMainActivity">
         </activity>
         <activity android:name="cn.steve.retrofit.RetrofitRxJavaActivity">
-
         </activity>
 
         <!-- MVP -->
@@ -375,15 +368,19 @@
         <activity android:name="cn.steve.animator.layoutchange.LayoutChangesActivity">
         </activity>
         <activity android:name="cn.steve.fragment.SimpleFragmentActivity">
-
         </activity>
-        <!-- zxing二维码-->
+        <!-- zxing二维码 -->
         <activity android:name="cn.steve.zxing.ZxingActivity">
-
         </activity>
-        <!-- bottombar-->
+        <!-- bottombar -->
         <activity android:name="cn.steve.bottombar.BottomBarActivity">
-
+        </activity>
+        <!-- FragmentTabHost -->
+        <activity android:name="cn.steve.fragmenttabhost.FragmentTabHostActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

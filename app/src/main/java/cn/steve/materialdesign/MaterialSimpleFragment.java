@@ -18,8 +18,8 @@ public class MaterialSimpleFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
-    private String mParam2;
+    private String mParam1="";
+    private String mParam2="";
 
 
     public static MaterialSimpleFragment newInstance(String s1, String s2) {

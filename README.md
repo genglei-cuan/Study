@@ -41,6 +41,7 @@
 1. flowLayout    仿造弘扬大大的流式布局写的demo
 1. flyme    适配魅族的smartbar,按照官方文档，目前还没出现效果，TODO 
 1. fragment   fragment的基本操作
+1. fragmenttabhost   fragment的底部tab操作 TODO
 1. gallery   对gallery的基本操作和一个自定义的滑动日期选择
 1. gestureDetector   手势监听的demo
 1. gson    利用gson解析天气数据
@@ -73,9 +74,11 @@
 1. service   简单测试service的生命周期，以及和activity之间的通信
 1. share   内容分享的demo,分享到QQ，微信等的demo TODO
 1. signature   手写签名
-1. simpkeWelcome   一个简单的欢迎界面，仿造的QQ 
-1. spinnerdroplayout   spinner下拉选项 
-1. swiperefreshlayout   SwipeRefreshLayout下拉刷新控件 
+1. simpleWelcome   一个简单的欢迎界面，仿造的QQ
+1. spinnerdroplayout   spinner下拉选项
+1. staticactivity   测试静态代码块
+1. strictmode   测试严格代码模式 TODO
+1. swiperefreshlayout   SwipeRefreshLayout下拉刷新控件
 1. toolbar   替代actionBar的toolbar 的demo
 1. touchdelegate   用于更改View的触摸区域。场景：比如在RecyclerView的ItemView里包含了CheckBox组件, 然后想实现点击ItemView的时候，也可以触发CheckBox，就可以使用此类。
 1. touchevent   touchevent，以及自定义view
