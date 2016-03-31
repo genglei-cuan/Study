@@ -216,7 +216,6 @@
 
         <!-- RxAndroid的demo -->
         <activity android:name="cn.steve.rxandroid.RXJavaActivity">
-
         </activity>
         <activity android:name="cn.steve.rxandroid.RXAndroidActivity">
         </activity>
@@ -377,12 +376,19 @@
         </activity>
         <!-- FragmentTabHost -->
         <activity android:name="cn.steve.fragmenttabhost.FragmentTabHostActivity">
+        </activity>
+        <!-- DES加密 -->
+        <activity android:name="cn.steve.des.DesMainActivity">
 
         </activity>
-        <!-- DES加密-->
-        <activity android:name="cn.steve.des.DesMainActivity">
+        <!-- menu展现-->
+        <activity
+                android:name="cn.steve.menu.MenuMainActivity"
+                android:label="@string/title_activity_menu_main"
+                android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
