@@ -377,6 +377,10 @@
         </activity>
         <!-- FragmentTabHost -->
         <activity android:name="cn.steve.fragmenttabhost.FragmentTabHostActivity">
+
+        </activity>
+        <!-- DES加密-->
+        <activity android:name="cn.steve.des.DesMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
