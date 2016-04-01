@@ -13,27 +13,25 @@ import cn.steve.study.R;
  */
 public class DaggerMainActivity extends AppCompatActivity {
 
-    @Inject
-    UserModel userModel;
-    @Inject
-    ShoppingCartModel cartModel;
+  @Inject
+  UserModel userModel;
+  @Inject
+  ShoppingCartModel cartModel;
 
-    private ActivityComponent mActivityComponent;
-    private TextView daggerTextView;
+  private ActivityComponent mActivityComponent;
+  private TextView daggerTextView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dagger);
-        this.daggerTextView = (TextView) findViewById(R.id.daggerTextView);
-        mActivityComponent =
-            DaggerActivityComponent.builder().activityModule(new ActivityModule()).build();
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_dagger);
+    this.daggerTextView = (TextView) findViewById(R.id.daggerTextView);
+    mActivityComponent = DaggerActivityComponent.builder().activityModule(new ActivityModule()).build();
 
-        ContainerComponent containerComponent =
-            DaggerContainerComponent.builder().activityComponent(mActivityComponent)
-                .containerModule(new ContainerModule()).build();
-        containerComponent.inject(this);
+    ContainerComponent containerComponent = DaggerContainerComponent.builder()
+        .activityComponent(mActivityComponent).containerModule(new ContainerModule()).build();
+    containerComponent.inject(this);
 
-        daggerTextView.setText(userModel.name + userModel.gener);
-    }
+    daggerTextView.setText(userModel.name + userModel.gener);
+  }
 }
