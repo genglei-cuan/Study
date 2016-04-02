@@ -379,9 +379,8 @@
         </activity>
         <!-- DES加密 -->
         <activity android:name="cn.steve.des.DesMainActivity">
-
         </activity>
-        <!-- menu展现-->
+        <!-- menu展现 -->
         <activity
                 android:name="cn.steve.menu.MenuMainActivity"
                 android:label="@string/title_activity_menu_main"
@@ -391,6 +390,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name="cn.steve.imagepicker.ImagePickerActivity">
         </activity>
     </application>
 
