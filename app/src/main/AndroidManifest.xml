@@ -245,7 +245,13 @@
         </activity>
 
         <!-- toolbar的使用demo,如果需要全局的话，可以把这个主题的设置放到Application处 -->
-        <activity android:name="cn.steve.toolbar.ToolBarMainActivity">
+        <activity
+                android:name="cn.steve.toolbar.ToolBarMainActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <!-- material design 的demo -->
@@ -385,11 +391,7 @@
                 android:name="cn.steve.menu.MenuMainActivity"
                 android:label="@string/title_activity_menu_main"
                 android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name="cn.steve.imagepicker.ImagePickerActivity">
         </activity>
