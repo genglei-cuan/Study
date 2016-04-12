@@ -20,6 +20,7 @@
 1. blurre            模糊效果，指定位置的背景模糊，即部分模糊 
 1. bottombar         google新的设计规范，直接借用的[github例子](https://github.com/roughike/BottomBar)
 1. buttonmenu 仿造早期的UC浏览器的菜单
+1. buttomsheet google官方设计指导下的bottomsheet,将借鉴[BottomSheet](https://github.com/soarcn/BottomSheet) TODO
 1. buttontext 仿造早期的UC浏览器的菜单，将菜单换成可滚动的文本
 1. brightness 调节屏幕亮度
 1. broadcast  研究广播的demo，有序广播，正常广播等的区别
@@ -40,7 +41,7 @@
 1. floatingview    仿造一些广告商的SDK中的一些悬浮窗，注：有的华为小米等可以禁止悬浮窗的显示的。
 1. floatLabelLayout    
 1. flowLayout    仿造弘扬大大的流式布局写的demo
-1. flyme    适配魅族的smartbar,按照官方文档，目前还没出现效果，TODO 
+1. flyme    适配魅族的smartbar,按照官方文档，目前还没出现效果，TODO
 1. fragment   fragment的基本操作
 1. fragmenttabhost   fragment的底部tab操作 TODO
 1. gallery   对gallery的基本操作和一个自定义的滑动日期选择

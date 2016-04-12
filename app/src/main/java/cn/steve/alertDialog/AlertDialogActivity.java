@@ -28,6 +28,10 @@ public class AlertDialogActivity extends Activity {
         btn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                singleChooseDialog();
+            }
+
+            private void singleChooseDialog() {
                 new AlertDialog.Builder(AlertDialogActivity.this).setTitle("title").setSingleChoiceItems(allDivisionNames, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -39,12 +43,8 @@ public class AlertDialogActivity extends Activity {
                     }
                 }).show();
             }
-        });
 
-
-        btn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            private void traditionalDialog() {
                 AlertDialog.Builder builder = new AlertDialog.Builder(AlertDialogActivity.this);
                 builder.setTitle("提示");
                 builder.setMessage("这是一个普通的对话框！");
@@ -58,12 +58,11 @@ public class AlertDialogActivity extends Activity {
                 });
                 builder.create().show();
             }
+
+            private void newDialog() {
+
+            }
+
         });
-
     }
-
-    public String[] getData() {
-        return this.allDivisionNames;
-    }
-
 }

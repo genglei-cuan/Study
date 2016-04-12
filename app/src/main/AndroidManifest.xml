@@ -21,6 +21,7 @@
 
         <!-- 对话框demo -->
         <activity android:name="cn.steve.alertDialog.AlertDialogActivity">
+
         </activity>
         <activity android:name="cn.steve.alertDialog.ShareSuccessActivity">
         </activity>
@@ -61,7 +62,13 @@
         <activity android:name="cn.steve.simpleWelcome.LoginActivity"/>
 
         <!-- 类似于UC浏览器的底部菜单a bottom menu similar to the UC Browser -->
-        <activity android:name="cn.steve.bottomMenu.BottomMenuActivity"/>
+        <activity android:name="cn.steve.bottomMenu.BottomMenuActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <!-- 修改的UC菜单，使得菜单替换成了文本，文本内容滚动 -->
         <activity android:name="cn.steve.bottomtext.BottomTextActivity"/>
@@ -248,10 +255,7 @@
         <activity
                 android:name="cn.steve.toolbar.ToolBarMainActivity"
                 android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- material design 的demo -->
@@ -391,9 +395,10 @@
                 android:name="cn.steve.menu.MenuMainActivity"
                 android:label="@string/title_activity_menu_main"
                 android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
         <activity android:name="cn.steve.imagepicker.ImagePickerActivity">
+        </activity>
+        <activity android:name="cn.steve.bottomsheet.BottomSheetActivity">
         </activity>
     </application>
 
