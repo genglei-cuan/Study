@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -15,11 +16,18 @@ import cn.steve.study.R;
  */
 public class ToolBarMainActivity extends AppCompatActivity {
 
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toolbar);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
+        toolbar = (Toolbar) findViewById(R.id.toolBar);
+//        stardardToolbar();
+        customView();
+    }
+
+    private void stardardToolbar() {
         //调用setSupportActionBar方法的目的是将Toolbar作为ActionBar来对待，仅此而已
         //这时候。将会把toolBar当做actionbar一样使用
 //      setSupportActionBar(toolbar);
@@ -49,8 +57,13 @@ public class ToolBarMainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
 
-
+    private void customView() {
+        setSupportActionBar(toolbar);
+        View view = LayoutInflater.from(this).inflate(R.layout.wechat_me, null);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(view);
     }
 
 }

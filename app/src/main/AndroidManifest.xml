@@ -63,11 +63,7 @@
 
         <!-- 类似于UC浏览器的底部菜单a bottom menu similar to the UC Browser -->
         <activity android:name="cn.steve.bottomMenu.BottomMenuActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <!-- 修改的UC菜单，使得菜单替换成了文本，文本内容滚动 -->
@@ -255,11 +251,15 @@
         <activity
                 android:name="cn.steve.toolbar.ToolBarMainActivity"
                 android:theme="@style/Theme.AppCompat.NoActionBar">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <!-- material design 的demo -->
         <activity android:name="cn.steve.materialdesign.MaterialListActivity">
+
         </activity>
         <activity
                 android:name="cn.steve.materialdesign.TranslucentBarColorActivity"

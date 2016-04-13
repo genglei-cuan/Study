@@ -40,8 +40,8 @@
 1. fileIO   文件的IO操作
 1. floatingview    仿造一些广告商的SDK中的一些悬浮窗，注：有的华为小米等可以禁止悬浮窗的显示的。
 1. floatLabelLayout    
-1. flowLayout    仿造弘扬大大的流式布局写的demo
-1. flyme    适配魅族的smartbar,按照官方文档，目前还没出现效果，TODO
+1. flowLayout    仿造鸿洋大大的流式布局写的demo
+1. flyme    适配魅族的smartbar,按照官方文档，目前还没出现效果
 1. fragment   fragment的基本操作
 1. fragmenttabhost   fragment的底部tab操作 TODO
 1. gallery   对gallery的基本操作和一个自定义的滑动日期选择
