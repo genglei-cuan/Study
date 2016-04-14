@@ -193,3 +193,7 @@ public class LayoutInflaterActivity extends AppCompatActivity {
 ## 总结
 
 所以，要能在getview中，自定义宽高，办法有两个，一个是在最外层再套一层布局，然后parent设为null。另一个是指定parent，将attachToRoot设为false。
+
+
+## [Tip:](https://www.bignerdranch.com/blog/understanding-androids-layoutinflater-inflate/)
+- inflate返回的view是布局的根节点，也就是说，当第三个参数为true的时候，返回的就是第二个参数的parent的root
