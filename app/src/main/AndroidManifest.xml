@@ -251,10 +251,7 @@
         <activity
                 android:name="cn.steve.toolbar.ToolBarMainActivity"
                 android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- material design 的demo -->
@@ -399,6 +396,12 @@
         <activity android:name="cn.steve.imagepicker.ImagePickerActivity">
         </activity>
         <activity android:name="cn.steve.bottomsheet.BottomSheetActivity">
+        </activity>
+        <activity android:name="cn.steve.log.LogActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

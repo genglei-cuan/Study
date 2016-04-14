@@ -55,7 +55,8 @@
 1. layoutinflater 正解layoutinflater的使用及其参数的正确含义；
 1. layoutViewStub  layoutViewStub的使用
 1. listview   listview的基本操作,listview缓存，以及一个通用的viewholder；自定义item的高度 ;添加郭林的下拉刷新;自己写的一个自定义下拉刷新 TODO
-1. main   设置fragment基类  
+1. listview   listview的基本操作,listview缓存，以及一个通用的viewholder；自定义item的高度 ;添加郭林的下拉刷新;自己写的一个自定义下拉刷新 TODO
+1. log   研究一个漂亮点的log输出
 1. materialdesign   材料设计 TODO   
 1. menu   菜单案例
 1. mvp      MVP架构探索
