@@ -21,7 +21,6 @@
 
         <!-- 对话框demo -->
         <activity android:name="cn.steve.alertDialog.AlertDialogActivity">
-
         </activity>
         <activity android:name="cn.steve.alertDialog.ShareSuccessActivity">
         </activity>
@@ -63,7 +62,6 @@
 
         <!-- 类似于UC浏览器的底部菜单a bottom menu similar to the UC Browser -->
         <activity android:name="cn.steve.bottomMenu.BottomMenuActivity">
-
         </activity>
 
         <!-- 修改的UC菜单，使得菜单替换成了文本，文本内容滚动 -->
@@ -251,12 +249,10 @@
         <activity
                 android:name="cn.steve.toolbar.ToolBarMainActivity"
                 android:theme="@style/Theme.AppCompat.NoActionBar">
-
         </activity>
 
         <!-- material design 的demo -->
         <activity android:name="cn.steve.materialdesign.MaterialListActivity">
-
         </activity>
         <activity
                 android:name="cn.steve.materialdesign.TranslucentBarColorActivity"
@@ -393,11 +389,19 @@
                 android:label="@string/title_activity_menu_main"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <!-- 仿造微信选择照片 -->
         <activity android:name="cn.steve.imagepicker.ImagePickerActivity">
         </activity>
+        <!-- 官方的BottomSheet -->
         <activity android:name="cn.steve.bottomsheet.BottomSheetActivity">
         </activity>
+        <!-- 打印定制的log -->
         <activity android:name="cn.steve.log.LogActivity">
+        </activity>
+        <!-- 测试activity和fragment的生命周期关系，兼带测试一些内存问题 -->
+        <activity android:name="cn.research.activityfragmenty.ActivityFragmentRelation">
+        </activity>
+        <activity android:name="cn.research.activityfragmenty.FrgamentMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
