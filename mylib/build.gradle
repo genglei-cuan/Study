@@ -67,4 +67,7 @@ dependencies {
     //bottomBar
     compile 'com.roughike:bottom-bar:1.1.1'
 
+    //google agera
+    compile 'com.google.android.agera:agera:1.0.0-rc2'
+
 }
