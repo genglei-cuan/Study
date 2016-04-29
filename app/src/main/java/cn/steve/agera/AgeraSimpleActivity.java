@@ -1,16 +1,12 @@
 package cn.steve.agera;
 
 import com.google.android.agera.Observable;
-import com.google.android.agera.Repositories;
-import com.google.android.agera.Repository;
-import com.google.android.agera.Supplier;
 import com.google.android.agera.Updatable;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -22,18 +18,14 @@ import cn.steve.study.R;
 /**
  * Created by yantinggeng on 2016/4/25.
  */
-public class AgeraMainActivity extends AppCompatActivity implements Updatable {
+public class AgeraSimpleActivity extends AppCompatActivity implements Updatable {
 
     @Bind(R.id.buttonMain)
     Button buttonMain;
-    NetworkCallingSupplier supplier;
-    Repository<String> re;
+
     private Observable ageraObservable;
 
     private void init() {
-
-        supplier = new NetworkCallingSupplier();
-
         ageraObservable = new Observable() {
             @Override
             public void addUpdatable(@NonNull Updatable updatable) {
@@ -44,19 +36,6 @@ public class AgeraMainActivity extends AppCompatActivity implements Updatable {
             public void removeUpdatable(@NonNull Updatable updatable) {
             }
         };
-        // 这个方式存在问题，只能返回init
-        re = Repositories.repositoryWithInitialValue("init")
-            .observe(ageraObservable)
-            .onUpdatesPerLoop()
-            .thenGetFrom(new Supplier<String>() {
-                @NonNull
-                @Override
-                public String get() {
-                    Log.i("AgreaMainActivity", Thread.currentThread().getName());
-                    return "Hello";
-                }
-            }).compile();
-
     }
 
     @Override
@@ -81,8 +60,7 @@ public class AgeraMainActivity extends AppCompatActivity implements Updatable {
     //更新的事件通知
     @Override
     public void update() {
-//        Toast.makeText(AgeraMainActivity.this, supplier.get().get(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(AgeraMainActivity.this, re.get(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(AgeraSimpleActivity.this, "simple ", Toast.LENGTH_SHORT).show();
     }
 
 }
