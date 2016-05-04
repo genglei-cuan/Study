@@ -3,7 +3,15 @@
     <!-- base application's start-->
     <style name="AppTheme" parent="AppTheme.Base"/>
 
+    <style name="AppNoActionBarTheme" parent="AppTheme.BaseNoActionBar"/>
+
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
+    </style>
+
+    <style name="AppTheme.BaseNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:windowBackground">@color/colorBackground</item>
