@@ -394,12 +394,8 @@
         </activity>
         <!-- 官方的BottomSheet -->
         <activity
-                android:name="cn.steve.bottomsheet.BottomSheetActivity"
+                android:name="cn.steve.bottomsheet.BottomSheetSimpleActivity"
                 android:theme="@style/AppNoActionBarTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <!-- 打印定制的log -->
         <activity android:name="cn.steve.log.LogActivity">
@@ -408,15 +404,18 @@
         <activity android:name="cn.research.activityfragmenty.ActivityFragmentRelation">
         </activity>
         <activity android:name="cn.research.activityfragmenty.FrgamentMainActivity">
-
         </activity>
-        <!--google 官方的响应式编程库agera测试-->
+        <!-- google 官方的响应式编程库agera测试 -->
         <activity android:name="cn.steve.agera.AgeraMainActivity">
-
         </activity>
         <!-- 最简单的例子 -->
         <activity android:name="cn.steve.agera.AgeraSimpleActivity">
-
+        </activity>
+        <activity android:name="cn.steve.bottomsheet.BottomSheetShareActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

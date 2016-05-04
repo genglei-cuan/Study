@@ -10,12 +10,12 @@ import android.view.View;
 
 import cn.steve.study.R;
 
-public class BottomSheetActivity extends AppCompatActivity {
+public class BottomSheetSimpleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bottom_sheet);
+        setContentView(R.layout.activity_bottom_sheet_simple);
         NestedScrollView bottomSheet = (NestedScrollView) findViewById(R.id.bottomSheet);
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
