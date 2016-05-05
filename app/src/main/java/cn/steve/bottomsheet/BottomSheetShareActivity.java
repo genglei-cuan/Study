@@ -1,7 +1,9 @@
 package cn.steve.bottomsheet;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import cn.steve.study.R;
 
@@ -11,5 +13,19 @@ public class BottomSheetShareActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_sheet_share);
+        FloatingActionButton floatingActionButtonShare = (FloatingActionButton) findViewById(R.id.floatingActionButtonShare);
+        if (floatingActionButtonShare != null) {
+            floatingActionButtonShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickActionButton();
+                }
+            });
+        }
     }
+
+    public void onClickActionButton() {
+        new BottomSheetShareFragment().show(getSupportFragmentManager(), "shareFragment");
+    }
+
 }
