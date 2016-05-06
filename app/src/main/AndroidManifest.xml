@@ -331,8 +331,16 @@
         <activity android:name="cn.steve.drawable.CustomDrawableMainActivity">
         </activity>
         <!-- Dagger 的demo -->
-        <activity android:name="cn.steve.dagger.DaggerMainActivity">
+        <activity android:name="cn.steve.dagger.demo.DaggerMainActivity">
+
         </activity>
+        <activity android:name="cn.steve.dagger.Dagger2SimpleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
         <!-- retrofit -->
         <activity android:name="cn.steve.retrofit.RetrofitMainActivity">
         </activity>
@@ -412,10 +420,7 @@
         <activity android:name="cn.steve.agera.AgeraSimpleActivity">
         </activity>
         <activity android:name="cn.steve.bottomsheet.BottomSheetShareActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
     </application>
 

@@ -1,9 +1,10 @@
-package cn.steve.dagger;
+package cn.steve.dagger.demo;
 
 /**
  * Created by Steve on 2015/12/27.
  */
 public class UserModel {
+
     String name;
     String gener;
 

@@ -1,4 +1,4 @@
-package cn.steve.dagger;
+package cn.steve.dagger.demo;
 
 import dagger.Module;
 import dagger.Provides;
