@@ -334,7 +334,7 @@
         <activity android:name="cn.steve.dagger.demo.DaggerMainActivity">
 
         </activity>
-        <activity android:name="cn.steve.dagger.Dagger2SimpleActivity">
+        <activity android:name="cn.steve.dagger.DaggerClassRoomActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

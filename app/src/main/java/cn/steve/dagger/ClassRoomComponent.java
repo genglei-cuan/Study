@@ -6,11 +6,9 @@ import dagger.Component;
  * Created by yantinggeng on 2016/5/6.
  */
 
-@PerActivity
-@Component(modules = BoysModule.class)
+@Component(dependencies = {BoyComponent.class})
 public interface ClassRoomComponent {
 
-    void inject(Dagger2SimpleActivity activity);
-
+  void inject(DaggerClassRoomActivity activity);
 }
 
