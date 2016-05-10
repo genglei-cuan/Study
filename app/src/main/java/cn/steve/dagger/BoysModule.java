@@ -11,8 +11,9 @@ import dagger.Provides;
 @Module
 public class BoysModule {
 
-    @Provides
-    Boy provideBoy() {
-        return new Boy();
-    }
+  @Provides
+  @PerBoy
+  Boy provideBoy() {
+    return new Boy();
+  }
 }

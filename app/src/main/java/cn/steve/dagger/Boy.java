@@ -5,6 +5,6 @@ package cn.steve.dagger;
  */
 public class Boy {
 
-    public Boy() {
-    }
+  public Boy() {
+  }
 }
