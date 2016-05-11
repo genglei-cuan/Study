@@ -14,19 +14,19 @@ import cn.steve.study.R;
  */
 public class DaggerClassRoomActivity extends AppCompatActivity {
 
-  @Inject
-  ClassRoom classRoom;
-  @Inject
-  ClassRoom classRoom2;
+    @Inject
+    ClassRoom classRoom;
+    @Inject
+    ClassRoom classRoom2;
 
-  @Override
-  protected void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main_textview);
-    TextView textViewMain = (TextView) findViewById(R.id.textViewMain);
-    BoyComponent boyComponent = DaggerBoyComponent.builder().boysModule(new BoysModule()).build();
-    ClassRoomComponent classRoomComponent = DaggerClassRoomComponent.builder().boyComponent(boyComponent).build();
-    classRoomComponent.inject(this);
-    textViewMain.setText(classRoom.toString() + "\n" + classRoom2.toString());
-  }
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_textview);
+        TextView textViewMain = (TextView) findViewById(R.id.textViewMain);
+        BoyComponent boyComponent = DaggerBoyComponent.builder().boysModule(new BoysModule()).build();
+        ClassRoomComponent classRoomComponent = DaggerClassRoomComponent.builder().boyComponent(boyComponent).build();
+        classRoomComponent.inject(this);
+        textViewMain.setText(classRoom.getBoy().getName() + "\n" + classRoom2.getBoy().getName());
+    }
 }

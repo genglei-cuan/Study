@@ -1,5 +1,7 @@
 package cn.steve.dagger;
 
+import javax.inject.Named;
+
 import dagger.Component;
 
 /**
@@ -10,7 +12,12 @@ import dagger.Component;
 @PerBoy
 public interface BoyComponent {
 
-  //依赖于boys的component需要这个对象，这样做的目标是向外暴露，缺少就会报错
-  //所以说，component模块化之后，需要被依赖的部分必须显性的声明，表示提供给上层依赖
-  Boy Boy();
+    //依赖于boys的component需要这个对象，这样做的目标是向外暴露，缺少就会报错
+    //所以说，component模块化之后，需要被依赖的部分必须显性的声明，表示提供给上层依赖
+
+    @Named("name")
+    Boy boyName();
+
+    @Named("noname")
+    Boy boy();
 }

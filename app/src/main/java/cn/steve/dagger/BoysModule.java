@@ -1,5 +1,7 @@
 package cn.steve.dagger;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -11,9 +13,19 @@ import dagger.Provides;
 @Module
 public class BoysModule {
 
-  @Provides
-  @PerBoy
-  Boy provideBoy() {
-    return new Boy();
-  }
+    @Named("noname")
+    @Provides
+    @PerBoy
+    Boy provideBoy() {
+        return new Boy();
+    }
+
+    @Named("name")
+    @PerBoy
+    @Provides
+    Boy provideBoyName() {
+        Boy boy = new Boy();
+        boy.setName("steve");
+        return boy;
+    }
 }

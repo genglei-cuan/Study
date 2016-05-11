@@ -5,6 +5,16 @@ package cn.steve.dagger;
  */
 public class Boy {
 
-  public Boy() {
-  }
+    private String name;
+
+    public Boy() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
