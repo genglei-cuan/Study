@@ -335,10 +335,7 @@
 
         </activity>
         <activity android:name="cn.steve.dagger.DaggerClassRoomActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- retrofit -->
@@ -419,7 +416,17 @@
         <!-- 最简单的例子 -->
         <activity android:name="cn.steve.agera.AgeraSimpleActivity">
         </activity>
+        <!-- bottom sheet -->
         <activity android:name="cn.steve.bottomsheet.BottomSheetShareActivity">
+        </activity>
+        <!-- reflect -->
+        <activity android:name="cn.steve.reflect.ReflectMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="cn.steve.reflect.ReflectSubActivity">
 
         </activity>
     </application>
