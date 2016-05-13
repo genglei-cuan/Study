@@ -25,7 +25,11 @@ public class DaggerClassRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_textview);
         TextView textViewMain = (TextView) findViewById(R.id.textViewMain);
         BoyComponent boyComponent = DaggerBoyComponent.builder().boysModule(new BoysModule()).build();
-        ClassRoomComponent classRoomComponent = DaggerClassRoomComponent.builder().boyComponent(boyComponent).build();
+        MasterComponent masterComponent = DaggerMasterComponent.builder().build();
+        ClassRoomComponent classRoomComponent = DaggerClassRoomComponent.builder()
+            .boyComponent(boyComponent)
+
+            .build();
         classRoomComponent.inject(this);
         textViewMain.setText(classRoom.getBoy().getName() + "\n" + classRoom2.getBoy().getName() + "\n" + classRoom.getBoy2().getName());
     }

@@ -8,10 +8,10 @@ import javax.inject.Named;
  */
 public class ClassRoom {
 
-    Boy boy;
     @Named("noname")
     @Inject
     Boy boy2;
+    Boy boy;
 
     @Inject
     public ClassRoom(@Named("name") Boy boy) {
