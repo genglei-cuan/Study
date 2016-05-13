@@ -9,9 +9,8 @@ import javax.inject.Named;
 public class ClassRoom {
 
     Boy boy;
-
-    //这里不能正常注入
     @Named("noname")
+    @Inject
     Boy boy2;
 
     @Inject
@@ -19,12 +18,12 @@ public class ClassRoom {
         this.boy = boy;
     }
 
+    public Boy getBoy2() {
+        return boy2;
+    }
+
     public Boy getBoy() {
-        System.out.println("boy2:" + boy2.getName());
         return boy;
     }
 
-    public void setBoy(Boy boy) {
-        this.boy = boy;
-    }
 }

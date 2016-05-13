@@ -335,7 +335,10 @@
 
         </activity>
         <activity android:name="cn.steve.dagger.DaggerClassRoomActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <!-- retrofit -->
@@ -421,10 +424,7 @@
         </activity>
         <!-- reflect -->
         <activity android:name="cn.steve.reflect.ReflectMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity android:name="cn.steve.reflect.ReflectSubActivity">
 

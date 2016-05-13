@@ -13,6 +13,6 @@ import dagger.Component;
 @PerClassRoom
 public interface ClassRoomComponent {
 
-  void inject(DaggerClassRoomActivity activity);
+    void inject(DaggerClassRoomActivity activity);
 }
 

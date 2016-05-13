@@ -27,6 +27,6 @@ public class DaggerClassRoomActivity extends AppCompatActivity {
         BoyComponent boyComponent = DaggerBoyComponent.builder().boysModule(new BoysModule()).build();
         ClassRoomComponent classRoomComponent = DaggerClassRoomComponent.builder().boyComponent(boyComponent).build();
         classRoomComponent.inject(this);
-        textViewMain.setText(classRoom.getBoy().getName() + "\n" + classRoom2.getBoy().getName());
+        textViewMain.setText(classRoom.getBoy().getName() + "\n" + classRoom2.getBoy().getName() + "\n" + classRoom.getBoy2().getName());
     }
 }

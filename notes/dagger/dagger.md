@@ -35,9 +35,12 @@ dagger还支持对方法的注解，尽管属性或者构造函数更加典型�
 1. inject 可以注解一个构造函数，可以进行属性注解，前者表示生产的方式，后者表示这个属性通过注解获得。
 1. module 就相当于一个生产车间，里面提供了各式各样的产生类实例的方法。
 1. component ，是个类和需要类实例之间的桥梁，负责将产生的实例注入到需要实例的地方去。
-1. provide，是module中， 修饰提供类实例方法的。
-1. scope，对于依赖而言，被依赖的有范围，则自身也需要有范围，必须要不一样，即没有scope的不能依赖有scope的。
-1. 一个component不能有多个scope。
-1. @Qualifier 可以用来区分提供相同类型实例的provide方法,注意， 这个注解不能应用于构造函数
-1. component是一个依赖链，当在当前的component中找不到对象的时候，会顺着这个依赖向下寻找，所以，被依赖的component必须显式的声明可以对外暴露的类型。
-1. @Inject可以标记成员变量，但是这些成员变量要求是包级可见，也就是说@Inject不可以标记private类型的成员变量。
+1. provide，是 module 中， 修饰提供类实例方法的。
+1. scope，对于依赖而言，被依赖的有范围，则自身也需要有范围，必须要不一样，即没有 scope 的不能依赖有 scope的。
+1. 一个 component 不能有多个 scope。
+1. @Qualifier 可以用来区分提供相同类型实例的 provide 方法,注意， 这个注解不能应用于构造函数
+1. component 是一个依赖链，当在当前的 component 中找不到对象的时候，会顺着这个依赖向下寻找，所以，被依赖的component必须显式的声明可以对外暴露的类型。
+1. @Inject 可以标记成员变量，但是这些成员变量要求是包级可见，也就是说 @Inject 不可以标记 private 类型的成员变量。
+1. component 可以注入任意个类，例如 application 的 component，我们可以直接注册在任何一个 activity 中，也可以注册在application中。
+1. 对于 module 中的 activity 对象，可以通过 module 的有参构造函数传递进去，外界需要，可以通过 provide 注入，application 同理。
+
