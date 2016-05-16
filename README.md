@@ -39,6 +39,7 @@
 1. edittext   editext 测试内置的手机号验证
 1. eventbus   左右两个fragment进行通信,用的是鸿洋的demo
 1. fileIO   文件的IO操作
+1. flexbox   google flexlayout demo
 1. floatingview    仿造一些广告商的SDK中的一些悬浮窗，注：有的华为小米等可以禁止悬浮窗的显示的。
 1. floatLabelLayout    
 1. flowLayout    仿造鸿洋大大的流式布局写的demo

@@ -224,5 +224,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="FlexItem">
+        <item name="android:background">@drawable/flex_item_background</item>
+        <item name="android:gravity">center</item>
+    </style>
 
 </resources>

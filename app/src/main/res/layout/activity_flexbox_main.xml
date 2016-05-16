@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.flexbox.FlexboxLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:flexDirection="row_reverse"
+        app:flexWrap="wrap"
+        app:justifyContent="space_between"
+        app:alignContent="flex_start"
+        app:alignItems="center"
+        tools:context="cn.steve.flexbox.FlexboxMainActivity">
+
+    <TextView
+            android:layout_width="@dimen/flex_item_length2"
+            android:layout_height="@dimen/flex_item_height40"
+            app:layout_order="2"
+            android:text="First"
+            app:layout_alignSelf="flex_start"
+            app:layout_flexGrow="1"
+            style="@style/FlexItem"/>
+
+    <TextView
+            android:layout_width="@dimen/flex_item_length3"
+            android:layout_height="@dimen/flex_item_length"
+            app:layout_order="3"
+            app:layout_flexGrow="1"
+            android:text="Second"
+            style="@style/FlexItem"/>
+
+    <TextView
+            android:layout_width="@dimen/flex_item_length"
+            android:layout_height="@dimen/flex_item_height60"
+            android:text="Threen"
+            style="@style/FlexItem"/>
+
+
+    <TextView
+            android:layout_width="@dimen/flex_item_length2"
+            android:layout_height="@dimen/flex_item_height40"
+            android:text="one"
+            style="@style/FlexItem"/>
+
+    <TextView
+            android:layout_width="@dimen/flex_item_length3"
+            android:layout_height="@dimen/flex_item_length"
+            android:text="two"
+            style="@style/FlexItem"/>
+
+    <TextView
+            android:layout_width="@dimen/flex_item_length"
+            android:layout_height="@dimen/flex_item_height60"
+            android:text="Threen"
+            style="@style/FlexItem"/>
+
+
+    <TextView
+            android:layout_width="@dimen/flex_item_length2"
+            android:layout_height="@dimen/flex_item_height40"
+            android:text="one"
+            style="@style/FlexItem"/>
+
+    <TextView
+            android:layout_width="@dimen/flex_item_length3"
+            android:layout_height="@dimen/flex_item_length"
+            android:text="two"
+            style="@style/FlexItem"/>
+
+    <TextView
+            android:layout_width="@dimen/flex_item_length"
+            android:layout_height="@dimen/flex_item_height60"
+            android:text="Threen"
+            style="@style/FlexItem"/>
+
+
+</com.google.android.flexbox.FlexboxLayout>
