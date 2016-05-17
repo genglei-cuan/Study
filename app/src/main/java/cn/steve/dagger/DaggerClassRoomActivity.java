@@ -14,34 +14,34 @@ import cn.steve.study.R;
  */
 public class DaggerClassRoomActivity extends AppCompatActivity {
 
-  @Inject
-  ClassRoom classRoom;
-  @Inject
-  ClassRoom classRoom2;
+    @Inject
+    ClassRoom classRoom;
+    @Inject
+    ClassRoom classRoom2;
 
-  @Inject
-  Master master;
+    @Inject
+    Master master;
 
-  @Override
-  protected void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main_textview);
-    TextView textViewMain = (TextView) findViewById(R.id.textViewMain);
-    MasterComponent masterComponent = DaggerMasterComponent.builder()
-        .masterModule(new MasterModule())
-        .build();
-    BoyComponent boyComponent = DaggerBoyComponent.builder()
-        .boysModule(new BoysModule())
-        .masterComponent(masterComponent)
-        .build();
-    ClassRoomComponent classRoomComponent = DaggerClassRoomComponent.builder()
-        .boyComponent(boyComponent)
-        .build();
-    classRoomComponent.inject(this);
-    String text = classRoom.getBoy().getName() + "\n" +
-                  classRoom2.getBoy().getName() + "\n" +
-                  classRoom.getBoy2().getName() + "\n" +
-                  master.getName().toString() + "\n";
-    textViewMain.setText(text);
-  }
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_textview);
+        TextView textViewMain = (TextView) findViewById(R.id.textViewMain);
+        MasterComponent masterComponent = DaggerMasterComponent.builder()
+            .masterModule(new MasterModule())
+            .build();
+        BoyComponent boyComponent = DaggerBoyComponent.builder()
+            .boysModule(new BoysModule())
+            .build();
+        ClassRoomComponent classRoomComponent = DaggerClassRoomComponent.builder()
+            .boyComponent(boyComponent)
+            .masterComponent(masterComponent)
+            .build();
+        classRoomComponent.inject(this);
+        String text = classRoom.getBoy().getName() + "\n" +
+                      classRoom2.getBoy().getName() + "\n" +
+                      classRoom.getBoy2().getName() + "\n" +
+                      master.getName().toString() + "\n";
+        textViewMain.setText(text);
+    }
 }

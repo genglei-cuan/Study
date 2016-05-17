@@ -334,7 +334,6 @@
         <activity android:name="cn.steve.dagger.demo.DaggerMainActivity">
         </activity>
         <activity android:name="cn.steve.dagger.DaggerClassRoomActivity">
-
         </activity>
 
         <!-- retrofit -->
@@ -424,10 +423,26 @@
         <activity android:name="cn.steve.reflect.ReflectSubActivity">
         </activity>
         <activity android:name="cn.steve.flexbox.FlexboxMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
+        </activity>
+        <activity
+                android:name="cn.steve.deeplink.DeepLinkActivity"
+                android:launchMode="singleTask"
+                android:exported="true"
+                >
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <!-- Accepts URIs that begin with "http://recipe-app.com/recipe" -->
+                <data
+                        android:scheme="mamalv"
+                        android:host="lvmama.android.com"
+                        android:pathPrefix="/lvmama"/>
             </intent-filter>
         </activity>
     </application>

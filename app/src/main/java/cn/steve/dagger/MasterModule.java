@@ -1,7 +1,5 @@
 package cn.steve.dagger;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -17,7 +15,6 @@ public class MasterModule {
         master = new Master("Panda");
     }
 
-    @Singleton
     @Provides
     Master provideMaster() {
         return master;

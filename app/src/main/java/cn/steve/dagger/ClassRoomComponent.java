@@ -9,7 +9,7 @@ import dagger.Component;
  * Created by yantinggeng on 2016/5/6.
  */
 
-@Component(dependencies = {BoyComponent.class})
+@Component(dependencies = {BoyComponent.class, MasterComponent.class})
 @PerClassRoom
 public interface ClassRoomComponent {
 
