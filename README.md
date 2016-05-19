@@ -33,6 +33,7 @@
 1. customview 自定义view,展示画布的含义
 1. dagger    dagger的简单demo  
 1. datatraffic  流量，wifi开关的监听
+1. deep link    deep link 测试
 1. des   des加密
 1. deviceinfo   获取一些手机的基本硬件信息,以及一些屏幕的适配信息
 1. drawable    [自定义drawable,参考鸿洋博客](http://blog.csdn.net/lmj623565791/article/details/43752383)
