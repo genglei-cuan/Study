@@ -3,7 +3,6 @@ package cn.steve.deeplink;
 import android.content.Context;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -14,16 +13,23 @@ import java.nio.ByteOrder;
  */
 public class ReadCommentFromAPK {
 
+    public static String getCommentFromApk(Context context) {
+        String packagePath = getPackagePath(context.getApplicationContext());
+        File file = new File(packagePath);
+        return readApk(file);
+    }
+
+
     //首先获取apk的路径，通过context中的getPackageCodePath()方法就可以获取
-    public static String getPackagePath(Context context) {
+    private static String getPackagePath(Context context) {
         if (context != null) {
             return context.getPackageCodePath();
         }
         return null;
     }
 
-    public static String readApk(File file) {
-        byte[] bytes = null;
+    private static String readApk(File file) {
+        byte[] bytes;
         try {
             RandomAccessFile accessFile = new RandomAccessFile(file, "r");
             long index = accessFile.length();
@@ -41,8 +47,6 @@ public class ReadCommentFromAPK {
             accessFile.readFully(bytes);
 
             return new String(bytes, "utf-8");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

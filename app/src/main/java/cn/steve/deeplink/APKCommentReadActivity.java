@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-
 import cn.steve.study.R;
 
 /**
@@ -15,18 +13,14 @@ import cn.steve.study.R;
  */
 public class APKCommentReadActivity extends AppCompatActivity {
 
-    private TextView textViewMain;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_textview);
-        this.textViewMain = (TextView) findViewById(R.id.textViewMain);
-
-        String packagePath = ReadCommentFromAPK.getPackagePath(this);
-        File file = new File(packagePath);
-        String s = ReadCommentFromAPK.readApk(file);
+        TextView textViewMain = (TextView) findViewById(R.id.textViewMain);
+        String s = ReadCommentFromAPK.getCommentFromApk(this);
         Toast.makeText(APKCommentReadActivity.this, s, Toast.LENGTH_SHORT).show();
+        assert textViewMain != null;
         textViewMain.setText(s);
     }
 }
