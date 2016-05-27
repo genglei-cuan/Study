@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="cn.steve.study"
-          android:versionCode="1"
-          android:versionName="1.0">
+          package="cn.steve.study">
 
     <!-- 添加读取sd卡的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -422,17 +420,16 @@
         </activity>
         <activity android:name="cn.steve.reflect.ReflectSubActivity">
         </activity>
+        <!--Flexbox-->
         <activity android:name="cn.steve.flexbox.FlexboxMainActivity">
-
         </activity>
+        <!--DeepLink-->
         <activity
                 android:name="cn.steve.deeplink.DeepLinkActivity"
                 android:launchMode="singleTask"
-                android:exported="true"
-                >
+                android:exported="true">
             <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
 
                 <action android:name="android.intent.action.VIEW"/>
 
@@ -446,11 +443,17 @@
             </intent-filter>
         </activity>
         <activity android:name="cn.steve.deeplink.APKCommentReadActivity">
+        </activity>
+        <!--IPC-->
+        <activity android:name="cn.steve.ipc.IPCMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+                android:name="cn.steve.ipc.IPCSecondActivity"
+                android:process=":remote"/>
     </application>
 
 </manifest>

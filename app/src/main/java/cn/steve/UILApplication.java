@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
+import android.util.Log;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -36,6 +37,7 @@ public class UILApplication extends Application {
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     @Override
     public void onCreate() {
+        printProgressInfo();
         if (false && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
             StrictMode.setThreadPolicy(
                 new StrictMode.ThreadPolicy.Builder().detectAll().penaltyDialog().build());
@@ -74,5 +76,9 @@ public class UILApplication extends Application {
         }
     }
 
+    //print the progress info
+    private void printProgressInfo() {
+        Log.i("SteveApplication", Runtime.getRuntime().toString());
+    }
 
 }

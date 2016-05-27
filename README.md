@@ -55,6 +55,7 @@
 1. image   图片显示的时候，先缩放再显示
 1. imageloader    universalimageloader 的demo,拷贝的官方lib中的sample，universalimageloader的基本操作
 1. imagepicker    图片选择器,仿造微信做个一样的 TODO
+1. ipc            android ipc 场景测试
 1. layoutinflater 正解layoutinflater的使用及其参数的正确含义；
 1. layoutViewStub  layoutViewStub的使用
 1. listview   listview的基本操作,listview缓存，以及一个通用的viewholder；自定义item的高度 ;添加郭林的下拉刷新;自己写的一个自定义下拉刷新 TODO
