@@ -2,14 +2,17 @@
     
     学习的demo，简单的一些概念性的东西，供自己熟悉API和概念使用。
     
----
-| 包名        | 功能   |  备注  |
-| --------    | -----: | :----: |
-| 包名  |  功能 |  备注  |
-
+-----------
+# Project 结构说明
+> * app 对应了主module
+> * libsupport 对应了所有的第三方自己再封装
+> * mylib 对应了一些工具类
+> * trinealib 对应了trinea的工具类(抽时间整理，不需要就删除)
 
 -----------
-# 包名对应的功能内容
+#  包名对应的功能内容
+
+## App
 
 1. activitylifecycle activity的生命周期的研究，待添加一些关于activity启动模式的demo TODO 
 1. agera             google 官方的响应式库
@@ -101,6 +104,7 @@
 1. webview   加载URI，以及注入JS调用和混淆代码
 1. wechat    仿造微信的聊天界面
 
+## libsupport
 
 
 
