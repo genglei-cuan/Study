@@ -24,7 +24,8 @@ public class IPCMainActivity extends AppCompatActivity {
         buttonMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(IPCMainActivity.this, IPCSecondActivity.class));
+                startService(new Intent(IPCMainActivity.this, ThirdPartyService.class));
+                //startActivity(new Intent(IPCMainActivity.this, IPCSecondActivity.class));
             }
         });
     }

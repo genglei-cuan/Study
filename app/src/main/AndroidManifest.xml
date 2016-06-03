@@ -420,40 +420,47 @@
         </activity>
         <activity android:name="cn.steve.reflect.ReflectSubActivity">
         </activity>
-        <!--Flexbox-->
+        <!-- Flexbox -->
         <activity android:name="cn.steve.flexbox.FlexboxMainActivity">
         </activity>
-        <!--DeepLink-->
+        <!-- DeepLink -->
         <activity
                 android:name="cn.steve.deeplink.DeepLinkActivity"
-                android:launchMode="singleTask"
-                android:exported="true">
+                android:exported="true"
+                android:launchMode="singleTask">
             <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN"/>
-
                 <action android:name="android.intent.action.VIEW"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <!-- Accepts URIs that begin with "http://recipe-app.com/recipe" -->
                 <data
-                        android:scheme="mamalv"
                         android:host="lvmama.android.com"
-                        android:pathPrefix="/lvmama"/>
+                        android:pathPrefix="/lvmama"
+                        android:scheme="mamalv"/>
             </intent-filter>
         </activity>
         <activity android:name="cn.steve.deeplink.APKCommentReadActivity">
         </activity>
-        <!--IPC-->
+        <!-- IPC -->
         <activity android:name="cn.steve.ipc.IPCMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
                 android:name="cn.steve.ipc.IPCSecondActivity"
                 android:process=":remote"/>
+
+        <service
+                android:name="cn.steve.ipc.ThirdPartyService"
+                android:enabled="true"
+                android:exported="false"
+                android:process=":thirdService">
+        </service>
     </application>
 
 </manifest>
