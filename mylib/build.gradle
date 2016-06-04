@@ -23,11 +23,11 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile rootProject.ext.dependencies["appcompat-v7"]
-    compile 'com.android.support:recyclerview-v7:23.3.0'
-    compile 'com.android.support:cardview-v7:23.3.0'
-    compile 'com.android.support:design:23.3.0'
-    compile 'com.android.support:percent:23.3.0'
-    compile 'com.android.support:support-annotations:23.3.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:cardview-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:percent:23.4.0'
+    compile 'com.android.support:support-annotations:23.4.0'
     //logger
     compile 'com.github.orhanobut:logger:1.12'
 
@@ -44,8 +44,10 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.infstory:weibo-android-sdk:3.1.1'
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.3.0'
+    //RXJava
+    compile 'io.reactivex:rxjava:1.1.5'
     //RXAndroid
-    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxandroid:1.2.0'
     //RxBinding
     compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
     compile 'com.jakewharton.rxbinding:rxbinding-support-v4:0.3.0'
