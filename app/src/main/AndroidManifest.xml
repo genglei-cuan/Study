@@ -77,7 +77,7 @@
         <!-- IO的操作 -->
         <activity android:name="cn.steve.fileIO.MainActivity"/>
         <!-- weak 弱引用 -->
-        <activity android:name="cn.steve.weakreferencehandler.MainActivity"/>
+        <activity android:name="cn.steve.weakreferencehandler.WeakReferenceHandlerMainActivity"/>
         <!-- handler执行线程 -->
         <activity android:name="cn.steve.handler.HandlerActivity"/>
         <activity android:name="cn.steve.handler.HandlerActivity02"/>

@@ -4,11 +4,11 @@ import android.content.Context;
 import android.widget.Toast;
 
 //Toast统一管理类
-public class T {
+public class ToastUtil {
 
     public static boolean isShow = true;
 
-    private T() {
+    private ToastUtil() {
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 

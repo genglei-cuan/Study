@@ -18,46 +18,44 @@ import cn.steve.study.R;
  *
  * @author Steve
  */
-public class MainActivity extends Activity {
+public class WeakReferenceHandlerMainActivity extends Activity {
 
     public static final int DIALOG_SHOW = 2;
     public static final int DIALOG_DISMISS = 3;
 
     Button mButton = null;
     ProgressDialog mProgressDialog = null;
-    MyHandler mHandler = null;
+    WeakReferenceHandler mHandler = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file_io);
-        mHandler = new MyHandler(MainActivity.this);
+        mHandler = new WeakReferenceHandler(WeakReferenceHandlerMainActivity.this);
         findviews();
     }
-
-    ;
 
     private void findviews() {
         mButton = (Button) findViewById(R.id.button);
         mButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.mHandler.obtainMessage(DIALOG_SHOW).sendToTarget();
+                WeakReferenceHandlerMainActivity.this.mHandler.obtainMessage(DIALOG_SHOW).sendToTarget();
             }
         });
     }
 
-    static class MyHandler extends Handler {
+    static class WeakReferenceHandler extends Handler {
 
-        private WeakReference<MainActivity> mOuter;
+        private WeakReference<WeakReferenceHandlerMainActivity> mOuter;
 
-        public MyHandler(MainActivity activity) {
+        public WeakReferenceHandler(WeakReferenceHandlerMainActivity activity) {
             // 弱引用
-            mOuter = new WeakReference<MainActivity>(activity);
+            mOuter = new WeakReference<>(activity);
         }
 
         public void handleMessage(Message msg) {
-            MainActivity mq = mOuter.get();
+            WeakReferenceHandlerMainActivity mq = mOuter.get();
             switch (msg.what) {
                 case DIALOG_SHOW:
                     if (mq.isFinishing()) {
@@ -75,7 +73,5 @@ public class MainActivity extends Activity {
                     break;
             }
         }
-
-        ;
     }
 }
