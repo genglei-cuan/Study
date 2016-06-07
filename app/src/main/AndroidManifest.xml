@@ -445,6 +445,11 @@
         </activity>
         <!-- IPC -->
         <activity android:name="cn.steve.ipc.IPCMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
                 android:name="cn.steve.ipc.IPCSecondActivity"
@@ -458,11 +463,7 @@
         </service>
 
         <activity android:name="cn.steve.pulltozoomviewdemo.MyPullZoomViewDemo">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 

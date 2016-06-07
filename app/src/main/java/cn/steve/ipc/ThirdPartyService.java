@@ -1,7 +1,9 @@
 package cn.steve.ipc;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -23,14 +25,12 @@ public class ThirdPartyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    Log.i(TAG, "run: Hello i'm running");
-                }
-            }
-        }).start();
+        SharedPreferences sp = this.getSharedPreferences("data", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        boolean success = editor.putString("ThirdUtil", "Hello world!").commit();
+        //if (success) {
+        //    android.os.Process.killProcess(android.os.Process.myPid());
+        //}
     }
 
     @Override
