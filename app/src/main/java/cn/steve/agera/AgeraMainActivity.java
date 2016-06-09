@@ -24,65 +24,62 @@ import cn.steve.study.R;
  */
 public class AgeraMainActivity extends AppCompatActivity implements Updatable {
 
-    @Bind(R.id.buttonMain)
-    Button buttonMain;
-    NetworkCallingSupplier supplier;
-    Repository<String> re;
-    private Observable ageraObservable;
+  @Bind(R.id.buttonMain)
+  Button buttonMain;
+  Repository<String> re;
+  private Observable ageraObservable;
 
-    private void init() {
+  private void init() {
 
-        supplier = new NetworkCallingSupplier();
+    ageraObservable = new Observable() {
+      @Override
+      public void addUpdatable(@NonNull Updatable updatable) {
+        updatable.update();
+      }
 
-        ageraObservable = new Observable() {
-            @Override
-            public void addUpdatable(@NonNull Updatable updatable) {
-                updatable.update();
-            }
+      @Override
+      public void removeUpdatable(@NonNull Updatable updatable) {
+      }
+    };
 
-            @Override
-            public void removeUpdatable(@NonNull Updatable updatable) {
-            }
-        };
-        // 这个方式存在问题，只能返回init
-        re = Repositories.repositoryWithInitialValue("init")
-            .observe(ageraObservable)
-            .onUpdatesPerLoop()
-            .thenGetFrom(new Supplier<String>() {
-                @NonNull
-                @Override
-                public String get() {
-                    Log.i("AgreaMainActivity", Thread.currentThread().getName());
-                    return "Hello";
-                }
-            }).compile();
-
-    }
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_button);
-        ButterKnife.bind(this);
-        init();
-    }
+    re = Repositories.repositoryWithInitialValue("init")
+        .observe(ageraObservable)
+        .onUpdatesPerLoop()
+        .thenGetFrom(new Supplier<String>() {
+          @NonNull
+          @Override
+          public String get() {
+            Log.i("AgreaMainActivity", Thread.currentThread().getName());
+            return "Hello";
+          }
+        }).compile();
 
 
-    @OnClick(R.id.buttonMain)
-    void receivedEvent() {
-        ageraObservable.addUpdatable(this);
-    }
+  }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main_button);
+    ButterKnife.bind(this);
+    init();
+  }
 
-    //更新的事件通知
-    @Override
-    public void update() {
-//        Toast.makeText(AgeraMainActivity.this, supplier.get().get(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(AgeraMainActivity.this, re.get(), Toast.LENGTH_SHORT).show();
-    }
+
+  @OnClick(R.id.buttonMain)
+  void receivedEvent() {
+    re.addUpdatable(this);
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+  }
+
+  //更新的事件通知
+  @Override
+  public void update() {
+    Toast.makeText(AgeraMainActivity.this, re.get(), Toast.LENGTH_SHORT).show();
+  }
 
 }
