@@ -408,10 +408,7 @@
         </activity>
         <!-- google 官方的响应式编程库agera测试 -->
         <activity android:name="cn.steve.agera.AgeraMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <!-- 最简单的例子 -->
         <activity android:name="cn.steve.agera.AgeraSimpleActivity">
@@ -449,7 +446,10 @@
         </activity>
         <!-- IPC -->
         <activity android:name="cn.steve.ipc.IPCMainActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
                 android:name="cn.steve.ipc.IPCSecondActivity"

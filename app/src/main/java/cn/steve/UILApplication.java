@@ -45,10 +45,19 @@ public class UILApplication extends Application {
                 new StrictMode.VmPolicy.Builder().detectAll().penaltyDeath().build());
         }
         setActivityLifeCycleListener();
-
         super.onCreate();
-
-        initImageLoader(getApplicationContext());
+        //防止多进程程序多次启动application导致资源浪费现象
+        String processName = steve.cn.mylib.util.SystemUtils.getProcessName(this, android.os.Process.myPid());
+        String processName2 = steve.cn.mylib.util.SystemUtils.getProcessName();
+        Log.e("UILApplication", "processName:" + processName);
+        Log.e("UILApplication", "processName2:" + processName2);
+        if (processName2 != null) {
+            boolean defaultProcess = processName2.equals("cn.steve.study");
+            if (defaultProcess) {
+                Log.e("UILApplication", "默认的初始化");
+                initImageLoader(getApplicationContext());
+            }
+        }
     }
 
     //注册activity的声明周期回调

@@ -4,14 +4,18 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.List;
+
 /**
  * Created by Steve on 2015/8/28.
  */
 public class SystemUtils {
 
     /**
-     * recommend default thread pool size according to system available processors, {@link
-     * #getDefaultThreadPoolSize()}
+     * recommend default thread pool size according to system available processors, {@link #getDefaultThreadPoolSize()}
      **/
     public static final int DEFAULT_THREAD_POOL_SIZE = getDefaultThreadPoolSize();
 
@@ -64,5 +68,34 @@ public class SystemUtils {
         }
     }
 
+    /**
+     * @return null may be returned if the specified process not found
+     */
+    public static String getProcessName(Context cxt, int pid) {
+        ActivityManager am = (ActivityManager) cxt.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
+        if (runningApps == null) {
+            return null;
+        }
+        for (ActivityManager.RunningAppProcessInfo procInfo : runningApps) {
+            if (procInfo.pid == pid) {
+                return procInfo.processName;
+            }
+        }
+        return null;
+    }
 
+    //相对上面的效率更高点，据传微信是先用该方法寻找一边，如若不成功，再用上面低效的方法再试一次
+    public static String getProcessName() {
+        try {
+            File file = new File("/proc/" + android.os.Process.myPid() + "/" + "cmdline");
+            BufferedReader mBufferedReader = new BufferedReader(new FileReader(file));
+            String processName = mBufferedReader.readLine().trim();
+            mBufferedReader.close();
+            return processName;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
