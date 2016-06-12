@@ -455,12 +455,6 @@
                 android:name="cn.steve.ipc.IPCSecondActivity"
                 android:process=":remote"/>
 
-        <service
-                android:name="cn.steve.ipc.ThirdPartyService"
-                android:enabled="true"
-                android:exported="false"
-                android:process=":thirdService">
-        </service>
 
         <activity android:name="cn.steve.pulltozoomviewdemo.MyPullZoomViewDemo">
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.os.Process;
 import android.util.Log;
 
 /**
@@ -37,6 +38,7 @@ public class ThirdPartyService extends Service {
     public void onDestroy() {
         super.onDestroy();
         Log.e(TAG, "onDestroy: Hello i'm dead");
+        Process.killProcess(Process.myPid());
     }
 
     @Override
