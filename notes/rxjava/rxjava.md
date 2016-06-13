@@ -63,3 +63,11 @@ interval()函数在你需要创建一个轮询程序时非常好用。
 以上我们从头、从已有的列表、从一个已存在的传统Java函数来创建Observable。我们也学习了如何创建重复发射的Observables，间隔发射的Observables以及延迟发射的Observables。
 
 ## 过滤：可观测序列的本质
+
+
+### 线程切换总结:
+这里所说的上下是指的代码位置。
+
+消息的传递是从下往上，反向传递；数据流是从上往下顺序传输。
+1. subscribeOn 影响的是在它前面的变换操作符doOnSubscribe，所有lift操作符，包括数据源的产生，create。
+2. observeOn 影响是从上往下，影响所有的subscribe操作符。
