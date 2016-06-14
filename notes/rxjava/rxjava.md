@@ -71,3 +71,7 @@ interval()函数在你需要创建一个轮询程序时非常好用。
 消息的传递是从下往上，反向传递；数据流是从上往下顺序传输。
 1. subscribeOn 影响的是在它前面的变换操作符doOnSubscribe，所有lift操作符，包括数据源的产生，create。
 2. observeOn 影响是从上往下，影响所有的subscribe操作符。
+
+    doOnSubscribe指定的代码和产生事件的代码（create指定的代码），在它们下游最近的一个subscribeOn指定的Scheduler上执行；如果它们下游没有subscribeOn了，那么它们就在调用subscribe方法的那一个线程上执行（注意：是调用subscribe方法的那一个线程，不是subscribe指定的代码执行的那个线程，这是两回事）。
+
+    普通的lift操作（比如filter, map, reduce等）和消费事件的代码（subscribe指定的代码），在它们上游最近的一个observeOn指定的Scheduler上执行；如果它们上游没有observeOn了，那么它们就在位于整个调用链最上游的第一个subscribeOn指定的Scheduler上执行；如果没找到subscribeOn调用，那么它们就在调用subscribe方法的那一个线程上执行。
