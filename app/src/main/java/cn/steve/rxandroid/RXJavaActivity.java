@@ -468,7 +468,7 @@ public class RXJavaActivity extends AppCompatActivity {
             .doOnSubscribe(new Action0() {
                 @Override
                 public void call() {
-                    //作为消息发送发送的第一站，没有指定发送消息的线程，故而这个会在主线程执行
+                    //作为消息发送发送的第一站，没有通过subscribeOn指定发送消息的线程，故而这个会在调用subscribe方法的线程上执行,这里是主线程
                     Log.e(TAG, "doOnSubscribe1 " + Thread.currentThread().toString());
                 }
             })
@@ -477,7 +477,8 @@ public class RXJavaActivity extends AppCompatActivity {
             .subscribe(new Action1<String>() {
                 @Override
                 public void call(String s) {
-                    //受observeOn的影响，另起一个线程
+                    // 受observeOn的影响，另起一个线程
+                    // 假如没有observeOn，则运行在离这 最近 的observeOn，或者 最远(物理位置最远，按照消息自下往上的顺序，其实也是最近) 的subscribeOn线程上
                     Log.e(TAG, "subscribe " + Thread.currentThread().toString());
                 }
             });
