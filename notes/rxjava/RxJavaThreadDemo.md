@@ -1,11 +1,11 @@
-title: 一个例子说明如何使用  RxJava 线程管理
+title: 一个例子说明如何使用  RxJava 进行线程切换
 date: 2016-06-14 16:07:10
 tags: [RxJava,source]
 ---
 
 # RxJava 线程管理
 
-RxJava 中通过两个关键的方法 subscribeOn 和 observeOn 实现线程的切换，都说 RxJava 是可以任性的随意的切换，到底可以多任性呢，在哪任性呢？下面通过一个非常简单的例子
+RxJava 中通过两个关键的方法 subscribeOn 和 observeOn 实现线程的切换，都说 RxJava 是可以任性的随意切换线程，到底可以多任性呢，在哪任性呢，代码上怎么体现呢？下面通过一个非常简单的例子
 演示一下如何使用，源码讨论请移步另一篇文章。
 
 
