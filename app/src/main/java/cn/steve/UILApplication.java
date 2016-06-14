@@ -63,7 +63,7 @@ public class UILApplication extends Application {
     //注册activity的声明周期回调
     private void setActivityLifeCycleListener() {
 
-        //TODO 事件监听回调 ps:这边似乎没有效果
+        // 事件监听回调 ps:这边似乎没有效果
         Foreground.ForeBackStateChangedListener
             myListener =
             new Foreground.ForeBackStateChangedListener() {

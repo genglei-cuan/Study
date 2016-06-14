@@ -31,8 +31,6 @@ public class ArticleFragment extends Fragment {
 
             @Override
             public void onClick(View arg0) {
-                // TODO Auto-generated method stub
-
                 Toast.makeText(getActivity(), "f1", Toast.LENGTH_SHORT).show();
 
             }

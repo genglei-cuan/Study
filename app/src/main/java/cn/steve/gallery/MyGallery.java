@@ -62,7 +62,7 @@ public class MyGallery extends LinearLayout {
             int what = msg.what;
             switch (what) {
                 case 1:
-                    //TODO 这里可以调用外部接口。给出超出范围的提示
+                    //这里可以调用外部接口。给出超出范围的提示
                     MyGalleryAdapter adapter = (MyGalleryAdapter) gallery.getAdapter();
                     int po = warnSelectedPosition;
                     for (int i = 1; i <= warnSelectedPosition - warningPosition; i++) {

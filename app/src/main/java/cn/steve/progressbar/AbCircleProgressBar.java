@@ -26,7 +26,6 @@ import android.graphics.RectF;
 import android.graphics.SweepGradient;
 import android.util.AttributeSet;
 import android.view.View;
-// TODO: Auto-generated Javadoc
 
 /**
  * © 2012 amsoft.cn 名称：AbCircleProgressBar.java 描述：环形的ProgressBar

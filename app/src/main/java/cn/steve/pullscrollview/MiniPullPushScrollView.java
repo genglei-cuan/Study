@@ -100,7 +100,7 @@ public class MiniPullPushScrollView extends ScrollView {
                 if (mState == State.EXPANDING || mState == State.BOTTOM) {
                     rollUp2Normal();
                 }
-                //TODO  进行自动回弹的判断
+                //进行自动回弹的判断
                 if (mState != State.TOP) {
                     if (isAuto2Top) {
                         rollUp2Top();
@@ -136,7 +136,7 @@ public class MiniPullPushScrollView extends ScrollView {
         if (mState != State.BOTTOM) {
             return;
         } else {
-            //TODO 假如是从底部滑上去的，需要先恢复原状的大小
+            // 假如是从底部滑上去的，需要先恢复原状的大小
             doSmall2Normal(delta);
         }
         //do nothing

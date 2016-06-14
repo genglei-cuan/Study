@@ -88,7 +88,7 @@ public class HorizontalScrollViewMainActivity extends Activity {
             textView.setLayoutParams(new ViewGroup.LayoutParams(child_width,
                     ViewGroup.LayoutParams.MATCH_PARENT));
 
-            // TODO 日期的逻辑
+            // 日期的逻辑
             textView.setText(currenMonth + "月" + (i + 1));
             textView.setGravity(Gravity.CENTER);
             linearLayout.addView(textView);
@@ -117,7 +117,6 @@ public class HorizontalScrollViewMainActivity extends Activity {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                // TODO Auto-generated method stub
                 boolean flag = false;
                 int x = horizontalScrollView.getScrollX();
 
@@ -192,7 +191,7 @@ public class HorizontalScrollViewMainActivity extends Activity {
                                 for (int i = 0; i < d; i++) {
                                     TextView textView = new TextView(
                                             HorizontalScrollViewMainActivity.this);
-                                    // TODO 添加设置文本的逻辑
+                                    //  添加设置文本的逻辑
                                     textView.setText("H");
                                     textView.setLayoutParams(new ViewGroup.LayoutParams(
                                             child_width, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -210,11 +209,10 @@ public class HorizontalScrollViewMainActivity extends Activity {
                             horizontalScrollView.scrollBy(child_width * child_count, 0);
                             current_item += child_count;
 
-                            // TODO 从当前位置往前推算上个这个位置-3,同时要注意-3位置的后三个
+                            //  从当前位置往前推算上个这个位置-3,同时要注意-3位置的后三个
                             int delta = current_item % child_count - child_start;
                             // 往前再走三个的位置就完全进入了上个月
                             desIndexToChangeDateYearMonth = current_item - 3;
-                            // TODO
                             // 当前位置的前三个和后面全部的内容都需要修改的下标位置,这里给的是5是为了保证一定到达了可能跳转的位置
                             desIndexToChangeIndexPreNext = child_count - 5;
                             desDate = CalendarUntil.getLastDayOfMonth();
@@ -260,7 +258,7 @@ public class HorizontalScrollViewMainActivity extends Activity {
 
                             horizontalScrollView.scrollBy(-child_width * child_count, 0);
                             current_item -= child_count;
-                            // TODO 当前位置到下次这个位置+3，同时注意他的前三个
+                            // 当前位置到下次这个位置+3，同时注意他的前三个
                             int delta = current_item % child_count - child_start;
                             desIndexToChangeDateYearMonth = current_item % child_count + 3;
                             desIndexToChangeAdd = child_count + 5;
@@ -356,9 +354,9 @@ public class HorizontalScrollViewMainActivity extends Activity {
             textView = (TextView) linearLayout.getChildAt(i - 1);
             textView.setText(desMonth + "月" + (desDaysOfMonth - j));
         }
-        // TODO 当前位置的后面部分也要修改
+        // 当前位置的后面部分也要修改
 
-        // 同时还有本来到达位置的前三个，不然会出现错误数据(TODO 描述清楚)
+        // 同时还有本来到达位置的前三个，不然会出现错误数据( 描述清楚)
         int correntIndex = currentIndex % child_count;
         for (int i = correntIndex; i > 0; i--) {
             textView = (TextView) linearLayout.getChildAt(i - 1);
@@ -424,7 +422,6 @@ public class HorizontalScrollViewMainActivity extends Activity {
      */
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        // TODO Auto-generated method stub
         super.onWindowFocusChanged(hasFocus);
         hsv_width = horizontalScrollView.getWidth();
         int child_width_temp = hsv_width / child_show_count;

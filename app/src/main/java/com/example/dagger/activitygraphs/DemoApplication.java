@@ -22,7 +22,7 @@ import javax.inject.Inject;
 
 public class DemoApplication extends Application {
 
-  // TODO(cgruber): Figure out a better example of something one might inject into the app.
+    // (cgruber): Figure out a better example of something one might inject into the app.
   @Inject
   LocationManager locationManager; // to illustrate injecting something into the app.
   private ApplicationComponent applicationComponent;

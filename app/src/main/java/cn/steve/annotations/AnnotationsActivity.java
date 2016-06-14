@@ -78,13 +78,13 @@ public class AnnotationsActivity extends AppCompatActivity {
     @WorkerThread
     private void workInWorkThread() {
         for (int i = 0; i < 100; i++) {
-            //TODO 更新UI会报错，一般是后台处理一些复杂的工作，执行一些耗时的工作
+            // 更新UI会报错，一般是后台处理一些复杂的工作，执行一些耗时的工作
         }
     }
 
     @BinderThread
     private void workInBindThread() {
-        //TODO 更新UI报错 Denotes that the annotated method should only be called on the binder thread. If the annotated element is a class, then all methods in the class should be called on the binder thread.
+        // 更新UI报错 Denotes that the annotated method should only be called on the binder thread. If the annotated element is a class, then all methods in the class should be called on the binder thread.
     }
 
     //5. 值的范围约束,@Size, @IntRange, @FloatRange

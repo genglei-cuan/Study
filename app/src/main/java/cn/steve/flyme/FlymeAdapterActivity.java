@@ -10,7 +10,7 @@ import cn.steve.study.R;
 import steve.cn.mylib.flymelib.ActionBarProxy;
 
 /**
- * 适配魅族的smartBar，不知道为何按照官方文档不行。TODO
+ * 适配魅族的smartBar，不知道为何按照官方文档不行
  *
  *
  * Created by yantinggeng on 2015/11/2.

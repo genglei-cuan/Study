@@ -51,7 +51,7 @@ public class WeChatMainActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //TODO 原版的微信是根据内容，更改图标
+                //原版的微信是根据内容，更改图标
             }
 
             @Override
