@@ -1,8 +1,7 @@
 package cn.steve.toolbar;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import cn.steve.study.R;
 
@@ -11,8 +10,9 @@ import cn.steve.study.R;
  */
 public class ToolBarNeedActivity extends ToolBarBaseActivity {
 
-    @Override
-    protected View getContentView(ViewGroup parent) {
-        return LayoutInflater.from(this).inflate(R.layout.article_fra1, parent, false);
-    }
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.article_fra1);
+  }
 }
