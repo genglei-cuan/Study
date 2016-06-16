@@ -466,6 +466,11 @@
         <activity
                 android:name="cn.steve.toolbar.ToolBarNeedActivity"
                 android:theme="@style/AppNoActionBarTheme">
+
+        </activity>
+
+        <!--schemel control test-->
+        <activity android:name="cn.steve.deeplink.SchemeControlActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
