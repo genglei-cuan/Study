@@ -457,6 +457,13 @@
         <activity android:name="cn.steve.handler.HandlerLooperActivity">
         </activity>
 
+        <!--IntentService-->
+        <activity android:name="cn.steve.service.IntentServiceActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <service
                 android:name="cn.steve.service.MyIntentService"
                 android:exported="false">
@@ -471,10 +478,7 @@
 
         <!--schemel control test-->
         <activity android:name="cn.steve.deeplink.SchemeControlActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
     </application>
 

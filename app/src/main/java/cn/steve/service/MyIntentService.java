@@ -10,7 +10,7 @@ import android.util.Log;
  *
  * created by yantinggeng
  *
- * Description :
+ * Description :测试 IntentService
  */
 public class MyIntentService extends IntentService {
 
@@ -24,6 +24,7 @@ public class MyIntentService extends IntentService {
 
     public MyIntentService() {
         super("MyIntentService");
+        Log.d(TAG, "MyIntentService() called with: " + this.toString());
     }
 
     public static void startActionFoo(Context context, String param1, String param2) {
@@ -40,6 +41,12 @@ public class MyIntentService extends IntentService {
         intent.putExtra(EXTRA_PARAM1, param1);
         intent.putExtra(EXTRA_PARAM2, param2);
         context.startService(intent);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() dead");
     }
 
     @Override
@@ -64,5 +71,17 @@ public class MyIntentService extends IntentService {
 
     private void handleActionBaz(String param1, String param2) {
         Log.d(TAG, "handleActionBaz() called with: " + "param1 = [" + param1 + "], param2 = [" + param2 + "]");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    //这里的代码是无法执行的。
+                    Thread.sleep(3000);
+                    Log.d(TAG, "handleActionBaz() called at Thread");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
