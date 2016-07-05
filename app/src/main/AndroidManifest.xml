@@ -459,10 +459,7 @@
 
         <!--IntentService-->
         <activity android:name="cn.steve.service.IntentServiceActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <service
                 android:name="cn.steve.service.MyIntentService"
@@ -479,6 +476,13 @@
         <!--schemel control test-->
         <activity android:name="cn.steve.deeplink.SchemeControlActivity">
 
+        </activity>
+        <!--view drag helper-->
+        <activity android:name="cn.steve.viewdraghelper.ViewDragHelperActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 
