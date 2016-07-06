@@ -58,7 +58,7 @@ public class YoutubeLayout extends ViewGroup {
     }
 
     boolean smoothSlideTo(float slideOffset) {
-        final int topBound = getPaddingTop();
+        int topBound = getPaddingTop();
         int y = (int) (topBound + slideOffset * mDragRange);
 
         if (mDragHelper.smoothSlideViewTo(mHeaderView, mHeaderView.getLeft(), y)) {
@@ -77,53 +77,32 @@ public class YoutubeLayout extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        final int action = MotionEventCompat.getActionMasked(ev);
-
-        if ((action != MotionEvent.ACTION_DOWN)) {
+        int action = MotionEventCompat.getActionMasked(ev);
+        if (action != MotionEvent.ACTION_DOWN) {
             mDragHelper.cancel();
             return super.onInterceptTouchEvent(ev);
         }
-
-        if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
-            mDragHelper.cancel();
-            return false;
-        }
-
-        final float x = ev.getX();
-        final float y = ev.getY();
+        float x = ev.getX();
+        float y = ev.getY();
         boolean interceptTap = false;
-
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
                 mInitialMotionX = x;
                 mInitialMotionY = y;
+                // 判断headview是否在触摸的范围内
                 interceptTap = mDragHelper.isViewUnder(mHeaderView, (int) x, (int) y);
                 break;
             }
-
-            case MotionEvent.ACTION_MOVE: {
-                final float adx = Math.abs(x - mInitialMotionX);
-                final float ady = Math.abs(y - mInitialMotionY);
-                final int slop = mDragHelper.getTouchSlop();
-                /*useless*/
-                if (ady > slop && adx > ady) {
-                    mDragHelper.cancel();
-                    return false;
-                }
-            }
         }
-
         return mDragHelper.shouldInterceptTouchEvent(ev) || interceptTap;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         mDragHelper.processTouchEvent(ev);
-
-        final int action = ev.getAction();
-        final float x = ev.getX();
-        final float y = ev.getY();
-
+        int action = ev.getAction();
+        float x = ev.getX();
+        float y = ev.getY();
         boolean isHeaderViewUnder = mDragHelper.isViewUnder(mHeaderView, (int) x, (int) y);
         switch (action & MotionEventCompat.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN: {
@@ -131,11 +110,10 @@ public class YoutubeLayout extends ViewGroup {
                 mInitialMotionY = y;
                 break;
             }
-
             case MotionEvent.ACTION_UP: {
-                final float dx = x - mInitialMotionX;
-                final float dy = y - mInitialMotionY;
-                final int slop = mDragHelper.getTouchSlop();
+                float dx = x - mInitialMotionX;
+                float dy = y - mInitialMotionY;
+                int slop = mDragHelper.getTouchSlop();
                 if (dx * dx + dy * dy < slop * slop && isHeaderViewUnder) {
                     if (mDragOffset == 0) {
                         smoothSlideTo(1f);
@@ -146,7 +124,6 @@ public class YoutubeLayout extends ViewGroup {
                 break;
             }
         }
-
         return isHeaderViewUnder && isViewHit(mHeaderView, (int) x, (int) y) || isViewHit(mDescView, (int) x, (int) y);
     }
 
@@ -163,30 +140,25 @@ public class YoutubeLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
         measureChildren(widthMeasureSpec, heightMeasureSpec);
 
         int maxWidth = MeasureSpec.getSize(widthMeasureSpec);
         int maxHeight = MeasureSpec.getSize(heightMeasureSpec);
 
-        setMeasuredDimension(resolveSizeAndState(maxWidth, widthMeasureSpec, 0),
-                             resolveSizeAndState(maxHeight, heightMeasureSpec, 0));
+        int measuredWidth = resolveSizeAndState(maxWidth, widthMeasureSpec, 0);
+        int measuredHeight = resolveSizeAndState(maxHeight, heightMeasureSpec, 0);
+
+        setMeasuredDimension(measuredWidth, measuredHeight);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         mDragRange = getHeight() - mHeaderView.getHeight();
 
-        mHeaderView.layout(
-            0,
-            mTop,
-            r,
-            mTop + mHeaderView.getMeasuredHeight());
+        mHeaderView.layout(0, mTop, r, mTop + mHeaderView.getMeasuredHeight());
 
-        mDescView.layout(
-            0,
-            mTop + mHeaderView.getMeasuredHeight(),
-            r,
-            mTop + b);
+        mDescView.layout(0, mTop + mHeaderView.getMeasuredHeight(), r, mTop + b);
     }
 
     private class DragHelperCallback extends ViewDragHelper.Callback {
@@ -199,7 +171,6 @@ public class YoutubeLayout extends ViewGroup {
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
             mTop = top;
-
             mDragOffset = (float) top / mDragRange;
 
             mHeaderView.setPivotX(mHeaderView.getWidth());
