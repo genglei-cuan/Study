@@ -156,9 +156,13 @@ public class YoutubeLayout extends ViewGroup {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         mDragRange = getHeight() - mHeaderView.getHeight();
 
+
         mHeaderView.layout(0, mTop, r, mTop + mHeaderView.getMeasuredHeight());
 
         mDescView.layout(0, mTop + mHeaderView.getMeasuredHeight(), r, mTop + b);
+
+        mHeaderView.setPivotX(mHeaderView.getWidth());
+        mHeaderView.setPivotY(mHeaderView.getHeight());
     }
 
     private class DragHelperCallback extends ViewDragHelper.Callback {
@@ -173,8 +177,6 @@ public class YoutubeLayout extends ViewGroup {
             mTop = top;
             mDragOffset = (float) top / mDragRange;
 
-            mHeaderView.setPivotX(mHeaderView.getWidth());
-            mHeaderView.setPivotY(mHeaderView.getHeight());
             mHeaderView.setScaleX(1 - mDragOffset / 2);
             mHeaderView.setScaleY(1 - mDragOffset / 2);
 

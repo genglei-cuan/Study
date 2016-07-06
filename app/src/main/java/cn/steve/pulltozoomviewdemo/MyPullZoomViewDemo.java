@@ -15,7 +15,5 @@ public class MyPullZoomViewDemo extends AppCompatActivity {
     setContentView(R.layout.activity_my_pull_zoom_view_demo);
     PullZoomView pullZoomView = (PullZoomView) findViewById(R.id.pullZoomView);
     ImageView headImageView = (ImageView) findViewById(R.id.headImageView);
-    pullZoomView.setHeadView(headImageView);
-    pullZoomView.setMaxZoomDelta(100);
   }
 }

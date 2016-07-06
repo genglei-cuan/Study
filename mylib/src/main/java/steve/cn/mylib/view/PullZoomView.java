@@ -1,11 +1,11 @@
 package steve.cn.mylib.view;
 
 import android.content.Context;
+import android.graphics.Point;
+import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 /**
@@ -15,79 +15,64 @@ import android.widget.LinearLayout;
  */
 public class PullZoomView extends LinearLayout {
 
+    private Point point = new Point();
+    private ViewDragHelper mDragHelper;
     private View headView;
-    private float headHeight;
-    private float touchY;
-    private float lastTouchY;
-    private float maxZoomDelta;
-    private boolean isMax = false;
-    //最小滑动距离
-    private int scaledTouchSlop;
+    private int headHeight;
+    private int maxDelta;
 
     public PullZoomView(Context context) {
         super(context);
+        init();
     }
 
     public PullZoomView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     private void init() {
-        scaledTouchSlop = ViewConfiguration.get(this.getContext()).getScaledTouchSlop();
+        mDragHelper = ViewDragHelper.create(this, 1f, new DragHelperCallback());
+        headView = getChildAt(0);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        point.x = headView.getLeft();
+        point.y = headView.getTop();
+        headHeight = headView.getHeight();
+        maxDelta = headHeight / 2;
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-
-        return false;
-//    return super.onInterceptTouchEvent(ev);
+        return super.onInterceptTouchEvent(ev);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        float y = event.getY();
-        int action = event.getAction();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                lastTouchY = y;
-                break;
 
-            case MotionEvent.ACTION_MOVE:
-                float delta = y - lastTouchY;
-                if (delta > 0) {
-                    if (delta < maxZoomDelta) {
-                        setHeadViewHeight(delta);
-                    } else {
-                        isMax = true;
-                    }
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                if (isMax) {
-                    setHeadViewHeight(-maxZoomDelta);
-                } else {
-                    float d = lastTouchY - y;
-                    setHeadViewHeight(d);
-                }
-                break;
+    private class DragHelperCallback extends ViewDragHelper.Callback {
+
+        @Override
+        public boolean tryCaptureView(View child, int pointerId) {
+            return true;
         }
-        return super.onTouchEvent(event);
+
+        @Override
+        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+            super.onViewPositionChanged(changedView, left, top, dx, dy);
+        }
+
+        @Override
+        public int getViewVerticalDragRange(View child) {
+
+            return super.getViewVerticalDragRange(child);
+        }
+
+        @Override
+        public void onViewReleased(View releasedChild, float xvel, float yvel) {
+            super.onViewReleased(releasedChild, xvel, yvel);
+        }
     }
-
-
-    private void setHeadViewHeight(float delta) {
-        ViewGroup.LayoutParams layoutParams = headView.getLayoutParams();
-        layoutParams.height += delta;
-        headView.setLayoutParams(layoutParams);
-    }
-
-    public void setHeadView(View headView) {
-        this.headView = headView;
-    }
-
-    public void setMaxZoomDelta(float maxZoomDelta) {
-        this.maxZoomDelta = maxZoomDelta;
-    }
-
 
 }
