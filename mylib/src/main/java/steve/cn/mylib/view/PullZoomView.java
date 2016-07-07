@@ -18,6 +18,7 @@ public class PullZoomView extends LinearLayout {
     private Point point = new Point();
     private ViewDragHelper mDragHelper;
     private View headView;
+    private View otherView;
     private int headHeight;
     private int maxDelta;
 
@@ -34,6 +35,14 @@ public class PullZoomView extends LinearLayout {
     private void init() {
         mDragHelper = ViewDragHelper.create(this, 1f, new DragHelperCallback());
         headView = getChildAt(0);
+        otherView = getChildAt(1);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        measureChild(headView, widthMeasureSpec, heightMeasureSpec);
+        measureChild(otherView, widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
