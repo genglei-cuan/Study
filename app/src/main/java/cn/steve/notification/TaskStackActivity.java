@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
+import cn.steve.mvp.campaign.CampaignActivity;
+
 /**
  * 点击notification进入一个activity界面，按下返回键的时候，回到主界面，类似于QQ
  *
@@ -31,17 +33,13 @@ public class TaskStackActivity extends Activity {
         Intent resultIntent = new Intent(this, ResultActivity.class);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(ResultActivity.class);
+        stackBuilder.addParentStack(CampaignActivity.class);
         stackBuilder.addNextIntent(resultIntent);
 
-        PendingIntent
-                resultPendingIntent =
-                stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(resultPendingIntent);
 
-        NotificationManager
-                mNotificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(0, mBuilder.build());
 
     }

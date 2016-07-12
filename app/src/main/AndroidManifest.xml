@@ -479,11 +479,27 @@
         </activity>
         <!--view drag helper-->
         <activity android:name="cn.steve.viewdraghelper.ViewDragHelperActivity">
+        </activity>
+
+        <!--notification-->
+        <activity android:name="cn.steve.notification.NotificationHandlerActivity">
+        </activity>
+
+        <!--TaskStackBuilder-->
+        <activity android:name="cn.steve.notification.TaskStackActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+                android:name="cn.steve.notification.ResultActivity"
+                android:parentActivityName="cn.steve.notification.NotificationHandlerActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="cn.steve.notification.NotificationHandlerActivity"/>
+        </activity>
+
     </application>
 
 </manifest>
