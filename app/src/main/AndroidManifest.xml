@@ -494,10 +494,14 @@
         </activity>
         <activity
                 android:name="cn.steve.notification.ResultActivity"
+                android:launchMode="singleTask"
+                android:taskAffinity=""
+                android:excludeFromRecents="true"
                 android:parentActivityName="cn.steve.notification.NotificationHandlerActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="cn.steve.notification.NotificationHandlerActivity"/>
+
         </activity>
 
     </application>
