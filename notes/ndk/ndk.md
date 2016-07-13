@@ -1,10 +1,12 @@
-title: androidarchitecture
-date: 2016-06-11 22:51:20
+title: 初探NDK(简单demo)
+date: 2016-07-11 22:51:20
 tags: [ndk]
 ---
-# [初探NDK]
 
-## [操作步骤]
+# 初探NDK
+
+## 操作步骤
+
 1. 下载NDK;
 ![ndk下载](http://o9mhbhxlj.bkt.clouddn.com/ndkdownloadndk.png)
 
@@ -62,5 +64,4 @@ o.MainActivity`
 添加C++的代码提示
 右击给project add native library,然后右击项目的属性，在C++选项出添加NDK目录下，android-ndk-r9d\platforms\android-19\arch-arm\usr\include,将include包含进去。
 ![ndk配置C代码提示](http://o9mhbhxlj.bkt.clouddn.com/ndkeclipse3.png)
-
 
