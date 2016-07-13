@@ -21,27 +21,23 @@ public class TaskStackActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // create an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, ResultActivity.class);
-        // Sets the Activity to start in a new, empty task
-        resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(ResultActivity.class);
-        stackBuilder.addNextIntent(resultIntent);
+        // Use TaskStackBuilder to build the back stack and get the PendingIntent
+        PendingIntent pendingIntent = TaskStackBuilder.create(this)
+            // add all of DetailsActivity's parents to the stack, followed by DetailsActivity itself
+            .addNextIntentWithParentStack(resultIntent)
+            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        // new notification
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
         mBuilder.setSmallIcon(android.R.drawable.ic_dialog_email);
         mBuilder.setContentTitle("My Notification!");
         mBuilder.setContentText("Hello World!");
-
-
-        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-        mBuilder.setContentIntent(resultPendingIntent);
+        mBuilder.setContentIntent(pendingIntent);
 
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(0, mBuilder.build());
-
     }
 }

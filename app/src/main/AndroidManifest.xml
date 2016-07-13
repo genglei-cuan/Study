@@ -475,8 +475,8 @@
 
         <!--schemel control test-->
         <activity android:name="cn.steve.deeplink.SchemeControlActivity">
-
         </activity>
+
         <!--view drag helper-->
         <activity android:name="cn.steve.viewdraghelper.ViewDragHelperActivity">
         </activity>
@@ -492,16 +492,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity
                 android:name="cn.steve.notification.ResultActivity"
-                android:launchMode="singleTask"
-                android:taskAffinity=""
-                android:excludeFromRecents="true"
                 android:parentActivityName="cn.steve.notification.NotificationHandlerActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="cn.steve.notification.NotificationHandlerActivity"/>
-
         </activity>
 
     </application>
