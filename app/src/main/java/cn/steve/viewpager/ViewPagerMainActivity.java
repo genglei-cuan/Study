@@ -14,22 +14,41 @@ import steve.cn.mylib.viewpager.CircleIndicator;
  */
 public class ViewPagerMainActivity extends AppCompatActivity {
 
-    private ViewPager viewPager;
-
-    private ArrayList<String> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewpager);
-        this.viewPager = (ViewPager) findViewById(R.id.viewPager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator_default);
-
+        ArrayList<String> data = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             data.add("Page" + i);
         }
-        this.viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),data));
-        indicator.setViewPager(viewPager);
+        if (viewPager != null) {
+            viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), data));
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
+        }
+        if (indicator != null) {
+            indicator.setViewPager(viewPager);
+        }
+
+
     }
 }
 
