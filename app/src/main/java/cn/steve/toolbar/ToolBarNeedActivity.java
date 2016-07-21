@@ -13,6 +13,6 @@ public class ToolBarNeedActivity extends ToolBarBaseActivity {
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.article_fra1);
+      setContentView(R.layout.activity_toolbar_main);
   }
 }

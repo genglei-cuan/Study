@@ -13,22 +13,23 @@ import cn.steve.study.R;
  */
 public class ToolBarBaseActivity extends AppCompatActivity {
 
-  @Override
-  public void setContentView(@LayoutRes int layoutResID) {
-    ViewGroup rootView = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.activity_toolbar_base, null, false);
-    View contentView = LayoutInflater.from(this).inflate(layoutResID, rootView, false);
-    View toolbarView = LayoutInflater.from(this).inflate(R.layout.toolbar_custom, rootView, false);
-    if (toolbarView != null) {
-      rootView.addView(toolbarView);
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        ViewGroup rootView = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.activity_toolbar_base, null, false);
+        View contentView = LayoutInflater.from(this).inflate(layoutResID, rootView, false);
+        View toolbarView = LayoutInflater.from(this).inflate(R.layout.toolbar_custom, rootView, false);
+        if (toolbarView != null) {
+            rootView.addView(toolbarView);
+        }
+        if (contentView != null) {
+            rootView.setBackground(contentView.getBackground());
+            contentView.setBackground(null);
+            rootView.addView(contentView);
+        }
+        setContentView(rootView);
     }
-    if (contentView != null) {
-      rootView.addView(contentView);
+
+    //exposed the toolbar methods
+    protected void setToolBar() {
     }
-    setContentView(rootView);
-  }
-
-  //exposed the toolbar methods
-  protected void setToolBar() {
-
-  }
 }

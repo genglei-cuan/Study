@@ -470,7 +470,10 @@
         <activity
                 android:name="cn.steve.toolbar.ToolBarNeedActivity"
                 android:theme="@style/AppNoActionBarTheme">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <!--schemel control test-->
@@ -487,10 +490,7 @@
 
         <!--TaskStackBuilder-->
         <activity android:name="cn.steve.notification.TaskStackActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <activity
