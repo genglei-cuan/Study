@@ -215,7 +215,6 @@
 
         <!-- RxAndroid的demo -->
         <activity android:name="cn.steve.rxandroid.RXJavaActivity">
-
         </activity>
         <activity android:name="cn.steve.rxandroid.RXAndroidActivity">
         </activity>
@@ -457,42 +456,41 @@
         <activity android:name="cn.steve.handler.HandlerLooperActivity">
         </activity>
 
-        <!--IntentService-->
+        <!-- IntentService -->
         <activity android:name="cn.steve.service.IntentServiceActivity">
-
         </activity>
+
         <service
                 android:name="cn.steve.service.MyIntentService"
                 android:exported="false">
         </service>
 
-        <!--测试基层toolbar-->
+        <!-- 测试基层toolbar -->
         <activity
                 android:name="cn.steve.toolbar.ToolBarNeedActivity"
                 android:theme="@style/AppNoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <!--schemel control test-->
+        <!-- schemel control test -->
         <activity android:name="cn.steve.deeplink.SchemeControlActivity">
         </activity>
 
-        <!--view drag helper-->
+        <!-- view drag helper -->
         <activity android:name="cn.steve.viewdraghelper.ViewDragHelperActivity">
         </activity>
 
-        <!--notification-->
+        <!-- notification -->
         <activity android:name="cn.steve.notification.NotificationHandlerActivity">
         </activity>
 
-        <!--TaskStackBuilder-->
+        <!-- TaskStackBuilder -->
         <activity android:name="cn.steve.notification.TaskStackActivity">
-
         </activity>
-
         <activity
                 android:name="cn.steve.notification.ResultActivity"
                 android:parentActivityName="cn.steve.notification.NotificationHandlerActivity">
@@ -501,6 +499,12 @@
                     android:value="cn.steve.notification.NotificationHandlerActivity"/>
         </activity>
 
+        <provider
+                android:name="cn.steve.contentprovider.ConfigContentProvider"
+                android:authorities="cn.steve.config.provider"
+                android:enabled="true"
+                android:exported="true">
+        </provider>
     </application>
 
 </manifest>

@@ -31,6 +31,8 @@
 1. circle     圆形的钟盘，携带刻度，通过设置前后的时间，画出刻度
 1. classloader     测试类加载器的例子 TODO
 1. click_xml 在XML文件中设置相应的方法
+1. contentobserver 监听文件的变化，这里为实现截屏文件的监听
+1. contentprovider ContentProvider 多进程数据共享的demo
 1. contextmean 测试context的真实含义
 1. customdialog 自定义各种形式的dialogue(熟悉stormzhang的)
 1. customview 自定义view,展示画布的含义
