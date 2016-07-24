@@ -469,11 +469,6 @@
         <activity
                 android:name="cn.steve.toolbar.ToolBarNeedActivity"
                 android:theme="@style/AppNoActionBarTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <!-- schemel control test -->
@@ -499,7 +494,7 @@
                     android:value="cn.steve.notification.NotificationHandlerActivity"/>
         </activity>
 
-        <!--ContentProvider demo -->
+        <!-- ContentProvider demo -->
         <provider
                 android:name="cn.steve.contentprovider.ConfigContentProvider"
                 android:authorities="cn.steve.config.provider"
@@ -507,7 +502,13 @@
                 android:exported="true">
         </provider>
 
+        <activity android:name="cn.steve.animator.CircularAnimUtilActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
