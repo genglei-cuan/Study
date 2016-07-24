@@ -1,4 +1,4 @@
-package cn.steve.animator;
+package steve.cn.mylib.util;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
