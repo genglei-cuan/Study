@@ -26,6 +26,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.functions.Func0;
+import rx.functions.Func1;
 import rx.functions.Func3;
 import rx.schedulers.Schedulers;
 
@@ -173,9 +174,42 @@ public class RXAndroidActivity extends AppCompatActivity {
 
         Observable<String> network = Observable.just("network");
 
-        //依次检查memory、disk、network
+        //依次检查memory、disk、network,假如没有任何满足要求的数据，会抛出NoSuchElementException
         Observable.concat(memory, disk, network)
             .first()
+            .subscribeOn(Schedulers.newThread())
+            .subscribe(new Action1<String>() {
+                @Override
+                public void call(String s) {
+                    System.out.println("选择了：" + s);
+                }
+            });
+        //依次检查memory、disk、network,没有任何数据就会当作已完成
+        Observable.concat(memory, disk, network)
+            .takeFirst(new Func1<String, Boolean>() {
+                @Override
+                public Boolean call(String s) {
+                    // TODO: 16-7-24 判断内容是否是最新的数据
+                    return null;
+                }
+            })
+            .subscribeOn(Schedulers.newThread())
+            .subscribe(new Action1<String>() {
+                @Override
+                public void call(String s) {
+                    System.out.println("选择了：" + s);
+                }
+            });
+
+        //依次检查memory、disk、network
+        Observable.concat(memory, disk, network)
+            .first(new Func1<String, Boolean>() {
+                @Override
+                public Boolean call(String s) {
+                    // TODO: 16-7-24 判断内容是否是最新的数据
+                    return null;
+                }
+            })
             .subscribeOn(Schedulers.newThread())
             .subscribe(new Action1<String>() {
                 @Override

@@ -499,12 +499,15 @@
                     android:value="cn.steve.notification.NotificationHandlerActivity"/>
         </activity>
 
+        <!--ContentProvider demo -->
         <provider
                 android:name="cn.steve.contentprovider.ConfigContentProvider"
                 android:authorities="cn.steve.config.provider"
                 android:enabled="true"
                 android:exported="true">
         </provider>
+
+
     </application>
 
 </manifest>
