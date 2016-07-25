@@ -502,13 +502,17 @@
                 android:exported="true">
         </provider>
 
+        <!--按钮点击效果和跳转效果-->
         <activity android:name="cn.steve.animator.CircularAnimUtilActivity">
+        </activity>
+        <!--Gson测试-->
+        <activity android:name="cn.steve.gson.GsonPojoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
