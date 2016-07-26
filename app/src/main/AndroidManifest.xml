@@ -507,6 +507,10 @@
         </activity>
         <!--Gson测试-->
         <activity android:name="cn.steve.gson.GsonPojoActivity">
+
+        </activity>
+        <!--content provider-->
+        <activity android:name="cn.steve.contentprovider.ContentProviderActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
