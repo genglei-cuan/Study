@@ -26,7 +26,7 @@ android {
         }
         debug {
             //为BuildConfig增加新的字段
-            buildConfigField "String", "addField", "DefaultValue"
+            buildConfigField "String", "addField", '"DefaultValue"'
         }
     }
 }

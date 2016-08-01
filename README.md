@@ -16,6 +16,7 @@
 
 1. activitylifecycle activity的生命周期的研究，待添加一些关于activity启动模式的demo TODO 
 1. agera             google 官方的响应式库
+1. aidl              AIDL demo TODO
 1. alertDialog       测试警告对话框
 1. animator          属性动画的简单使用
 1. annotations       annotations的使用
