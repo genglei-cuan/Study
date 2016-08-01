@@ -21,3 +21,6 @@ android {
 }
 ```
 所以，最终建议可以声明在主要module中。
+
+## 文摘
+在 gradle 中通过 plug 定义了任务。比如apply plugin: 'com.android.application'

@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">MyLibrary</string>
-
     <!--listview上拉加载，下拉刷新 start-->
     <string name="btn_scroll_view">ScrollView demo</string>
     <string name="btn_list_view">ListView demo</string>

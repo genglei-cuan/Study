@@ -24,6 +24,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            //为BuildConfig增加新的字段
+            buildConfigField "String", "addField", "DefaultValue"
+        }
     }
 }
 
