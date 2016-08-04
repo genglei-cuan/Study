@@ -511,12 +511,22 @@
         </activity>
         <!--content provider-->
         <activity android:name="cn.steve.contentprovider.ContentProviderActivity">
+
+        </activity>
+
+        <!--AIDL-->
+        <service android:name="cn.steve.aidl.ComputeService"
+                android:process=":aidlService">
+            <intent-filter>
+                <action android:name="cn.steve.aidl.ComputeService" />
+            </intent-filter>
+        </service>
+        <activity android:name="cn.steve.aidl.AIDLActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

@@ -14,6 +14,6 @@ public class IComputeIml extends ICompute.Stub {
 
     @Override
     public int add(int a, int b) throws RemoteException {
-        return 0;
+        return a + b;
     }
 }
