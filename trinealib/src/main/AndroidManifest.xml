@@ -1,9 +1,0 @@
-<manifest
-        package="cn.trinea.android.common">
-    <!--
-    android:versionCode="30"
-    android:versionName="4.2.14"
-    -->
-    <application>
-    </application>
-</manifest>

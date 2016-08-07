@@ -4,10 +4,10 @@
     
 -----------
 # Project 结构说明
-> * app 对应了主module
-> * libsupport 对应了所有的第三方自己再封装
-> * mylib 对应了一些工具类
-> * trinealib 对应了trinea的工具类(抽时间整理，不需要就删除)
+> * app   对应了主module
+> * mylib 对应自己写的一些库
+> * notes 对应自己写的笔记和博客文件
+
 
 -----------
 #  包名对应的功能内容

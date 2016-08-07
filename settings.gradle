@@ -1,1 +1,1 @@
-include ':app', ':mylib', ':trinealib', ':libsupport', ':lib_http'
+include ':app', ':mylib', ':lib_http'
