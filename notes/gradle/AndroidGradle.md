@@ -24,3 +24,13 @@ android {
 
 ## 文摘
 在 gradle 中通过 plug 定义了任务。比如apply plugin: 'com.android.application'
+
+## package name 和 applicationid  的区别
+
+package name 指的是manifest中指定的，applicationid指的是在gradle文件中指定的。
+前者是负责生成R文件的。后者是作为应用唯一性的标识。
+
+
+
+
+
