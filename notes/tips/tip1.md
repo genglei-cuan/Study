@@ -16,7 +16,7 @@
 
 下面命令将只显示错误日志，和所有Tag＝mytag的调试日志，-C 会用不同颜色区分不同级别的日志，但只有Android 4.3以后才支持。
 
-::: success
- adb logcat [-C] *:E <mytag>:D
-:::
+
+ ` adb logcat [-C] *:E <mytag>:D `
+
 
