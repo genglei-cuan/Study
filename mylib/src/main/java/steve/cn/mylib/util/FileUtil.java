@@ -1,7 +1,8 @@
-package cn.steve.fileIO;
+package steve.cn.mylib.util;
 
 import android.content.Context;
 import android.os.Environment;
+import android.text.TextUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -16,6 +17,20 @@ public class FileUtil {
 
     public FileUtil(Context context) {
         this.context = context;
+    }
+
+    /**
+     * 获取指定文件的大小
+     *
+     * @param path 需要获取的文件的绝度路径
+     * @return 返回文件的大小，若是不存在则返回-1
+     */
+    public static long getFileSize(String path) {
+        if (TextUtils.isEmpty(path)) {
+            return -1;
+        }
+        File file = new File(path);
+        return (file.exists() && file.isFile() ? file.length() : -1);
     }
 
     // read

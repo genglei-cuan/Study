@@ -19,6 +19,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import cn.steve.study.R;
+import steve.cn.mylib.util.FileUtil;
 
 public class MainActivity extends Activity {
 
@@ -154,8 +155,7 @@ public class MainActivity extends Activity {
 
         public void run() {
             FileUtil fileUtil = new FileUtil(MainActivity.this);
-            boolean is_out_success = fileUtil.outputFile("test.text", MainActivity.this.content,
-                                                         true);
+            boolean is_out_success = fileUtil.outputFile("test.text", MainActivity.this.content, true);
             try {
                 System.out.println(fileUtil.readFile("test.text", true));
             } catch (Exception e) {

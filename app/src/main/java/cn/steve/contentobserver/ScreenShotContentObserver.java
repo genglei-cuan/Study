@@ -7,7 +7,8 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
-import cn.trinea.android.common.util.FileUtils;
+import steve.cn.mylib.util.FileUtil;
+
 
 /**
  * 监听截屏产生的图片变化
@@ -62,7 +63,7 @@ public class ScreenShotContentObserver extends ContentObserver {
                     boolean isImage = type.contains("image") || type.contains("Image");
                     if (size == 0) {
                         //部分机型显示的所有值都是0
-                        size = FileUtils.getFileSize(realPath);
+                        size = FileUtil.getFileSize(realPath);
                     }
                     if (size > 1 && hasType && isImage) {
                         //此处将截屏图片的绝对路径传递到handler处理
