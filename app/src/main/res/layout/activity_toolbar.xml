@@ -10,5 +10,16 @@
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent">
+
+        <!--<TextView-->
+        <!--android:id="@+id/toolBarTitle"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:text="居中的title"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:textSize="18dp"/>-->
+    </android.support.v7.widget.Toolbar>
 </LinearLayout>

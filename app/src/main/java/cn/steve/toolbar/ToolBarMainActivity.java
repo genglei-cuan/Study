@@ -23,8 +23,8 @@ public class ToolBarMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toolbar);
         toolbar = (Toolbar) findViewById(R.id.toolBar);
-//        stardardToolbar();
-        customView();
+        stardardToolbar();
+        //customView();
     }
 
     private void stardardToolbar() {
@@ -43,6 +43,7 @@ public class ToolBarMainActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(ToolBarMainActivity.this, "导航按钮！", Toast.LENGTH_SHORT).show();
             }
         });
         // 设置Logo图标
