@@ -19,15 +19,10 @@ android {
         }
     }
 }
-//为了添加aar依赖
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-//    compile(name:'aar name',ext:'aar')
+//    compile(name:'weiboSDK-3.1.1',ext:'aar')
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.android.support:cardview-v7:23.4.0'
@@ -48,7 +43,6 @@ dependencies {
     compile 'com.loopj.android:android-async-http:1.4.9'
     //Gson
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.infstory:weibo-android-sdk:3.1.1'
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.3.0'
     //RXJava
     compile 'io.reactivex:rxjava:1.1.5'
@@ -80,6 +74,9 @@ dependencies {
 
     //google flexlayout
     compile 'com.google.android:flexbox:0.1.2'
+    //weibo
+    compile 'com.infstory:weibo-android-sdk:3.1.1'
+
 }
 
 assemble.doLast {

@@ -18,5 +18,9 @@ allprojects {
     repositories {
         jcenter()
         maven { url "https://jitpack.io" }
+        //为了添加aar依赖
+        flatDir {
+            dirs '../aars'
+        }
     }
 }
