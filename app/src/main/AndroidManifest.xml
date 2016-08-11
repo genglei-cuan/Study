@@ -524,22 +524,32 @@
         <activity android:name="cn.steve.ipc.aidl.AIDLActivity">
         </activity>
 
-        <!--messenger-->
+        <!-- messenger -->
         <service
                 android:name="cn.steve.ipc.messenger.MessengerService"
-                android:process=":remotemessenger"
                 android:enabled="true"
-                android:exported="true">
+                android:exported="true"
+                android:process=":remotemessenger">
         </service>
 
         <activity android:name="cn.steve.ipc.messenger.MessengerActivity">
+
+        </activity>
+
+        <service
+                android:name="cn.steve.ipc.socket.TCPServerService"
+                android:enabled="true"
+                android:exported="true"
+                android:process=":remote">
+        </service>
+        <!--socket -->
+        <activity android:name="cn.steve.ipc.socket.TCPClientActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
