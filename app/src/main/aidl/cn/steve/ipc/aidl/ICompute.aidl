@@ -1,5 +1,5 @@
 // ICompute.aidl
-package cn.steve.aidl;
+package cn.steve.ipc.aidl;
 
 // Declare any non-default types here with import statements
 

@@ -1,4 +1,4 @@
-package cn.steve.aidl;
+package cn.steve.ipc.aidl;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -54,7 +54,7 @@ public class AIDLActivity extends AppCompatActivity {
             }
         });
         Bundle bundle = new Bundle();
-        Intent intent = new Intent("cn.steve.aidl.ComputeService");
+        Intent intent = new Intent("cn.steve.ipc.aidl.ComputeService");
         intent.putExtras(bundle);
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
     }

@@ -1,4 +1,4 @@
-package cn.steve.ipc;
+package cn.steve.ipc.remoteprogress;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

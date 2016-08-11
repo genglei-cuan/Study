@@ -1,4 +1,4 @@
-package cn.steve.aidl;
+package cn.steve.ipc.aidl;
 
 import android.os.RemoteException;
 

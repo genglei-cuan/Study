@@ -20,3 +20,9 @@
  ` adb logcat [-C] *:E <mytag>:D `
 
 
+
+## serialVersionUID的作用
+为了标记序列化的内容确实是某个类。最大化的避免反序列化的失败。
+
+
+

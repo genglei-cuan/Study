@@ -448,10 +448,10 @@
         <activity android:name="cn.steve.deeplink.APKCommentReadActivity">
         </activity>
         <!-- IPC -->
-        <activity android:name="cn.steve.ipc.IPCMainActivity">
+        <activity android:name="cn.steve.ipc.remoteprogress.IPCMainActivity">
         </activity>
         <activity
-                android:name="cn.steve.ipc.IPCSecondActivity"
+                android:name="cn.steve.ipc.remoteprogress.IPCSecondActivity"
                 android:process=":remote"/>
         <activity android:name="cn.steve.pulltozoomviewdemo.MyPullZoomViewDemo">
         </activity>
@@ -519,13 +519,14 @@
         </activity>
 
         <!--AIDL-->
-        <service android:name="cn.steve.aidl.ComputeService"
+        <service
+                android:name="cn.steve.ipc.aidl.ComputeService"
                 android:process=":aidlService">
             <intent-filter>
                 <action android:name="cn.steve.aidl.ComputeService" />
             </intent-filter>
         </service>
-        <activity android:name="cn.steve.aidl.AIDLActivity">
+        <activity android:name="cn.steve.ipc.aidl.AIDLActivity">
 
         </activity>
     </application>

@@ -1,4 +1,4 @@
-package cn.steve.ipc;
+package cn.steve.ipc.remoteprogress;
 
 import android.app.Service;
 import android.content.Context;
