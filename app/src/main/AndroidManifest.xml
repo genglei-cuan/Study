@@ -19,10 +19,6 @@
 
         <!-- 对话框demo -->
         <activity android:name="cn.steve.alertDialog.AlertDialogActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name="cn.steve.alertDialog.ShareSuccessActivity">
         </activity>
@@ -506,29 +502,44 @@
                 android:exported="true">
         </provider>
 
-        <!--按钮点击效果和跳转效果-->
+        <!-- 按钮点击效果和跳转效果 -->
         <activity android:name="cn.steve.animator.CircularAnimUtilActivity">
         </activity>
-        <!--Gson测试-->
+        <!-- Gson测试 -->
         <activity android:name="cn.steve.gson.GsonPojoActivity">
-
         </activity>
-        <!--content provider-->
+        <!-- content provider -->
         <activity android:name="cn.steve.contentprovider.ContentProviderActivity">
-
         </activity>
 
-        <!--AIDL-->
+        <!-- AIDL -->
         <service
                 android:name="cn.steve.ipc.aidl.ComputeService"
                 android:process=":aidlService">
             <intent-filter>
-                <action android:name="cn.steve.aidl.ComputeService" />
+                <action android:name="cn.steve.aidl.ComputeService"/>
             </intent-filter>
         </service>
-        <activity android:name="cn.steve.ipc.aidl.AIDLActivity">
 
+        <activity android:name="cn.steve.ipc.aidl.AIDLActivity">
         </activity>
+
+        <!--messenger-->
+        <service
+                android:name="cn.steve.ipc.messenger.MessengerService"
+                android:process=":remotemessenger"
+                android:enabled="true"
+                android:exported="true">
+        </service>
+
+        <activity android:name="cn.steve.ipc.messenger.MessengerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
