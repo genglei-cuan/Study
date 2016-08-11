@@ -19,6 +19,10 @@
 
         <!-- 对话框demo -->
         <activity android:name="cn.steve.alertDialog.AlertDialogActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name="cn.steve.alertDialog.ShareSuccessActivity">
         </activity>
@@ -247,11 +251,6 @@
         <activity
                 android:name="cn.steve.toolbar.ToolBarMainActivity"
                 android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-
         </activity>
 
         <!-- material design 的demo -->
