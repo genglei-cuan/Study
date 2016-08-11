@@ -45,7 +45,7 @@ public class TCPClientActivity extends AppCompatActivity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case MESSAGE_RECEIVE_NEW_MSG:
-                    textView.setText(textView.getText() + msg.obj.toString());
+                    textView.setText(textView.getText() + "\n" + msg.obj.toString());
                     break;
                 case MESSAGE_SOCKET_CONNECTED:
                     buttonMain.setEnabled(true);
@@ -108,13 +108,13 @@ public class TCPClientActivity extends AppCompatActivity {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             while (!TCPClientActivity.this.isFinishing()) {
+                //获取服务端发来的数据
                 String msg = br.readLine();
                 Log.i(TAG, "connectTCPServer: receive from server" + msg);
                 if (msg != null) {
                     String time = formatDateTime(System.currentTimeMillis());
                     handler.obtainMessage(MESSAGE_RECEIVE_NEW_MSG, "server:" + msg + time).sendToTarget();
                 }
-
             }
             Log.i(TAG, "connectTCPServer: quit");
             printWriter.close();

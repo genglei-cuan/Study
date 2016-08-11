@@ -50,6 +50,7 @@ public class TCPServerService extends Service {
         out.println("Welcom to chat room ");
 
         while (!isDestroyed) {
+            //等待输入
             String str = in.readLine();
             if (str == null) {
                 //断开
@@ -58,6 +59,7 @@ public class TCPServerService extends Service {
             Log.i(TAG, "responseClient: " + str);
             int i = new Random().nextInt(tips.length);
             String msg = tips[i];
+            //回复客户端
             out.println("server:" + msg);
             Log.i(TAG, "responseClient: " + msg);
         }
@@ -73,6 +75,7 @@ public class TCPServerService extends Service {
         @Override
         public void run() {
             ServerSocket serverSocket = null;
+            //开启服务
             try {
                 serverSocket = new ServerSocket(8688);
             } catch (IOException e) {
@@ -81,6 +84,7 @@ public class TCPServerService extends Service {
             }
             while (!isDestroyed) {
                 try {
+
                     final Socket client = serverSocket.accept();
                     Log.i(TAG, "accept");
                     new Thread() {
