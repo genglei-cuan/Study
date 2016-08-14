@@ -1,4 +1,4 @@
-package cn.steve.ipc.aidl;
+package cn.steve.ipc.aidl.simple;
 
 import android.app.Service;
 import android.content.Intent;

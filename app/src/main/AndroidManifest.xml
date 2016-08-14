@@ -514,14 +514,14 @@
 
         <!-- AIDL -->
         <service
-                android:name="cn.steve.ipc.aidl.ComputeService"
+                android:name="cn.steve.ipc.aidl.simple.ComputeService"
                 android:process=":aidlService">
             <intent-filter>
                 <action android:name="cn.steve.aidl.ComputeService"/>
             </intent-filter>
         </service>
 
-        <activity android:name="cn.steve.ipc.aidl.AIDLActivity">
+        <activity android:name="cn.steve.ipc.aidl.simple.AIDLActivity">
         </activity>
 
         <!-- messenger -->
@@ -533,7 +533,6 @@
         </service>
 
         <activity android:name="cn.steve.ipc.messenger.MessengerActivity">
-
         </activity>
 
         <service
@@ -542,8 +541,20 @@
                 android:exported="true"
                 android:process=":remote">
         </service>
-        <!--socket -->
+        <!-- socket -->
         <activity android:name="cn.steve.ipc.socket.TCPClientActivity">
+
+        </activity>
+
+        <!--aidl with observer-->
+        <service
+                android:name="cn.steve.ipc.aidl.observer.BookManagerService"
+                android:enabled="true"
+                android:exported="true"
+                android:process=":remote">
+
+        </service>
+        <activity android:name="cn.steve.ipc.aidl.observer.BookManagerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

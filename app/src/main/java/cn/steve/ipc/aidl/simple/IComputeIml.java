@@ -1,6 +1,8 @@
-package cn.steve.ipc.aidl;
+package cn.steve.ipc.aidl.simple;
 
 import android.os.RemoteException;
+
+import cn.steve.ipc.aidl.ICompute;
 
 /**
  * Created by yantinggeng on 2016/8/1.

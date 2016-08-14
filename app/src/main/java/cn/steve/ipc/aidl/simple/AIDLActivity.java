@@ -1,4 +1,4 @@
-package cn.steve.ipc.aidl;
+package cn.steve.ipc.aidl.simple;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import cn.steve.ipc.aidl.ICompute;
 import cn.steve.study.R;
 
 /**
@@ -54,7 +55,7 @@ public class AIDLActivity extends AppCompatActivity {
             }
         });
         Bundle bundle = new Bundle();
-        Intent intent = new Intent("cn.steve.ipc.aidl.ComputeService");
+        Intent intent = new Intent("cn.steve.ipc.aidl.simple.ComputeService");
         intent.putExtras(bundle);
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
