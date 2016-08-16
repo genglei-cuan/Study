@@ -555,9 +555,13 @@
 
         </service>
         <activity android:name="cn.steve.ipc.aidl.observer.BookManagerActivity">
+
+        </activity>
+
+        <!--lazy fragment-->
+        <activity android:name="cn.steve.viewpager.LazyFragmentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
