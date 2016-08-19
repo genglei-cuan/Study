@@ -1,5 +1,6 @@
 package cn.steve.customdialog;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -23,8 +24,12 @@ public class FullScreenDialogActivity extends AppCompatActivity {
         buttonMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FullScreenDialog dialog = new FullScreenDialog(FullScreenDialogActivity.this);
-                dialog.setTitle("HHHHH");
+                //FullScreenDialog dialog = new FullScreenDialog(FullScreenDialogActivity.this);
+                //dialog.setTitle("HHHHH");
+                //dialog.show();
+                Dialog dialog = new Dialog(FullScreenDialogActivity.this);
+                dialog.getContext().setTheme(R.style.Dialog_Fullscreen);
+                dialog.setContentView(R.layout.activity_dialogu_main);
                 dialog.show();
             }
         });
