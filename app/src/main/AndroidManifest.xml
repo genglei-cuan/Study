@@ -38,10 +38,7 @@
 
         <!--screen dialog-->
         <activity android:name="cn.steve.customdialog.FullScreenDialogActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- signature  simple  demo -->
@@ -570,6 +567,17 @@
         <activity android:name="cn.steve.viewpager.LazyFragmentActivity">
 
         </activity>
+        <!--bundler-->
+        <activity android:name="cn.steve.ipc.bundle.BundleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name="cn.steve.ipc.bundle.BundleActivityB">
+        </activity>
+
     </application>
 
 </manifest>
