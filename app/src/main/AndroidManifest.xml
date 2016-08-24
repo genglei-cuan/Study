@@ -459,6 +459,10 @@
 
         <!-- Handler -->
         <activity android:name="cn.steve.handler.HandlerLooperActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <!-- IntentService -->
@@ -569,10 +573,7 @@
         </activity>
         <!--bundler-->
         <activity android:name="cn.steve.ipc.bundle.BundleActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <activity android:name="cn.steve.ipc.bundle.BundleActivityB">
