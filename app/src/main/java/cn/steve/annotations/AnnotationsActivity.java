@@ -7,6 +7,7 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.CheckResult;
 import android.support.annotation.IntDef;
 import android.support.annotation.IntRange;
+import android.support.annotation.Keep;
 import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
@@ -128,4 +129,17 @@ public class AnnotationsActivity extends AppCompatActivity {
 
     }
 
+    //加上该注解，表示该方法,属性,类不进行混淆
+    @Keep
+    public void keepMethod(){
+
+    }
+    @Keep
+    private int keepValue;
+
+
+    @Keep
+    public static class KeepClass{
+
+    }
 }
