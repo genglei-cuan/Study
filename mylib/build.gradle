@@ -88,12 +88,14 @@ assemble.doLast {
 //        }
 //    }
 }
-task copyAllDepency2Local << {
-    copy {
-        into "F:\\libs"
-        from configurations.compile.findAll {
-            it.getName().endsWith(".jar")
-        }
-    }
-}
-assemble.finalizedBy copyAllDepency2Local
+
+//
+//task copyAllDepency2Local << {
+//    copy {
+//        into "F:\\libs"
+//        from configurations.compile.findAll {
+//            it.getName().endsWith(".jar")
+//        }
+//    }
+//}
+//assemble.finalizedBy copyAllDepency2Local

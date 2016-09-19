@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
@@ -32,9 +33,7 @@ public class NotificationHandler {
     public static NotificationHandler getInstance(Context context) {
         if (nHandler == null) {
             nHandler = new NotificationHandler();
-            mNotificationManager =
-                    (NotificationManager) context.getApplicationContext()
-                            .getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager = (NotificationManager) context.getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         }
 
         return nHandler;
@@ -56,16 +55,15 @@ public class NotificationHandler {
         stackBuilder.addNextIntent(resultIntent);
 
         // Pending intent to the notification manager
-        PendingIntent resultPending = stackBuilder
-                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent resultPending = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Building the notification
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.ic_launcher) // notification icon
-                .setContentTitle(
-                        "I'm a simple notification") // activity_datepicker title of the notification
-                .setContentText("I'm the text of the simple notification") // notification text
-                .setContentIntent(resultPending); // notification intent
+            .setSmallIcon(R.drawable.ic_action_email) // notification icon
+            .setContentTitle("I'm a simple notification") // activity_datepicker title of the notification
+            .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher))
+            .setContentText("I'm the text of the simple notification") // notification text
+            .setContentIntent(resultPending); // notification intent
 
         // mId allows you to update the notification later on.
         mNotificationManager.notify(10, mBuilder.build());
@@ -86,11 +84,10 @@ public class NotificationHandler {
 
             // Building the notification
             NotificationCompat.Builder nBuilder = new NotificationCompat.Builder(context)
-                    .setSmallIcon(R.drawable.ic_launcher) // notification icon
-                    .setContentTitle("Expandable notification") // title of notification
-                    .setContentText(
-                            "This is an example of an expandable notification") // text inside the notification
-                    .setStyle(inboxStyle); // adds the expandable content to the notification
+                .setSmallIcon(R.drawable.ic_launcher) // notification icon
+                .setContentTitle("Expandable notification") // title of notification
+                .setContentText("This is an example of an expandable notification") // text inside the notification
+                .setStyle(inboxStyle); // adds the expandable content to the notification
 
             mNotificationManager.notify(11, nBuilder.build());
 
@@ -112,63 +109,63 @@ public class NotificationHandler {
 
         // building the notification
         final NotificationCompat.Builder nBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.refresh)
-                .setContentTitle("Progres notification")
-                .setContentText("Now waiting")
-                .setTicker("Progress notification created")
-                .setUsesChronometer(true)
-                .setProgress(100, 0, true);
+            .setSmallIcon(R.drawable.refresh)
+            .setContentTitle("Progres notification")
+            .setContentText("Now waiting")
+            .setTicker("Progress notification created")
+            .setUsesChronometer(true)
+            .setProgress(100, 0, true);
 
         AsyncTask<Integer, Integer, Integer>
-                downloadTask =
-                new AsyncTask<Integer, Integer, Integer>() {
-                    @Override
-                    protected void onPreExecute() {
-                        super.onPreExecute();
-                        mNotificationManager.notify(progresID, nBuilder.build());
-                    }
+            downloadTask =
+            new AsyncTask<Integer, Integer, Integer>() {
+                @Override
+                protected void onPreExecute() {
+                    super.onPreExecute();
+                    mNotificationManager.notify(progresID, nBuilder.build());
+                }
 
-                    @Override
-                    protected Integer doInBackground(Integer... params) {
-                        try {
-                            // Sleeps 2 seconds to show the undeterminated progress
-                            Thread.sleep(5000);
+                @Override
+                protected Integer doInBackground(Integer... params) {
+                    try {
+                        // Sleeps 2 seconds to show the undeterminated progress
+                        Thread.sleep(5000);
 
-                            // update the progress
-                            for (int i = 0; i < 101; i += 5) {
-                                nBuilder
-                                        .setContentTitle("Progress running...")
-                                        .setContentText("Now running...")
-                                        .setProgress(100, i, false)
-                                        .setSmallIcon(R.drawable.download)
-                                        .setContentInfo(i + " %");
+                        // update the progress
+                        for (int i = 0; i < 101; i += 5) {
+                            nBuilder
+                                .setContentTitle("Progress running...")
+                                .setContentText("Now running...")
+                                .setProgress(100, i, false)
+                                .setSmallIcon(R.drawable.download)
+                                .setContentInfo(i + " %");
 
-                                // use the same id for update instead created another one
-                                mNotificationManager.notify(progresID, nBuilder.build());
-                                Thread.sleep(500);
-                            }
-
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                            // use the same id for update instead created another one
+                            mNotificationManager.notify(progresID, nBuilder.build());
+                            Thread.sleep(500);
                         }
 
-                        return null;
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
 
+                    return null;
+                }
 
-                    @Override
-                    protected void onPostExecute(Integer integer) {
-                        super.onPostExecute(integer);
 
-                        nBuilder.setContentText("Progress finished :D")
-                                .setContentTitle("Progress finished !!")
-                                .setTicker("Progress finished !!!")
-                                .setSmallIcon(R.drawable.accept)
-                                .setUsesChronometer(false);
+                @Override
+                protected void onPostExecute(Integer integer) {
+                    super.onPostExecute(integer);
 
-                        mNotificationManager.notify(progresID, nBuilder.build());
-                    }
-                };
+                    nBuilder.setContentText("Progress finished :D")
+                        .setContentTitle("Progress finished !!")
+                        .setTicker("Progress finished !!!")
+                        .setSmallIcon(R.drawable.accept)
+                        .setUsesChronometer(false);
+
+                    mNotificationManager.notify(progresID, nBuilder.build());
+                }
+            };
 
         // Executes the progress task
         downloadTask.execute();
@@ -183,12 +180,12 @@ public class NotificationHandler {
 
             // Building the notifcation
             NotificationCompat.Builder nBuilder = new NotificationCompat.Builder(context)
-                    .setSmallIcon(R.drawable.ic_launcher) // notification icon
-                    .setContentTitle("Button notification") // notification title
-                    .setContentText("Expand to show the buttons...") // content text
-                    .setTicker("Showing button notification") // status bar message
-                    .addAction(R.drawable.accept, "Accept", pIntent) // accept notification button
-                    .addAction(R.drawable.cancel, "Cancel", pIntent); // cancel notification button
+                .setSmallIcon(R.drawable.ic_launcher) // notification icon
+                .setContentTitle("Button notification") // notification title
+                .setContentText("Expand to show the buttons...") // content text
+                .setTicker("Showing button notification") // status bar message
+                .addAction(R.drawable.accept, "Accept", pIntent) // accept notification button
+                .addAction(R.drawable.cancel, "Cancel", pIntent); // cancel notification button
 
             mNotificationManager.notify(1001, nBuilder.build());
 

@@ -407,10 +407,6 @@
         <activity android:name="cn.steve.log.LogActivity">
         </activity>
         <!-- 测试activity和fragment的生命周期关系，兼带测试一些内存问题 -->
-        <activity android:name="cn.research.activityfragmenty.ActivityFragmentRelation">
-        </activity>
-        <activity android:name="cn.research.activityfragmenty.FrgamentMainActivity">
-        </activity>
         <!-- google 官方的响应式编程库agera测试 -->
         <activity android:name="cn.steve.agera.AgeraMainActivity">
         </activity>
@@ -459,10 +455,7 @@
 
         <!-- Handler -->
         <activity android:name="cn.steve.handler.HandlerLooperActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- IntentService -->
@@ -490,6 +483,10 @@
 
         <!-- notification -->
         <activity android:name="cn.steve.notification.NotificationHandlerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <!-- TaskStackBuilder -->
