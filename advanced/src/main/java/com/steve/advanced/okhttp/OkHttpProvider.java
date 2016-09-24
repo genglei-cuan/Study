@@ -5,6 +5,7 @@ import android.support.v4.util.ArrayMap;
 import java.io.IOException;
 
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -16,7 +17,7 @@ import okhttp3.Response;
 public class OkHttpProvider {
 
     private static OkHttpProvider provider = null;
-    private ArrayMap<String, Call> task = new ArrayMap<>();
+    private ArrayMap<String, MyHttpCallBack> task = new ArrayMap<>();
     private OkHttpClient client;
 
     private OkHttpProvider() {
@@ -30,15 +31,30 @@ public class OkHttpProvider {
         return provider;
     }
 
-    public String get(String url, String key) throws IOException {
+    public void get(String url, final String key, final MyHttpCallBack callBack) throws IOException {
         Request request = new Request.Builder().url(url).build();
         Call call = client.newCall(request);
-        if (task.containsKey(key)) {
-            task.get(key).cancel();
-            task.put(key, call);
-        }
-        Response response = call.execute();
-        return response.body().string();
+        task.put(key, callBack);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                if (!task.get(key).equals(callBack)) {
+                    call.cancel();
+                    return;
+                }
+                callBack.onFailure();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (!task.get(key).equals(callBack)) {
+                    call.cancel();
+                    return;
+                }
+                callBack.onResponse(response.toString());
+            }
+        });
     }
+
 
 }
