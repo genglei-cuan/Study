@@ -1,40 +1,63 @@
 package com.steve.advanced.okhttp;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
+import android.view.View;
+import android.widget.TextView;
 
 import com.steve.advanced.R;
 
-import java.io.IOException;
-
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 public class OkHttpActivity extends AppCompatActivity {
 
-    private OkHttpClient client;
+
+    private static final String GETURL = "https://raw.github.com/square/okhttp/master/README.md";
+    private AppCompatButton button;
+    private TextView textView;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_button_text);
-        init();
+        assignViews();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < 100; i++) {
+                    request(i + "");
+                }
+
+            }
+        });
     }
 
-    private void init() {
-        client = new OkHttpClient();
+    private void assignViews() {
+        button = (AppCompatButton) findViewById(R.id.button);
+        textView = (TextView) findViewById(R.id.textView);
     }
 
-    //get请求
-    @Nullable
-    private String get(String url) throws IOException {
-        Request request = new Request.Builder().url(url).build();
-        Call call = client.newCall(request);
-        Response response = call.execute();
-        return response.body().string();
+    private void request(final String num) {
+        OkHttpProvider.getInstance().get(GETURL, "key", new MyHttpCallBack() {
+            @Override
+            public void onFailure() {
+                System.out.println(num + "error");
+            }
+
+            @Override
+            public void onResponse(String response) {
+                System.out.println(response);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        String s = textView.getText().toString();
+                        textView.setText(s + "\n" + num);
+                    }
+                });
+
+            }
+        });
     }
 
 }
