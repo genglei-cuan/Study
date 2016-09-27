@@ -15,15 +15,24 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <!--Loading-->
         <activity android:name=".loading.LoadingActivity">
 
         </activity>
+        <!--OKhttp-->
         <activity android:name=".okhttp.OkHttpActivity">
+
+        </activity>
+        <!--Proxy-->
+        <activity android:name=".plugin.PluginMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".plugin.ProxyActivity">
+
         </activity>
     </application>
 
