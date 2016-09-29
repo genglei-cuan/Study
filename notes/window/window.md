@@ -39,20 +39,23 @@ WindowManagerImpl 的 remove 操作,委托给 WindowManagerGlobal 执行,内部 
 - 调用view里关于detach的回调.
 - WindowManagerGlobal 刷新数据
 
-#### 改 
+#### 改
 WindowManagerGlobal 调用 ViewRootImpl 去更新布局,然后进行view的重绘.然后调用 WindowSession 更新视图,再交由 WindowManagerService 进行操作.
 
 ### Winodw的创建过程
 
 #### Activity
 
-在activity 的attach 方法中,调用
- 
+在 Activity 的 attach 方法中,调用 PolicyManager 创建一个 Window  并设置好回调(Activity 实现了回调接口) ，在 Activity 的 setContentView  的时候，会委托 Window 的 setContentView 方法， 创建 DecorView 加载 Activity 的布局到 DecorView 中， 在 Activity 的 onResume 中调用 makeVisible ，这时候会调用 WindowManager 将 DecorView 进行添加操作，这时候才是可见的。
+
+#### Dialog
+
+与 Activity 的操作类似，有点注意的是，这个 WindowManager 管理 View 的操作是在 show 方法中。而且创建一个这个 window 需要的是 Activity 的 Context ，因为需要验证应用的 Token 。
 
 
+#### Toast
 
+Toast 创建显示的 View ，调用 NotificationManagerService 的 enqueueToast 进行添加排队，等待显示。在 enqueueToast 中会判断当前的 Toast 是不是系统的 Toast，
+在添加到队列之后，enqueueToast 还会根据保存的 ToastRecord 的记录判断当前的 Toast 是否是已经存在的 ，存在的则更新信息，反之不存在的话就新增 ToastRecord 记录，ToastRecord 中含有这个 Toast 的回调等信息，并且判断当前以包名为单位存在的 Toast 个数是否超出了系统的限制，一般是50. 此时再判断当前的 Toast 是否是在队列的第一个，如果是，则调用 showNextToastLocked 进行显示。显示的时候，取出的依旧是 ToastRecord 对象，调用 ToastRecord 对象的回调，这个回调其实是一个 TN 对象，这个 TN 实则是 binder 对象，这里就有一个 IPC 操作。原因是这个 Toast 的显示需要在发起 Toast 的线程上显示。在显示完这个 Toast 之后，NotificationManagerService 会有一个延时操作。
 
- 
-
-
-
+Toast 的隐藏操作和显示操作类似，都是通过 TN 的回调执行，都是 IPC 过程，运行在 binder 线程池中，内部是通过 handler 实现线程的切换。TN 的显示和隐藏操作是通过 WindowManager 的 add 和 remove 操作实现的。
