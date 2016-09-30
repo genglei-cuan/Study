@@ -382,6 +382,7 @@
         </activity>
         <!-- bottombar -->
         <activity android:name="cn.steve.bottombar.BottomBarActivity">
+
         </activity>
         <!-- FragmentTabHost -->
         <activity android:name="cn.steve.fragmenttabhost.FragmentTabHostActivity">
@@ -403,6 +404,13 @@
                 android:name="cn.steve.bottomsheet.BottomSheetSimpleActivity"
                 android:theme="@style/AppNoActionBarTheme">
         </activity>
+        <!-- bottom sheet -->
+        <activity android:name="cn.steve.bottomsheet.BottomSheetShareActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <!-- 打印定制的log -->
         <activity android:name="cn.steve.log.LogActivity">
         </activity>
@@ -413,9 +421,7 @@
         <!-- 最简单的例子 -->
         <activity android:name="cn.steve.agera.AgeraSimpleActivity">
         </activity>
-        <!-- bottom sheet -->
-        <activity android:name="cn.steve.bottomsheet.BottomSheetShareActivity">
-        </activity>
+
         <!-- reflect -->
         <activity android:name="cn.steve.reflect.ReflectMainActivity">
         </activity>
@@ -483,10 +489,7 @@
 
         <!-- notification -->
         <activity android:name="cn.steve.notification.NotificationHandlerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- TaskStackBuilder -->
