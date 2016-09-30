@@ -94,7 +94,7 @@ assemble.doLast {
 //    copy {
 //        into "F:\\libs"
 //        from configurations.compile.findAll {
-//            it.getName().endsWith(".jar")
+//            it.getName().endsWith(".jar") || it.getName().endsWith(".aar")
 //        }
 //    }
 //}

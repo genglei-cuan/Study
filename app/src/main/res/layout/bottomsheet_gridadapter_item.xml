@@ -3,8 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_height="match_parent"
         android:clickable="true"
         android:gravity="center"
         android:layout_gravity="center"
@@ -12,20 +11,20 @@
 
     <android.support.v7.widget.AppCompatImageView
             android:id="@+id/bottomSheetImageView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            tools:src="@drawable/ic_link_24dp"/>
+            tools:src="@drawable/share_icon_wechat"/>
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
             android:id="@+id/bottomSheetTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="1"
-            tools:text="link"/>
+            tools:text="微信"/>
 
 </LinearLayout>
