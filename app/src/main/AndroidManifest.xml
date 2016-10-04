@@ -405,7 +405,7 @@
                 android:theme="@style/AppNoActionBarTheme">
         </activity>
         <!-- bottom sheet -->
-        <activity android:name="cn.steve.bottomsheet.BottomSheetShareActivity">
+        <activity android:name="cn.steve.share.BottomSheetShareActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

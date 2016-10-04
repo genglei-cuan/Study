@@ -1,5 +1,5 @@
 
-package cn.steve.bottomsheet;
+package cn.steve.share;
 
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;

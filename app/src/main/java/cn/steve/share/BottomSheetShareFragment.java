@@ -1,4 +1,4 @@
-package cn.steve.bottomsheet;
+package cn.steve.share;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -13,25 +13,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import cn.steve.bottomsheet.GridSpacingItemDecoration;
 import cn.steve.study.R;
-import steve.cn.mylib.commonutil.ToastUtil;
 
 /**
  * Created by yantinggeng on 2016/4/11.
  */
 public class BottomSheetShareFragment extends BottomSheetDialogFragment {
 
+    public static final String SHAREITEMS = "SHAREITEMS";
+
     private ArrayList<ShareItem> shareItems;
     private ShareGridAdapter adapter;
+    private ISharePresenter presenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.shareItems = MockUtil.createItems();
+        Bundle bundle = getArguments();
+        if (bundle == null) {
+            return;
+        }
+        this.shareItems = bundle.getParcelableArrayList(SHAREITEMS);
         this.adapter = new ShareGridAdapter(this.shareItems);
     }
 
@@ -42,7 +48,7 @@ public class BottomSheetShareFragment extends BottomSheetDialogFragment {
 
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.bottomSheetShareRecyclerView);
         recyclerView.setHasFixedSize(true);
-        int spacing = getResources().getDimensionPixelSize(R.dimen.space_24);
+        int spacing = getResources().getDimensionPixelSize(R.dimen.space_14);
         int spanCount = 4;
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, true));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), spanCount);
@@ -54,7 +60,7 @@ public class BottomSheetShareFragment extends BottomSheetDialogFragment {
             public void onClick(View view) {
                 int itemPosition = recyclerView.getChildLayoutPosition(view);
                 ShareItem shareItem = shareItems.get(itemPosition);
-                ToastUtil.show(view.getContext(), shareItem.getTitle(), Toast.LENGTH_SHORT);
+                presenter.dealOnclick(shareItem);
             }
         });
 
@@ -76,9 +82,14 @@ public class BottomSheetShareFragment extends BottomSheetDialogFragment {
             @Override
             public void onShow(DialogInterface dialog) {
                 FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(android.support.design.R.id.design_bottom_sheet);
+                assert bottomSheet != null;
                 BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
             }
         });
         return bottomSheetDialog;
+    }
+
+    public void setPresenter(ISharePresenter presenter) {
+        this.presenter = presenter;
     }
 }
