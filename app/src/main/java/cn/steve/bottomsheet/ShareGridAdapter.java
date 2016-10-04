@@ -1,3 +1,4 @@
+
 package cn.steve.bottomsheet;
 
 import android.support.v7.widget.AppCompatImageView;
@@ -14,18 +15,21 @@ import cn.steve.study.R;
 /**
  * Created by yantinggeng on 2016/5/5.
  */
-public class ShareGridAdapter extends RecyclerView.Adapter<ShareGridAdapter.ShareViewHolder> {
+public class ShareGridAdapter extends RecyclerView.Adapter<ShareGridAdapter.ShareViewHolder> implements View.OnClickListener {
+
 
     private ArrayList<ShareItem> mItems;
+    private OnItemCLickListener listener;
 
-    public ShareGridAdapter(ArrayList<ShareItem> items) {
-        mItems = items;
+    public ShareGridAdapter(ArrayList<ShareItem> mItems) {
+        this.mItems = mItems;
     }
-
 
     @Override
     public ShareViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ShareViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.bottomsheet_gridadapter_item, parent, false));
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.bottomsheet_gridadapter_item, parent, false);
+        itemView.setOnClickListener(this);
+        return new ShareViewHolder(itemView);
     }
 
     @Override
@@ -38,6 +42,19 @@ public class ShareGridAdapter extends RecyclerView.Adapter<ShareGridAdapter.Shar
         return mItems.size();
     }
 
+    @Override
+    public void onClick(View v) {
+        this.listener.onClick(v);
+    }
+
+    public void setListener(OnItemCLickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemCLickListener {
+
+        void onClick(View view);
+    }
 
     class ShareViewHolder extends RecyclerView.ViewHolder {
 

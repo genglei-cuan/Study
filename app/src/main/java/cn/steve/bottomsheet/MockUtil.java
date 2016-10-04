@@ -12,21 +12,34 @@ public class MockUtil {
 
     public static ArrayList<ShareItem> createItems() {
         ArrayList<ShareItem> items = new ArrayList<>();
-        items.add(new ShareItem(R.drawable.share_icon_wechat, "Preview"));
-        items.add(new ShareItem(R.drawable.share_icon_wechatfriends, "Share"));
-        items.add(new ShareItem(R.drawable.share_icon_copy, "Get link"));
-        items.add(new ShareItem(R.drawable.share_icon_qq, "Copy"));
 
-        items.add(new ShareItem(R.drawable.ic_share_24dp, "Share"));
-        items.add(new ShareItem(R.drawable.ic_content_copy_24dp, "Copy"));
-        items.add(new ShareItem(R.drawable.ic_preview_24dp, "Preview"));
-        items.add(new ShareItem(R.drawable.ic_link_24dp, "Get link"));
+        ShareItem previewItem = new ShareItem(R.drawable.share_icon_wechat, "Preview");
+        setOnClickListener(previewItem);
+        items.add(previewItem);
 
-        items.add(new ShareItem(R.drawable.ic_share_24dp, "Share"));
-        items.add(new ShareItem(R.drawable.ic_link_24dp, "Get link"));
-        items.add(new ShareItem(R.drawable.ic_content_copy_24dp, "Copy"));
-        items.add(new ShareItem(R.drawable.share_icon_more, "Preview"));
+        ShareItem share = new ShareItem(R.drawable.share_icon_wechatfriends, "Share");
+        setOnClickListener(share);
+        items.add(share);
+
+        ShareItem link = new ShareItem(R.drawable.share_icon_copy, "Get link");
+        setOnClickListener(link);
+        items.add(link);
+
+        ShareItem copy = new ShareItem(R.drawable.share_icon_qq, "Copy");
+        setOnClickListener(copy);
+        items.add(copy);
+
+        items.add(previewItem);
+        items.add(share);
+        items.add(link);
+        items.add(copy);
 
         return items;
     }
+
+
+    private static void setOnClickListener(final ShareItem item) {
+    }
+
+
 }

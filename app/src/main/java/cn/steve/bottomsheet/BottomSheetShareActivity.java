@@ -25,7 +25,7 @@ public class BottomSheetShareActivity extends AppCompatActivity {
     }
 
     private void onClickActionButton() {
-        new BottomSheetShareFragment().show(getSupportFragmentManager(), "shareFragment");
+        ShareUtil.share(this);
     }
 
 }

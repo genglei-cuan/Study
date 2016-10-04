@@ -1,7 +1,6 @@
 package cn.steve.bottomsheet;
 
 import android.support.annotation.DrawableRes;
-import android.view.View;
 
 /**
  * Created by yantinggeng on 2016/5/5.
@@ -11,19 +10,19 @@ public class ShareItem {
     @DrawableRes
     private int drawableRes;
     private String title;
-    private View.OnClickListener onClickListener;
+    private int type = 0;
 
     public ShareItem(@DrawableRes int drawableRes, String title) {
         this.drawableRes = drawableRes;
         this.title = title;
     }
 
-    public View.OnClickListener getOnClickListener() {
-        return onClickListener;
+    public int getType() {
+        return type;
     }
 
-    public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.onClickListener = onClickListener;
+    public void setType(int type) {
+        this.type = type;
     }
 
     public int getDrawableRes() {
