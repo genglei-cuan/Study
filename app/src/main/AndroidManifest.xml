@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
             android:name="cn.steve.UILApplication"
@@ -36,9 +37,8 @@
         <activity android:name="cn.steve.customdialog.SimpleDialog">
         </activity>
 
-        <!--screen dialog-->
+        <!-- screen dialog -->
         <activity android:name="cn.steve.customdialog.FullScreenDialogActivity">
-
         </activity>
 
         <!-- signature  simple  demo -->
@@ -193,10 +193,6 @@
         <!-- 运行在前后台的测试 -->
         <activity android:name="cn.steve.forebackground.ForeGroundActivityA"/>
         <activity android:name="cn.steve.click_xml.LayoutClickableMainActivity"/>
-
-        <!-- 社交分享弹窗 -->
-        <activity android:name="cn.steve.share.ShareMainActivity">
-        </activity>
 
         <!-- 原生的下拉刷新控件 -->
         <activity android:name="cn.steve.swiperefreshlayout.SwipeRefreshLayoutActivity">
@@ -382,7 +378,6 @@
         </activity>
         <!-- bottombar -->
         <activity android:name="cn.steve.bottombar.BottomBarActivity">
-
         </activity>
         <!-- FragmentTabHost -->
         <activity android:name="cn.steve.fragmenttabhost.FragmentTabHostActivity">
@@ -406,10 +401,6 @@
         </activity>
         <!-- bottom sheet -->
         <activity android:name="cn.steve.share.BottomSheetShareActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <!-- 打印定制的log -->
         <activity android:name="cn.steve.log.LogActivity">
@@ -461,7 +452,6 @@
 
         <!-- Handler -->
         <activity android:name="cn.steve.handler.HandlerLooperActivity">
-
         </activity>
 
         <!-- IntentService -->
@@ -489,7 +479,6 @@
 
         <!-- notification -->
         <activity android:name="cn.steve.notification.NotificationHandlerActivity">
-
         </activity>
 
         <!-- TaskStackBuilder -->
@@ -552,33 +541,45 @@
         </service>
         <!-- socket -->
         <activity android:name="cn.steve.ipc.socket.TCPClientActivity">
-
         </activity>
 
-        <!--aidl with observer-->
+        <!-- aidl with observer -->
         <service
                 android:name="cn.steve.ipc.aidl.observer.BookManagerService"
                 android:enabled="true"
                 android:exported="true"
                 android:process=":remote">
-
         </service>
+
         <activity android:name="cn.steve.ipc.aidl.observer.BookManagerActivity">
-
         </activity>
 
-        <!--lazy fragment-->
+        <!-- lazy fragment -->
         <activity android:name="cn.steve.viewpager.LazyFragmentActivity">
-
         </activity>
-        <!--bundler-->
+        <!-- bundler -->
         <activity android:name="cn.steve.ipc.bundle.BundleActivity">
-
         </activity>
-
         <activity android:name="cn.steve.ipc.bundle.BundleActivityB">
         </activity>
+        <activity android:name="cn.steve.phone.PhoneActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- 监听电话拨打状态 -->
+        <receiver
+                android:name="cn.steve.phone.PhoneStateReceive"
+                android:enabled="true"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE"/>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
