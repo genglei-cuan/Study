@@ -401,6 +401,11 @@
         </activity>
         <!-- bottom sheet -->
         <activity android:name="cn.steve.share.BottomSheetShareActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <!-- 打印定制的log -->
         <activity android:name="cn.steve.log.LogActivity">
@@ -562,12 +567,9 @@
         </activity>
         <activity android:name="cn.steve.ipc.bundle.BundleActivityB">
         </activity>
+        <!--call phone-->
         <activity android:name="cn.steve.phone.PhoneActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <!-- 监听电话拨打状态 -->
