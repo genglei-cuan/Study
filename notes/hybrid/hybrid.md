@@ -26,6 +26,16 @@
 对于消息的业务处理，都在 JS 层面完成，JS 处理完成之后，如果有需要进行为 java 层提供返回值的，则进行重定向，通知 java 层返回值队列中有数据，java 层拦截 URL 进行主动拉去数据的 JS 脚本执行，JS 层方法将返回值放入 URL 中，进行重定向，java 层会拦截 url，根据一定的规则，从 url 中截取出数据，数据中携带了唯一的请求 ID，根据这个 ID 查找出对应的回调方法。
 
 
+### JS 向 native 发送消息
+
+当 JS 想主动向 native 发送消息的时候，会主动调用 JS 库中的 send 方法，将消息放入 JS 中的 sendMessageQueue 队列中。然后像给 native 层提供返回值一样，进行 url 的重定向。
+
+
+### native 处理 JS 发来的消息
+
+当 JS 向 native 发出消息,native 收到消息后，解析成message 对象，根据 callid 去判断是否有特定的 handler，是否有回调。
+
+
 
 
 
