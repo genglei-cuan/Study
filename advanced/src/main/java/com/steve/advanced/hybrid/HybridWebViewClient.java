@@ -1,5 +1,6 @@
 package com.steve.advanced.hybrid;
 
+import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 /**
@@ -10,5 +11,19 @@ import android.webkit.WebViewClient;
 
 public class HybridWebViewClient extends WebViewClient {
 
+    private URLInterceptor interceptor;
+
+    public HybridWebViewClient() {
+        this.interceptor = new URLInterceptor();
+    }
+
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        boolean intercepted = interceptor.intercept(url);
+        if (intercepted) {
+            return intercepted;
+        }
+        return super.shouldOverrideUrlLoading(view, url);
+    }
 
 }
