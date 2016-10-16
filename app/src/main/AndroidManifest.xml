@@ -401,7 +401,6 @@
         </activity>
         <!-- bottom sheet -->
         <activity android:name="cn.steve.share.BottomSheetShareActivity">
-
         </activity>
         <!-- 打印定制的log -->
         <activity android:name="cn.steve.log.LogActivity">
@@ -492,14 +491,8 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="cn.steve.notification.NotificationHandlerActivity"/>
         </activity>
-
         <activity android:name="cn.steve.notification.NotificationStatusActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
-
 
         <!-- ContentProvider demo -->
         <provider
@@ -571,9 +564,8 @@
         </activity>
         <activity android:name="cn.steve.ipc.bundle.BundleActivityB">
         </activity>
-        <!--call phone-->
+        <!-- call phone -->
         <activity android:name="cn.steve.phone.PhoneActivity">
-
         </activity>
 
         <!-- 监听电话拨打状态 -->
@@ -586,6 +578,14 @@
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
             </intent-filter>
         </receiver>
+
+        <activity android:name="cn.steve.share.view.AnFQNumEditTextActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
