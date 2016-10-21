@@ -4,7 +4,6 @@ import android.support.annotation.IntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.util.Date;
 
 
 /**
@@ -18,23 +17,15 @@ public class DayItem {
     public static final int TYPE_HOILDAY = 33;
 
 
-    private String day;
+    private String day ;
     private String price;
     private String more;
+
     private boolean isEffective = true;
-    private Date date;
+
     private
     @ItemType
     int type;
-
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public boolean isEffective() {
         return isEffective;

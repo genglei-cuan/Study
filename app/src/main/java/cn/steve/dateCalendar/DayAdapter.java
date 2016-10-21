@@ -16,10 +16,10 @@ import cn.steve.study.R;
 
 public class DayAdapter extends RecyclerView.Adapter<DayAdapter.ViewHolder> {
 
-    private ArrayList<DayItem> dayItems;
+    private ArrayList<AdapterItem> datas;
 
-    public void setDayItems(ArrayList<DayItem> dayItems) {
-        this.dayItems = dayItems;
+    public void setDatas(ArrayList<AdapterItem> datas) {
+        this.datas = datas;
     }
 
     @Override
@@ -30,24 +30,18 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        DayItem dayItem = dayItems.get(position);
-
-        int type = dayItem.getType();
-        int topColor = R.color.black;
-        if (type == DayItem.TYPE_HOILDAY) {
-            topColor = R.color.blue_light;
-        }
-        holder.dayNum.setTextColor(topColor);
+        AdapterItem dayItem = datas.get(position);
 
 
-        holder.dayNum.setText(dayItem.getDay());
+
+        holder.dayNum.setText(dayItem.getDate());
         holder.dayPrice.setText(dayItem.getPrice());
-        holder.dayMore.setText(dayItem.getMore());
+        holder.dayMore.setText(dayItem.getStock());
     }
 
     @Override
     public int getItemCount() {
-        return dayItems.size();
+        return datas.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
