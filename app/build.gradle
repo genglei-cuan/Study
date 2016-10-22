@@ -29,6 +29,9 @@ android {
             buildConfigField "String", "addField", '"DefaultValue"'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
