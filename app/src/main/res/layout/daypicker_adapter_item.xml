@@ -10,17 +10,20 @@
             android:id="@+id/dayNum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             tools:text="13"/>
 
     <TextView
             android:id="@+id/dayPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/red_dark"
             tools:text="¥2999"/>
 
     <TextView
             android:id="@+id/dayMore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/yellow_dark"
             tools:text="余8"/>
 </LinearLayout>

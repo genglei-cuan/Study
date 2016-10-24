@@ -1,26 +1,67 @@
 package cn.steve.dateCalendar;
 
+import android.support.annotation.IntDef;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * Created by yantinggeng on 2016/10/21.
  */
 
 public class AdapterItem {
 
-    private String date;
+    public static final int TYPE_GROUP = 11;
+    public static final int TYPE_ITEM = 22;
+
+    private String day;
     private String price;
     private int stock;
+    private String festival;
+    private String date;
+    private String group;
+
     private boolean isEffective;
     private boolean isSelected;
 
-    private DayItem dayItem;
+    private
+    @AdapterItemType
+    int adapterItemType;
 
-    public DayItem getDayItem() {
-        return dayItem;
+    public String getGroup() {
+        return group;
     }
 
-    public void setDayItem(DayItem dayItem) {
-        this.dayItem = dayItem;
+    public void setGroup(String group) {
+        this.group = group;
     }
+
+    public
+    @AdapterItemType
+    int getAdapterItemType() {
+        return adapterItemType;
+    }
+
+    public void setAdapterItemType(@AdapterItemType int adapterItemType) {
+        this.adapterItemType = adapterItemType;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getFestival() {
+        return festival;
+    }
+
+    public void setFestival(String festival) {
+        this.festival = festival;
+    }
+
 
     public String getDate() {
         return date;
@@ -60,5 +101,11 @@ public class AdapterItem {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    @IntDef(flag = true, value = {TYPE_GROUP, TYPE_ITEM})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface AdapterItemType {
+
     }
 }

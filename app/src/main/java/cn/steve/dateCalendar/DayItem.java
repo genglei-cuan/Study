@@ -14,25 +14,21 @@ public class DayItem {
 
     public static final int TYPE_PRE = 11;
     public static final int TYPE_NORMAL = 22;
-    public static final int TYPE_HOILDAY = 33;
 
 
-    private String day ;
-    private String price;
-    private String more;
-
-    private boolean isEffective = true;
+    private String day;
+    private String date;
 
     private
     @ItemType
     int type;
 
-    public boolean isEffective() {
-        return isEffective;
+    public String getDate() {
+        return date;
     }
 
-    public void setEffective(boolean effective) {
-        isEffective = effective;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public
@@ -53,24 +49,7 @@ public class DayItem {
         this.day = day;
     }
 
-    public String getMore() {
-        return more;
-    }
-
-    public void setMore(String more) {
-        this.more = more;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-
-    @IntDef(flag = true, value = {TYPE_PRE, TYPE_NORMAL, TYPE_HOILDAY})
+    @IntDef(flag = true, value = {TYPE_PRE, TYPE_NORMAL})
     @Retention(RetentionPolicy.SOURCE)
     public @interface ItemType {
 

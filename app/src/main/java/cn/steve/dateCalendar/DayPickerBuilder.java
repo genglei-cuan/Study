@@ -1,7 +1,9 @@
 package cn.steve.dateCalendar;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import static java.util.Calendar.HOUR_OF_DAY;
@@ -17,19 +19,20 @@ import static java.util.Calendar.SECOND;
 
 public class DayPickerBuilder {
 
-    private Calendar defaultSelectedDate;
     private Calendar today;
+    private Locale locale;
+
+    public DayPickerBuilder() {
+        init();
+    }
+
 
     private void init() {
-        Locale locale = Locale.getDefault();
+        locale = Locale.getDefault();
         today = Calendar.getInstance(locale);
     }
 
-    private void withSelectDate(Calendar selectDate) {
-        this.defaultSelectedDate = selectDate;
-    }
-
-    private ArrayList<DayItem> generateMonth(int year, int month) {
+    public ArrayList<DayItem> generateMonth(int year, int month) {
         ArrayList<DayItem> dayItems = new ArrayList<>();
 
         Calendar cal = Calendar.getInstance();
@@ -39,7 +42,7 @@ public class DayPickerBuilder {
 
         setMidnight(cal);
 
-        dayItems.addAll(getEmptyList(cal));
+        dayItems.addAll(getStartEmptyList(cal));
 
         dayItems.add(getDayItem(cal));
 
@@ -49,10 +52,12 @@ public class DayPickerBuilder {
             dayItems.add(getDayItem(cal));
         }
 
+        dayItems.addAll(getEndEmptyList(cal));
+
         return dayItems;
     }
 
-    private ArrayList<DayItem> getEmptyList(Calendar cal) {
+    private ArrayList<DayItem> getStartEmptyList(Calendar cal) {
         ArrayList<DayItem> emptyList = new ArrayList<>();
         int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
 
@@ -64,6 +69,17 @@ public class DayPickerBuilder {
         return emptyList;
     }
 
+    private ArrayList<DayItem> getEndEmptyList(Calendar cal) {
+        ArrayList<DayItem> emptyList = new ArrayList<>();
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+
+        for (int i = 0; i < 7 - dayOfWeek; i++) {
+            DayItem item = new DayItem();
+            emptyList.add(item);
+        }
+
+        return emptyList;
+    }
 
     private DayItem getDayItem(Calendar cal) {
         DayItem item = new DayItem();
@@ -77,7 +93,9 @@ public class DayPickerBuilder {
         } else {
             day = cal.get(Calendar.DAY_OF_MONTH) + "";
         }
+
         item.setDay(day);
+        item.setDate(formatDate(cal));
 
         boolean preDate = preDate(cal, today);
         if (preDate) {
@@ -107,5 +125,11 @@ public class DayPickerBuilder {
 
     private boolean futureDate(Calendar cal, Calendar ano) {
         return cal.compareTo(ano) > 0;
+    }
+
+    private String formatDate(Calendar cal) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", locale);
+        Date date = cal.getTime();
+        return sdf.format(date);
     }
 }
