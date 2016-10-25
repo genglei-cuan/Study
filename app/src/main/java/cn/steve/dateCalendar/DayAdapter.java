@@ -16,16 +16,12 @@ import cn.steve.study.R;
  * Created by yantinggeng on 2016/10/20.
  */
 
-public class DayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class DayAdapter extends BaseDayAdapter {
 
     private ArrayList<AdapterItem> datas;
 
     public void setDatas(ArrayList<AdapterItem> datas) {
         this.datas = datas;
-    }
-
-    public boolean isGroupTitle(int position) {
-        return getItemViewType(position) == AdapterItem.TYPE_GROUP;
     }
 
     @Override
@@ -48,10 +44,6 @@ public class DayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         AdapterItem adapterItem = datas.get(position);
-
-        int adapterItemType = adapterItem.getAdapterItemType();
-        String group = adapterItem.getGroup();
-        String date = adapterItem.getDate();
 
         if (holder instanceof ItemViewHolder) {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;

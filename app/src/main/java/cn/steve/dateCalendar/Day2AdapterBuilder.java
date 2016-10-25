@@ -6,6 +6,11 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.Set;
 
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 /**
  * Created by yantinggeng on 2016/10/24.
  */
@@ -19,19 +24,33 @@ public class Day2AdapterBuilder {
         init();
     }
 
+    private void setDatas(ArrayMap<String, DatePriceVO> datas) {
+        this.datas = datas;
+    }
+
     private void init() {
         vacations = new ArrayMap<>();
     }
 
-    public ArrayMap<String, DatePriceVO> getDatas() {
-        return datas;
+    public void getDayAdapter(final ArrayMap<String, DatePriceVO> datas, Subscriber<BaseDayAdapter> subscriber) {
+        Observable.create(new Observable.OnSubscribe<BaseDayAdapter>() {
+            @Override
+            public void call(Subscriber<? super BaseDayAdapter> subscriber) {
+                setDatas(datas);
+                ArrayList<AdapterItem> adapterItems = generateAdapterDatas();
+                DayAdapter adapter = new DayAdapter();
+                adapter.setDatas(adapterItems);
+
+                subscriber.onNext(adapter);
+            }
+        })
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(subscriber);
     }
 
-    public void setDatas(ArrayMap<String, DatePriceVO> datas) {
-        this.datas = datas;
-    }
 
-    public ArrayList<AdapterItem> generateAdapterDatas() {
+    private ArrayList<AdapterItem> generateAdapterDatas() {
         ArrayList<AdapterItem> adapterItems = new ArrayList<>();
 
         // 1. get the all year and months

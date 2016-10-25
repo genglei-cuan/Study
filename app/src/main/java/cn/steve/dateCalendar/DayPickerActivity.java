@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import cn.steve.study.R;
+import rx.Subscriber;
 
 /**
  * Created by yantinggeng on 2016/10/20.
@@ -21,7 +22,7 @@ public class DayPickerActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datecalendar);
-        DayPickerView dayPickerView = (DayPickerView) findViewById(R.id.daypicker);
+        final DayPickerView dayPickerView = (DayPickerView) findViewById(R.id.daypicker);
         ArrayMap<String, DatePriceVO> datas = new ArrayMap<>();
 
         Calendar cal = Calendar.getInstance();
@@ -36,7 +37,24 @@ public class DayPickerActivity extends AppCompatActivity {
             cal.add(Calendar.DAY_OF_MONTH, 1);
         }
 
-        dayPickerView.setData(datas);
+        Day2AdapterBuilder builder = new Day2AdapterBuilder();
+        builder.getDayAdapter(datas, new Subscriber<BaseDayAdapter>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(BaseDayAdapter baseDayAdapter) {
+                dayPickerView.setAdapter(baseDayAdapter);
+            }
+        });
+
     }
 
 
