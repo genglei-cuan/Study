@@ -1,6 +1,7 @@
 package cn.steve.dateCalendar;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import cn.steve.study.R;
+
 
 /**
  * Created by yantinggeng on 2016/10/20.
@@ -20,6 +22,10 @@ public class DayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public void setDatas(ArrayList<AdapterItem> datas) {
         this.datas = datas;
+    }
+
+    public boolean isGroupTitle(int position) {
+        return getItemViewType(position) == AdapterItem.TYPE_GROUP;
     }
 
     @Override
@@ -41,17 +47,26 @@ public class DayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        AdapterItem dayItem = datas.get(position);
+        AdapterItem adapterItem = datas.get(position);
+
+        int adapterItemType = adapterItem.getAdapterItemType();
+        String group = adapterItem.getGroup();
+        String date = adapterItem.getDate();
 
         if (holder instanceof ItemViewHolder) {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            itemViewHolder.dayNum.setText(dayItem.getDay());
-            itemViewHolder.dayPrice.setText(dayItem.getPrice());
-            itemViewHolder.dayMore.setText(dayItem.getStock()+"");
+            String day = TextUtils.isEmpty(adapterItem.getDay()) ? " " : adapterItem.getDay();
+            String price = TextUtils.isEmpty(adapterItem.getPrice()) ? " " : adapterItem.getPrice();
+            String stock = adapterItem.getStock() == 0 ? " " : "余" + adapterItem.getStock();
+
+            itemViewHolder.dayNum.setText(day);
+            itemViewHolder.dayPrice.setText(price);
+            itemViewHolder.dayMore.setText(stock);
         }
+
         if (holder instanceof GroupViewHolder) {
             GroupViewHolder groupViewHolder = (GroupViewHolder) holder;
-            groupViewHolder.groupName.setText(dayItem.getGroup());
+            groupViewHolder.groupName.setText(adapterItem.getGroup());
         }
 
     }
@@ -61,6 +76,7 @@ public class DayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return datas.size();
     }
 
+
     @Override
     public int getItemViewType(int position) {
         return datas.get(position).getAdapterItemType();
@@ -68,9 +84,9 @@ public class DayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        public static TextView dayNum;
-        public static TextView dayPrice;
-        public static TextView dayMore;
+        public TextView dayNum;
+        public TextView dayPrice;
+        public TextView dayMore;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -83,7 +99,7 @@ public class DayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static class GroupViewHolder extends RecyclerView.ViewHolder {
 
-        public static TextView groupName;
+        public TextView groupName;
 
         public GroupViewHolder(TextView itemView) {
             super(itemView);

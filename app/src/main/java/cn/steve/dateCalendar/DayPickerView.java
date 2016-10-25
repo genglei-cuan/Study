@@ -24,6 +24,7 @@ import rx.schedulers.Schedulers;
 public class DayPickerView extends FrameLayout {
 
     private RecyclerView recyclerView;
+    private DayAdapter adapter = new DayAdapter();
 
     public DayPickerView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -33,8 +34,21 @@ public class DayPickerView extends FrameLayout {
 
     private void init() {
         recyclerView = (RecyclerView) findViewById(R.id.dayPickerRecyclerView);
-        GridLayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), 7);
-        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 7);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                boolean isTitle = adapter.isGroupTitle(position);
+                if (isTitle) {
+                    return 7;
+                } else {
+                    return 1;
+                }
+            }
+        });
+        recyclerView.setLayoutManager(gridLayoutManager);
     }
 
     public void setData(final ArrayMap<String, DatePriceVO> datas) {
@@ -52,7 +66,6 @@ public class DayPickerView extends FrameLayout {
             .subscribe(new Action1<ArrayList<AdapterItem>>() {
                 @Override
                 public void call(ArrayList<AdapterItem> o) {
-                    DayAdapter adapter = new DayAdapter();
                     adapter.setDatas(o);
                     recyclerView.setAdapter(adapter);
                 }

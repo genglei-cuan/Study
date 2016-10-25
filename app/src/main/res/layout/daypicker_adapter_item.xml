@@ -2,15 +2,17 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
     <TextView
             android:id="@+id/dayNum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
+            android:gravity="center"
             tools:text="13"/>
 
     <TextView
@@ -18,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/red_dark"
+            android:gravity="center"
             tools:text="¥2999"/>
 
     <TextView
@@ -25,5 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/yellow_dark"
+            android:gravity="center"
             tools:text="余8"/>
 </LinearLayout>

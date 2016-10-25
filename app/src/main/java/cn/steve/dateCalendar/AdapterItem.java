@@ -16,7 +16,7 @@ public class AdapterItem {
 
     private String day;
     private String price;
-    private int stock;
+    private int stock = 0;
     private String festival;
     private String date;
     private String group;

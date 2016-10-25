@@ -26,12 +26,12 @@ public class DayPickerActivity extends AppCompatActivity {
 
         Calendar cal = Calendar.getInstance();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 100; i++) {
             DatePriceVO vo = new DatePriceVO();
             String date = formatDate(cal);
             vo.setDate(date);
-            vo.setPrice("100");
-            vo.setStock(100);
+            vo.setPrice("¥" + i);
+            vo.setStock(i);
             datas.put(date, vo);
             cal.add(Calendar.DAY_OF_MONTH, 1);
         }

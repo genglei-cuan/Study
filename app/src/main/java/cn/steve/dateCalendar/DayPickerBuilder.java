@@ -30,6 +30,7 @@ public class DayPickerBuilder {
     private void init() {
         locale = Locale.getDefault();
         today = Calendar.getInstance(locale);
+        setMidnight(today);
     }
 
     public ArrayList<DayItem> generateMonth(int year, int month) {
@@ -37,21 +38,21 @@ public class DayPickerBuilder {
 
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, year);
-        cal.set(Calendar.MONTH, month);
+        cal.set(Calendar.MONTH, month - 1);
         cal.set(Calendar.DAY_OF_MONTH, 1);
 
         setMidnight(cal);
 
         dayItems.addAll(getStartEmptyList(cal));
 
-        dayItems.add(getDayItem(cal));
-
         int actualMaximum = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         for (int i = 0; i < actualMaximum; i++) {
-            cal.add(Calendar.DATE, 1);
             dayItems.add(getDayItem(cal));
+            cal.add(Calendar.DATE, 1);
         }
 
+        // back to the last day
+        cal.add(Calendar.DATE, -1);
         dayItems.addAll(getEndEmptyList(cal));
 
         return dayItems;

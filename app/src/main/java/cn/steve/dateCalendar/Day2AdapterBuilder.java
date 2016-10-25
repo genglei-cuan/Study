@@ -42,6 +42,9 @@ public class Day2AdapterBuilder {
             if (yearMonth == null) {
                 continue;
             }
+            if (dateYearMonthArrayList.contains(yearMonth)) {
+                continue;
+            }
             dateYearMonthArrayList.add(yearMonth);
         }
 
@@ -80,6 +83,7 @@ public class Day2AdapterBuilder {
 
             DatePriceVO datePriceVO = datas.get(date);
             if (datePriceVO == null) {
+                adapterItems.add(adapterItem);
                 continue;
             }
             String festival = vacations.get(date);
