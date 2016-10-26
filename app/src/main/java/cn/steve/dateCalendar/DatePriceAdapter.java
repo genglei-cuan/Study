@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import cn.steve.dateCalendar.basic.BaseDatePriceAdapter;
 import cn.steve.study.R;
 
 
@@ -141,7 +142,7 @@ public class DatePriceAdapter extends BaseDatePriceAdapter<AdapterItem> {
     }
 
     @Override
-    AdapterItem getSelected() {
+    protected AdapterItem getSelected() {
         return currentSelectedItem;
     }
 

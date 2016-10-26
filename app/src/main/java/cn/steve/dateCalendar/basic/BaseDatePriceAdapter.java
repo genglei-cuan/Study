@@ -1,7 +1,9 @@
-package cn.steve.dateCalendar;
+package cn.steve.dateCalendar.basic;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import cn.steve.dateCalendar.AdapterItem;
 
 /**
  * Created by yantinggeng on 2016/10/25.
@@ -12,7 +14,7 @@ public abstract class BaseDatePriceAdapter<T> extends RecyclerView.Adapter<Recyc
     protected RecyclerView recyclerView;
     protected OnAdapterItemClickListener onItemClickListener;
 
-    abstract T getSelected();
+    protected abstract T getSelected();
 
 
     public void setOnItemClickListener(OnAdapterItemClickListener onItemClickListener) {
@@ -27,7 +29,7 @@ public abstract class BaseDatePriceAdapter<T> extends RecyclerView.Adapter<Recyc
         return getItemViewType(position) == AdapterItem.TYPE_GROUP;
     }
 
-    interface OnAdapterItemClickListener {
+    public interface OnAdapterItemClickListener {
 
         void onItemClick(RecyclerView parent, View view, int position, long id);
     }

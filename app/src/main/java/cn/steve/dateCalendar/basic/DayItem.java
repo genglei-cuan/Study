@@ -1,4 +1,4 @@
-package cn.steve.dateCalendar;
+package cn.steve.dateCalendar.basic;
 
 import android.support.annotation.IntDef;
 

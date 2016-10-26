@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <cn.steve.dateCalendar.DatePickerView
+    <cn.steve.dateCalendar.basic.DatePickerView
             android:id="@+id/daypicker"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
