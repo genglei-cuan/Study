@@ -7,7 +7,7 @@ import android.view.View;
  * Created by yantinggeng on 2016/10/25.
  */
 
-public abstract class BaseDayAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
+public abstract class BaseDatePriceAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
     protected RecyclerView recyclerView;
     protected OnAdapterItemClickListener onItemClickListener;

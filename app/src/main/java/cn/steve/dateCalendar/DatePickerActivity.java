@@ -16,13 +16,13 @@ import rx.Subscriber;
  * Created by yantinggeng on 2016/10/20.
  */
 
-public class DayPickerActivity extends AppCompatActivity {
+public class DatePickerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datecalendar);
-        final DayPickerView dayPickerView = (DayPickerView) findViewById(R.id.daypicker);
+        final DatePickerView datePickerView = (DatePickerView) findViewById(R.id.daypicker);
         ArrayMap<String, DatePriceVO> datas = new ArrayMap<>();
 
         Calendar cal = Calendar.getInstance();
@@ -37,8 +37,8 @@ public class DayPickerActivity extends AppCompatActivity {
             cal.add(Calendar.DAY_OF_MONTH, 1);
         }
 
-        Day2AdapterBuilder builder = new Day2AdapterBuilder();
-        builder.withSelected("2016-11-11").getDayAdapter(datas, new Subscriber<BaseDayAdapter>() {
+        DatePriceAdapterBuilder builder = new DatePriceAdapterBuilder();
+        builder.withSelected("2016-11-11").getDayAdapter(datas, new Subscriber<BaseDatePriceAdapter>() {
             @Override
             public void onCompleted() {
 
@@ -50,8 +50,8 @@ public class DayPickerActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNext(BaseDayAdapter baseDayAdapter) {
-                dayPickerView.setAdapter(baseDayAdapter);
+            public void onNext(BaseDatePriceAdapter baseDatePriceAdapter) {
+                datePickerView.setAdapter(baseDatePriceAdapter);
             }
         });
 

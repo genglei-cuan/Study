@@ -7,11 +7,11 @@ import android.text.TextUtils;
  */
 public abstract class BaseBuilder {
 
-    protected Day2AdapterBuilder.DateYearMonth getYearMonth(String date) {
+    protected DatePriceAdapterBuilder.DateYearMonth getYearMonth(String date) {
         if (TextUtils.isEmpty(date)) {
             return null;
         }
-        Day2AdapterBuilder.DateYearMonth dateYearMonth = new Day2AdapterBuilder.DateYearMonth();
+        DatePriceAdapterBuilder.DateYearMonth dateYearMonth = new DatePriceAdapterBuilder.DateYearMonth();
         String[] strings = date.split("-");
         if (strings.length < 2) {
             return null;

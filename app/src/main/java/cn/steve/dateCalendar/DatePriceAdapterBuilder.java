@@ -17,13 +17,13 @@ import rx.schedulers.Schedulers;
  * Created by yantinggeng on 2016/10/24.
  */
 
-public class Day2AdapterBuilder extends BaseBuilder {
+public class DatePriceAdapterBuilder extends BaseBuilder {
 
     private ArrayMap<String, String> vacations;
     private ArrayMap<String, DatePriceVO> datas;
     private String selectedDate = "";
 
-    public Day2AdapterBuilder() {
+    public DatePriceAdapterBuilder() {
         init();
     }
 
@@ -35,19 +35,19 @@ public class Day2AdapterBuilder extends BaseBuilder {
         this.datas = datas;
     }
 
-    public Day2AdapterBuilder withSelected(String date) {
+    public DatePriceAdapterBuilder withSelected(String date) {
         this.selectedDate = date;
         return this;
     }
 
-    public void getDayAdapter(final ArrayMap<String, DatePriceVO> datas, Subscriber<BaseDayAdapter> subscriber) {
-        Observable.create(new Observable.OnSubscribe<BaseDayAdapter>() {
+    public void getDayAdapter(final ArrayMap<String, DatePriceVO> datas, Subscriber<BaseDatePriceAdapter> subscriber) {
+        Observable.create(new Observable.OnSubscribe<BaseDatePriceAdapter>() {
             @Override
-            public void call(Subscriber<? super BaseDayAdapter> subscriber) {
+            public void call(Subscriber<? super BaseDatePriceAdapter> subscriber) {
                 setDatas(datas);
                 ArrayList<AdapterItem> adapterItems = generateAdapterDatas();
-                final DayAdapter adapter = new DayAdapter();
-                adapter.setOnItemClickListener(new BaseDayAdapter.OnAdapterItemClickListener() {
+                final DatePriceAdapter adapter = new DatePriceAdapter();
+                adapter.setOnItemClickListener(new BaseDatePriceAdapter.OnAdapterItemClickListener() {
                     @Override
                     public void onItemClick(RecyclerView parent, View view, int position, long id) {
                         Toast.makeText(view.getContext(), adapter.getItem(position).getDate(), Toast.LENGTH_SHORT).show();

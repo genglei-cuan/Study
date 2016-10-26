@@ -586,7 +586,7 @@
         </activity>
 
         <!--时间价格表-->
-        <activity android:name="cn.steve.dateCalendar.DayPickerActivity">
+        <activity android:name="cn.steve.dateCalendar.DatePickerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

@@ -13,12 +13,12 @@ import cn.steve.study.R;
  * Created by yantinggeng on 2016/10/20.
  */
 
-public class DayPickerView extends FrameLayout {
+public class DatePickerView extends FrameLayout {
 
     private RecyclerView recyclerView;
-    private BaseDayAdapter adapter;
+    private BaseDatePriceAdapter adapter;
 
-    public DayPickerView(Context context, AttributeSet attrs) {
+    public DatePickerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.daypicker_layout, this, true);
         init();
@@ -43,7 +43,7 @@ public class DayPickerView extends FrameLayout {
         recyclerView.setLayoutManager(gridLayoutManager);
     }
 
-    public void setAdapter(BaseDayAdapter adapter) {
+    public void setAdapter(BaseDatePriceAdapter adapter) {
         this.adapter = adapter;
         this.adapter.setRecyclerView(this.recyclerView);
         this.recyclerView.setAdapter(adapter);

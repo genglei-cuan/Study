@@ -17,7 +17,7 @@ import cn.steve.study.R;
  * Created by yantinggeng on 2016/10/20.
  */
 
-public class DayAdapter extends BaseDayAdapter<AdapterItem> {
+public class DatePriceAdapter extends BaseDatePriceAdapter<AdapterItem> {
 
     private ArrayList<AdapterItem> datas;
     private AdapterItem currentSelectedItem = null;
