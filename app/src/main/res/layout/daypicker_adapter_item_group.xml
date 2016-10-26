@@ -4,8 +4,11 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
         android:gravity="center"
         android:textSize="18sp"
+        android:textColor="#666666"
+        android:background="#F8F8F8"
         tools:text="2016年10月">
 </TextView>

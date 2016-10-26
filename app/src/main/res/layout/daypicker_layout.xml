@@ -3,21 +3,23 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#FFFFFF">
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:textColor="#c12c73"
-                android:textSize="16sp"
+                android:textColor="#D30775"
+                android:textSize="14sp"
                 android:text="日"/>
 
         <TextView
@@ -70,14 +72,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="#c12c73"
-                android:textSize="16sp"
+                android:textColor="#D30775"
+                android:textSize="14sp"
                 android:text="六"/>
     </LinearLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#DDDDDD"/>
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/dayPickerRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            />
 
 </LinearLayout>

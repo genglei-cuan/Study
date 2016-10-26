@@ -27,7 +27,7 @@ public class DatePickerView extends FrameLayout {
     private void init() {
         recyclerView = (RecyclerView) findViewById(R.id.dayPickerRecyclerView);
         recyclerView.setHasFixedSize(true);
-
+        recyclerView.addItemDecoration(new DividerGridItemDecoration(getContext()));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 7);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
