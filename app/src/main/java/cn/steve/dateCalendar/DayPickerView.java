@@ -45,6 +45,7 @@ public class DayPickerView extends FrameLayout {
 
     public void setAdapter(BaseDayAdapter adapter) {
         this.adapter = adapter;
+        this.adapter.setRecyclerView(this.recyclerView);
         this.recyclerView.setAdapter(adapter);
     }
 

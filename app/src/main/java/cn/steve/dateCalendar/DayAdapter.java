@@ -1,5 +1,6 @@
 package cn.steve.dateCalendar;
 
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -16,9 +17,10 @@ import cn.steve.study.R;
  * Created by yantinggeng on 2016/10/20.
  */
 
-public class DayAdapter extends BaseDayAdapter {
+public class DayAdapter extends BaseDayAdapter<AdapterItem> {
 
     private ArrayList<AdapterItem> datas;
+    private AdapterItem currentSelectedItem = null;
 
     public void setDatas(ArrayList<AdapterItem> datas) {
         this.datas = datas;
@@ -35,6 +37,7 @@ public class DayAdapter extends BaseDayAdapter {
 
         if (viewType == AdapterItem.TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.daypicker_adapter_item, parent, false);
+            view.setOnClickListener(this);
             viewHolder = new ItemViewHolder(view);
         }
 
@@ -43,7 +46,7 @@ public class DayAdapter extends BaseDayAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        AdapterItem adapterItem = datas.get(position);
+        AdapterItem adapterItem = getItem(position);
 
         if (holder instanceof ItemViewHolder) {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
@@ -54,6 +57,25 @@ public class DayAdapter extends BaseDayAdapter {
             itemViewHolder.dayNum.setText(day);
             itemViewHolder.dayPrice.setText(price);
             itemViewHolder.dayMore.setText(stock);
+
+            Resources resources = itemViewHolder.dayNum.getContext().getApplicationContext().getResources();
+            int dayColor = resources.getColor(R.color.black);
+            int priceColor = resources.getColor(R.color.price_color);
+            int moreColor = resources.getColor(R.color.more_color);
+            int itemBackground = resources.getColor(R.color.white);
+
+            if (!adapterItem.isEffective()) {
+                dayColor = resources.getColor(R.color.gray);
+            }
+            if (adapterItem.isSelected()) {
+                itemBackground = resources.getColor(R.color.selected_color);
+                moreColor = priceColor = dayColor = resources.getColor(R.color.white);
+            }
+
+            itemViewHolder.itemView.setBackgroundColor(itemBackground);
+            itemViewHolder.dayNum.setTextColor(dayColor);
+            itemViewHolder.dayPrice.setTextColor(priceColor);
+            itemViewHolder.dayMore.setTextColor(moreColor);
         }
 
         if (holder instanceof GroupViewHolder) {
@@ -71,7 +93,56 @@ public class DayAdapter extends BaseDayAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        return datas.get(position).getAdapterItemType();
+        return getItem(position).getAdapterItemType();
+    }
+
+    public AdapterItem getItem(int position) {
+        return datas.get(position);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (this.recyclerView == null) {
+            return;
+        }
+
+        int position = this.recyclerView.getChildAdapterPosition(v);
+
+        AdapterItem item = getItem(position);
+        if (!item.isEffective()) {
+            return;
+        }
+        if (item.isSelected()) {
+            return;
+        }
+        item.setSelected(true);
+        notifyItemChanged(position);
+        currentSelectedItem = item;
+
+        for (int i = 0; i < datas.size(); i++) {
+            if (i == position) {
+                continue;
+            }
+            AdapterItem adapterItem = datas.get(i);
+            if (adapterItem.getAdapterItemType() == AdapterItem.TYPE_GROUP) {
+                continue;
+            }
+            if (adapterItem.isSelected()) {
+                adapterItem.setSelected(false);
+                notifyItemChanged(i);
+            } else {
+                adapterItem.setSelected(false);
+            }
+        }
+        if (this.onItemClickListener == null) {
+            return;
+        }
+        this.onItemClickListener.onItemClick(this.recyclerView, v, position, position);
+    }
+
+    @Override
+    AdapterItem getSelected() {
+        return currentSelectedItem;
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {

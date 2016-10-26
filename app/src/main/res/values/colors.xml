@@ -53,4 +53,9 @@
 
     <!-- 自定义drawable-->
     <color name="message_list_item_background_unread">#ff274172</color>
+
+    <color name="selected_color">#dd3377</color>
+    <color name="price_color">#D30775</color>
+    <color name="more_color">#FF740D</color>
+
 </resources>

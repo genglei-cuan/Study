@@ -89,6 +89,8 @@ public class DayPickerBuilder {
 
         String day;
 
+        // TODO: 2016/10/26 假期设置
+
         if (sameDate) {
             day = "今天";
         } else {

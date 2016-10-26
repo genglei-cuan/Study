@@ -19,7 +19,7 @@
             android:id="@+id/dayPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/red_dark"
+            android:textColor="@color/price_color"
             android:gravity="center"
             tools:text="¥2999"/>
 
@@ -27,7 +27,7 @@
             android:id="@+id/dayMore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/yellow_dark"
+            android:textColor="@color/more_color"
             android:gravity="center"
             tools:text="余8"/>
 </LinearLayout>

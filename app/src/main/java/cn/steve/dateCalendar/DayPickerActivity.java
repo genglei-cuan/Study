@@ -38,7 +38,7 @@ public class DayPickerActivity extends AppCompatActivity {
         }
 
         Day2AdapterBuilder builder = new Day2AdapterBuilder();
-        builder.getDayAdapter(datas, new Subscriber<BaseDayAdapter>() {
+        builder.withSelected("2016-11-11").getDayAdapter(datas, new Subscriber<BaseDayAdapter>() {
             @Override
             public void onCompleted() {
 

@@ -1,6 +1,9 @@
 package cn.steve.dateCalendar;
 
 import android.support.v4.util.ArrayMap;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -18,17 +21,23 @@ public class Day2AdapterBuilder extends BaseBuilder {
 
     private ArrayMap<String, String> vacations;
     private ArrayMap<String, DatePriceVO> datas;
+    private String selectedDate = "";
 
     public Day2AdapterBuilder() {
         init();
+    }
+
+    private void init() {
+        vacations = new ArrayMap<>();
     }
 
     private void setDatas(ArrayMap<String, DatePriceVO> datas) {
         this.datas = datas;
     }
 
-    private void init() {
-        vacations = new ArrayMap<>();
+    public Day2AdapterBuilder withSelected(String date) {
+        this.selectedDate = date;
+        return this;
     }
 
     public void getDayAdapter(final ArrayMap<String, DatePriceVO> datas, Subscriber<BaseDayAdapter> subscriber) {
@@ -37,7 +46,13 @@ public class Day2AdapterBuilder extends BaseBuilder {
             public void call(Subscriber<? super BaseDayAdapter> subscriber) {
                 setDatas(datas);
                 ArrayList<AdapterItem> adapterItems = generateAdapterDatas();
-                DayAdapter adapter = new DayAdapter();
+                final DayAdapter adapter = new DayAdapter();
+                adapter.setOnItemClickListener(new BaseDayAdapter.OnAdapterItemClickListener() {
+                    @Override
+                    public void onItemClick(RecyclerView parent, View view, int position, long id) {
+                        Toast.makeText(view.getContext(), adapter.getItem(position).getDate(), Toast.LENGTH_SHORT).show();
+                    }
+                });
                 adapter.setDatas(adapterItems);
                 subscriber.onNext(adapter);
             }
@@ -95,6 +110,12 @@ public class Day2AdapterBuilder extends BaseBuilder {
             adapterItem.setAdapterItemType(AdapterItem.TYPE_ITEM);
 
             String date = dayItem.getDate();
+
+            if (date != null) {
+                if (date.equals(selectedDate)) {
+                    adapterItem.setSelected(true);
+                }
+            }
             adapterItem.setDate(date);
             adapterItem.setDay(dayItem.getDay());
 

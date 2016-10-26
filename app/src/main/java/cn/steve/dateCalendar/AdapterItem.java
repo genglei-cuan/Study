@@ -21,7 +21,6 @@ public class AdapterItem {
     private String date;
     private String group;
 
-    private boolean isEffective;
     private boolean isSelected;
 
     private
@@ -72,11 +71,14 @@ public class AdapterItem {
     }
 
     public boolean isEffective() {
+        boolean isEffective = true;
+        if (getStock() < 1) {
+            isEffective = false;
+        }
+        if (getAdapterItemType() == TYPE_GROUP) {
+            isEffective = false;
+        }
         return isEffective;
-    }
-
-    public void setEffective(boolean effective) {
-        isEffective = effective;
     }
 
     public boolean isSelected() {
