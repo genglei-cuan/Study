@@ -47,6 +47,8 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
     // 绘制水平线
     public void drawHorizontalLine(Canvas c, RecyclerView parent) {
         int childCount = parent.getChildCount();
+        Log.e(this.getClass().getName(), "drawHorizontalLine: getChildCount" + childCount);
+
         for (int i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
             //final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
@@ -60,15 +62,13 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
             int top = child.getBottom();
             int bottom = top + mDivider.getIntrinsicHeight();
 
-            Log.e("MonthEnd", "drawHorizontalLine: " + String.valueOf(isMonthLast(child, parent)));
-
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
 
-            bottom = child.getTop();
-            top = bottom - mDivider.getIntrinsicHeight();
-            mDivider.setBounds(left, top, right, bottom);
-            mDivider.draw(c);
+            //bottom = child.getTop();
+            //top = bottom - mDivider.getIntrinsicHeight();
+            //mDivider.setBounds(left, top, right, bottom);
+            //mDivider.draw(c);
         }
     }
 
@@ -83,18 +83,18 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
 
     private boolean isMonthLast(View view, RecyclerView parent) {
         int childCount = parent.getAdapter().getItemCount();
+        Log.e(this.getClass().getName(), "isMonthLast: getAdapter().getItemCount()" + childCount);
+
         int position = parent.getChildAdapterPosition(view);
         if (position + 1 == childCount || position + 2 == childCount || position + 3 == childCount || position + 4 == childCount
             || position + 5 == childCount || position + 6 == childCount || position + 7 == childCount) {
             return true;
         }
+
+        BaseDatePriceAdapter adapter = (BaseDatePriceAdapter) parent.getAdapter();
         for (int i = 1; i < 8; i++) {
-            View next = parent.getChildAt(position + i);
-            if (next == null) {
-                break;
-            }
-            boolean is = isTitle(next);
-            if (is) {
+            boolean isGroup = adapter.isGroupTitle(position + i);
+            if (isGroup) {
                 return true;
             }
         }
@@ -105,8 +105,8 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         // 如果是最后一行，则不需要绘制底部
         boolean isTitle = isTitle(view);
-        if (isTitle) {
-            outRect.set(0, mDivider.getIntrinsicHeight(), 0, mDivider.getIntrinsicHeight());
+        if (isTitle || isMonthLast(view, parent)) {
+            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
         } else {
             super.getItemOffsets(outRect, view, parent, state);
         }
