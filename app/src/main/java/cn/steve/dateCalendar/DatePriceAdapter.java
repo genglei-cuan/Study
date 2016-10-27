@@ -68,6 +68,7 @@ public class DatePriceAdapter extends BaseDatePriceAdapter<AdapterItem> {
             if (!adapterItem.isEffective()) {
                 dayColor = resources.getColor(R.color.gray);
             }
+
             if (adapterItem.isSelected()) {
                 itemBackground = resources.getColor(R.color.selected_color);
                 moreColor = priceColor = dayColor = resources.getColor(R.color.white);

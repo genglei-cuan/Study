@@ -7,7 +7,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="8dp"
-        android:background="#FFFFFF">
+        android:background="@color/transparent">
 
     <TextView
             android:id="@+id/dayNum"

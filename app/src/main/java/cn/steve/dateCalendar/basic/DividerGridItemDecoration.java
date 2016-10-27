@@ -7,7 +7,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -47,7 +46,6 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
     // 绘制水平线
     public void drawHorizontalLine(Canvas c, RecyclerView parent) {
         int childCount = parent.getChildCount();
-        Log.e(this.getClass().getName(), "drawHorizontalLine: getChildCount" + childCount);
 
         for (int i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
@@ -83,7 +81,6 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
 
     private boolean isMonthLast(View view, RecyclerView parent) {
         int childCount = parent.getAdapter().getItemCount();
-        Log.e(this.getClass().getName(), "isMonthLast: getAdapter().getItemCount()" + childCount);
 
         int position = parent.getChildAdapterPosition(view);
         if (position + 1 == childCount || position + 2 == childCount || position + 3 == childCount || position + 4 == childCount
